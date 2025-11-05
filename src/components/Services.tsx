@@ -53,7 +53,7 @@ const Services = () => {
             return (
               <Card 
                 key={index}
-                className="p-8 bg-gradient-card border-border transition-all duration-300 cursor-pointer"
+                className="p-8 bg-gradient-card border-border hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)] transition-all duration-300 cursor-pointer"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <div className="mb-4 w-14 h-14 rounded-lg bg-accent/10 flex items-center justify-center">

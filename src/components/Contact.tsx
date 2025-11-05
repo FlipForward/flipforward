@@ -103,7 +103,7 @@ const Contact = () => {
           </Card>
 
           <div className={`space-y-6 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: '100ms' }}>
-            <Card className="p-6 bg-gradient-card border-border transition-all duration-300">
+            <Card className="p-6 bg-gradient-card border-border hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)] transition-all duration-300">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
                   <Mail className="w-6 h-6 text-accent" />
@@ -116,7 +116,7 @@ const Contact = () => {
             </Card>
 
 
-            <Card className="p-6 bg-gradient-card border-border transition-all duration-300">
+            <Card className="p-6 bg-gradient-card border-border hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)] transition-all duration-300">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
                   <Clock className="w-6 h-6 text-accent flex-shrink-0" />
@@ -128,7 +128,7 @@ const Contact = () => {
               </div>
             </Card>
 
-            <Card className="p-6 bg-gradient-card border-border transition-all duration-300">
+            <Card className="p-6 bg-gradient-card border-border hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)] transition-all duration-300">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
                   <Sparkles className="w-6 h-6 text-accent flex-shrink-0" />

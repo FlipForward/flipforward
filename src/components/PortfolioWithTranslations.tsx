@@ -58,7 +58,7 @@ const Portfolio = () => {
           {projects.map((project, index) => (
             <Card 
               key={index}
-              className={`p-8 bg-gradient-card border-border transition-all duration-300 cursor-pointer overflow-hidden relative ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+              className={`p-8 bg-gradient-card border-border hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)] transition-all duration-300 cursor-pointer overflow-hidden relative ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
               style={{ transitionDelay: `${index * 150}ms` }}
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 transition-opacity duration-300`} />

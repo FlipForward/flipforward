@@ -50,7 +50,7 @@ const Portfolio = () => {
           {projects.map((project, index) => (
             <Card 
               key={index}
-              className="p-8 bg-gradient-card border-border transition-all duration-300 cursor-pointer overflow-hidden relative"
+              className="p-8 bg-gradient-card border-border hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)] transition-all duration-300 cursor-pointer overflow-hidden relative"
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 transition-opacity duration-300`} />
               
