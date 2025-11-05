@@ -12,11 +12,6 @@ const About = () => {
   
   return (
     <section id="about" className="py-24 bg-muted/50 relative overflow-hidden">
-      {/* Background accent */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/30 rounded-full blur-3xl" />
-      </div>
-
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
