@@ -16,28 +16,25 @@ const Portfolio = () => {
       titleKey: 'portfolio.project1.title',
       categoryKey: 'portfolio.project1.category',
       descKey: 'portfolio.project1.desc',
-      tags: ['React', 'Node.js', 'Stripe'],
-      gradient: 'from-purple-500/20 to-pink-500/20'
+      link: 'https://finnvangronsveld.be',
+      gradient: 'from-orange-500/20 to-red-500/20'
     },
     {
       titleKey: 'portfolio.project2.title',
       categoryKey: 'portfolio.project2.category',
       descKey: 'portfolio.project2.desc',
-      tags: ['TypeScript', 'D3.js', 'API'],
       gradient: 'from-blue-500/20 to-cyan-500/20'
     },
     {
       titleKey: 'portfolio.project3.title',
       categoryKey: 'portfolio.project3.category',
       descKey: 'portfolio.project3.desc',
-      tags: ['Design', 'CMS', 'SEO'],
-      gradient: 'from-orange-500/20 to-red-500/20'
+      gradient: 'from-purple-500/20 to-pink-500/20'
     },
     {
       titleKey: 'portfolio.project4.title',
       categoryKey: 'portfolio.project4.category',
       descKey: 'portfolio.project4.desc',
-      tags: ['Next.js', 'Animation', 'A/B Testing'],
       gradient: 'from-green-500/20 to-emerald-500/20'
     }
   ];
@@ -60,6 +57,7 @@ const Portfolio = () => {
               key={index}
               className={`p-8 bg-gradient-card border-border hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)] transition-all duration-300 cursor-pointer overflow-hidden relative ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
               style={{ transitionDelay: `${index * 150}ms` }}
+              onClick={() => project.link && window.open(project.link, '_blank')}
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 transition-opacity duration-300`} />
               
@@ -75,17 +73,9 @@ const Portfolio = () => {
                   {t(project.titleKey)}
                 </h3>
                 
-                <p className="text-muted-foreground mb-6">
+                <p className="text-muted-foreground">
                   {t(project.descKey)}
                 </p>
-
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag, tagIndex) => (
-                    <Badge key={tagIndex} variant="secondary" className="bg-secondary/50">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
               </div>
             </Card>
           ))}
