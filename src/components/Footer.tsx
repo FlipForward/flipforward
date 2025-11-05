@@ -18,13 +18,13 @@ const Footer = () => {
           </div>
 
           <div className="flex items-center gap-8">
-            <a href="#services" className="text-muted-foreground hover:text-accent transition-colors">
+            <a href="#services" className="text-muted-foreground">
               Services
             </a>
-            <a href="#portfolio" className="text-muted-foreground hover:text-accent transition-colors">
+            <a href="#portfolio" className="text-muted-foreground">
               Portfolio
             </a>
-            <a href="#contact" className="text-muted-foreground hover:text-accent transition-colors">
+            <a href="#contact" className="text-muted-foreground">
               Contact
             </a>
           </div>

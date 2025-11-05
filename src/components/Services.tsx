@@ -53,13 +53,13 @@ const Services = () => {
             return (
               <Card 
                 key={index}
-                className="p-8 bg-gradient-card border-border hover:border-accent/50 transition-all duration-300 hover:shadow-glow group cursor-pointer"
+                className="p-8 bg-gradient-card border-border transition-all duration-300 cursor-pointer"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="mb-4 w-14 h-14 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                <div className="mb-4 w-14 h-14 rounded-lg bg-accent/10 flex items-center justify-center">
                   <Icon className="w-7 h-7 text-accent" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3 group-hover:text-accent transition-colors">
+                <h3 className="text-xl font-semibold mb-3">
                   {service.title}
                 </h3>
                 <p className="text-muted-foreground">

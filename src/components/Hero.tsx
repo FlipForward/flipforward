@@ -99,7 +99,7 @@ const Hero = () => {
           onClick={scrollToAbout}
           className={`transition-all duration-500 ${
             showArrow ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-          } hover:scale-110`}
+          }`}
           aria-label="Scroll to about section"
         >
           <ChevronDown className="w-10 h-10 text-accent animate-bounce" />

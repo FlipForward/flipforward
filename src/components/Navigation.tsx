@@ -27,13 +27,13 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6">
-            <button onClick={() => scrollToSection('about')} className="text-foreground hover:text-accent transition-colors">
+            <button onClick={() => scrollToSection('about')} className="text-foreground">
               {t('nav.about')}
             </button>
-            <button onClick={() => scrollToSection('services')} className="text-foreground hover:text-accent transition-colors">
+            <button onClick={() => scrollToSection('services')} className="text-foreground">
               {t('nav.services')}
             </button>
-            <button onClick={() => scrollToSection('portfolio')} className="text-foreground hover:text-accent transition-colors">
+            <button onClick={() => scrollToSection('portfolio')} className="text-foreground">
               {t('nav.portfolio')}
             </button>
             <ThemeToggle />
@@ -53,13 +53,13 @@ const Navigation = () => {
         {isOpen && (
           <div className="md:hidden mt-4 pb-4 animate-fade-in">
             <div className="flex flex-col gap-4">
-              <button onClick={() => scrollToSection('about')} className="text-foreground hover:text-accent transition-colors text-left">
+              <button onClick={() => scrollToSection('about')} className="text-foreground text-left">
                 {t('nav.about')}
               </button>
-              <button onClick={() => scrollToSection('services')} className="text-foreground hover:text-accent transition-colors text-left">
+              <button onClick={() => scrollToSection('services')} className="text-foreground text-left">
                 {t('nav.services')}
               </button>
-              <button onClick={() => scrollToSection('portfolio')} className="text-foreground hover:text-accent transition-colors text-left">
+              <button onClick={() => scrollToSection('portfolio')} className="text-foreground text-left">
                 {t('nav.portfolio')}
               </button>
               <div className="flex items-center gap-3">

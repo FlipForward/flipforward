@@ -50,19 +50,19 @@ const Portfolio = () => {
           {projects.map((project, index) => (
             <Card 
               key={index}
-              className="group p-8 bg-gradient-card border-border hover:border-accent/50 transition-all duration-300 cursor-pointer hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)] overflow-hidden relative"
+              className="p-8 bg-gradient-card border-border transition-all duration-300 cursor-pointer overflow-hidden relative"
             >
-              <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+              <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 transition-opacity duration-300`} />
               
               <div className="relative z-10">
                 <div className="flex items-start justify-between mb-4">
                   <Badge variant="outline" className="text-accent border-accent/50">
                     {project.category}
                   </Badge>
-                  <ExternalLink className="w-5 h-5 text-muted-foreground group-hover:text-accent transition-colors" />
+                  <ExternalLink className="w-5 h-5 text-muted-foreground" />
                 </div>
 
-                <h3 className="text-2xl font-bold mb-3 group-hover:text-accent transition-colors">
+                <h3 className="text-2xl font-bold mb-3">
                   {project.title}
                 </h3>
                 
