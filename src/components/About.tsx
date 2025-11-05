@@ -30,25 +30,25 @@ const About = () => {
           </Card>
 
           <div className="grid md:grid-cols-3 gap-6">
-            <Card className="p-6 bg-gradient-card border-border hover:border-accent/50 transition-all duration-300 group">
-              <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors mb-4">
-                <Code2 className="w-6 h-6 text-accent" />
+            <Card className="p-6 bg-gradient-card border-border hover:border-accent/50 transition-all duration-300 group hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)]">
+              <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors mb-4">
+                <Code2 className="w-6 h-6 text-accent flex-shrink-0" />
               </div>
               <h3 className="font-semibold mb-2 text-foreground">{t('about.passion.title')}</h3>
               <p className="text-muted-foreground text-sm">{t('about.passion.desc')}</p>
             </Card>
 
-            <Card className="p-6 bg-gradient-card border-border hover:border-accent/50 transition-all duration-300 group">
-              <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors mb-4">
-                <Rocket className="w-6 h-6 text-accent" />
+            <Card className="p-6 bg-gradient-card border-border hover:border-accent/50 transition-all duration-300 group hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)]">
+              <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors mb-4">
+                <Rocket className="w-6 h-6 text-accent flex-shrink-0" />
               </div>
               <h3 className="font-semibold mb-2 text-foreground">{t('about.learning.title')}</h3>
               <p className="text-muted-foreground text-sm">{t('about.learning.desc')}</p>
             </Card>
 
-            <Card className="p-6 bg-gradient-card border-border hover:border-accent/50 transition-all duration-300 group">
-              <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors mb-4">
-                <Heart className="w-6 h-6 text-accent" />
+            <Card className="p-6 bg-gradient-card border-border hover:border-accent/50 transition-all duration-300 group hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)]">
+              <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors mb-4">
+                <Heart className="w-6 h-6 text-accent flex-shrink-0" />
               </div>
               <h3 className="font-semibold mb-2 text-foreground">{t('about.dedication.title')}</h3>
               <p className="text-muted-foreground text-sm">{t('about.dedication.desc')}</p>
