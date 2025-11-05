@@ -43,10 +43,8 @@ const TypingAnimation = () => {
     if (isDeleting && displayedText === '') {
       setIsDeleting(false);
       setIsIconSpinning(true);
-      setTimeout(() => {
-        setCurrentIndex((prev) => (prev + 1) % ideas.length);
-        setTimeout(() => setIsIconSpinning(false), 500);
-      }, 0);
+      setCurrentIndex((prev) => (prev + 1) % ideas.length);
+      setTimeout(() => setIsIconSpinning(false), 500);
       return;
     }
 
