@@ -17,12 +17,21 @@ const translations = {
     'nav.getStarted': 'Get Started',
     
     // Hero
-    'hero.badge': 'Student Passionate About Technology',
     'hero.title1': 'We Build Websites That',
     'hero.title2': 'Flip Your Business Forward',
     'hero.description': 'Transform your digital presence with cutting-edge web solutions that captivate, convert, and scale your business.',
     'hero.startProject': 'Start Your Project',
     'hero.viewWork': 'View Our Work',
+    'hero.ideas.ecommerce': 'E-Commerce Stores',
+    'hero.ideas.booking': 'Booking Systems',
+    'hero.ideas.restaurant': 'Restaurant Websites',
+    'hero.ideas.fitness': 'Fitness Platforms',
+    'hero.ideas.education': 'Learning Platforms',
+    'hero.ideas.portfolio': 'Portfolio Sites',
+    'hero.ideas.dating': 'Dating Apps',
+    'hero.ideas.music': 'Music Streaming',
+    'hero.ideas.photography': 'Photography Portfolios',
+    'hero.ideas.travel': 'Travel Booking Sites',
     
     // Services
     'services.title': 'Services That',
@@ -97,12 +106,21 @@ const translations = {
     'nav.getStarted': 'Begin Nu',
     
     // Hero
-    'hero.badge': 'Student Gepassioneerd over Technologie',
     'hero.title1': 'Wij Bouwen Websites Die',
     'hero.title2': 'Uw Bedrijf Vooruit Helpen',
     'hero.description': 'Transformeer uw digitale aanwezigheid met geavanceerde weboplossingen die boeien, converteren en uw bedrijf laten groeien.',
     'hero.startProject': 'Start Uw Project',
     'hero.viewWork': 'Bekijk Ons Werk',
+    'hero.ideas.ecommerce': 'E-Commerce Winkels',
+    'hero.ideas.booking': 'Boekingssystemen',
+    'hero.ideas.restaurant': 'Restaurant Websites',
+    'hero.ideas.fitness': 'Fitness Platforms',
+    'hero.ideas.education': 'Leerplatforms',
+    'hero.ideas.portfolio': 'Portfolio Sites',
+    'hero.ideas.dating': 'Dating Apps',
+    'hero.ideas.music': 'Muziek Streaming',
+    'hero.ideas.photography': 'Fotografie Portfolios',
+    'hero.ideas.travel': 'Reisboekingssites',
     
     // Services
     'services.title': 'Diensten Die',

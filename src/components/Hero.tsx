@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import TypingAnimation from './TypingAnimation';
 
 const Hero = () => {
   const { t } = useLanguage();
@@ -19,10 +20,7 @@ const Hero = () => {
 
       <div className="container mx-auto px-6 pt-20 pb-16 relative z-10">
         <div className="max-w-4xl mx-auto text-center animate-fade-in">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 border border-accent/20 rounded-full mb-8">
-            <Sparkles className="w-4 h-4 text-accent" />
-            <span className="text-sm text-accent font-medium">{t('hero.badge')}</span>
-          </div>
+          <TypingAnimation />
           
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
             {t('hero.title1')}
