@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ChevronDown } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import TypingAnimation from './TypingAnimation';
 import { useState, useEffect } from 'react';
@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 const Hero = () => {
   const { t } = useLanguage();
   const [scrollY, setScrollY] = useState(0);
+  const [showArrow, setShowArrow] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,8 +18,20 @@ const Hero = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowArrow(true);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
   const scrollToContact = () => {
     const element = document.getElementById('contact');
+    element?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const scrollToAbout = () => {
+    const element = document.getElementById('about');
     element?.scrollIntoView({ behavior: 'smooth' });
   };
 
@@ -79,6 +92,17 @@ const Hero = () => {
 
         </div>
       </div>
+
+      {/* Scroll down arrow */}
+      <button
+        onClick={scrollToAbout}
+        className={`absolute bottom-8 left-1/2 -translate-x-1/2 transition-opacity duration-500 ${
+          showArrow ? 'opacity-100' : 'opacity-0'
+        } hover:scale-110 transition-transform z-10`}
+        aria-label="Scroll to about section"
+      >
+        <ChevronDown className="w-8 h-8 text-accent animate-bounce" />
+      </button>
     </section>
   );
 };

@@ -5,6 +5,7 @@ import ServicesWithTranslations from '@/components/ServicesWithTranslations';
 import PortfolioWithTranslations from '@/components/PortfolioWithTranslations';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import ScrollToTop from '@/components/ScrollToTop';
 
 const Index = () => {
   return (
@@ -16,6 +17,7 @@ const Index = () => {
       <PortfolioWithTranslations />
       <Contact />
       <Footer />
+      <ScrollToTop />
     </div>
   );
 };
