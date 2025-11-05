@@ -6,30 +6,7 @@ import { useState, useEffect } from 'react';
 
 const Hero = () => {
   const { t } = useLanguage();
-  const [scrollY, setScrollY] = useState(0);
   const [showArrow, setShowArrow] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      // Calculate mouse position as percentage from center (-1 to 1)
-      const x = (e.clientX / window.innerWidth - 0.5) * 2;
-      const y = (e.clientY / window.innerHeight - 0.5) * 2;
-      setMousePosition({ x, y });
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -50,33 +27,6 @@ const Hero = () => {
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 bg-gradient-animated animate-gradient" />
-      {/* Animated background elements */}
-      <div className="absolute inset-0 opacity-30 overflow-hidden">
-        <div 
-          className="absolute top-20 left-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl transition-transform duration-200 ease-out"
-          style={{ 
-            transform: `translate(calc(${scrollY * 0.2}px + ${mousePosition.x * 30}px), calc(${scrollY * 0.3}px + ${mousePosition.y * 30}px))`,
-            animation: 'float 20s ease-in-out infinite'
-          }}
-        />
-        <div 
-          className="absolute top-40 right-20 w-80 h-80 bg-primary/15 rounded-full blur-3xl transition-transform duration-200 ease-out"
-          style={{ 
-            transform: `translate(calc(${-scrollY * 0.15}px + ${mousePosition.x * -25}px), calc(${scrollY * 0.4}px + ${mousePosition.y * 40}px))`,
-            animation: 'float 25s ease-in-out infinite 5s'
-          }}
-        />
-        <div 
-          className="absolute bottom-20 left-1/3 w-72 h-72 bg-accent/15 rounded-full blur-3xl transition-transform duration-200 ease-out"
-          style={{ 
-            transform: `translate(calc(${scrollY * 0.25}px + ${mousePosition.x * 35}px), calc(${scrollY * 0.5}px + ${mousePosition.y * -20}px))`,
-            animation: 'float 30s ease-in-out infinite 10s'
-          }}
-        />
-      </div>
-
       <div className="container mx-auto px-6 pt-20 pb-16 relative z-10">
         <div className="max-w-4xl mx-auto text-center animate-fade-in">
           <TypingAnimation />
