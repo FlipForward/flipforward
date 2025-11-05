@@ -29,6 +29,7 @@ const Portfolio = () => {
       titleKey: 'portfolio.project3.title',
       categoryKey: 'portfolio.project3.category',
       descKey: 'portfolio.project3.desc',
+      link: 'https://hyperdrivefestival.be',
       gradient: 'from-purple-500/20 to-pink-500/20'
     },
     {
