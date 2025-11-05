@@ -2,7 +2,6 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, ChevronDown } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import TypingAnimation from './TypingAnimation';
-import MagneticButton from './MagneticButton';
 import { useState, useEffect } from 'react';
 
 const Hero = () => {
@@ -94,20 +93,16 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <MagneticButton strength={0.4}>
-              <Button variant="hero" size="lg" onClick={scrollToContact}>
-                {t('hero.startProject')}
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-            </MagneticButton>
-            <MagneticButton strength={0.3}>
-              <Button variant="outline" size="lg" onClick={() => {
-                const element = document.getElementById('portfolio');
-                element?.scrollIntoView({ behavior: 'smooth' });
-              }}>
-                {t('hero.viewWork')}
-              </Button>
-            </MagneticButton>
+            <Button variant="hero" size="lg" onClick={scrollToContact}>
+              {t('hero.startProject')}
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+            <Button variant="outline" size="lg" onClick={() => {
+              const element = document.getElementById('portfolio');
+              element?.scrollIntoView({ behavior: 'smooth' });
+            }}>
+              {t('hero.viewWork')}
+            </Button>
           </div>
 
         </div>
