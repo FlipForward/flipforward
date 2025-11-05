@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 import logo from '@/assets/FF_LOGO.svg';
 import LanguageSwitcher from './LanguageSwitcher';
+import ThemeToggle from './ThemeToggle';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const Navigation = () => {
@@ -25,16 +26,14 @@ const Navigation = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6">
             <button onClick={() => scrollToSection('services')} className="text-foreground hover:text-accent transition-colors">
               {t('nav.services')}
             </button>
             <button onClick={() => scrollToSection('portfolio')} className="text-foreground hover:text-accent transition-colors">
               {t('nav.portfolio')}
             </button>
-            <button onClick={() => scrollToSection('contact')} className="text-foreground hover:text-accent transition-colors">
-              {t('nav.contact')}
-            </button>
+            <ThemeToggle />
             <LanguageSwitcher />
             <Button variant="hero" size="default" onClick={() => scrollToSection('contact')}>
               {t('nav.getStarted')}
@@ -57,10 +56,10 @@ const Navigation = () => {
               <button onClick={() => scrollToSection('portfolio')} className="text-foreground hover:text-accent transition-colors text-left">
                 {t('nav.portfolio')}
               </button>
-              <button onClick={() => scrollToSection('contact')} className="text-foreground hover:text-accent transition-colors text-left">
-                {t('nav.contact')}
-              </button>
-              <LanguageSwitcher />
+              <div className="flex items-center gap-3">
+                <ThemeToggle />
+                <LanguageSwitcher />
+              </div>
               <Button variant="hero" size="default" onClick={() => scrollToSection('contact')} className="w-full">
                 {t('nav.getStarted')}
               </Button>
