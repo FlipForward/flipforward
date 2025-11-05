@@ -12,6 +12,7 @@ const TypingAnimation = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
+  const [isIconSpinning, setIsIconSpinning] = useState(false);
 
   const ideas: Idea[] = [
     { textKey: 'hero.ideas.biography', icon: User },
@@ -41,7 +42,11 @@ const TypingAnimation = () => {
 
     if (isDeleting && displayedText === '') {
       setIsDeleting(false);
-      setCurrentIndex((prev) => (prev + 1) % ideas.length);
+      setIsIconSpinning(true);
+      setTimeout(() => {
+        setCurrentIndex((prev) => (prev + 1) % ideas.length);
+        setTimeout(() => setIsIconSpinning(false), 500);
+      }, 0);
       return;
     }
 
@@ -59,8 +64,7 @@ const TypingAnimation = () => {
   return (
     <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 border border-accent/20 rounded-full mb-8 transition-all duration-300">
       <CurrentIcon 
-        key={currentIndex} 
-        className="w-4 h-4 text-accent flex-shrink-0 animate-scale-in" 
+        className={`w-4 h-4 text-accent flex-shrink-0 transition-transform duration-500 ${isIconSpinning ? 'rotate-[360deg]' : 'rotate-0'}`}
       />
       <span className="text-sm text-accent font-medium whitespace-nowrap">
         {displayedText}
