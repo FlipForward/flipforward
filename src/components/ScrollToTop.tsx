@@ -6,8 +6,8 @@ const ScrollToTop = () => {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      // Show button when page is scrolled down more than the viewport height
-      if (window.scrollY > window.innerHeight) {
+      // Show button when hero arrow is off screen (scrolled down ~800px)
+      if (window.scrollY > 800) {
         setIsVisible(true);
       } else {
         setIsVisible(false);

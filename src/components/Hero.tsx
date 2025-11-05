@@ -36,7 +36,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-hero relative overflow-hidden">
+    <section id="hero" className="min-h-screen flex items-center justify-center bg-gradient-hero relative overflow-hidden">
       {/* Animated background elements */}
       <div className="absolute inset-0 opacity-30 overflow-hidden">
         <div 
@@ -93,16 +93,18 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll down arrow */}
-      <button
-        onClick={scrollToAbout}
-        className={`absolute bottom-8 left-1/2 -translate-x-1/2 transition-opacity duration-500 ${
-          showArrow ? 'opacity-100' : 'opacity-0'
-        } hover:scale-110 transition-transform z-10`}
-        aria-label="Scroll to about section"
-      >
-        <ChevronDown className="w-8 h-8 text-accent animate-bounce" />
-      </button>
+      {/* Scroll down arrow - positioned at bottom center */}
+      <div className="absolute bottom-8 left-0 right-0 flex justify-center z-10">
+        <button
+          onClick={scrollToAbout}
+          className={`transition-all duration-500 ${
+            showArrow ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          } hover:scale-110`}
+          aria-label="Scroll to about section"
+        >
+          <ChevronDown className="w-10 h-10 text-accent animate-bounce" />
+        </button>
+      </div>
     </section>
   );
 };
