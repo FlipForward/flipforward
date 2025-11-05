@@ -36,6 +36,7 @@ const Portfolio = () => {
       titleKey: 'portfolio.project4.title',
       categoryKey: 'portfolio.project4.category',
       descKey: 'portfolio.project4.desc',
+      link: 'https://finnvangronsveld.sinners.be',
       gradient: 'from-green-500/20 to-emerald-500/20'
     }
   ];

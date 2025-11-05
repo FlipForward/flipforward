@@ -63,9 +63,9 @@ const translations = {
     'portfolio.project3.title': 'Hyperdrive Festival',
     'portfolio.project3.category': 'Event Showcase',
     'portfolio.project3.desc': 'A school group project for a fictive festival website with event information and ticketing.',
-    'portfolio.project4.title': 'Mobile App Landing',
-    'portfolio.project4.category': 'Marketing Site',
-    'portfolio.project4.desc': 'High-converting landing page for mobile app launch.',
+    'portfolio.project4.title': 'Webdesign Portfolio',
+    'portfolio.project4.category': 'Portfolio',
+    'portfolio.project4.desc': 'A school project showcasing my webdesign skills and creative projects.',
     
     // About
     'about.title': 'About',
@@ -152,9 +152,9 @@ const translations = {
     'portfolio.project3.title': 'Hyperdrive Festival',
     'portfolio.project3.category': 'Evenement Showcase',
     'portfolio.project3.desc': 'Een school groepsproject voor een fictieve festival website met evenementinformatie en ticketing.',
-    'portfolio.project4.title': 'Mobiele App Landing',
-    'portfolio.project4.category': 'Marketing Site',
-    'portfolio.project4.desc': 'Hoog-converterende landingspagina voor mobiele app lancering.',
+    'portfolio.project4.title': 'Webdesign Portfolio',
+    'portfolio.project4.category': 'Portfolio',
+    'portfolio.project4.desc': 'Een school project dat mijn webdesign vaardigheden en creatieve projecten toont.',
     
     // About
     'about.title': 'Over',
