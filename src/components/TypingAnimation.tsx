@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { LucideIcon, ShoppingCart, Calendar, Utensils, Dumbbell, GraduationCap, Briefcase, Heart, Music, Camera, Plane } from 'lucide-react';
+import { LucideIcon, User, BookOpen, Briefcase, Store, Coffee, Scissors, Wrench, Palette, Mail, FileText } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 interface Idea {
@@ -14,16 +14,16 @@ const TypingAnimation = () => {
   const [isDeleting, setIsDeleting] = useState(false);
 
   const ideas: Idea[] = [
-    { textKey: 'hero.ideas.ecommerce', icon: ShoppingCart },
-    { textKey: 'hero.ideas.booking', icon: Calendar },
-    { textKey: 'hero.ideas.restaurant', icon: Utensils },
-    { textKey: 'hero.ideas.fitness', icon: Dumbbell },
-    { textKey: 'hero.ideas.education', icon: GraduationCap },
+    { textKey: 'hero.ideas.biography', icon: User },
+    { textKey: 'hero.ideas.blog', icon: BookOpen },
     { textKey: 'hero.ideas.portfolio', icon: Briefcase },
-    { textKey: 'hero.ideas.dating', icon: Heart },
-    { textKey: 'hero.ideas.music', icon: Music },
-    { textKey: 'hero.ideas.photography', icon: Camera },
-    { textKey: 'hero.ideas.travel', icon: Plane },
+    { textKey: 'hero.ideas.shop', icon: Store },
+    { textKey: 'hero.ideas.cafe', icon: Coffee },
+    { textKey: 'hero.ideas.salon', icon: Scissors },
+    { textKey: 'hero.ideas.services', icon: Wrench },
+    { textKey: 'hero.ideas.gallery', icon: Palette },
+    { textKey: 'hero.ideas.contact', icon: Mail },
+    { textKey: 'hero.ideas.landing', icon: FileText },
   ];
 
   const currentIdea = ideas[currentIndex];
@@ -57,9 +57,12 @@ const TypingAnimation = () => {
   }, [displayedText, isDeleting, fullText, ideas.length]);
 
   return (
-    <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 border border-accent/20 rounded-full mb-8">
-      <CurrentIcon className="w-4 h-4 text-accent flex-shrink-0" />
-      <span className="text-sm text-accent font-medium min-w-[200px]">
+    <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/10 border border-accent/20 rounded-full mb-8 transition-all duration-300">
+      <CurrentIcon 
+        key={currentIndex} 
+        className="w-4 h-4 text-accent flex-shrink-0 animate-scale-in" 
+      />
+      <span className="text-sm text-accent font-medium whitespace-nowrap">
         {displayedText}
         <span className="animate-pulse">|</span>
       </span>
