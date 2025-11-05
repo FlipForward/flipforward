@@ -116,4 +116,17 @@ All colors MUST be HSL.
       transform: translateY(10px) translateX(-10px);
     }
   }
+
+  @keyframes fade-only {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-fade-only {
+    animation: fade-only 0.3s ease-in;
+  }
 }

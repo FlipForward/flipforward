@@ -61,7 +61,7 @@ const TypingAnimation = () => {
       <div className="relative w-4 h-4 flex-shrink-0">
         <CurrentIcon 
           key={currentIndex}
-          className="w-4 h-4 text-accent absolute inset-0 animate-fade-in"
+          className="w-4 h-4 text-accent absolute inset-0 animate-fade-only"
         />
       </div>
       <span className="text-sm text-accent font-medium whitespace-nowrap">
