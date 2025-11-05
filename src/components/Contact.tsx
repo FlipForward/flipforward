@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card } from '@/components/ui/card';
-import { Mail, MessageSquare, Send } from 'lucide-react';
+import { Mail, Send, Clock, Sparkles } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -110,37 +110,29 @@ const Contact = () => {
               </div>
             </Card>
 
+
             <Card className="p-6 bg-gradient-card border-border hover:border-accent/50 transition-all duration-300 group">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
-                  <MessageSquare className="w-6 h-6 text-accent" />
+                  <Clock className="w-6 h-6 text-accent" />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-2 text-foreground">{t('contact.liveChat')}</h3>
-                  <p className="text-muted-foreground">{t('contact.availability')}</p>
+                  <h3 className="font-semibold mb-2 text-foreground">{t('contact.delivery')}</h3>
+                  <p className="text-muted-foreground">{t('contact.deliveryDesc')}</p>
                 </div>
               </div>
             </Card>
 
-            <Card className="p-8 bg-gradient-accent border-accent/50">
-              <h3 className="text-xl font-bold mb-2 text-white">{t('contact.startProject')}</h3>
-              <p className="text-white/90 mb-4">
-                {t('contact.consultation')}
-              </p>
-              <ul className="space-y-2 text-white/80">
-                <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-white" />
-                  {t('contact.noCommitment')}
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-white" />
-                  {t('contact.fastResponse')}
-                </li>
-                <li className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-white" />
-                  {t('contact.expertGuidance')}
-                </li>
-              </ul>
+            <Card className="p-6 bg-gradient-card border-border hover:border-accent/50 transition-all duration-300 group">
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
+                  <Sparkles className="w-6 h-6 text-accent" />
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-2 text-foreground">{t('contact.visuals')}</h3>
+                  <p className="text-muted-foreground">{t('contact.visualsDesc')}</p>
+                </div>
+              </div>
             </Card>
           </div>
         </div>

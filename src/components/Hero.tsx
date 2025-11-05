@@ -48,21 +48,6 @@ const Hero = () => {
             </Button>
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 mt-16 max-w-2xl mx-auto">
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-accent mb-2">150+</div>
-              <div className="text-sm text-muted-foreground">{t('hero.stat1')}</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-accent mb-2">98%</div>
-              <div className="text-sm text-muted-foreground">{t('hero.stat2')}</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-accent mb-2">5+</div>
-              <div className="text-sm text-muted-foreground">{t('hero.stat3')}</div>
-            </div>
-          </div>
         </div>
       </div>
     </section>

@@ -17,15 +17,12 @@ const translations = {
     'nav.getStarted': 'Get Started',
     
     // Hero
-    'hero.badge': 'Award-Winning Web Design Agency',
+    'hero.badge': 'Student Passionate About Technology',
     'hero.title1': 'We Build Websites That',
     'hero.title2': 'Flip Your Business Forward',
     'hero.description': 'Transform your digital presence with cutting-edge web solutions that captivate, convert, and scale your business.',
     'hero.startProject': 'Start Your Project',
     'hero.viewWork': 'View Our Work',
-    'hero.stat1': 'Projects Delivered',
-    'hero.stat2': 'Client Satisfaction',
-    'hero.stat3': 'Industry Experience',
     
     // Services
     'services.title': 'Services That',
@@ -61,6 +58,18 @@ const translations = {
     'portfolio.project4.category': 'Marketing Site',
     'portfolio.project4.desc': 'High-converting landing page for mobile app launch.',
     
+    // About
+    'about.title': 'About',
+    'about.titleAccent': 'Me',
+    'about.subtitle': 'A student with a passion for technology',
+    'about.description': "I'm a student with a deep passion for everything related to technology. Whether it's coding, designing, or exploring the latest tech trends, I love bringing ideas to life through web development. I believe in creating digital experiences that are not only functional but also visually stunning.",
+    'about.passion.title': 'Technology Enthusiast',
+    'about.passion.desc': 'Constantly exploring new technologies and staying updated with the latest trends in web development.',
+    'about.learning.title': 'Always Learning',
+    'about.learning.desc': 'As a student, I\'m continuously expanding my skills and knowledge in modern web technologies.',
+    'about.dedication.title': 'Dedicated & Reliable',
+    'about.dedication.desc': 'Committed to delivering quality work on time with attention to detail and visual excellence.',
+    
     // Contact
     'contact.title': "Let's Build Something",
     'contact.titleAccent': 'Amazing',
@@ -72,14 +81,11 @@ const translations = {
     'contact.message': 'Your Message',
     'contact.messagePlaceholder': 'Tell us about your project...',
     'contact.send': 'Send Message',
-    'contact.emailUs': 'Email Us',
-    'contact.liveChat': 'Live Chat',
-    'contact.availability': 'Available Mon-Fri, 9AM-6PM EST',
-    'contact.startProject': 'Start Your Project',
-    'contact.consultation': 'Get a free consultation and project estimate within 48 hours.',
-    'contact.noCommitment': 'No commitment required',
-    'contact.fastResponse': 'Fast response time',
-    'contact.expertGuidance': 'Expert guidance',
+    'contact.emailUs': 'Email Me',
+    'contact.delivery': 'Fast Delivery',
+    'contact.deliveryDesc': 'I prioritize quick turnaround times without compromising on quality.',
+    'contact.visuals': 'Visual Excellence',
+    'contact.visualsDesc': 'Creating beautiful, modern designs that make your project stand out.',
     'contact.success': 'Message Sent!',
     'contact.successDesc': "We'll get back to you within 24 hours.",
   },
@@ -91,15 +97,12 @@ const translations = {
     'nav.getStarted': 'Begin Nu',
     
     // Hero
-    'hero.badge': 'Bekroond Webdesign Bureau',
+    'hero.badge': 'Student Gepassioneerd over Technologie',
     'hero.title1': 'Wij Bouwen Websites Die',
     'hero.title2': 'Uw Bedrijf Vooruit Helpen',
     'hero.description': 'Transformeer uw digitale aanwezigheid met geavanceerde weboplossingen die boeien, converteren en uw bedrijf laten groeien.',
     'hero.startProject': 'Start Uw Project',
     'hero.viewWork': 'Bekijk Ons Werk',
-    'hero.stat1': 'Projecten Opgeleverd',
-    'hero.stat2': 'Klanttevredenheid',
-    'hero.stat3': 'Ervaring in de Sector',
     
     // Services
     'services.title': 'Diensten Die',
@@ -135,6 +138,18 @@ const translations = {
     'portfolio.project4.category': 'Marketing Site',
     'portfolio.project4.desc': 'Hoog-converterende landingspagina voor mobiele app lancering.',
     
+    // About
+    'about.title': 'Over',
+    'about.titleAccent': 'Mij',
+    'about.subtitle': 'Een student met een passie voor technologie',
+    'about.description': "Ik ben een student met een diepe passie voor alles wat met technologie te maken heeft. Of het nu gaat om programmeren, ontwerpen of het verkennen van de nieuwste tech-trends, ik vind het geweldig om ideeën tot leven te brengen via webontwikkeling. Ik geloof in het creëren van digitale ervaringen die niet alleen functioneel zijn, maar ook visueel verbluffend.",
+    'about.passion.title': 'Technologie Liefhebber',
+    'about.passion.desc': 'Constant nieuwe technologieën verkennen en op de hoogte blijven van de nieuwste trends in webontwikkeling.',
+    'about.learning.title': 'Altijd Lerend',
+    'about.learning.desc': 'Als student breid ik voortdurend mijn vaardigheden en kennis uit in moderne webtechnologieën.',
+    'about.dedication.title': 'Toegewijd & Betrouwbaar',
+    'about.dedication.desc': 'Toegewijd aan het leveren van kwaliteitswerk op tijd met aandacht voor detail en visuele excellentie.',
+    
     // Contact
     'contact.title': 'Laten We Iets',
     'contact.titleAccent': 'Geweldigs Bouwen',
@@ -146,14 +161,11 @@ const translations = {
     'contact.message': 'Uw Bericht',
     'contact.messagePlaceholder': 'Vertel ons over uw project...',
     'contact.send': 'Verzend Bericht',
-    'contact.emailUs': 'E-mail Ons',
-    'contact.liveChat': 'Live Chat',
-    'contact.availability': 'Beschikbaar ma-vr, 9:00-18:00 CET',
-    'contact.startProject': 'Start Uw Project',
-    'contact.consultation': 'Ontvang binnen 48 uur een gratis consultatie en projectschatting.',
-    'contact.noCommitment': 'Geen verplichting',
-    'contact.fastResponse': 'Snelle reactietijd',
-    'contact.expertGuidance': 'Deskundige begeleiding',
+    'contact.emailUs': 'E-mail Mij',
+    'contact.delivery': 'Snelle Levering',
+    'contact.deliveryDesc': 'Ik geef prioriteit aan snelle doorlooptijden zonder concessies te doen aan kwaliteit.',
+    'contact.visuals': 'Visuele Excellence',
+    'contact.visualsDesc': 'Prachtige, moderne ontwerpen creëren die uw project laten opvallen.',
     'contact.success': 'Bericht Verzonden!',
     'contact.successDesc': 'We nemen binnen 24 uur contact met u op.',
   }
