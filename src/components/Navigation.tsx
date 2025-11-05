@@ -27,14 +27,14 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-6">
+            <button onClick={() => scrollToSection('about')} className="text-foreground hover:text-accent transition-colors">
+              {t('nav.about')}
+            </button>
             <button onClick={() => scrollToSection('services')} className="text-foreground hover:text-accent transition-colors">
               {t('nav.services')}
             </button>
             <button onClick={() => scrollToSection('portfolio')} className="text-foreground hover:text-accent transition-colors">
               {t('nav.portfolio')}
-            </button>
-            <button onClick={() => scrollToSection('contact')} className="text-foreground hover:text-accent transition-colors">
-              {t('nav.contact')}
             </button>
             <ThemeToggle />
             <LanguageSwitcher />
@@ -53,14 +53,14 @@ const Navigation = () => {
         {isOpen && (
           <div className="md:hidden mt-4 pb-4 animate-fade-in">
             <div className="flex flex-col gap-4">
+              <button onClick={() => scrollToSection('about')} className="text-foreground hover:text-accent transition-colors text-left">
+                {t('nav.about')}
+              </button>
               <button onClick={() => scrollToSection('services')} className="text-foreground hover:text-accent transition-colors text-left">
                 {t('nav.services')}
               </button>
               <button onClick={() => scrollToSection('portfolio')} className="text-foreground hover:text-accent transition-colors text-left">
                 {t('nav.portfolio')}
-              </button>
-              <button onClick={() => scrollToSection('contact')} className="text-foreground hover:text-accent transition-colors text-left">
-                {t('nav.contact')}
               </button>
               <div className="flex items-center gap-3">
                 <ThemeToggle />

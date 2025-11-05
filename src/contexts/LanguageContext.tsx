@@ -11,9 +11,9 @@ interface LanguageContextType {
 const translations = {
   en: {
     // Navigation
+    'nav.about': 'About',
     'nav.services': 'Services',
     'nav.portfolio': 'Portfolio',
-    'nav.contact': 'Contact',
     'nav.getStarted': 'Get Started',
     
     // Hero
@@ -91,9 +91,9 @@ const translations = {
   },
   nl: {
     // Navigation
+    'nav.about': 'Over',
     'nav.services': 'Diensten',
     'nav.portfolio': 'Portfolio',
-    'nav.contact': 'Contact',
     'nav.getStarted': 'Begin Nu',
     
     // Hero
