@@ -2,9 +2,12 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 import logo from '@/assets/FF_LOGO.svg';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useLanguage();
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -24,16 +27,17 @@ const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             <button onClick={() => scrollToSection('services')} className="text-foreground hover:text-accent transition-colors">
-              Services
+              {t('nav.services')}
             </button>
             <button onClick={() => scrollToSection('portfolio')} className="text-foreground hover:text-accent transition-colors">
-              Portfolio
+              {t('nav.portfolio')}
             </button>
             <button onClick={() => scrollToSection('contact')} className="text-foreground hover:text-accent transition-colors">
-              Contact
+              {t('nav.contact')}
             </button>
+            <LanguageSwitcher />
             <Button variant="hero" size="default" onClick={() => scrollToSection('contact')}>
-              Get Started
+              {t('nav.getStarted')}
             </Button>
           </div>
 
@@ -48,16 +52,17 @@ const Navigation = () => {
           <div className="md:hidden mt-4 pb-4 animate-fade-in">
             <div className="flex flex-col gap-4">
               <button onClick={() => scrollToSection('services')} className="text-foreground hover:text-accent transition-colors text-left">
-                Services
+                {t('nav.services')}
               </button>
               <button onClick={() => scrollToSection('portfolio')} className="text-foreground hover:text-accent transition-colors text-left">
-                Portfolio
+                {t('nav.portfolio')}
               </button>
               <button onClick={() => scrollToSection('contact')} className="text-foreground hover:text-accent transition-colors text-left">
-                Contact
+                {t('nav.contact')}
               </button>
+              <LanguageSwitcher />
               <Button variant="hero" size="default" onClick={() => scrollToSection('contact')} className="w-full">
-                Get Started
+                {t('nav.getStarted')}
               </Button>
             </div>
           </div>
