@@ -25,14 +25,27 @@ const Hero = () => {
   return (
     <section className="min-h-screen flex items-center justify-center bg-gradient-hero relative overflow-hidden">
       {/* Animated background elements */}
-      <div className="absolute inset-0 opacity-20">
+      <div className="absolute inset-0 opacity-30 overflow-hidden">
         <div 
-          className="absolute top-20 left-10 w-72 h-72 bg-accent/30 rounded-full blur-3xl animate-pulse" 
-          style={{ transform: `translateY(${scrollY * 0.3}px)` }}
+          className="absolute top-20 left-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl"
+          style={{ 
+            transform: `translate(${scrollY * 0.2}px, ${scrollY * 0.3}px)`,
+            animation: 'float 20s ease-in-out infinite'
+          }}
         />
         <div 
-          className="absolute bottom-20 right-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse" 
-          style={{ animationDelay: '1s', transform: `translateY(${scrollY * 0.5}px)` }}
+          className="absolute top-40 right-20 w-80 h-80 bg-primary/15 rounded-full blur-3xl"
+          style={{ 
+            transform: `translate(${-scrollY * 0.15}px, ${scrollY * 0.4}px)`,
+            animation: 'float 25s ease-in-out infinite 5s'
+          }}
+        />
+        <div 
+          className="absolute bottom-20 left-1/3 w-72 h-72 bg-accent/15 rounded-full blur-3xl"
+          style={{ 
+            transform: `translate(${scrollY * 0.25}px, ${scrollY * 0.5}px)`,
+            animation: 'float 30s ease-in-out infinite 10s'
+          }}
         />
       </div>
 
