@@ -48,7 +48,7 @@ const Contact = () => {
         </div>
 
         <div ref={ref} className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
-          <Card className={`p-8 bg-gradient-card border-border transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>\n
+          <Card className={`p-8 bg-gradient-card border-border transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2 text-foreground">
@@ -102,7 +102,7 @@ const Contact = () => {
             </form>
           </Card>
 
-          <div className={`space-y-6 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: '100ms' }}>\n
+          <div className={`space-y-6 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: '100ms' }}>
             <Card className="p-6 bg-gradient-card border-border hover:border-accent/50 transition-all duration-300 group hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)]">
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/20 transition-colors">

@@ -1,9 +1,14 @@
 import { Card } from '@/components/ui/card';
 import { Code2, Palette, Rocket, Search, Smartphone, Zap } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useInView } from 'react-intersection-observer';
 
 const Services = () => {
   const { t } = useLanguage();
+  const { ref, inView } = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
   
   const services = [
     {
@@ -50,14 +55,14 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div ref={ref} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
               <Card 
                 key={index}
-                className="p-8 bg-gradient-card border-border hover:border-accent/50 transition-all duration-300 hover:shadow-glow group cursor-pointer"
-                style={{ animationDelay: `${index * 100}ms` }}
+                className={`p-8 bg-gradient-card border-border hover:border-accent/50 transition-all duration-700 hover:shadow-glow group cursor-pointer ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                style={{ transitionDelay: `${index * 100}ms` }}
               >
                 <div className="mb-4 w-14 h-14 rounded-lg bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition-colors">
                   <Icon className="w-7 h-7 text-accent" />

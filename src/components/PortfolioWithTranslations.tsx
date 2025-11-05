@@ -2,9 +2,14 @@ import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ExternalLink } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useInView } from 'react-intersection-observer';
 
 const Portfolio = () => {
   const { t } = useLanguage();
+  const { ref, inView } = useInView({
+    threshold: 0.1,
+    triggerOnce: true,
+  });
   
   const projects = [
     {
@@ -49,11 +54,12 @@ const Portfolio = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div ref={ref} className="grid md:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <Card 
               key={index}
-              className="group p-8 bg-gradient-card border-border hover:border-accent/50 transition-all duration-300 cursor-pointer hover:shadow-glow overflow-hidden relative"
+              className={`group p-8 bg-gradient-card border-border hover:border-accent/50 transition-all duration-700 cursor-pointer hover:shadow-glow overflow-hidden relative ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+              style={{ transitionDelay: `${index * 150}ms` }}
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
               
