@@ -4,6 +4,7 @@ import { Menu, X } from 'lucide-react';
 import Logo from './Logo';
 import LanguageSwitcher from './LanguageSwitcher';
 import ThemeToggle from './ThemeToggle';
+import MagneticButton from './MagneticButton';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const Navigation = () => {
@@ -38,9 +39,11 @@ const Navigation = () => {
             </button>
             <ThemeToggle />
             <LanguageSwitcher />
-            <Button variant="hero" size="default" onClick={() => scrollToSection('contact')}>
-              {t('nav.getStarted')}
-            </Button>
+            <MagneticButton strength={0.3}>
+              <Button variant="hero" size="default" onClick={() => scrollToSection('contact')}>
+                {t('nav.getStarted')}
+              </Button>
+            </MagneticButton>
           </div>
 
           {/* Mobile Menu Button */}

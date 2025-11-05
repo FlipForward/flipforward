@@ -9,7 +9,9 @@ import ScrollToTop from '@/components/ScrollToTop';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen relative">
+      {/* Animated gradient background */}
+      <div className="fixed inset-0 bg-gradient-animated animate-gradient -z-10" />
       <Navigation />
       <Hero />
       <About />
