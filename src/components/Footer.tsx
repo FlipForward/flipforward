@@ -1,4 +1,4 @@
-import logo from '@/assets/FF_LOGO.svg';
+import Logo from './Logo';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <img src={logo} alt="Flip Forward" className="h-8 w-auto text-foreground" />
+            <Logo className="h-8 w-auto text-foreground" />
             <span className="text-xl font-bold text-foreground">Flip Forward</span>
           </div>
 
