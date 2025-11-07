@@ -27,6 +27,9 @@ const Hero = () => {
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+      {/* Orange glow from top */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-96 bg-gradient-to-b from-primary/20 via-primary/5 to-transparent blur-3xl pointer-events-none" />
+      
       <div className="container mx-auto px-4 sm:px-6 pt-20 pb-16 relative z-10">
         <div className="max-w-4xl mx-auto text-center animate-fade-in">
           <TypingAnimation />
