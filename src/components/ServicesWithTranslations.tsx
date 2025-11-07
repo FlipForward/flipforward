@@ -44,36 +44,36 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="py-24 bg-background">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+    <section id="services" className="py-16 sm:py-24 bg-background">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="text-center mb-12 sm:mb-16 animate-fade-in">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">
             {t('services.title')} <span className="text-accent">{t('services.titleAccent')}</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto px-2">
             {t('services.subtitle')}
           </p>
         </div>
 
-        <div ref={ref} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div ref={ref} className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
-              <Card 
-                key={index}
-                className={`p-8 bg-gradient-card border-border hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)] transition-all duration-300 cursor-pointer ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-                style={{ transitionDelay: `${index * 100}ms` }}
-              >
-                <div className="mb-4 w-14 h-14 rounded-lg bg-accent/10 flex items-center justify-center">
-                  <Icon className="w-7 h-7 text-accent" />
-                </div>
-                <h3 className="text-xl font-semibold mb-3">
-                  {t(service.titleKey)}
-                </h3>
-                <p className="text-muted-foreground">
-                  {t(service.descKey)}
-                </p>
-              </Card>
+            <Card 
+              key={index}
+              className={`p-5 sm:p-8 bg-gradient-card border-border hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)] transition-all duration-300 cursor-pointer ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+              style={{ transitionDelay: `${index * 100}ms` }}
+            >
+              <div className="mb-4 w-12 h-12 sm:w-14 sm:h-14 rounded-lg bg-accent/10 flex items-center justify-center">
+                <Icon className="w-6 h-6 sm:w-7 sm:h-7 text-accent" />
+              </div>
+              <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3">
+                {t(service.titleKey)}
+              </h3>
+              <p className="text-sm sm:text-base text-muted-foreground">
+                {t(service.descKey)}
+              </p>
+            </Card>
             );
           })}
         </div>

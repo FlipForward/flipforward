@@ -27,22 +27,22 @@ const Hero = () => {
 
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      <div className="container mx-auto px-6 pt-20 pb-16 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 pt-20 pb-16 relative z-10">
         <div className="max-w-4xl mx-auto text-center animate-fade-in">
           <TypingAnimation />
           
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+          <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
             {t('hero.title1')}
             <span className="block text-transparent bg-clip-text bg-gradient-accent mt-2">
               {t('hero.title2')}
             </span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-muted-foreground mb-10 max-w-2xl mx-auto">
+          <p className="text-base sm:text-xl md:text-2xl text-muted-foreground mb-8 sm:mb-10 max-w-2xl mx-auto px-2">
             {t('hero.description')}
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
             <Button variant="hero" size="lg" onClick={scrollToContact}>
               {t('hero.startProject')}
               <ArrowRight className="ml-2 w-5 h-5" />

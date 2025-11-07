@@ -31,24 +31,24 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-background relative overflow-hidden">
+    <section id="contact" className="py-16 sm:py-24 bg-background relative overflow-hidden">
       {/* Background accent */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 right-0 w-96 h-96 bg-accent/30 rounded-full blur-3xl" />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className="text-center mb-12 sm:mb-16 animate-fade-in">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">
             {t('contact.title')} <span className="text-accent">{t('contact.titleAccent')}</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto px-2">
             {t('contact.subtitle')}
           </p>
         </div>
 
-        <div ref={ref} className="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
-          <Card className={`p-8 bg-gradient-card border-border transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div ref={ref} className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6 sm:gap-8">
+          <Card className={`p-6 sm:p-8 bg-gradient-card border-border transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2 text-foreground">
@@ -102,40 +102,40 @@ const Contact = () => {
             </form>
           </Card>
 
-          <div className={`space-y-6 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: '100ms' }}>
-            <Card className="p-6 bg-gradient-card border-border hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)] transition-all duration-300">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-6 h-6 text-accent" />
+          <div className={`space-y-4 sm:space-y-6 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: '100ms' }}>
+            <Card className="p-5 sm:p-6 bg-gradient-card border-border hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)] transition-all duration-300">
+              <div className="flex items-start gap-3 sm:gap-4">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
+                  <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-2 text-foreground">{t('contact.emailUs')}</h3>
-                  <p className="text-muted-foreground">hello@flipforward.com</p>
+                  <h3 className="font-semibold mb-1 sm:mb-2 text-foreground text-sm sm:text-base">{t('contact.emailUs')}</h3>
+                  <p className="text-muted-foreground text-sm">hello@flipforward.com</p>
                 </div>
               </div>
             </Card>
 
 
-            <Card className="p-6 bg-gradient-card border-border hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)] transition-all duration-300">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
-                  <Clock className="w-6 h-6 text-accent flex-shrink-0" />
+            <Card className="p-5 sm:p-6 bg-gradient-card border-border hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)] transition-all duration-300">
+              <div className="flex items-start gap-3 sm:gap-4">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
+                  <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-accent flex-shrink-0" />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-2 text-foreground">{t('contact.delivery')}</h3>
-                  <p className="text-muted-foreground">{t('contact.deliveryDesc')}</p>
+                  <h3 className="font-semibold mb-1 sm:mb-2 text-foreground text-sm sm:text-base">{t('contact.delivery')}</h3>
+                  <p className="text-muted-foreground text-sm">{t('contact.deliveryDesc')}</p>
                 </div>
               </div>
             </Card>
 
-            <Card className="p-6 bg-gradient-card border-border hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)] transition-all duration-300">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
-                  <Sparkles className="w-6 h-6 text-accent flex-shrink-0" />
+            <Card className="p-5 sm:p-6 bg-gradient-card border-border hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)] transition-all duration-300">
+              <div className="flex items-start gap-3 sm:gap-4">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
+                  <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-accent flex-shrink-0" />
                 </div>
                 <div>
-                  <h3 className="font-semibold mb-2 text-foreground">{t('contact.visuals')}</h3>
-                  <p className="text-muted-foreground">{t('contact.visualsDesc')}</p>
+                  <h3 className="font-semibold mb-1 sm:mb-2 text-foreground text-sm sm:text-base">{t('contact.visuals')}</h3>
+                  <p className="text-muted-foreground text-sm">{t('contact.visualsDesc')}</p>
                 </div>
               </div>
             </Card>
