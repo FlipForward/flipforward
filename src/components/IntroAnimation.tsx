@@ -29,7 +29,7 @@ const IntroAnimation = ({ onComplete }: IntroAnimationProps) => {
           step === 'initial' ? 'scale-0 opacity-0' : 'scale-100 opacity-100'
         }`}
         style={{
-          filter: step === 'show' ? 'drop-shadow(0 0 20px rgba(255, 127, 0, 0.6)) drop-shadow(0 0 40px rgba(255, 127, 0, 0.4))' : 'none',
+          filter: step === 'show' ? 'drop-shadow(0 0 40px rgba(255, 127, 0, 0.9)) drop-shadow(0 0 80px rgba(255, 127, 0, 0.7)) drop-shadow(0 0 120px rgba(255, 127, 0, 0.5))' : 'none',
           animation: step === 'show' ? 'pulse 2s ease-in-out infinite' : 'none'
         }}
       >
