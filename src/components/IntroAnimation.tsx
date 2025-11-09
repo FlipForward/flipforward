@@ -28,6 +28,10 @@ const IntroAnimation = ({ onComplete }: IntroAnimationProps) => {
         className={`transition-all duration-500 ease-out ${
           step === 'initial' ? 'scale-0 opacity-0' : 'scale-100 opacity-100'
         }`}
+        style={{
+          filter: step === 'show' ? 'drop-shadow(0 0 20px rgba(255, 255, 255, 0.5)) drop-shadow(0 0 40px rgba(255, 255, 255, 0.3))' : 'none',
+          animation: step === 'show' ? 'pulse 2s ease-in-out infinite' : 'none'
+        }}
       >
         <Logo className="h-16 sm:h-20 md:h-24 w-auto text-white" />
       </div>
