@@ -6,14 +6,14 @@ interface IntroAnimationProps {
 }
 
 const IntroAnimation = ({ onComplete }: IntroAnimationProps) => {
-  const [step, setStep] = useState<'logo' | 'slide' | 'text' | 'fadeout'>('logo');
+  const [step, setStep] = useState<'initial' | 'show-logo' | 'slide' | 'fadeout'>('initial');
 
   useEffect(() => {
     const timers = [
-      setTimeout(() => setStep('slide'), 800),
-      setTimeout(() => setStep('text'), 1400),
-      setTimeout(() => setStep('fadeout'), 2400),
-      setTimeout(() => onComplete(), 3000),
+      setTimeout(() => setStep('show-logo'), 100),
+      setTimeout(() => setStep('slide'), 1100),
+      setTimeout(() => setStep('fadeout'), 2100),
+      setTimeout(() => onComplete(), 2700),
     ];
 
     return () => timers.forEach(timer => clearTimeout(timer));
@@ -25,25 +25,27 @@ const IntroAnimation = ({ onComplete }: IntroAnimationProps) => {
         step === 'fadeout' ? 'opacity-0' : 'opacity-100'
       }`}
     >
-      <div className="flex items-center gap-6">
-        {/* Logo */}
+      <div className="relative flex items-center justify-center">
+        {/* Logo - starts centered, then moves left */}
         <div 
-          className={`transition-all duration-700 ${
-            step === 'logo' ? 'scale-0 opacity-0' : 'scale-100 opacity-100'
+          className={`transition-all duration-700 ease-out ${
+            step === 'initial' ? 'scale-0 opacity-0' : 'scale-100 opacity-100'
           } ${
-            step === 'slide' || step === 'text' || step === 'fadeout' ? 'translate-x-0' : 'translate-x-0'
+            step === 'slide' || step === 'fadeout' ? '-translate-x-32 sm:-translate-x-40' : 'translate-x-0'
           }`}
         >
-          <Logo className="h-16 sm:h-20 md:h-24 w-auto text-primary" />
+          <Logo className="h-16 sm:h-20 md:h-24 w-auto text-white" />
         </div>
 
-        {/* Text */}
+        {/* Text - slides from behind the logo */}
         <div 
-          className={`transition-all duration-700 ${
-            step === 'text' || step === 'fadeout' ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+          className={`absolute left-1/2 transition-all duration-700 ease-out ${
+            step === 'slide' || step === 'fadeout' 
+              ? 'opacity-100 translate-x-4 sm:translate-x-8' 
+              : 'opacity-0 -translate-x-32 sm:-translate-x-40'
           }`}
         >
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground whitespace-nowrap">
             FlipForward
           </h1>
         </div>
