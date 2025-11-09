@@ -19,7 +19,7 @@ const Index = () => {
     } else {
       const timer = setTimeout(() => {
         setShowContent(true);
-      }, 2700);
+      }, 2600);
       return () => clearTimeout(timer);
     }
   }, []);
