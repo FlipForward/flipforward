@@ -33,7 +33,7 @@ const IntroAnimation = ({ onComplete }: IntroAnimationProps) => {
           animation: step === 'show' ? 'pulse 2s ease-in-out infinite' : 'none'
         }}
       >
-        <Logo className="h-16 sm:h-20 md:h-24 w-auto text-white" />
+        <Logo className="h-16 sm:h-20 md:h-24 w-auto text-background" />
       </div>
     </div>
   );
