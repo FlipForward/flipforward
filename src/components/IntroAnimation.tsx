@@ -21,7 +21,7 @@ const IntroAnimation = ({ onComplete }: IntroAnimationProps) => {
 
   return (
     <div 
-      className={`fixed inset-0 z-50 bg-background flex items-center justify-center transition-opacity duration-600 ${
+      className={`fixed inset-0 z-[100] bg-background flex items-center justify-center transition-opacity duration-600 ${
         step === 'fadeout' ? 'opacity-0' : 'opacity-100'
       }`}
     >
@@ -31,7 +31,7 @@ const IntroAnimation = ({ onComplete }: IntroAnimationProps) => {
           className={`transition-all duration-700 ease-out ${
             step === 'initial' ? 'scale-0 opacity-0' : 'scale-100 opacity-100'
           } ${
-            step === 'slide' || step === 'fadeout' ? '-translate-x-32 sm:-translate-x-40' : 'translate-x-0'
+            step === 'slide' || step === 'fadeout' ? '-translate-x-16 sm:-translate-x-20' : 'translate-x-0'
           }`}
         >
           <Logo className="h-16 sm:h-20 md:h-24 w-auto text-white" />
@@ -39,10 +39,10 @@ const IntroAnimation = ({ onComplete }: IntroAnimationProps) => {
 
         {/* Text - slides from behind the logo */}
         <div 
-          className={`absolute left-1/2 transition-all duration-700 ease-out ${
+          className={`absolute transition-all duration-700 ease-out ${
             step === 'slide' || step === 'fadeout' 
-              ? 'opacity-100 translate-x-4 sm:translate-x-8' 
-              : 'opacity-0 -translate-x-32 sm:-translate-x-40'
+              ? 'opacity-100 translate-x-12 sm:translate-x-16' 
+              : 'opacity-0 -translate-x-16 sm:-translate-x-20'
           }`}
         >
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-foreground whitespace-nowrap">
