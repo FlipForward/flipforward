@@ -11,9 +11,9 @@ const projects = [
     gradient: 'from-purple-500/20 to-pink-500/20'
   },
   {
-    title: 'SaaS Dashboard',
-    category: 'Web Application',
-    description: 'Intuitive analytics dashboard with real-time data visualization.',
+    title: 'ATLAZ',
+    category: 'DJ Website',
+    description: 'Official DJ website featuring mixes, upcoming shows, and press info.',
     tags: ['TypeScript', 'D3.js', 'API'],
     gradient: 'from-blue-500/20 to-cyan-500/20'
   },
