@@ -23,6 +23,7 @@ const Portfolio = () => {
       titleKey: 'portfolio.project2.title',
       categoryKey: 'portfolio.project2.category',
       descKey: 'portfolio.project2.desc',
+      link: 'https://atlazmusic.be',
       gradient: 'from-blue-500/20 to-cyan-500/20'
     },
     {
