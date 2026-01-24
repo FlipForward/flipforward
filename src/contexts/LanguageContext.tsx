@@ -62,7 +62,7 @@ const translations = {
     'portfolio.project2.desc': 'Official DJ website featuring mixes, upcoming shows, and press info.',
     'portfolio.project3.title': 'Hytale Vlaanderen',
     'portfolio.project3.category': 'Community Platform',
-    'portfolio.project3.desc': 'Flemish community hub for Hytale: news, guides, and updates in one place.',
+    'portfolio.project3.desc': 'Flemish community hub for a Hytale server hosted by the best flemish twitch streamers',
     'portfolio.project4.title': 'Webdesign Portfolio',
     'portfolio.project4.category': 'Portfolio',
     'portfolio.project4.desc': 'A school project showcasing my webdesign skills and creative projects.',
