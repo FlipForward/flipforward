@@ -46,7 +46,7 @@ const Footer = () => {
           </div>
           <div>
             <p>KBO: BE1033868758</p>
-            <p>E-mail: [uw e-mailadres]</p>
+            <p>E-mail: finnvangronsveld@gmail.com</p>
           </div>
           <div>
             <p>Adres: [uw bedrijfsadres]</p>
