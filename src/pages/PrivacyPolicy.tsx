@@ -58,7 +58,7 @@ const PrivacyPolicy = () => {
               Finn Vangronsveld<br />
               FlipForward<br />
               KBO: BE1033868758<br />
-              E-mail: [uw e-mailadres]
+              E-mail: finnvangronsveld@gmail.com
             </p>
           </section>
 

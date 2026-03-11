@@ -49,7 +49,7 @@ const Footer = () => {
             <p>E-mail: finnvangronsveld@gmail.com</p>
           </div>
           <div>
-            <p>Adres: [uw bedrijfsadres]</p>
+            <p>Middenakkers 26, 2470 Retie, België</p>
           </div>
         </div>
 

@@ -27,8 +27,8 @@ const Terms = () => {
               Naam: Finn Vangronsveld<br />
               Handelsnaam: FlipForward<br />
               KBO-nummer: BE1033868758<br />
-              E-mail: [uw e-mailadres]<br />
-              Adres: [uw bedrijfsadres]
+              E-mail: finnvangronsveld@gmail.com<br />
+              Adres: Middenakkers 26, 2470 Retie, België
             </p>
           </section>
 
