@@ -299,10 +299,23 @@ const AdminProjects = () => {
     if (!over) return;
 
     const projectId = active.id as string;
-    const newStatus = over.id as string;
+    const overId = over.id as string;
     const project = projects.find(p => p.id === projectId);
+    if (!project) return;
 
-    if (project && project.status !== newStatus && statusOptions.some(s => s.value === newStatus)) {
+    // Resolve target status: overId could be a column status OR a project card id
+    const statusValues = statusOptions.map(s => s.value);
+    let newStatus: string;
+    if (statusValues.includes(overId)) {
+      newStatus = overId;
+    } else {
+      // Dropped on another card — find which column that card is in
+      const targetProject = projects.find(p => p.id === overId);
+      if (!targetProject) return;
+      newStatus = targetProject.status;
+    }
+
+    if (project.status !== newStatus) {
       statusMutation.mutate({ id: projectId, status: newStatus });
     }
   };
