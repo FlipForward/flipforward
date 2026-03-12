@@ -407,6 +407,10 @@ const translations: Record<Language, Record<string, string>> = {
     'contact.visualsDesc': 'Wunderschöne, moderne Designs, die Ihr Projekt hervorheben.',
     'contact.success': 'Nachricht gesendet!',
     'contact.successDesc': 'Wir melden uns innerhalb von 24 Stunden bei Ihnen.',
+    'contact.requestTitle': 'Website Anfragen',
+    'contact.requestDesc': 'Erstellen Sie ein Konto und reichen Sie eine detaillierte Website-Anfrage ein. Verfolgen Sie den Status und erhalten Sie Updates.',
+    'contact.requestCta': 'Anfrage einreichen',
+    'contact.requestCtaSignup': 'Konto erstellen & anfragen',
 
     // Terms
     'terms.title': 'Allgemeine Geschäftsbedingungen FlipForward',
