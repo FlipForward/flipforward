@@ -156,6 +156,15 @@ const AdminProjects = () => {
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
+  // Custom collision detection that only targets droppable columns
+  const columnCollisionDetection: CollisionDetection = (args) => {
+    const statusValues = statusOptions.map(s => s.value);
+    const collisions = rectIntersection(args);
+    // Only return collisions with droppable columns, not with draggable cards
+    const columnCollisions = collisions.filter(c => statusValues.includes(c.id as string));
+    return columnCollisions.length > 0 ? columnCollisions : collisions;
+  };
+
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
     useSensor(TouchSensor, { activationConstraint: { delay: 200, tolerance: 5 } })
