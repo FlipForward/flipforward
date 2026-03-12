@@ -84,10 +84,10 @@ const AdminProjects = () => {
       name: form.name.trim(),
       client_name: form.client_name.trim() || null,
       client_email: form.client_email.trim() || null,
+      client_phone: form.client_phone.trim() || null,
       description: form.description.trim() || null,
       status: form.status as any,
       notes: form.notes.trim() || null,
-      budget: form.budget.trim() || null,
       updated_at: new Date().toISOString(),
     };
 
