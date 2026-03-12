@@ -32,8 +32,28 @@ const AdminTickets = () => {
 
   useEffect(() => { fetchTickets(); }, []);
 
+  const getClientEmail = async (userId: string) => {
+    const { data } = await supabase.from('profiles').select('email').eq('id', userId).maybeSingle();
+    return data?.email || '';
+  };
+
   const updateStatus = async (ticketId: string, status: string) => {
+    const ticket = tickets.find(t => t.id === ticketId);
     await supabase.from('tickets').update({ status, updated_at: new Date().toISOString() }).eq('id', ticketId);
+    
+    // Notify client
+    if (ticket) {
+      const email = await getClientEmail(ticket.user_id);
+      if (email) {
+        supabase.functions.invoke('send-notification', {
+          body: {
+            type: 'status_update_client',
+            data: { subject: ticket.subject, status, admin_reply: ticket.admin_reply, user_email: email },
+          },
+        });
+      }
+    }
+    
     fetchTickets();
     if (selectedTicket?.id === ticketId) setSelectedTicket((t: any) => ({ ...t, status }));
     toast({ title: `Status bijgewerkt naar ${statusOptions.find(s => s.value === status)?.label}` });
@@ -45,6 +65,18 @@ const AdminTickets = () => {
       admin_reply: reply.trim(),
       updated_at: new Date().toISOString(),
     }).eq('id', selectedTicket.id);
+
+    // Notify client about reply
+    const email = await getClientEmail(selectedTicket.user_id);
+    if (email) {
+      supabase.functions.invoke('send-notification', {
+        body: {
+          type: 'status_update_client',
+          data: { subject: selectedTicket.subject, status: selectedTicket.status, admin_reply: reply.trim(), user_email: email },
+        },
+      });
+    }
+
     toast({ title: 'Antwoord verstuurd' });
     setReply('');
     fetchTickets();
