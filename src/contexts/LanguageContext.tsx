@@ -517,7 +517,15 @@ const translations: Record<Language, Record<string, string>> = {
     'services.hosting.desc': 'Nous enregistrons votre nom de domaine, mettons en place un serveur sécurisé (SSL) et garantissons que votre site se charge toujours à la vitesse de l\'éclair.',
     'services.maintenance.title': 'Maintenance mensuelle',
     'services.maintenance.desc': 'Mises à jour techniques continues, sécurité et support pour les petits ajustements. Votre site web est toujours à jour.',
-    
+    'services.photo.title': 'Photographie d\'entreprise (Optionnel)',
+    'services.photo.desc': 'Pas de photos professionnelles ? Pas de problème. Nous venons sur place pour capturer votre équipe, bureau ou produits avec netteté. Parfaitement optimisé pour votre nouveau site.',
+
+    // Pricing
+    'pricing.addon.title': 'Extras optionnels',
+    'pricing.addon.photo': 'Forfait Photographie Site Web',
+    'pricing.addon.photoPrice': '+ € 200,- (unique)',
+    'pricing.addon.photoDesc': '1h30 de shooting sur place, 15-20 photos retouchées, droits d\'utilisation illimités pour votre propre marketing.',
+
     // Portfolio
     'portfolio.title': 'Travaux',
     'portfolio.titleAccent': 'en vedette',

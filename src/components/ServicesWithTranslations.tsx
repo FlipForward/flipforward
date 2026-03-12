@@ -52,9 +52,12 @@ const Services = () => {
             return (
             <Card 
               key={index}
-              className={`p-5 sm:p-8 bg-gradient-card border-border hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)] transition-all duration-300 cursor-pointer ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+              className={`p-5 sm:p-8 bg-gradient-card border-border hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)] transition-all duration-300 cursor-pointer ${(service as any).optional ? 'border-accent/30 border-dashed' : ''} ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
+              {(service as any).optional && (
+                <span className="inline-block text-xs font-medium text-accent bg-accent/10 px-2 py-0.5 rounded mb-3">Optioneel</span>
+              )}
               <div className="mb-4 w-12 h-12 sm:w-14 sm:h-14 rounded-lg bg-accent/10 flex items-center justify-center">
                 <Icon className="w-6 h-6 sm:w-7 sm:h-7 text-accent" />
               </div>
