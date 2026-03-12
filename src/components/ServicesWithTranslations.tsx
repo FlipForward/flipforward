@@ -25,6 +25,12 @@ const Services = () => {
       icon: Wrench,
       titleKey: 'services.maintenance.title',
       descKey: 'services.maintenance.desc'
+    },
+    {
+      icon: Camera,
+      titleKey: 'services.photo.title',
+      descKey: 'services.photo.desc',
+      optional: true
     }
   ];
 
