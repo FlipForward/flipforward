@@ -110,7 +110,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold mb-1 sm:mb-2 text-foreground text-sm sm:text-base">{t('contact.emailUs')}</h3>
-                  <p className="text-muted-foreground text-sm">hello@flipforward.com</p>
+                  <p className="text-muted-foreground text-sm">finnvangronsveld@gmail.com</p>
                 </div>
               </div>
             </Card>
