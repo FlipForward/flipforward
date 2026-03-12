@@ -401,16 +401,18 @@ const AdminProjects = () => {
           onDragStart={handleDragStart}
           onDragEnd={handleDragEnd}
         >
-          <div className="grid grid-cols-6 gap-3 min-h-[60vh]">
-            {statusOptions.map(status => (
-              <KanbanColumn
-                key={status.value}
-                status={status}
-                projects={projects.filter(p => p.status === status.value)}
-                onEdit={openEdit}
-                onDelete={id => deleteMutation.mutate(id)}
-              />
-            ))}
+          <div className="overflow-x-auto pb-2">
+            <div className="flex gap-3 min-h-[60vh] min-w-max pr-1">
+              {statusOptions.map(status => (
+                <KanbanColumn
+                  key={status.value}
+                  status={status}
+                  projects={projects.filter(p => p.status === status.value)}
+                  onEdit={openEdit}
+                  onDelete={id => deleteMutation.mutate(id)}
+                />
+              ))}
+            </div>
           </div>
           <DragOverlay dropAnimation={{ duration: 200, easing: 'ease' }}>
             {activeProject ? <DragOverlayCard project={activeProject} /> : null}
