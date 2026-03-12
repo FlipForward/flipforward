@@ -43,7 +43,15 @@ const translations: Record<Language, Record<string, string>> = {
     'services.hosting.desc': 'We register your domain name, arrange a secure server (SSL) and ensure your website always loads lightning fast.',
     'services.maintenance.title': 'Monthly Maintenance',
     'services.maintenance.desc': 'Ongoing technical updates, security and support for small adjustments. Your website is always up-to-date.',
+    'services.photo.title': 'Business Photography (Optional)',
+    'services.photo.desc': 'No professional photos? No problem. We come to your location to capture your team, office or products in sharp detail. Perfectly optimized for your new website.',
     
+    // Pricing
+    'pricing.addon.title': 'Optional Add-ons',
+    'pricing.addon.photo': 'Website Photography Package',
+    'pricing.addon.photoPrice': '+ € 200,- (one-time)',
+    'pricing.addon.photoDesc': '1.5 hour on-location shoot, 15-20 edited photos, including unlimited usage rights for your own marketing.',
+
     // Portfolio
     'portfolio.title': 'Featured',
     'portfolio.titleAccent': 'Work',
@@ -193,7 +201,15 @@ const translations: Record<Language, Record<string, string>> = {
     'services.hosting.desc': 'Wij registreren jouw domeinnaam, regelen een veilige server (SSL) en zorgen dat je website altijd bliksemsnel laadt.',
     'services.maintenance.title': 'Maandelijks Onderhoud',
     'services.maintenance.desc': 'Doorlopende technische updates, beveiliging en support voor kleine aanpassingen. Jouw website is altijd up-to-date.',
-    
+    'services.photo.title': 'Bedrijfsfotografie (Optioneel)',
+    'services.photo.desc': 'Geen professionele foto\'s? Geen probleem. Wij komen langs op locatie om jouw team, kantoor of producten haarscherp vast te leggen. Perfect geoptimaliseerd voor je nieuwe website.',
+
+    // Pricing
+    'pricing.addon.title': 'Optionele Extra\'s',
+    'pricing.addon.photo': 'Website Fotografie Pakket',
+    'pricing.addon.photoPrice': '+ € 200,- (eenmalig)',
+    'pricing.addon.photoDesc': '1,5 uur shoot op locatie, 15-20 nabewerkte foto\'s, inclusief onbeperkt gebruiksrecht voor jouw eigen marketing.',
+
     // Portfolio
     'portfolio.title': 'Uitgelicht',
     'portfolio.titleAccent': 'Werk',
@@ -343,7 +359,15 @@ const translations: Record<Language, Record<string, string>> = {
     'services.hosting.desc': 'Wir registrieren Ihren Domainnamen, richten einen sicheren Server (SSL) ein und sorgen dafür, dass Ihre Website immer blitzschnell lädt.',
     'services.maintenance.title': 'Monatliche Wartung',
     'services.maintenance.desc': 'Laufende technische Updates, Sicherheit und Support für kleine Anpassungen. Ihre Website ist immer auf dem neuesten Stand.',
-    
+    'services.photo.title': 'Geschäftsfotografie (Optional)',
+    'services.photo.desc': 'Keine professionellen Fotos? Kein Problem. Wir kommen zu Ihrem Standort, um Ihr Team, Büro oder Produkte gestochen scharf festzuhalten. Perfekt optimiert für Ihre neue Website.',
+
+    // Pricing
+    'pricing.addon.title': 'Optionale Extras',
+    'pricing.addon.photo': 'Website-Fotografie-Paket',
+    'pricing.addon.photoPrice': '+ € 200,- (einmalig)',
+    'pricing.addon.photoDesc': '1,5 Stunden Shooting vor Ort, 15-20 bearbeitete Fotos, inklusive unbegrenzter Nutzungsrechte für Ihr eigenes Marketing.',
+
     // Portfolio
     'portfolio.title': 'Ausgewählte',
     'portfolio.titleAccent': 'Arbeiten',
@@ -493,7 +517,15 @@ const translations: Record<Language, Record<string, string>> = {
     'services.hosting.desc': 'Nous enregistrons votre nom de domaine, mettons en place un serveur sécurisé (SSL) et garantissons que votre site se charge toujours à la vitesse de l\'éclair.',
     'services.maintenance.title': 'Maintenance mensuelle',
     'services.maintenance.desc': 'Mises à jour techniques continues, sécurité et support pour les petits ajustements. Votre site web est toujours à jour.',
-    
+    'services.photo.title': 'Photographie d\'entreprise (Optionnel)',
+    'services.photo.desc': 'Pas de photos professionnelles ? Pas de problème. Nous venons sur place pour capturer votre équipe, bureau ou produits avec netteté. Parfaitement optimisé pour votre nouveau site.',
+
+    // Pricing
+    'pricing.addon.title': 'Extras optionnels',
+    'pricing.addon.photo': 'Forfait Photographie Site Web',
+    'pricing.addon.photoPrice': '+ € 200,- (unique)',
+    'pricing.addon.photoDesc': '1h30 de shooting sur place, 15-20 photos retouchées, droits d\'utilisation illimités pour votre propre marketing.',
+
     // Portfolio
     'portfolio.title': 'Travaux',
     'portfolio.titleAccent': 'en vedette',

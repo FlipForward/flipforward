@@ -1,5 +1,5 @@
 import { Card } from '@/components/ui/card';
-import { Palette, Globe, Wrench } from 'lucide-react';
+import { Palette, Globe, Wrench, Camera } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useInView } from 'react-intersection-observer';
 
@@ -25,6 +25,12 @@ const Services = () => {
       icon: Wrench,
       titleKey: 'services.maintenance.title',
       descKey: 'services.maintenance.desc'
+    },
+    {
+      icon: Camera,
+      titleKey: 'services.photo.title',
+      descKey: 'services.photo.desc',
+      optional: true
     }
   ];
 
@@ -40,15 +46,18 @@ const Services = () => {
           </p>
         </div>
 
-        <div ref={ref} className="grid md:grid-cols-3 gap-4 sm:gap-8 max-w-5xl mx-auto">
+        <div ref={ref} className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-6xl mx-auto">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
             <Card 
               key={index}
-              className={`p-5 sm:p-8 bg-gradient-card border-border hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)] transition-all duration-300 cursor-pointer ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+              className={`p-5 sm:p-8 bg-gradient-card border-border hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)] transition-all duration-300 cursor-pointer ${(service as any).optional ? 'border-accent/30 border-dashed' : ''} ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
+              {(service as any).optional && (
+                <span className="inline-block text-xs font-medium text-accent bg-accent/10 px-2 py-0.5 rounded mb-3">Optioneel</span>
+              )}
               <div className="mb-4 w-12 h-12 sm:w-14 sm:h-14 rounded-lg bg-accent/10 flex items-center justify-center">
                 <Icon className="w-6 h-6 sm:w-7 sm:h-7 text-accent" />
               </div>

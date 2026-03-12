@@ -1,6 +1,6 @@
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Check, ArrowRight } from 'lucide-react';
+import { Check, ArrowRight, Camera } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useInView } from 'react-intersection-observer';
 
@@ -60,6 +60,23 @@ const Pricing = () => {
               {t('pricing.cta')}
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
+          </Card>
+
+          {/* Add-on */}
+          <Card className={`mt-6 p-5 sm:p-6 border-accent/30 border-dashed bg-accent/5 transition-all duration-700 delay-200 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <p className="text-xs font-semibold uppercase tracking-wider text-accent mb-4">{t('pricing.addon.title')}</p>
+            <div className="flex items-start gap-4">
+              <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
+                <Camera className="w-5 h-5 text-accent" />
+              </div>
+              <div className="flex-1">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-1">
+                  <h4 className="font-semibold text-foreground">{t('pricing.addon.photo')}</h4>
+                  <span className="text-accent font-bold text-sm">{t('pricing.addon.photoPrice')}</span>
+                </div>
+                <p className="text-sm text-muted-foreground">{t('pricing.addon.photoDesc')}</p>
+              </div>
+            </div>
           </Card>
         </div>
       </div>
