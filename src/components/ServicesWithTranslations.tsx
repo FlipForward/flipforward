@@ -46,7 +46,7 @@ const Services = () => {
           </p>
         </div>
 
-        <div ref={ref} className="grid md:grid-cols-3 gap-4 sm:gap-8 max-w-5xl mx-auto">
+        <div ref={ref} className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-6xl mx-auto">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
