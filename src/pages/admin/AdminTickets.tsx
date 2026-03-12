@@ -125,7 +125,7 @@ const AdminTickets = () => {
             </Card>
           ) : (
             <Card className="p-8 text-center border-border">
-              <p className="text-muted-foreground">Selecteer een ticket om details te bekijken</p>
+              <p className="text-muted-foreground">Selecteer een aanvraag om details te bekijken</p>
             </Card>
           )}
         </div>

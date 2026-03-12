@@ -72,11 +72,11 @@ const Dashboard = () => {
           <p className="text-muted-foreground">Laden...</p>
         ) : tickets.length === 0 ? (
           <Card className="p-8 text-center border-border">
-            <Ticket className="w-12 h-12 text-muted-foreground mx-auto mb-3" />
-            <h3 className="font-semibold text-foreground mb-1">Geen tickets</h3>
-            <p className="text-muted-foreground text-sm mb-4">Je hebt nog geen tickets ingediend.</p>
+            <Globe className="w-12 h-12 text-muted-foreground mx-auto mb-3" />
+            <h3 className="font-semibold text-foreground mb-1">Geen aanvragen</h3>
+            <p className="text-muted-foreground text-sm mb-4">Je hebt nog geen website-aanvraag ingediend.</p>
             <Link to="/tickets/new">
-              <Button><Plus className="w-4 h-4 mr-1" /> Maak je eerste ticket</Button>
+              <Button><Plus className="w-4 h-4 mr-1" /> Website aanvragen</Button>
             </Link>
           </Card>
         ) : (
