@@ -11,6 +11,7 @@ import { useAuth } from "@/contexts/AuthContext";
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useLanguage();
+  const { user } = useAuth();
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
