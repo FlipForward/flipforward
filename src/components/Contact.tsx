@@ -41,7 +41,6 @@ const Contact = () => {
         variant: 'destructive',
       });
     } else {
-      // Send email notification
       try {
         await supabase.functions.invoke('send-notification', {
           body: {
@@ -66,12 +65,14 @@ const Contact = () => {
     setLoading(false);
   };
 
+  const infoCards = [
+    { icon: Mail, titleKey: 'contact.emailUs', desc: 'finnvangronsveld@gmail.com' },
+    { icon: Clock, titleKey: 'contact.delivery', descKey: 'contact.deliveryDesc' },
+    { icon: Sparkles, titleKey: 'contact.visuals', descKey: 'contact.visualsDesc' },
+  ];
+
   return (
     <section id="contact" className="py-16 sm:py-24 bg-background relative overflow-hidden">
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-accent/30 rounded-full blur-3xl" />
-      </div>
-
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="text-center mb-12 sm:mb-16 animate-fade-in">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">
@@ -82,11 +83,12 @@ const Contact = () => {
           </p>
         </div>
 
-        <div ref={ref} className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6 sm:gap-8">
+        <div ref={ref} className="max-w-4xl mx-auto grid md:grid-cols-2 gap-6 sm:gap-8 items-start">
+          {/* Form */}
           <Card className={`p-6 sm:p-8 bg-gradient-card border-border transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-5">
               <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-2 text-foreground">
+                <label htmlFor="name" className="block text-sm font-medium mb-1.5 text-foreground">
                   {t('contact.name')}
                 </label>
                 <Input
@@ -96,12 +98,12 @@ const Contact = () => {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
-                  className="bg-background border-border focus:border-accent"
+                  className="bg-background border-border"
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2 text-foreground">
+                <label htmlFor="email" className="block text-sm font-medium mb-1.5 text-foreground">
                   {t('contact.email')}
                 </label>
                 <Input
@@ -111,22 +113,22 @@ const Contact = () => {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
-                  className="bg-background border-border focus:border-accent"
+                  className="bg-background border-border"
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2 text-foreground">
+                <label htmlFor="message" className="block text-sm font-medium mb-1.5 text-foreground">
                   {t('contact.message')}
                 </label>
                 <Textarea
                   id="message"
                   placeholder={t('contact.messagePlaceholder')}
-                  rows={6}
+                  rows={5}
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   required
-                  className="bg-background border-border focus:border-accent resize-none"
+                  className="bg-background border-border resize-none"
                 />
               </div>
 
@@ -137,43 +139,23 @@ const Contact = () => {
             </form>
           </Card>
 
-          <div className={`space-y-4 sm:space-y-6 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: '100ms' }}>
-            <Card className="p-5 sm:p-6 bg-gradient-card border-border hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)] transition-all duration-300">
-              <div className="flex items-start gap-3 sm:gap-4">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />
+          {/* Info cards */}
+          <div className={`flex flex-col gap-4 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{ transitionDelay: '100ms' }}>
+            {infoCards.map(({ icon: Icon, titleKey, desc, descKey }, i) => (
+              <Card key={i} className="p-5 sm:p-6 bg-gradient-card border-border hover:border-accent/30 hover:shadow-glow transition-all duration-300">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center shrink-0">
+                    <Icon className="w-5 h-5 text-accent" />
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="font-semibold mb-1 text-foreground text-sm">{t(titleKey)}</h3>
+                    <p className="text-sm text-muted-foreground break-all sm:break-normal">
+                      {desc || t(descKey!)}
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold mb-1 sm:mb-2 text-foreground text-sm sm:text-base">{t('contact.emailUs')}</h3>
-                  <p className="text-muted-foreground text-sm">finnvangronsveld@gmail.com</p>
-                </div>
-              </div>
-            </Card>
-
-            <Card className="p-5 sm:p-6 bg-gradient-card border-border hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)] transition-all duration-300">
-              <div className="flex items-start gap-3 sm:gap-4">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
-                  <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-accent flex-shrink-0" />
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-1 sm:mb-2 text-foreground text-sm sm:text-base">{t('contact.delivery')}</h3>
-                  <p className="text-muted-foreground text-sm">{t('contact.deliveryDesc')}</p>
-                </div>
-              </div>
-            </Card>
-
-            <Card className="p-5 sm:p-6 bg-gradient-card border-border hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)] transition-all duration-300">
-              <div className="flex items-start gap-3 sm:gap-4">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
-                  <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-accent flex-shrink-0" />
-                </div>
-                <div>
-                  <h3 className="font-semibold mb-1 sm:mb-2 text-foreground text-sm sm:text-base">{t('contact.visuals')}</h3>
-                  <p className="text-muted-foreground text-sm">{t('contact.visualsDesc')}</p>
-                </div>
-              </div>
-            </Card>
-
+              </Card>
+            ))}
           </div>
         </div>
       </div>

@@ -54,33 +54,37 @@ const Portfolio = () => {
           </p>
         </div>
 
-        <div ref={ref} className="grid md:grid-cols-2 gap-4 sm:gap-8">
+        <div ref={ref} className="grid md:grid-cols-2 gap-4 sm:gap-6 max-w-5xl mx-auto">
           {projects.map((project, index) => (
-            <Card 
+            <a 
               key={index}
-              className={`p-5 sm:p-8 bg-gradient-card border-border hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)] transition-all duration-300 cursor-pointer overflow-hidden relative ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-              style={{ transitionDelay: `${index * 150}ms` }}
-              onClick={() => project.link && window.open(project.link, '_blank')}
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`group block transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+              style={{ transitionDelay: `${index * 100}ms` }}
             >
-              <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 transition-opacity duration-300`} />
-              
-              <div className="relative z-10">
-                <div className="flex items-start justify-between mb-3 sm:mb-4">
-                  <Badge variant="outline" className="text-accent border-accent/50 text-xs sm:text-sm">
-                    {t(project.categoryKey)}
-                  </Badge>
-                  <ExternalLink className="w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground" />
-                </div>
-
-                <h3 className="text-lg sm:text-2xl font-bold mb-2 sm:mb-3">
-                  {t(project.titleKey)}
-                </h3>
+              <Card className="p-5 sm:p-8 bg-gradient-card border-border group-hover:shadow-glow group-hover:border-accent/30 transition-all duration-300 overflow-hidden relative h-full">
+                <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
                 
-                <p className="text-sm sm:text-base text-muted-foreground">
-                  {t(project.descKey)}
-                </p>
-              </div>
-            </Card>
+                <div className="relative z-10">
+                  <div className="flex items-start justify-between mb-3 sm:mb-4">
+                    <Badge variant="outline" className="text-accent border-accent/50 text-xs">
+                      {t(project.categoryKey)}
+                    </Badge>
+                    <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-accent transition-colors" />
+                  </div>
+
+                  <h3 className="text-lg sm:text-2xl font-bold mb-2 sm:mb-3 text-foreground">
+                    {t(project.titleKey)}
+                  </h3>
+                  
+                  <p className="text-sm sm:text-base text-muted-foreground">
+                    {t(project.descKey)}
+                  </p>
+                </div>
+              </Card>
+            </a>
           ))}
         </div>
       </div>

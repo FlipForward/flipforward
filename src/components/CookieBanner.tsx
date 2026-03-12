@@ -20,12 +20,12 @@ const CookieBanner = () => {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 p-4 animate-fade-in">
-      <div className="container mx-auto max-w-4xl">
-        <div className="bg-card border border-border rounded-lg p-4 sm:p-6 shadow-lg flex flex-col sm:flex-row items-start sm:items-center gap-4">
+    <div className="fixed bottom-4 left-4 right-4 z-50 animate-fade-in pointer-events-none">
+      <div className="container mx-auto max-w-3xl pointer-events-auto">
+        <div className="bg-card/95 backdrop-blur-md border border-border rounded-xl p-4 sm:px-6 sm:py-4 shadow-xl flex flex-col sm:flex-row items-start sm:items-center gap-3">
           <p className="text-sm text-muted-foreground flex-1">
             Wij gebruiken cookies om uw ervaring op onze website te verbeteren. Door verder te gaan, gaat u akkoord met ons{" "}
-            <Link to="/privacy" className="text-primary hover:underline">
+            <Link to="/privacy" className="text-accent hover:underline">
               privacybeleid
             </Link>
             .
