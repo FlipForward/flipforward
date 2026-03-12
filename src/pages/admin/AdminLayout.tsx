@@ -2,12 +2,11 @@ import { Link, Outlet, useLocation, Navigate } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import Logo from '@/components/Logo';
 import { Button } from '@/components/ui/button';
-import { FolderKanban, Mail, BarChart3, LogOut } from 'lucide-react';
+import { FolderKanban, BarChart3, LogOut } from 'lucide-react';
 
 const navItems = [
   { to: '/admin', icon: BarChart3, label: 'Dashboard' },
   { to: '/admin/projects', icon: FolderKanban, label: 'Opdrachten' },
-  { to: '/admin/messages', icon: Mail, label: 'Berichten' },
 ];
 
 const AdminLayout = () => {
