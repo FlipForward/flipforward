@@ -225,7 +225,7 @@ const translations: Record<Language, Record<string, string>> = {
     'portfolio.project3.desc': 'Vlaamse community hub voor een Hytale-server, gehost door de beste Vlaamse Twitch-streamers.',
     'portfolio.project4.title': 'Webdesign Portfolio',
     'portfolio.project4.category': 'Portfolio',
-    'portfolio.project4.desc': 'Een school project dat mijn webdesign vaardigheden en creatieve projecten toont.',
+    'portfolio.project4.desc': 'Een schoolproject dat mijn webdesign-vaardigheden en creatieve projecten toont.',
     
     // About
     'about.title': 'Over',
