@@ -62,7 +62,7 @@ const AdminTickets = () => {
           {loading ? (
             <p className="text-muted-foreground p-4">Laden...</p>
           ) : tickets.length === 0 ? (
-            <p className="text-muted-foreground p-4">Geen tickets gevonden.</p>
+            <p className="text-muted-foreground p-4">Geen aanvragen gevonden.</p>
           ) : tickets.map((ticket) => (
             <Card
               key={ticket.id}
