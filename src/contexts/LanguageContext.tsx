@@ -479,7 +479,7 @@ const translations: Record<Language, Record<string, string>> = {
     'privacy.section4.title': '4. Weitergabe von Daten an Dritte',
     'privacy.section4.text': 'FlipForward verkauft Ihre Daten nicht an Dritte und gibt sie nur weiter, wenn dies für die Durchführung unserer Vereinbarung mit Ihnen erforderlich ist (z. B. Hosting-Anbieter oder Rechnungssoftware) oder um einer gesetzlichen Verpflichtung nachzukommen.',
     'privacy.section5.title': '5. Ihre Rechte (DSGVO)',
-    'privacy.section5.text': 'Sie haben das Recht, Ihre personenbezogenen Daten einzusehen, zu korrigieren oder zu löschen. Darüber hinaus haben Sie das Recht, eine erteilte Einwilligung zur Datenverarbeitung zu widerrufen oder der Verarbeitung Ihrer personenbezogenen Daten durch FlipForward zu widersprechen. Senden Sie hierzu eine E-Mail an: info@flipforward.be.',
+    'privacy.section5.text': 'Sie haben das Recht, Ihre personenbezogenen Daten einzusehen, zu korrigieren oder zu löschen. Darüber hinaus haben Sie das Recht, eine erteilte Einwilligung zur Datenverarbeitung zu widerrufen oder der Verarbeitung Ihrer personenbezogenen Daten durch FlipForward zu widersprechen. Senden Sie hierzu eine E-Mail an: finnvangronsveld@gmail.com.',
     'privacy.section6.title': '6. Cookies',
     'privacy.section6.text': 'Unsere Website verwendet funktionale Cookies, um die optimale Funktion der Website zu gewährleisten. Wir verwenden auch Analysetools, um zu analysieren, wie Besucher unsere Website nutzen.',
   },
