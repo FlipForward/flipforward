@@ -201,7 +201,15 @@ const translations: Record<Language, Record<string, string>> = {
     'services.hosting.desc': 'Wij registreren jouw domeinnaam, regelen een veilige server (SSL) en zorgen dat je website altijd bliksemsnel laadt.',
     'services.maintenance.title': 'Maandelijks Onderhoud',
     'services.maintenance.desc': 'Doorlopende technische updates, beveiliging en support voor kleine aanpassingen. Jouw website is altijd up-to-date.',
-    
+    'services.photo.title': 'Bedrijfsfotografie (Optioneel)',
+    'services.photo.desc': 'Geen professionele foto\'s? Geen probleem. Wij komen langs op locatie om jouw team, kantoor of producten haarscherp vast te leggen. Perfect geoptimaliseerd voor je nieuwe website.',
+
+    // Pricing
+    'pricing.addon.title': 'Optionele Extra\'s',
+    'pricing.addon.photo': 'Website Fotografie Pakket',
+    'pricing.addon.photoPrice': '+ € 200,- (eenmalig)',
+    'pricing.addon.photoDesc': '1,5 uur shoot op locatie, 15-20 nabewerkte foto\'s, inclusief onbeperkt gebruiksrecht voor jouw eigen marketing.',
+
     // Portfolio
     'portfolio.title': 'Uitgelicht',
     'portfolio.titleAccent': 'Werk',
