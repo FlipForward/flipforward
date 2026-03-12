@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card } from '@/components/ui/card';
-import { Mail, Send, Clock, Sparkles } from 'lucide-react';
+import { Mail, Send, Clock, Sparkles, Globe, ArrowRight } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useInView } from 'react-intersection-observer';
