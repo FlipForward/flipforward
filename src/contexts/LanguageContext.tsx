@@ -205,6 +205,25 @@ const translations = {
     'contact.visualsDesc': 'Prachtige, moderne ontwerpen creëren die uw project laten opvallen.',
     'contact.success': 'Bericht Verzonden!',
     'contact.successDesc': 'We nemen binnen 24 uur contact met u op.',
+
+    // Privacy Policy
+    'privacy.title': 'Privacybeleid FlipForward',
+    'privacy.lastUpdated': 'Laatst bijgewerkt',
+    'privacy.intro': 'FlipForward (onderdeel van ATLAZ Records, KBO: BE1033868758) hecht veel waarde aan jouw privacy. In dit privacybeleid leggen we uit welke persoonsgegevens we verzamelen, waarom we dit doen en wat jouw rechten zijn.',
+    'privacy.section1.title': '1. Welke gegevens verzamelen we?',
+    'privacy.section1.text': 'Wanneer je ons contactformulier invult of een abonnement voor webdesign bij ons afneemt, verzamelen we de volgende gegevens:',
+    'privacy.section1.items': 'Voor- en achternaam|Bedrijfsnaam en KBO/BTW-nummer|E-mailadres en telefoonnummer|Facturatie- en betaalgegevens',
+    'privacy.section2.title': '2. Waarom verzamelen we deze gegevens?',
+    'privacy.section2.text': 'Wij gebruiken jouw gegevens uitsluitend voor:',
+    'privacy.section2.items': 'Het bouwen, hosten en onderhouden van jouw website.|Het afhandelen van betalingen en facturatie (via onze partner Dexxter).|Om contact met je op te nemen over je project of supportvragen.',
+    'privacy.section3.title': '3. Hoe lang bewaren we je gegevens?',
+    'privacy.section3.text': 'We bewaren je persoonsgegevens niet langer dan strikt nodig is om de doelen te realiseren waarvoor je gegevens worden verzameld. Facturatiegegevens worden wettelijk 7 jaar bewaard ter voldoening aan de Belgische belastingwetgeving.',
+    'privacy.section4.title': '4. Delen van gegevens met derden',
+    'privacy.section4.text': 'FlipForward verkoopt jouw gegevens niet aan derden en verstrekt deze uitsluitend indien dit nodig is voor de uitvoering van onze overeenkomst met jou (bijvoorbeeld hostingpartijen of facturatiesoftware) of om te voldoen aan een wettelijke verplichting.',
+    'privacy.section5.title': '5. Jouw rechten (GDPR)',
+    'privacy.section5.text': 'Je hebt het recht om je persoonsgegevens in te zien, te corrigeren of te verwijderen. Daarnaast heb je het recht om je eventuele toestemming voor de gegevensverwerking in te trekken of bezwaar te maken tegen de verwerking van jouw persoonsgegevens door FlipForward. Stuur hiervoor een e-mail naar: finnvangronsveld@gmail.com.',
+    'privacy.section6.title': '6. Cookies',
+    'privacy.section6.text': 'Onze website maakt gebruik van functionele cookies om de website optimaal te laten werken. Ook gebruiken wij analysetools om te analyseren hoe bezoekers onze website gebruiken.',
   }
 };
 
