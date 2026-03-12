@@ -163,7 +163,7 @@ const translations: Record<Language, Record<string, string>> = {
     'privacy.section4.title': '4. Sharing data with third parties',
     'privacy.section4.text': 'FlipForward does not sell your data to third parties and only provides it if this is necessary for the execution of our agreement with you (for example, hosting parties or invoicing software) or to comply with a legal obligation.',
     'privacy.section5.title': '5. Your rights (GDPR)',
-    'privacy.section5.text': 'You have the right to view, correct, or delete your personal data. In addition, you have the right to withdraw any consent for data processing or to object to the processing of your personal data by FlipForward. Please send an email to: info@flipforward.be.',
+    'privacy.section5.text': 'You have the right to view, correct, or delete your personal data. In addition, you have the right to withdraw any consent for data processing or to object to the processing of your personal data by FlipForward. Please send an email to: finnvangronsveld@gmail.com.',
     'privacy.section6.title': '6. Cookies',
     'privacy.section6.text': 'Our website uses functional cookies to ensure the website works optimally. We also use analytics tools to analyze how visitors use our website.',
   },
