@@ -321,7 +321,7 @@ const translations: Record<Language, Record<string, string>> = {
     'privacy.section4.title': '4. Delen van gegevens met derden',
     'privacy.section4.text': 'FlipForward verkoopt jouw gegevens niet aan derden en verstrekt deze uitsluitend indien dit nodig is voor de uitvoering van onze overeenkomst met jou (bijvoorbeeld hostingpartijen of facturatiesoftware) of om te voldoen aan een wettelijke verplichting.',
     'privacy.section5.title': '5. Jouw rechten (GDPR)',
-    'privacy.section5.text': 'Je hebt het recht om je persoonsgegevens in te zien, te corrigeren of te verwijderen. Daarnaast heb je het recht om je eventuele toestemming voor de gegevensverwerking in te trekken of bezwaar te maken tegen de verwerking van jouw persoonsgegevens door FlipForward. Stuur hiervoor een e-mail naar: info@flipforward.be.',
+    'privacy.section5.text': 'Je hebt het recht om je persoonsgegevens in te zien, te corrigeren of te verwijderen. Daarnaast heb je het recht om je eventuele toestemming voor de gegevensverwerking in te trekken of bezwaar te maken tegen de verwerking van jouw persoonsgegevens door FlipForward. Stuur hiervoor een e-mail naar: finnvangronsveld@gmail.com.',
     'privacy.section6.title': '6. Cookies',
     'privacy.section6.text': 'Onze website maakt gebruik van functionele cookies om de website optimaal te laten werken. Ook gebruiken wij analysetools om te analyseren hoe bezoekers onze website gebruiken.',
   },
