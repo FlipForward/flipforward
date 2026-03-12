@@ -43,7 +43,15 @@ const translations: Record<Language, Record<string, string>> = {
     'services.hosting.desc': 'We register your domain name, arrange a secure server (SSL) and ensure your website always loads lightning fast.',
     'services.maintenance.title': 'Monthly Maintenance',
     'services.maintenance.desc': 'Ongoing technical updates, security and support for small adjustments. Your website is always up-to-date.',
+    'services.photo.title': 'Business Photography (Optional)',
+    'services.photo.desc': 'No professional photos? No problem. We come to your location to capture your team, office or products in sharp detail. Perfectly optimized for your new website.',
     
+    // Pricing
+    'pricing.addon.title': 'Optional Add-ons',
+    'pricing.addon.photo': 'Website Photography Package',
+    'pricing.addon.photoPrice': '+ € 200,- (one-time)',
+    'pricing.addon.photoDesc': '1.5 hour on-location shoot, 15-20 edited photos, including unlimited usage rights for your own marketing.',
+
     // Portfolio
     'portfolio.title': 'Featured',
     'portfolio.titleAccent': 'Work',
