@@ -24,7 +24,7 @@ const Login = () => {
       toast({ title: 'Login mislukt', description: error.message, variant: 'destructive' });
     } else {
       toast({ title: 'Welkom terug!' });
-      navigate('/dashboard');
+      navigate('/admin');
     }
     setLoading(false);
   };
