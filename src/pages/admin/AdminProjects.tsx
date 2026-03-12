@@ -24,15 +24,15 @@ type Project = {
   name: string;
   client_name: string | null;
   client_email: string | null;
+  client_phone: string | null;
   description: string | null;
   status: string;
   notes: string | null;
-  budget: string | null;
   created_at: string;
   updated_at: string;
 };
 
-const emptyForm = { name: '', client_name: '', client_email: '', description: '', status: 'voorstel', notes: '', budget: '' };
+const emptyForm = { name: '', client_name: '', client_email: '', client_phone: '', description: '', status: 'voorstel', notes: '' };
 
 const AdminProjects = () => {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -66,10 +66,10 @@ const AdminProjects = () => {
       name: project.name,
       client_name: project.client_name || '',
       client_email: project.client_email || '',
+      client_phone: project.client_phone || '',
       description: project.description || '',
       status: project.status,
       notes: project.notes || '',
-      budget: project.budget || '',
     });
     setDialogOpen(true);
   };
@@ -84,10 +84,10 @@ const AdminProjects = () => {
       name: form.name.trim(),
       client_name: form.client_name.trim() || null,
       client_email: form.client_email.trim() || null,
+      client_phone: form.client_phone.trim() || null,
       description: form.description.trim() || null,
       status: form.status as any,
       notes: form.notes.trim() || null,
-      budget: form.budget.trim() || null,
       updated_at: new Date().toISOString(),
     };
 
@@ -145,11 +145,11 @@ const AdminProjects = () => {
               </DialogHeader>
               <div className="space-y-3 mt-2">
                 <Input placeholder="Opdracht naam *" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} />
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-3 gap-3">
                   <Input placeholder="Klant naam" value={form.client_name} onChange={e => setForm(f => ({ ...f, client_name: e.target.value }))} />
                   <Input placeholder="Klant email" value={form.client_email} onChange={e => setForm(f => ({ ...f, client_email: e.target.value }))} />
+                  <Input placeholder="Telefoonnummer" value={form.client_phone} onChange={e => setForm(f => ({ ...f, client_phone: e.target.value }))} />
                 </div>
-                <Input placeholder="Budget" value={form.budget} onChange={e => setForm(f => ({ ...f, budget: e.target.value }))} />
                 <Select value={form.status} onValueChange={val => setForm(f => ({ ...f, status: val }))}>
                   <SelectTrigger><SelectValue /></SelectTrigger>
                   <SelectContent>
@@ -187,10 +187,9 @@ const AdminProjects = () => {
                   </div>
                   {project.client_name && (
                     <p className="text-sm text-muted-foreground">
-                      {project.client_name}{project.client_email ? ` · ${project.client_email}` : ''}
+                      {project.client_name}{project.client_email ? ` · ${project.client_email}` : ''}{project.client_phone ? ` · ${project.client_phone}` : ''}
                     </p>
                   )}
-                  {project.budget && <p className="text-sm text-muted-foreground">Budget: {project.budget}</p>}
                   {project.description && <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{project.description}</p>}
                   {project.notes && <p className="text-xs text-muted-foreground mt-1 italic line-clamp-1">📝 {project.notes}</p>}
                   <p className="text-xs text-muted-foreground mt-2">
