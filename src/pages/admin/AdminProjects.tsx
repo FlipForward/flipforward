@@ -120,7 +120,7 @@ const KanbanColumn = ({ status, projects, onEdit, onDelete }: {
   return (
     <div
       ref={setNodeRef}
-      className={`flex flex-col min-w-[200px] w-full rounded-lg border-t-4 ${status.border} bg-muted/30 transition-all duration-200 ${isOver ? 'bg-muted/60 ring-2 ring-primary/30 scale-[1.01]' : ''}`}
+      className={`flex flex-col w-[250px] lg:w-[260px] shrink-0 rounded-lg border-t-4 ${status.border} bg-muted/30 transition-all duration-200 ${isOver ? 'bg-muted/60 ring-2 ring-primary/30 scale-[1.01]' : ''}`}
     >
       <div className="px-3 py-2.5 flex items-center gap-2">
         <Badge className={`text-[10px] px-1.5 py-0 ${status.color}`}>
@@ -401,16 +401,18 @@ const AdminProjects = () => {
           onDragStart={handleDragStart}
           onDragEnd={handleDragEnd}
         >
-          <div className="grid grid-cols-6 gap-3 min-h-[60vh]">
-            {statusOptions.map(status => (
-              <KanbanColumn
-                key={status.value}
-                status={status}
-                projects={projects.filter(p => p.status === status.value)}
-                onEdit={openEdit}
-                onDelete={id => deleteMutation.mutate(id)}
-              />
-            ))}
+          <div className="overflow-x-auto pb-2">
+            <div className="flex gap-3 min-h-[60vh] min-w-max pr-1">
+              {statusOptions.map(status => (
+                <KanbanColumn
+                  key={status.value}
+                  status={status}
+                  projects={projects.filter(p => p.status === status.value)}
+                  onEdit={openEdit}
+                  onDelete={id => deleteMutation.mutate(id)}
+                />
+              ))}
+            </div>
           </div>
           <DragOverlay dropAnimation={{ duration: 200, easing: 'ease' }}>
             {activeProject ? <DragOverlayCard project={activeProject} /> : null}
