@@ -46,7 +46,7 @@ const Footer = () => {
           </div>
           <div>
             <p>KBO: BE1033868758</p>
-            <p>E-mail: finnvangronsveld@gmail.com</p>
+            <p>E-mail: info@flipforward.be</p>
           </div>
           <div>
             <p>Middenakkers 26, 2470 Retie, België</p>
