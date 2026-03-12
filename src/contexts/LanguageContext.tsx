@@ -107,6 +107,10 @@ const translations: Record<Language, Record<string, string>> = {
     'contact.visualsDesc': 'Creating beautiful, modern designs that make your project stand out.',
     'contact.success': 'Message Sent!',
     'contact.successDesc': "We'll get back to you within 24 hours.",
+    'contact.requestTitle': 'Request a Website',
+    'contact.requestDesc': 'Create an account and submit a detailed website request. Track the status and receive updates.',
+    'contact.requestCta': 'Submit a request',
+    'contact.requestCtaSignup': 'Create account & request',
 
     // Terms
     'terms.title': 'Terms & Conditions FlipForward',
@@ -253,6 +257,10 @@ const translations: Record<Language, Record<string, string>> = {
     'contact.visualsDesc': 'Prachtige, moderne ontwerpen creëren die jouw project laten opvallen.',
     'contact.success': 'Bericht Verzonden!',
     'contact.successDesc': 'We nemen binnen 24 uur contact met je op.',
+    'contact.requestTitle': 'Website Aanvragen',
+    'contact.requestDesc': 'Maak een account aan en dien een gedetailleerde website-aanvraag in. Volg de status en ontvang updates.',
+    'contact.requestCta': 'Aanvraag indienen',
+    'contact.requestCtaSignup': 'Account maken & aanvragen',
 
     // Terms
     'terms.title': 'Algemene Voorwaarden FlipForward',
@@ -399,6 +407,10 @@ const translations: Record<Language, Record<string, string>> = {
     'contact.visualsDesc': 'Wunderschöne, moderne Designs, die Ihr Projekt hervorheben.',
     'contact.success': 'Nachricht gesendet!',
     'contact.successDesc': 'Wir melden uns innerhalb von 24 Stunden bei Ihnen.',
+    'contact.requestTitle': 'Website Anfragen',
+    'contact.requestDesc': 'Erstellen Sie ein Konto und reichen Sie eine detaillierte Website-Anfrage ein. Verfolgen Sie den Status und erhalten Sie Updates.',
+    'contact.requestCta': 'Anfrage einreichen',
+    'contact.requestCtaSignup': 'Konto erstellen & anfragen',
 
     // Terms
     'terms.title': 'Allgemeine Geschäftsbedingungen FlipForward',
@@ -545,6 +557,10 @@ const translations: Record<Language, Record<string, string>> = {
     'contact.visualsDesc': 'Créer des designs beaux et modernes qui font ressortir votre projet.',
     'contact.success': 'Message envoyé !',
     'contact.successDesc': 'Nous vous répondrons dans les 24 heures.',
+    'contact.requestTitle': 'Demander un site web',
+    'contact.requestDesc': 'Créez un compte et soumettez une demande détaillée. Suivez le statut et recevez des mises à jour.',
+    'contact.requestCta': 'Soumettre une demande',
+    'contact.requestCtaSignup': 'Créer un compte & demander',
 
     // Terms
     'terms.title': 'Conditions générales FlipForward',
