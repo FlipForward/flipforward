@@ -24,7 +24,7 @@ const About = () => {
 
         <div className="max-w-4xl mx-auto">
           <Card className={`p-6 sm:p-8 md:p-12 bg-gradient-card border-border mb-6 sm:mb-8 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-6">
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
               {t('about.description')}
             </p>
           </Card>

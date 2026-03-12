@@ -6,34 +6,25 @@ const ScrollToTop = () => {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      // Show button when hero arrow is off screen (scrolled down ~800px)
-      if (window.scrollY > 800) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+      setIsVisible(window.scrollY > 800);
     };
-
     window.addEventListener('scroll', toggleVisibility);
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-8 right-8 z-50 p-3 bg-accent text-white rounded-full hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)] hover:scale-110 transition-all duration-300 ${
+      className={`fixed bottom-20 right-6 z-40 p-3 bg-accent text-accent-foreground rounded-full shadow-glow hover:scale-110 transition-all duration-300 ${
         isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
       }`}
       aria-label="Scroll to top"
     >
-      <ChevronUp className="w-6 h-6" />
+      <ChevronUp className="w-5 h-5" />
     </button>
   );
 };
