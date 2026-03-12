@@ -176,8 +176,8 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Hero
     'hero.title1': 'Jouw professionele website,',
-    'hero.title2': 'volledig ontzorgd.',
-    'hero.description': 'Wij bouwen razendsnel een krachtige website voor jouw bedrijf en regelen alles: van design en hosting tot het maandelijkse onderhoud. Jij onderneemt, wij regelen het internet.',
+    'hero.title2': 'volledig op maat.',
+    'hero.description': 'Wij bouwen razendsnel een krachtige website voor jouw bedrijf en regelen alles: van design en hosting tot maandelijks onderhoud. Jij onderneemt, wij regelen de rest.',
     'hero.startProject': 'Bekijk onze werkwijze',
     'hero.viewWork': 'Bekijk Ons Werk',
     'hero.ideas.biography': 'Persoonlijke Biografie',
@@ -225,7 +225,7 @@ const translations: Record<Language, Record<string, string>> = {
     'portfolio.project3.desc': 'Vlaamse community hub voor een Hytale-server, gehost door de beste Vlaamse Twitch-streamers.',
     'portfolio.project4.title': 'Webdesign Portfolio',
     'portfolio.project4.category': 'Portfolio',
-    'portfolio.project4.desc': 'Een school project dat mijn webdesign vaardigheden en creatieve projecten toont.',
+    'portfolio.project4.desc': 'Een schoolproject dat mijn webdesign-vaardigheden en creatieve projecten toont.',
     
     // About
     'about.title': 'Over',
@@ -269,8 +269,8 @@ const translations: Record<Language, Record<string, string>> = {
     'contact.emailUs': 'E-mail Ons',
     'contact.delivery': 'Snelle Levering',
     'contact.deliveryDesc': 'Wij geven prioriteit aan snelle doorlooptijden zonder concessies te doen aan kwaliteit.',
-    'contact.visuals': 'Visuele Excellence',
-    'contact.visualsDesc': 'Prachtige, moderne ontwerpen creëren die jouw project laten opvallen.',
+    'contact.visuals': 'Visuele Kwaliteit',
+    'contact.visualsDesc': 'Prachtige, moderne ontwerpen die jouw project laten opvallen.',
     'contact.success': 'Bericht Verzonden!',
     'contact.successDesc': 'We nemen binnen 24 uur contact met je op.',
     'contact.requestTitle': 'Website Aanvragen',
