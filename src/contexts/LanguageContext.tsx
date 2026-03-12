@@ -637,7 +637,7 @@ const translations: Record<Language, Record<string, string>> = {
     'privacy.section4.title': '4. Partage des données avec des tiers',
     'privacy.section4.text': 'FlipForward ne vend pas vos données à des tiers et ne les fournit que si cela est nécessaire à l\'exécution de notre accord avec vous (par exemple, hébergeurs ou logiciel de facturation) ou pour se conformer à une obligation légale.',
     'privacy.section5.title': '5. Vos droits (RGPD)',
-    'privacy.section5.text': 'Vous avez le droit de consulter, corriger ou supprimer vos données personnelles. De plus, vous avez le droit de retirer tout consentement au traitement des données ou de vous opposer au traitement de vos données personnelles par FlipForward. Envoyez un e-mail à : info@flipforward.be.',
+    'privacy.section5.text': 'Vous avez le droit de consulter, corriger ou supprimer vos données personnelles. De plus, vous avez le droit de retirer tout consentement au traitement des données ou de vous opposer au traitement de vos données personnelles par FlipForward. Envoyez un e-mail à : finnvangronsveld@gmail.com.',
     'privacy.section6.title': '6. Cookies',
     'privacy.section6.text': 'Notre site web utilise des cookies fonctionnels pour assurer le fonctionnement optimal du site. Nous utilisons également des outils d\'analyse pour analyser comment les visiteurs utilisent notre site web.',
   },
