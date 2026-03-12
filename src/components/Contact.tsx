@@ -114,8 +114,8 @@ const Contact = () => {
                 />
               </div>
 
-              <Button type="submit" variant="hero" size="lg" className="w-full">
-                {t('contact.send')}
+              <Button type="submit" variant="hero" size="lg" className="w-full" disabled={loading}>
+                {loading ? 'Verzenden...' : t('contact.send')}
                 <Send className="ml-2 w-4 h-4" />
               </Button>
             </form>
