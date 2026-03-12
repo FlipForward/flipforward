@@ -179,6 +179,45 @@ export type Database = {
         }
         Relationships: []
       }
+      projects: {
+        Row: {
+          budget: string | null
+          client_email: string | null
+          client_name: string | null
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          notes: string | null
+          status: Database["public"]["Enums"]["project_status"]
+          updated_at: string
+        }
+        Insert: {
+          budget?: string | null
+          client_email?: string | null
+          client_name?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          notes?: string | null
+          status?: Database["public"]["Enums"]["project_status"]
+          updated_at?: string
+        }
+        Update: {
+          budget?: string | null
+          client_email?: string | null
+          client_name?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          notes?: string | null
+          status?: Database["public"]["Enums"]["project_status"]
+          updated_at?: string
+        }
+        Relationships: []
+      }
       suppressed_emails: {
         Row: {
           created_at: string
@@ -297,6 +336,13 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "moderator" | "user"
+      project_status:
+        | "voorstel"
+        | "prototype"
+        | "gecontacteerd"
+        | "bezig"
+        | "wacht_op_bevestiging"
+        | "afgerond"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -425,6 +471,14 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "moderator", "user"],
+      project_status: [
+        "voorstel",
+        "prototype",
+        "gecontacteerd",
+        "bezig",
+        "wacht_op_bevestiging",
+        "afgerond",
+      ],
     },
   },
 } as const

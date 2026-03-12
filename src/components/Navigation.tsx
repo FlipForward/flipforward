@@ -1,17 +1,14 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, LogIn, User } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import Logo from "./Logo";
 import LanguageSwitcher from "./LanguageSwitcher";
 import ThemeToggle from "./ThemeToggle";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { useAuth } from "@/contexts/AuthContext";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { t } = useLanguage();
-  const { user } = useAuth();
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -45,19 +42,6 @@ const Navigation = () => {
             <div className="flex items-center gap-1">
               <ThemeToggle />
               <LanguageSwitcher />
-              {user ? (
-                <Link to="/dashboard">
-                  <Button variant="ghost" size="icon" className="h-9 w-9">
-                    <User className="w-4 h-4" />
-                  </Button>
-                </Link>
-              ) : (
-                <Link to="/login">
-                  <Button variant="ghost" size="icon" className="h-9 w-9">
-                    <LogIn className="w-4 h-4" />
-                  </Button>
-                </Link>
-              )}
             </div>
 
             <Button variant="hero" size="sm" onClick={() => scrollToSection("contact")}>
@@ -88,19 +72,6 @@ const Navigation = () => {
                 <ThemeToggle />
                 <LanguageSwitcher />
               </div>
-              {user ? (
-                <Link to="/dashboard">
-                  <Button variant="outline" size="default" className="w-full">
-                    <User className="w-4 h-4 mr-1" /> Dashboard
-                  </Button>
-                </Link>
-              ) : (
-                <Link to="/login">
-                  <Button variant="outline" size="default" className="w-full">
-                    <LogIn className="w-4 h-4 mr-1" /> Login
-                  </Button>
-                </Link>
-              )}
               <Button variant="hero" size="default" onClick={() => scrollToSection("contact")} className="w-full">
                 {t("nav.getStarted")}
               </Button>
