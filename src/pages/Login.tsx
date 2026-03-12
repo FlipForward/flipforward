@@ -82,8 +82,6 @@ const Login = () => {
 
         <div className="mt-6 text-center text-sm text-muted-foreground">
           <Link to="/forgot-password" className="text-accent hover:underline">Wachtwoord vergeten?</Link>
-          <span className="mx-2">·</span>
-          <Link to="/signup" className="text-accent hover:underline">Account aanmaken</Link>
         </div>
       </Card>
     </div>
