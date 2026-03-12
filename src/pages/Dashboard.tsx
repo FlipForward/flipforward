@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Logo from '@/components/Logo';
-import { Plus, Ticket, LogOut, Shield, ArrowLeft } from 'lucide-react';
+import { Plus, Globe, LogOut, Shield } from 'lucide-react';
 
 const statusColors: Record<string, string> = {
   open: 'bg-accent/20 text-accent',
