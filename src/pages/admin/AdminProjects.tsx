@@ -384,7 +384,7 @@ const AdminProjects = () => {
       ) : viewMode === 'kanban' ? (
         <DndContext
           sensors={sensors}
-          collisionDetection={closestCorners}
+          collisionDetection={columnCollisionDetection}
           onDragStart={handleDragStart}
           onDragEnd={handleDragEnd}
         >
