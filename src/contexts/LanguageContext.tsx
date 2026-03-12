@@ -176,8 +176,8 @@ const translations: Record<Language, Record<string, string>> = {
     
     // Hero
     'hero.title1': 'Jouw professionele website,',
-    'hero.title2': 'volledig ontzorgd.',
-    'hero.description': 'Wij bouwen razendsnel een krachtige website voor jouw bedrijf en regelen alles: van design en hosting tot het maandelijkse onderhoud. Jij onderneemt, wij regelen het internet.',
+    'hero.title2': 'volledig op maat.',
+    'hero.description': 'Wij bouwen razendsnel een krachtige website voor jouw bedrijf en regelen alles: van design en hosting tot maandelijks onderhoud. Jij onderneemt, wij regelen de rest.',
     'hero.startProject': 'Bekijk onze werkwijze',
     'hero.viewWork': 'Bekijk Ons Werk',
     'hero.ideas.biography': 'Persoonlijke Biografie',
