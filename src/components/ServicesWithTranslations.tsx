@@ -1,5 +1,5 @@
 import { Card } from '@/components/ui/card';
-import { Palette, Globe, Wrench } from 'lucide-react';
+import { Palette, Globe, Wrench, Camera } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useInView } from 'react-intersection-observer';
 
