@@ -185,9 +185,9 @@ const AdminProjects = () => {
                       {getStatusLabel(project.status)}
                     </Badge>
                   </div>
-                  {project.client_name && (
+                  {(project.client_name || project.client_email || project.client_phone) && (
                     <p className="text-sm text-muted-foreground">
-                      {project.client_name}{project.client_email ? ` · ${project.client_email}` : ''}{project.client_phone ? ` · ${project.client_phone}` : ''}
+                      {[project.client_name, project.client_email, project.client_phone].filter(Boolean).join(' · ')}
                     </p>
                   )}
                   {project.description && <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{project.description}</p>}
