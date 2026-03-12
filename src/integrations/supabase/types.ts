@@ -181,9 +181,9 @@ export type Database = {
       }
       projects: {
         Row: {
-          budget: string | null
           client_email: string | null
           client_name: string | null
+          client_phone: string | null
           created_at: string
           description: string | null
           id: string
@@ -193,9 +193,9 @@ export type Database = {
           updated_at: string
         }
         Insert: {
-          budget?: string | null
           client_email?: string | null
           client_name?: string | null
+          client_phone?: string | null
           created_at?: string
           description?: string | null
           id?: string
@@ -205,9 +205,9 @@ export type Database = {
           updated_at?: string
         }
         Update: {
-          budget?: string | null
           client_email?: string | null
           client_name?: string | null
+          client_phone?: string | null
           created_at?: string
           description?: string | null
           id?: string

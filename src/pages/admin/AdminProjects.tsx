@@ -187,10 +187,9 @@ const AdminProjects = () => {
                   </div>
                   {project.client_name && (
                     <p className="text-sm text-muted-foreground">
-                      {project.client_name}{project.client_email ? ` · ${project.client_email}` : ''}
+                      {project.client_name}{project.client_email ? ` · ${project.client_email}` : ''}{project.client_phone ? ` · ${project.client_phone}` : ''}
                     </p>
                   )}
-                  {project.budget && <p className="text-sm text-muted-foreground">Budget: {project.budget}</p>}
                   {project.description && <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{project.description}</p>}
                   {project.notes && <p className="text-xs text-muted-foreground mt-1 italic line-clamp-1">📝 {project.notes}</p>}
                   <p className="text-xs text-muted-foreground mt-2">
