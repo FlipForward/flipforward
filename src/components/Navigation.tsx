@@ -29,32 +29,38 @@ const Navigation = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-6">
-            <button onClick={() => scrollToSection("about")} className="text-foreground">
+          <div className="hidden md:flex items-center gap-5">
+            <button onClick={() => scrollToSection("about")} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               {t("nav.about")}
             </button>
-            <button onClick={() => scrollToSection("services")} className="text-foreground">
+            <button onClick={() => scrollToSection("services")} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               {t("nav.services")}
             </button>
-            <button onClick={() => scrollToSection("portfolio")} className="text-foreground">
+            <button onClick={() => scrollToSection("portfolio")} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
               {t("nav.portfolio")}
             </button>
-            <ThemeToggle />
-            <LanguageSwitcher />
-            {user ? (
-              <Link to="/dashboard">
-                <Button variant="outline" size="default">
-                  <User className="w-4 h-4 mr-1" /> Dashboard
-                </Button>
-              </Link>
-            ) : (
-              <Link to="/login">
-                <Button variant="outline" size="default">
-                  <LogIn className="w-4 h-4 mr-1" /> Login
-                </Button>
-              </Link>
-            )}
-            <Button variant="hero" size="default" onClick={() => scrollToSection("contact")}>
+
+            <div className="w-px h-5 bg-border" />
+
+            <div className="flex items-center gap-1">
+              <ThemeToggle />
+              <LanguageSwitcher />
+              {user ? (
+                <Link to="/dashboard">
+                  <Button variant="ghost" size="icon" className="h-9 w-9">
+                    <User className="w-4 h-4" />
+                  </Button>
+                </Link>
+              ) : (
+                <Link to="/login">
+                  <Button variant="ghost" size="icon" className="h-9 w-9">
+                    <LogIn className="w-4 h-4" />
+                  </Button>
+                </Link>
+              )}
+            </div>
+
+            <Button variant="hero" size="sm" onClick={() => scrollToSection("contact")}>
               {t("nav.getStarted")}
             </Button>
           </div>
