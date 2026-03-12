@@ -66,10 +66,10 @@ const AdminProjects = () => {
       name: project.name,
       client_name: project.client_name || '',
       client_email: project.client_email || '',
+      client_phone: project.client_phone || '',
       description: project.description || '',
       status: project.status,
       notes: project.notes || '',
-      budget: project.budget || '',
     });
     setDialogOpen(true);
   };
