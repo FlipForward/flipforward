@@ -41,6 +41,19 @@ const Navigation = () => {
             </button>
             <ThemeToggle />
             <LanguageSwitcher />
+            {user ? (
+              <Link to="/dashboard">
+                <Button variant="outline" size="default">
+                  <User className="w-4 h-4 mr-1" /> Dashboard
+                </Button>
+              </Link>
+            ) : (
+              <Link to="/login">
+                <Button variant="outline" size="default">
+                  <LogIn className="w-4 h-4 mr-1" /> Login
+                </Button>
+              </Link>
+            )}
             <Button variant="hero" size="default" onClick={() => scrollToSection("contact")}>
               {t("nav.getStarted")}
             </Button>
