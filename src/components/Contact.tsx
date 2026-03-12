@@ -21,13 +21,33 @@ const Contact = () => {
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast({
-      title: t('contact.success'),
-      description: t('contact.successDesc'),
+    setLoading(true);
+    
+    const { supabase } = await import('@/integrations/supabase/client');
+    const { error } = await supabase.from('contact_messages').insert({
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      message: formData.message.trim(),
     });
-    setFormData({ name: '', email: '', message: '' });
+
+    if (error) {
+      toast({
+        title: 'Fout bij verzenden',
+        description: 'Probeer het later opnieuw.',
+        variant: 'destructive',
+      });
+    } else {
+      toast({
+        title: t('contact.success'),
+        description: t('contact.successDesc'),
+      });
+      setFormData({ name: '', email: '', message: '' });
+    }
+    setLoading(false);
   };
 
   return (
@@ -94,8 +114,8 @@ const Contact = () => {
                 />
               </div>
 
-              <Button type="submit" variant="hero" size="lg" className="w-full">
-                {t('contact.send')}
+              <Button type="submit" variant="hero" size="lg" className="w-full" disabled={loading}>
+                {loading ? 'Verzenden...' : t('contact.send')}
                 <Send className="ml-2 w-4 h-4" />
               </Button>
             </form>
