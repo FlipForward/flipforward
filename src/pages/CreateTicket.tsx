@@ -46,6 +46,13 @@ const CreateTicket = () => {
     if (error) {
       toast({ title: 'Fout', description: error.message, variant: 'destructive' });
     } else {
+      // Send notification to admin
+      supabase.functions.invoke('send-notification', {
+        body: {
+          type: 'new_request_admin',
+          data: { subject: subject.trim(), description: description.trim(), user_email: user.email },
+        },
+      });
       toast({ title: 'Aanvraag ingediend!', description: 'We bekijken je voorstel en nemen zo snel mogelijk contact op.' });
       navigate('/dashboard');
     }
