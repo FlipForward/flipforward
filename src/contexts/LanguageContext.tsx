@@ -107,6 +107,10 @@ const translations: Record<Language, Record<string, string>> = {
     'contact.visualsDesc': 'Creating beautiful, modern designs that make your project stand out.',
     'contact.success': 'Message Sent!',
     'contact.successDesc': "We'll get back to you within 24 hours.",
+    'contact.requestTitle': 'Request a Website',
+    'contact.requestDesc': 'Create an account and submit a detailed website request. Track the status and receive updates.',
+    'contact.requestCta': 'Submit a request',
+    'contact.requestCtaSignup': 'Create account & request',
 
     // Terms
     'terms.title': 'Terms & Conditions FlipForward',
