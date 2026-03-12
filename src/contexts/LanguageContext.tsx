@@ -257,6 +257,10 @@ const translations: Record<Language, Record<string, string>> = {
     'contact.visualsDesc': 'Prachtige, moderne ontwerpen creëren die jouw project laten opvallen.',
     'contact.success': 'Bericht Verzonden!',
     'contact.successDesc': 'We nemen binnen 24 uur contact met je op.',
+    'contact.requestTitle': 'Website Aanvragen',
+    'contact.requestDesc': 'Maak een account aan en dien een gedetailleerde website-aanvraag in. Volg de status en ontvang updates.',
+    'contact.requestCta': 'Aanvraag indienen',
+    'contact.requestCtaSignup': 'Account maken & aanvragen',
 
     // Terms
     'terms.title': 'Algemene Voorwaarden FlipForward',
