@@ -32,7 +32,6 @@ const Contact = () => {
 
   return (
     <section id="contact" className="py-16 sm:py-24 bg-background relative overflow-hidden">
-      {/* Background accent */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 right-0 w-96 h-96 bg-accent/30 rounded-full blur-3xl" />
       </div>
@@ -110,11 +109,10 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold mb-1 sm:mb-2 text-foreground text-sm sm:text-base">{t('contact.emailUs')}</h3>
-                  <p className="text-muted-foreground text-sm">finnvangronsveld@gmail.com</p>
+                  <p className="text-muted-foreground text-sm">info@flipforward.be</p>
                 </div>
               </div>
             </Card>
-
 
             <Card className="p-5 sm:p-6 bg-gradient-card border-border hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)] transition-all duration-300">
               <div className="flex items-start gap-3 sm:gap-4">

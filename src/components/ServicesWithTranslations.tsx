@@ -1,5 +1,5 @@
 import { Card } from '@/components/ui/card';
-import { Code2, Palette, Rocket, Search, Smartphone, Zap } from 'lucide-react';
+import { Palette, Globe, Wrench } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useInView } from 'react-intersection-observer';
 
@@ -12,34 +12,19 @@ const Services = () => {
   
   const services = [
     {
-      icon: Code2,
-      titleKey: 'services.webdev.title',
-      descKey: 'services.webdev.desc'
-    },
-    {
       icon: Palette,
       titleKey: 'services.design.title',
       descKey: 'services.design.desc'
     },
     {
-      icon: Smartphone,
-      titleKey: 'services.mobile.title',
-      descKey: 'services.mobile.desc'
+      icon: Globe,
+      titleKey: 'services.hosting.title',
+      descKey: 'services.hosting.desc'
     },
     {
-      icon: Search,
-      titleKey: 'services.seo.title',
-      descKey: 'services.seo.desc'
-    },
-    {
-      icon: Zap,
-      titleKey: 'services.performance.title',
-      descKey: 'services.performance.desc'
-    },
-    {
-      icon: Rocket,
-      titleKey: 'services.growth.title',
-      descKey: 'services.growth.desc'
+      icon: Wrench,
+      titleKey: 'services.maintenance.title',
+      descKey: 'services.maintenance.desc'
     }
   ];
 
@@ -55,7 +40,7 @@ const Services = () => {
           </p>
         </div>
 
-        <div ref={ref} className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
+        <div ref={ref} className="grid md:grid-cols-3 gap-4 sm:gap-8 max-w-5xl mx-auto">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (

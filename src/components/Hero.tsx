@@ -46,7 +46,10 @@ const Hero = () => {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
-            <Button variant="hero" size="lg" onClick={scrollToContact}>
+            <Button variant="hero" size="lg" onClick={() => {
+              const element = document.getElementById('services');
+              element?.scrollIntoView({ behavior: 'smooth' });
+            }}>
               {t('hero.startProject')}
               <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
