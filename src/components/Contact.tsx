@@ -11,6 +11,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { useInView } from 'react-intersection-observer';
 
 const Contact = () => {
+  const { user } = useAuth();
   const { toast } = useToast();
   const { t } = useLanguage();
   const { ref, inView } = useInView({
