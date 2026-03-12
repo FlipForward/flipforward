@@ -55,14 +55,14 @@ const AdminTickets = () => {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold text-foreground mb-6">Tickets Beheren</h1>
+      <h1 className="text-2xl font-bold text-foreground mb-6">Website-aanvragen</h1>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Ticket list */}
         <div className="lg:col-span-1 space-y-2 max-h-[70vh] overflow-auto">
           {loading ? (
             <p className="text-muted-foreground p-4">Laden...</p>
           ) : tickets.length === 0 ? (
-            <p className="text-muted-foreground p-4">Geen tickets gevonden.</p>
+            <p className="text-muted-foreground p-4">Geen aanvragen gevonden.</p>
           ) : tickets.map((ticket) => (
             <Card
               key={ticket.id}
@@ -125,7 +125,7 @@ const AdminTickets = () => {
             </Card>
           ) : (
             <Card className="p-8 text-center border-border">
-              <p className="text-muted-foreground">Selecteer een ticket om details te bekijken</p>
+              <p className="text-muted-foreground">Selecteer een aanvraag om details te bekijken</p>
             </Card>
           )}
         </div>

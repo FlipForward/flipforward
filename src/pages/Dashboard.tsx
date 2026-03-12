@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Logo from '@/components/Logo';
-import { Plus, Ticket, LogOut, Shield, ArrowLeft } from 'lucide-react';
+import { Plus, Globe, LogOut, Shield } from 'lucide-react';
 
 const statusColors: Record<string, string> = {
   open: 'bg-accent/20 text-accent',
@@ -58,12 +58,12 @@ const Dashboard = () => {
       <div className="container mx-auto px-4 py-8 max-w-3xl">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Mijn Tickets</h1>
-            <p className="text-muted-foreground text-sm">Bekijk en beheer je ondersteuningsaanvragen</p>
+            <h1 className="text-2xl font-bold text-foreground">Mijn Aanvragen</h1>
+            <p className="text-muted-foreground text-sm">Bekijk de status van je website-aanvragen</p>
           </div>
           <Link to="/tickets/new">
             <Button>
-              <Plus className="w-4 h-4 mr-1" /> Nieuw Ticket
+              <Plus className="w-4 h-4 mr-1" /> Nieuwe Aanvraag
             </Button>
           </Link>
         </div>
@@ -72,11 +72,11 @@ const Dashboard = () => {
           <p className="text-muted-foreground">Laden...</p>
         ) : tickets.length === 0 ? (
           <Card className="p-8 text-center border-border">
-            <Ticket className="w-12 h-12 text-muted-foreground mx-auto mb-3" />
-            <h3 className="font-semibold text-foreground mb-1">Geen tickets</h3>
-            <p className="text-muted-foreground text-sm mb-4">Je hebt nog geen tickets ingediend.</p>
+            <Globe className="w-12 h-12 text-muted-foreground mx-auto mb-3" />
+            <h3 className="font-semibold text-foreground mb-1">Geen aanvragen</h3>
+            <p className="text-muted-foreground text-sm mb-4">Je hebt nog geen website-aanvraag ingediend.</p>
             <Link to="/tickets/new">
-              <Button><Plus className="w-4 h-4 mr-1" /> Maak je eerste ticket</Button>
+              <Button><Plus className="w-4 h-4 mr-1" /> Website aanvragen</Button>
             </Link>
           </Card>
         ) : (
