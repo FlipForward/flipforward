@@ -16,7 +16,7 @@ import ResetPassword from "./pages/ResetPassword";
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminProjects from "./pages/admin/AdminProjects";
-import AdminMessages from "./pages/admin/AdminMessages";
+
 import CookieBanner from "./components/CookieBanner";
 import PageViewTracker from "./components/PageViewTracker";
 
@@ -43,7 +43,7 @@ const App = () => {
                   <Route path="/admin" element={<AdminLayout />}>
                     <Route index element={<AdminDashboard />} />
                     <Route path="projects" element={<AdminProjects />} />
-                    <Route path="messages" element={<AdminMessages />} />
+                    
                   </Route>
                   <Route path="*" element={<NotFound />} />
                 </Routes>

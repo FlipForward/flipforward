@@ -41,6 +41,22 @@ const Contact = () => {
         variant: 'destructive',
       });
     } else {
+      // Send email notification
+      try {
+        await supabase.functions.invoke('send-notification', {
+          body: {
+            type: 'new_request_admin',
+            data: {
+              subject: `Contactbericht van ${formData.name.trim()}`,
+              user_email: formData.email.trim(),
+              description: formData.message.trim(),
+            },
+          },
+        });
+      } catch (e) {
+        console.error('Email notification failed:', e);
+      }
+
       toast({
         title: t('contact.success'),
         description: t('contact.successDesc'),
