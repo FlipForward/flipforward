@@ -145,11 +145,11 @@ const AdminProjects = () => {
               </DialogHeader>
               <div className="space-y-3 mt-2">
                 <Input placeholder="Opdracht naam *" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} />
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-3 gap-3">
                   <Input placeholder="Klant naam" value={form.client_name} onChange={e => setForm(f => ({ ...f, client_name: e.target.value }))} />
                   <Input placeholder="Klant email" value={form.client_email} onChange={e => setForm(f => ({ ...f, client_email: e.target.value }))} />
+                  <Input placeholder="Telefoonnummer" value={form.client_phone} onChange={e => setForm(f => ({ ...f, client_phone: e.target.value }))} />
                 </div>
-                <Input placeholder="Budget" value={form.budget} onChange={e => setForm(f => ({ ...f, budget: e.target.value }))} />
                 <Select value={form.status} onValueChange={val => setForm(f => ({ ...f, status: val }))}>
                   <SelectTrigger><SelectValue /></SelectTrigger>
                   <SelectContent>
