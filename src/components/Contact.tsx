@@ -160,6 +160,29 @@ const Contact = () => {
                 </div>
               </div>
             </Card>
+
+            {/* Website request CTA */}
+            <Card className="p-5 sm:p-6 border-accent/30 bg-accent/5 hover:shadow-glow transition-all duration-300">
+              <div className="flex items-start gap-3 sm:gap-4">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
+                  <Globe className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-semibold mb-1 sm:mb-2 text-foreground text-sm sm:text-base">
+                    {t('contact.requestTitle')}
+                  </h3>
+                  <p className="text-muted-foreground text-sm mb-3">
+                    {t('contact.requestDesc')}
+                  </p>
+                  <Link to={user ? '/tickets/new' : '/signup'}>
+                    <Button variant="hero" size="sm" className="w-full sm:w-auto">
+                      {user ? t('contact.requestCta') : t('contact.requestCtaSignup')}
+                      <ArrowRight className="ml-1 w-4 h-4" />
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </Card>
           </div>
         </div>
       </div>
