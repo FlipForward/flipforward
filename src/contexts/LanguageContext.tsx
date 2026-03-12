@@ -97,6 +97,25 @@ const translations = {
     'contact.visualsDesc': 'Creating beautiful, modern designs that make your project stand out.',
     'contact.success': 'Message Sent!',
     'contact.successDesc': "We'll get back to you within 24 hours.",
+
+    // Privacy Policy
+    'privacy.title': 'Privacy Policy FlipForward',
+    'privacy.lastUpdated': 'Last updated',
+    'privacy.intro': 'FlipForward (part of ATLAZ Records, KBO: BE1033868758) values your privacy. In this privacy policy, we explain which personal data we collect, why we do this, and what your rights are.',
+    'privacy.section1.title': '1. What data do we collect?',
+    'privacy.section1.text': 'When you fill in our contact form or purchase a web design subscription from us, we collect the following data:',
+    'privacy.section1.items': 'First and last name|Company name and KBO/VAT number|Email address and phone number|Billing and payment details',
+    'privacy.section2.title': '2. Why do we collect this data?',
+    'privacy.section2.text': 'We use your data exclusively for:',
+    'privacy.section2.items': 'Building, hosting, and maintaining your website.|Processing payments and invoicing (via our partner Dexxter).|Contacting you about your project or support questions.',
+    'privacy.section3.title': '3. How long do we keep your data?',
+    'privacy.section3.text': 'We do not retain your personal data longer than strictly necessary to achieve the purposes for which your data is collected. Billing data is legally retained for 7 years to comply with Belgian tax legislation.',
+    'privacy.section4.title': '4. Sharing data with third parties',
+    'privacy.section4.text': 'FlipForward does not sell your data to third parties and only provides it if this is necessary for the execution of our agreement with you (for example, hosting parties or invoicing software) or to comply with a legal obligation.',
+    'privacy.section5.title': '5. Your rights (GDPR)',
+    'privacy.section5.text': 'You have the right to view, correct, or delete your personal data. In addition, you have the right to withdraw any consent for data processing or to object to the processing of your personal data by FlipForward. Please send an email to: finnvangronsveld@gmail.com.',
+    'privacy.section6.title': '6. Cookies',
+    'privacy.section6.text': 'Our website uses functional cookies to ensure the website works optimally. We also use analytics tools to analyze how visitors use our website.',
   },
   nl: {
     // Navigation
