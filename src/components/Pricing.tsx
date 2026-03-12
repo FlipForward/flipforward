@@ -1,6 +1,6 @@
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Check, ArrowRight } from 'lucide-react';
+import { Check, ArrowRight, Camera } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useInView } from 'react-intersection-observer';
 
