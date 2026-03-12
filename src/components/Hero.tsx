@@ -36,7 +36,7 @@ const Hero = () => {
           
           <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
             {t('hero.title1')}
-            <span className="block text-transparent bg-clip-text bg-gradient-accent mt-2 pb-1">
+            <span className="block text-transparent bg-clip-text bg-gradient-accent mt-2 pb-2">
               {t('hero.title2')}
             </span>
           </h1>
