@@ -58,12 +58,12 @@ const Dashboard = () => {
       <div className="container mx-auto px-4 py-8 max-w-3xl">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <h1 className="text-2xl font-bold text-foreground">Mijn Tickets</h1>
-            <p className="text-muted-foreground text-sm">Bekijk en beheer je ondersteuningsaanvragen</p>
+            <h1 className="text-2xl font-bold text-foreground">Mijn Aanvragen</h1>
+            <p className="text-muted-foreground text-sm">Bekijk de status van je website-aanvragen</p>
           </div>
           <Link to="/tickets/new">
             <Button>
-              <Plus className="w-4 h-4 mr-1" /> Nieuw Ticket
+              <Plus className="w-4 h-4 mr-1" /> Nieuwe Aanvraag
             </Button>
           </Link>
         </div>
