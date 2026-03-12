@@ -6,7 +6,7 @@ import { Ticket, Mail, BarChart3, LogOut, ArrowLeft } from 'lucide-react';
 
 const navItems = [
   { to: '/admin', icon: BarChart3, label: 'Dashboard' },
-  { to: '/admin/tickets', icon: Ticket, label: 'Tickets' },
+  { to: '/admin/tickets', icon: Ticket, label: 'Aanvragen' },
   { to: '/admin/messages', icon: Mail, label: 'Berichten' },
 ];
 
