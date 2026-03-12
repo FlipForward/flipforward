@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Card } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -9,26 +9,26 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { useToast } from '@/hooks/use-toast';
 import { Plus, Pencil, Trash2, LayoutGrid, List, Phone, Mail, User } from 'lucide-react';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   DndContext,
   DragOverlay,
   closestCorners,
   PointerSensor,
+  TouchSensor,
   useSensor,
   useSensors,
   type DragStartEvent,
   type DragEndEvent,
-  type DragOverEvent,
 } from '@dnd-kit/core';
-import { useDroppable } from '@dnd-kit/core';
-import { useDraggable } from '@dnd-kit/core';
+import { useDroppable, useDraggable } from '@dnd-kit/core';
 
 const statusOptions = [
   { value: 'voorstel', label: 'Voorstel', color: 'bg-blue-500/20 text-blue-600', border: 'border-t-blue-500' },
   { value: 'prototype', label: 'Prototype', color: 'bg-purple-500/20 text-purple-600', border: 'border-t-purple-500' },
   { value: 'gecontacteerd', label: 'Gecontacteerd', color: 'bg-yellow-500/20 text-yellow-600', border: 'border-t-yellow-500' },
   { value: 'bezig', label: 'Bezig', color: 'bg-accent/20 text-accent', border: 'border-t-accent' },
-  { value: 'wacht_op_bevestiging', label: 'Wacht op\nbevestiging', color: 'bg-orange-500/20 text-orange-600', border: 'border-t-orange-500' },
+  { value: 'wacht_op_bevestiging', label: 'Wacht op bevestiging', color: 'bg-orange-500/20 text-orange-600', border: 'border-t-orange-500' },
   { value: 'afgerond', label: 'Afgerond', color: 'bg-green-500/20 text-green-600', border: 'border-t-green-500' },
 ];
 
@@ -47,20 +47,25 @@ type Project = {
 
 const emptyForm = { name: '', client_name: '', client_email: '', client_phone: '', description: '', status: 'voorstel', notes: '' };
 
-// Draggable project card for Kanban
+const QUERY_KEY = ['admin-projects'];
+
+// ─── Kanban Card (draggable) ───
 const KanbanCard = ({ project, onEdit, onDelete }: { project: Project; onEdit: (p: Project) => void; onDelete: (id: string) => void }) => {
   const { attributes, listeners, setNodeRef, transform, isDragging } = useDraggable({
     id: project.id,
     data: { project },
   });
 
-  const style = transform
-    ? { transform: `translate(${transform.x}px, ${transform.y}px)`, opacity: isDragging ? 0.4 : 1 }
-    : undefined;
+  const style: React.CSSProperties = {
+    ...(transform ? { transform: `translate3d(${transform.x}px, ${transform.y}px, 0)` } : {}),
+    opacity: isDragging ? 0 : 1,
+    transition: isDragging ? 'none' : 'box-shadow 0.2s',
+    zIndex: isDragging ? 50 : 'auto',
+  };
 
   return (
     <div ref={setNodeRef} style={style} {...listeners} {...attributes}>
-      <Card className="p-3 border-border bg-card hover:shadow-md transition-shadow cursor-grab active:cursor-grabbing">
+      <Card className="p-3 border-border bg-card hover:shadow-md cursor-grab active:cursor-grabbing select-none">
         <h4 className="font-medium text-sm text-foreground truncate mb-1.5">{project.name}</h4>
         {(project.client_name || project.client_email || project.client_phone) && (
           <div className="space-y-0.5 mb-1.5">
@@ -102,7 +107,7 @@ const KanbanCard = ({ project, onEdit, onDelete }: { project: Project; onEdit: (
   );
 };
 
-// Droppable column
+// ─── Kanban Column (droppable) ───
 const KanbanColumn = ({ status, projects, onEdit, onDelete }: {
   status: typeof statusOptions[0];
   projects: Project[];
@@ -114,15 +119,13 @@ const KanbanColumn = ({ status, projects, onEdit, onDelete }: {
   return (
     <div
       ref={setNodeRef}
-      className={`flex flex-col min-w-[200px] w-full rounded-lg border-t-4 ${status.border} bg-muted/30 transition-colors ${isOver ? 'bg-muted/60 ring-2 ring-primary/20' : ''}`}
+      className={`flex flex-col min-w-[200px] w-full rounded-lg border-t-4 ${status.border} bg-muted/30 transition-all duration-200 ${isOver ? 'bg-muted/60 ring-2 ring-primary/30 scale-[1.01]' : ''}`}
     >
-      <div className="px-3 py-2.5 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <Badge className={`text-[10px] px-1.5 py-0 ${status.color}`}>
-            {status.label.replace('\n', ' ')}
-          </Badge>
-          <span className="text-xs text-muted-foreground font-medium">{projects.length}</span>
-        </div>
+      <div className="px-3 py-2.5 flex items-center gap-2">
+        <Badge className={`text-[10px] px-1.5 py-0 ${status.color}`}>
+          {status.label}
+        </Badge>
+        <span className="text-xs text-muted-foreground font-medium">{projects.length}</span>
       </div>
       <div className="flex-1 px-2 pb-2 space-y-2 min-h-[80px]">
         {projects.map(p => (
@@ -133,17 +136,16 @@ const KanbanColumn = ({ status, projects, onEdit, onDelete }: {
   );
 };
 
-// Overlay card shown while dragging
+// ─── Drag Overlay ───
 const DragOverlayCard = ({ project }: { project: Project }) => (
-  <Card className="p-3 border-border bg-card shadow-xl w-[200px] rotate-2">
+  <Card className="p-3 border-primary/30 bg-card shadow-2xl w-[200px] rotate-1 scale-105">
     <h4 className="font-medium text-sm text-foreground truncate">{project.name}</h4>
     {project.client_name && <p className="text-xs text-muted-foreground">{project.client_name}</p>}
   </Card>
 );
 
+// ─── Main Component ───
 const AdminProjects = () => {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editingProject, setEditingProject] = useState<Project | null>(null);
   const [form, setForm] = useState(emptyForm);
@@ -151,21 +153,87 @@ const AdminProjects = () => {
   const [filterStatus, setFilterStatus] = useState<string>('all');
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const { toast } = useToast();
+  const queryClient = useQueryClient();
 
   const sensors = useSensors(
-    useSensor(PointerSensor, { activationConstraint: { distance: 8 } })
+    useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
+    useSensor(TouchSensor, { activationConstraint: { delay: 200, tolerance: 5 } })
   );
 
-  const fetchProjects = async () => {
-    const { data } = await supabase
-      .from('projects')
-      .select('*')
-      .order('created_at', { ascending: false });
-    setProjects((data as Project[]) || []);
-    setLoading(false);
-  };
+  // ─── Query ───
+  const { data: projects = [], isLoading: loading } = useQuery({
+    queryKey: QUERY_KEY,
+    queryFn: async () => {
+      const { data, error } = await supabase
+        .from('projects')
+        .select('*')
+        .order('created_at', { ascending: false });
+      if (error) throw error;
+      return (data as Project[]) || [];
+    },
+  });
 
-  useEffect(() => { fetchProjects(); }, []);
+  // ─── Status mutation (drag & drop + quick update) ───
+  const statusMutation = useMutation({
+    mutationFn: async ({ id, status }: { id: string; status: string }) => {
+      const { error } = await supabase
+        .from('projects')
+        .update({ status: status as any, updated_at: new Date().toISOString() })
+        .eq('id', id);
+      if (error) throw error;
+    },
+    onMutate: async ({ id, status }) => {
+      await queryClient.cancelQueries({ queryKey: QUERY_KEY });
+      const previous = queryClient.getQueryData<Project[]>(QUERY_KEY);
+      queryClient.setQueryData<Project[]>(QUERY_KEY, old =>
+        old?.map(p => p.id === id ? { ...p, status } : p) ?? []
+      );
+      return { previous };
+    },
+    onError: (_err, _vars, context) => {
+      queryClient.setQueryData(QUERY_KEY, context?.previous);
+      toast({ title: 'Status update mislukt', variant: 'destructive' });
+    },
+    onSettled: () => queryClient.invalidateQueries({ queryKey: QUERY_KEY }),
+  });
+
+  // ─── Save mutation (create/edit) ───
+  const saveMutation = useMutation({
+    mutationFn: async (payload: { data: any; id?: string }) => {
+      if (payload.id) {
+        const { error } = await supabase.from('projects').update(payload.data).eq('id', payload.id);
+        if (error) throw error;
+      } else {
+        const { error } = await supabase.from('projects').insert(payload.data);
+        if (error) throw error;
+      }
+    },
+    onSuccess: (_data, vars) => {
+      toast({ title: vars.id ? 'Opdracht bijgewerkt' : 'Opdracht aangemaakt' });
+      queryClient.invalidateQueries({ queryKey: QUERY_KEY });
+    },
+    onError: () => toast({ title: 'Opslaan mislukt', variant: 'destructive' }),
+  });
+
+  // ─── Delete mutation ───
+  const deleteMutation = useMutation({
+    mutationFn: async (id: string) => {
+      const { error } = await supabase.from('projects').delete().eq('id', id);
+      if (error) throw error;
+    },
+    onMutate: async (id) => {
+      await queryClient.cancelQueries({ queryKey: QUERY_KEY });
+      const previous = queryClient.getQueryData<Project[]>(QUERY_KEY);
+      queryClient.setQueryData<Project[]>(QUERY_KEY, old => old?.filter(p => p.id !== id) ?? []);
+      return { previous };
+    },
+    onError: (_err, _id, context) => {
+      queryClient.setQueryData(QUERY_KEY, context?.previous);
+      toast({ title: 'Verwijderen mislukt', variant: 'destructive' });
+    },
+    onSuccess: () => toast({ title: 'Opdracht verwijderd' }),
+    onSettled: () => queryClient.invalidateQueries({ queryKey: QUERY_KEY }),
+  });
 
   const openCreate = () => {
     setEditingProject(null);
@@ -187,12 +255,11 @@ const AdminProjects = () => {
     setDialogOpen(true);
   };
 
-  const handleSave = async () => {
+  const handleSave = () => {
     if (!form.name.trim()) {
       toast({ title: 'Vul een naam in', variant: 'destructive' });
       return;
     }
-
     const payload = {
       name: form.name.trim(),
       client_name: form.client_name.trim() || null,
@@ -203,39 +270,17 @@ const AdminProjects = () => {
       notes: form.notes.trim() || null,
       updated_at: new Date().toISOString(),
     };
-
-    if (editingProject) {
-      await supabase.from('projects').update(payload).eq('id', editingProject.id);
-      toast({ title: 'Opdracht bijgewerkt' });
-    } else {
-      await supabase.from('projects').insert(payload);
-      toast({ title: 'Opdracht aangemaakt' });
-    }
-
+    saveMutation.mutate({ data: payload, id: editingProject?.id });
     setDialogOpen(false);
-    fetchProjects();
-  };
-
-  const handleDelete = async (id: string) => {
-    await supabase.from('projects').delete().eq('id', id);
-    toast({ title: 'Opdracht verwijderd' });
-    fetchProjects();
-  };
-
-  const quickStatusUpdate = async (id: string, status: string) => {
-    await supabase.from('projects').update({ status: status as any, updated_at: new Date().toISOString() }).eq('id', id);
-    fetchProjects();
   };
 
   const getStatusStyle = (status: string) => statusOptions.find(s => s.value === status)?.color || '';
-  const getStatusLabel = (status: string) => statusOptions.find(s => s.value === status)?.label?.replace('\n', ' ') || status;
+  const getStatusLabel = (status: string) => statusOptions.find(s => s.value === status)?.label || status;
 
   const filtered = filterStatus === 'all' ? projects : projects.filter(p => p.status === filterStatus);
 
-  // Drag handlers
   const handleDragStart = (event: DragStartEvent) => {
-    const project = projects.find(p => p.id === event.active.id);
-    setActiveProject(project || null);
+    setActiveProject(projects.find(p => p.id === event.active.id) || null);
   };
 
   const handleDragEnd = (event: DragEndEvent) => {
@@ -248,9 +293,7 @@ const AdminProjects = () => {
     const project = projects.find(p => p.id === projectId);
 
     if (project && project.status !== newStatus && statusOptions.some(s => s.value === newStatus)) {
-      // Optimistic update
-      setProjects(prev => prev.map(p => p.id === projectId ? { ...p, status: newStatus } : p));
-      quickStatusUpdate(projectId, newStatus);
+      statusMutation.mutate({ id: projectId, status: newStatus });
     }
   };
 
@@ -259,7 +302,6 @@ const AdminProjects = () => {
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold text-foreground">Opdrachten</h1>
         <div className="flex items-center gap-3">
-          {/* View toggle */}
           <div className="flex border border-border rounded-md overflow-hidden">
             <Button
               variant={viewMode === 'kanban' ? 'default' : 'ghost'}
@@ -287,7 +329,7 @@ const AdminProjects = () => {
               <SelectContent>
                 <SelectItem value="all">Alle statussen</SelectItem>
                 {statusOptions.map(s => (
-                  <SelectItem key={s.value} value={s.value}>{s.label.replace('\n', ' ')}</SelectItem>
+                  <SelectItem key={s.value} value={s.value}>{s.label}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -312,13 +354,15 @@ const AdminProjects = () => {
                   <SelectTrigger><SelectValue /></SelectTrigger>
                   <SelectContent>
                     {statusOptions.map(s => (
-                      <SelectItem key={s.value} value={s.value}>{s.label.replace('\n', ' ')}</SelectItem>
+                      <SelectItem key={s.value} value={s.value}>{s.label}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
                 <Textarea placeholder="Beschrijving" value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} rows={3} />
                 <Textarea placeholder="Notities" value={form.notes} onChange={e => setForm(f => ({ ...f, notes: e.target.value }))} rows={3} />
-                <Button className="w-full" onClick={handleSave}>{editingProject ? 'Opslaan' : 'Aanmaken'}</Button>
+                <Button className="w-full" onClick={handleSave} disabled={saveMutation.isPending}>
+                  {saveMutation.isPending ? 'Bezig...' : editingProject ? 'Opslaan' : 'Aanmaken'}
+                </Button>
               </div>
             </DialogContent>
           </Dialog>
@@ -328,7 +372,6 @@ const AdminProjects = () => {
       {loading ? (
         <p className="text-muted-foreground">Laden...</p>
       ) : viewMode === 'kanban' ? (
-        /* ─── KANBAN VIEW ─── */
         <DndContext
           sensors={sensors}
           collisionDetection={closestCorners}
@@ -342,16 +385,15 @@ const AdminProjects = () => {
                 status={status}
                 projects={projects.filter(p => p.status === status.value)}
                 onEdit={openEdit}
-                onDelete={handleDelete}
+                onDelete={id => deleteMutation.mutate(id)}
               />
             ))}
           </div>
-          <DragOverlay>
+          <DragOverlay dropAnimation={{ duration: 200, easing: 'ease' }}>
             {activeProject ? <DragOverlayCard project={activeProject} /> : null}
           </DragOverlay>
         </DndContext>
       ) : (
-        /* ─── LIST VIEW ─── */
         filtered.length === 0 ? (
           <Card className="p-8 text-center border-border">
             <p className="text-muted-foreground">Geen opdrachten gevonden.</p>
@@ -380,20 +422,20 @@ const AdminProjects = () => {
                     </p>
                   </div>
                   <div className="flex items-center gap-1 shrink-0">
-                    <Select value={project.status} onValueChange={val => quickStatusUpdate(project.id, val)}>
+                    <Select value={project.status} onValueChange={val => statusMutation.mutate({ id: project.id, status: val })}>
                       <SelectTrigger className="w-44 h-8 text-xs">
                         <SelectValue />
                       </SelectTrigger>
                       <SelectContent>
                         {statusOptions.map(s => (
-                          <SelectItem key={s.value} value={s.value}>{s.label.replace('\n', ' ')}</SelectItem>
+                          <SelectItem key={s.value} value={s.value}>{s.label}</SelectItem>
                         ))}
                       </SelectContent>
                     </Select>
                     <Button variant="ghost" size="icon" className="h-8 w-8" onClick={() => openEdit(project)}>
                       <Pencil className="w-3.5 h-3.5" />
                     </Button>
-                    <Button variant="ghost" size="icon" className="h-8 w-8 text-destructive" onClick={() => handleDelete(project.id)}>
+                    <Button variant="ghost" size="icon" className="h-8 w-8 text-destructive" onClick={() => deleteMutation.mutate(project.id)}>
                       <Trash2 className="w-3.5 h-3.5" />
                     </Button>
                   </div>
