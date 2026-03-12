@@ -24,15 +24,15 @@ type Project = {
   name: string;
   client_name: string | null;
   client_email: string | null;
+  client_phone: string | null;
   description: string | null;
   status: string;
   notes: string | null;
-  budget: string | null;
   created_at: string;
   updated_at: string;
 };
 
-const emptyForm = { name: '', client_name: '', client_email: '', description: '', status: 'voorstel', notes: '', budget: '' };
+const emptyForm = { name: '', client_name: '', client_email: '', client_phone: '', description: '', status: 'voorstel', notes: '' };
 
 const AdminProjects = () => {
   const [projects, setProjects] = useState<Project[]>([]);
