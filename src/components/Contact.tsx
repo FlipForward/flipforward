@@ -10,7 +10,6 @@ import { useInView } from 'react-intersection-observer';
 
 const Contact = () => {
   const { toast } = useToast();
-  const { toast } = useToast();
   const { t } = useLanguage();
   const { ref, inView } = useInView({
     threshold: 0.1,
