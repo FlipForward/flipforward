@@ -13,13 +13,14 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   DndContext,
   DragOverlay,
-  closestCorners,
   PointerSensor,
   TouchSensor,
   useSensor,
   useSensors,
   type DragStartEvent,
   type DragEndEvent,
+  type CollisionDetection,
+  rectIntersection,
 } from '@dnd-kit/core';
 import { useDroppable, useDraggable } from '@dnd-kit/core';
 
@@ -155,6 +156,15 @@ const AdminProjects = () => {
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
+  // Custom collision detection that only targets droppable columns
+  const columnCollisionDetection: CollisionDetection = (args) => {
+    const statusValues = statusOptions.map(s => s.value);
+    const collisions = rectIntersection(args);
+    // Only return collisions with droppable columns, not with draggable cards
+    const columnCollisions = collisions.filter(c => statusValues.includes(c.id as string));
+    return columnCollisions.length > 0 ? columnCollisions : collisions;
+  };
+
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 8 } }),
     useSensor(TouchSensor, { activationConstraint: { delay: 200, tolerance: 5 } })
@@ -289,10 +299,23 @@ const AdminProjects = () => {
     if (!over) return;
 
     const projectId = active.id as string;
-    const newStatus = over.id as string;
+    const overId = over.id as string;
     const project = projects.find(p => p.id === projectId);
+    if (!project) return;
 
-    if (project && project.status !== newStatus && statusOptions.some(s => s.value === newStatus)) {
+    // Resolve target status: overId could be a column status OR a project card id
+    const statusValues = statusOptions.map(s => s.value);
+    let newStatus: string;
+    if (statusValues.includes(overId)) {
+      newStatus = overId;
+    } else {
+      // Dropped on another card — find which column that card is in
+      const targetProject = projects.find(p => p.id === overId);
+      if (!targetProject) return;
+      newStatus = targetProject.status;
+    }
+
+    if (project.status !== newStatus) {
       statusMutation.mutate({ id: projectId, status: newStatus });
     }
   };
@@ -374,7 +397,7 @@ const AdminProjects = () => {
       ) : viewMode === 'kanban' ? (
         <DndContext
           sensors={sensors}
-          collisionDetection={closestCorners}
+          collisionDetection={columnCollisionDetection}
           onDragStart={handleDragStart}
           onDragEnd={handleDragEnd}
         >
