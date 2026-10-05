@@ -6,37 +6,56 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/privacy", "destination": "/privacyverklaring", "permanent": true },
-    { "source": "/terms", "destination": "/algemene-voorwaarden", "permanent": true }
-  ],
-  "rewrites": [
-    { "source": "/login", "destination": "/spa" },
-    { "source": "/forgot-password", "destination": "/spa" },
-    { "source": "/reset-password", "destination": "/spa" },
-    { "source": "/admin/:path*", "destination": "/spa" },
-    { "source": "/admin", "destination": "/spa" }
+    {
+      "source": "/privacy",
+      "destination": "/privacyverklaring",
+      "permanent": true
+    },
+    {
+      "source": "/terms",
+      "destination": "/algemene-voorwaarden",
+      "permanent": true
+    }
   ],
   "headers": [
     {
       "source": "/assets/(.*)",
-      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
     },
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), interest-cohort=()" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+        }
       ]
     },
     {
-      "source": "/(spa.html|login|forgot-password|reset-password|admin)(.*)",
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
-    },
-    {
       "source": "/llms.txt",
-      "headers": [{ "key": "Content-Type", "value": "text/plain; charset=utf-8" }]
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        }
+      ]
     }
   ]
 }

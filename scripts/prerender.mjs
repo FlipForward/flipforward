@@ -1,6 +1,5 @@
 /**
  * Prerendering na `vite build`:
- *  - dist/spa.html          lege shell voor login/beheer (client-side)
  *  - dist/index.html        homepage met volledige HTML
  *  - dist/<route>.html      privacyverklaring, algemene voorwaarden
  *  - dist/404.html          nette 404 (Vercel serveert die automatisch)
@@ -17,7 +16,6 @@ const ssrDir = path.join(root, "dist-ssr");
 const { render, routeMeta, jsonLdTags, SITE_URL } = await import(pathToFileURL(path.join(ssrDir, "entry-server.js")).href);
 
 const template = fs.readFileSync(path.join(dist, "index.html"), "utf8");
-fs.writeFileSync(path.join(dist, "spa.html"), template.replace(/<link rel="canonical"[^>]*>\n?/, ""));
 
 const routes = [
   { url: "/", file: "index.html" },

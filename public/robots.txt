@@ -1,8 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /admin
-Disallow: /login
-Disallow: /forgot-password
-Disallow: /reset-password
 
 Sitemap: https://flipforward.be/sitemap.xml
