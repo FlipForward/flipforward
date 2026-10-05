@@ -10,11 +10,11 @@
     { "source": "/terms", "destination": "/algemene-voorwaarden", "permanent": true }
   ],
   "rewrites": [
-    { "source": "/login", "destination": "/spa.html" },
-    { "source": "/forgot-password", "destination": "/spa.html" },
-    { "source": "/reset-password", "destination": "/spa.html" },
-    { "source": "/admin/:path*", "destination": "/spa.html" },
-    { "source": "/admin", "destination": "/spa.html" }
+    { "source": "/login", "destination": "/spa" },
+    { "source": "/forgot-password", "destination": "/spa" },
+    { "source": "/reset-password", "destination": "/spa" },
+    { "source": "/admin/:path*", "destination": "/spa" },
+    { "source": "/admin", "destination": "/spa" }
   ],
   "headers": [
     {
