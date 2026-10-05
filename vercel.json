@@ -28,6 +28,15 @@
       ]
     },
     {
+      "source": "/(og-image.png|icon-192.png|icon-512.png|apple-touch-icon.png|favicon.ico|favicon.svg|finn-vangronsveld.webp)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
       "source": "/(.*)",
       "headers": [
         {
