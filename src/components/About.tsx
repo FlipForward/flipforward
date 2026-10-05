@@ -1,12 +1,9 @@
 import { Card } from "@/components/ui/card";
 import { MapPin, UserRound, ShieldCheck } from "lucide-react";
 import { business } from "@/lib/site";
+import finnPhoto from "@/assets/finn.webp";
 
-/**
- * TODO(Finn): voeg een echte foto van jezelf toe (bv. src/assets/finn.webp, 800×800)
- * en vervang de initialen hieronder. Geen stockfoto's.
- */
-const PHOTO: string | null = null;
+const PHOTO: string | null = finnPhoto;
 
 const points = [
   {
@@ -41,7 +38,7 @@ const About = () => (
       <div className="max-w-4xl mx-auto">
         <Card className="p-6 sm:p-8 md:p-10 bg-gradient-card border-border mb-6 sm:mb-8 flex flex-col sm:flex-row gap-6 items-center sm:items-start">
           {PHOTO ? (
-            <img src={PHOTO} alt={`${business.owner}, oprichter van FlipForward`} width={112} height={112} className="h-28 w-28 rounded-full object-cover flex-shrink-0" />
+            <img src={PHOTO} alt={`${business.owner}, oprichter van FlipForward`} width={112} height={112} loading="lazy" decoding="async" className="h-28 w-28 rounded-full object-cover flex-shrink-0 ring-2 ring-accent/40" />
           ) : (
             <div className="h-28 w-28 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-3xl font-bold flex-shrink-0" aria-hidden="true">
               FV
