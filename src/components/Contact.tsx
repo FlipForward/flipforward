@@ -5,7 +5,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Mail, Send, MapPin, Clock } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
 import { business, packages, type PackageId } from "@/lib/site";
 import { PACKAGE_EVENT } from "@/lib/selectPackage";
 
@@ -20,9 +19,9 @@ const selectClass =
   "flex h-10 w-full rounded-md border border-border bg-background px-3 py-2 text-base md:text-sm text-foreground ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
 
 const Contact = () => {
-  const { toast } = useToast();
   const [form, setForm] = useState(emptyForm);
   const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState<{ ok: boolean; text: string } | null>(null);
   const [honeypot, setHoneypot] = useState("");
 
   // Pakket overnemen uit ?pakket=… en uit klikken op de pakketknoppen.
@@ -44,6 +43,7 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setStatus(null);
 
     // Verstuurd als e-mail via de Vercel-functie api/contact.ts; er wordt niets opgeslagen.
     let errorMessage = "";
@@ -59,13 +59,9 @@ const Contact = () => {
     }
 
     if (errorMessage) {
-      toast({
-        title: "Verzenden mislukt",
-        description: `${errorMessage} Je kunt ook rechtstreeks mailen naar ${business.email}.`,
-        variant: "destructive",
-      });
+      setStatus({ ok: false, text: `Verzenden mislukt. ${errorMessage} Je kunt ook rechtstreeks mailen naar ${business.email}.` });
     } else {
-      toast({ title: "Bericht verzonden", description: "Je krijgt binnen 2 werkdagen een antwoord." });
+      setStatus({ ok: true, text: "Bedankt! Je bericht is verzonden. Je krijgt binnen 2 werkdagen een antwoord." });
       setForm(emptyForm);
     }
     setLoading(false);
@@ -167,6 +163,10 @@ const Contact = () => {
                 {loading ? "Verzenden…" : "Verstuur aanvraag"}
                 <Send className="ml-2 w-4 h-4" aria-hidden="true" />
               </Button>
+
+              <p role="status" aria-live="polite" className={`text-sm min-h-[1.25rem] ${status?.ok === false ? "text-destructive" : "text-foreground"}`}>
+                {status?.text}
+              </p>
             </form>
           </Card>
 
