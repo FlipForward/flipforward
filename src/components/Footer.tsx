@@ -1,60 +1,63 @@
 import { Link } from "react-router-dom";
 import Logo from "./Logo";
-import { useInView } from "react-intersection-observer";
 import { Separator } from "@/components/ui/separator";
+import { business } from "@/lib/site";
 
+const linkClass = "text-muted-foreground hover:text-accent transition-colors underline-offset-4 hover:underline";
+
+/** Wettelijke vermeldingen volgens WER art. XII.6. */
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
-  const { ref, inView } = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-  });
+  const year = new Date().getFullYear();
 
   return (
     <footer className="bg-gradient-hero border-t border-border py-12 sm:py-16">
-      <div
-        ref={ref}
-        className={`container mx-auto px-4 sm:px-6 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
-      >
-        {/* Top row */}
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-8">
-          <Link to="/" className="flex items-center gap-3">
+          <Link to="/" className="flex items-center gap-3" aria-label="FlipForward – naar de homepage">
             <Logo className="h-8 w-auto text-foreground" />
             <span className="text-xl font-bold text-foreground">FlipForward</span>
           </Link>
 
-          <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-sm">
-            <Link to="/privacy" className="text-muted-foreground hover:text-accent transition-colors">
-              Privacy Policy
+          <nav aria-label="Juridisch" className="flex flex-wrap items-center gap-4 sm:gap-6 text-sm">
+            <Link to="/privacyverklaring" className={linkClass}>
+              Privacyverklaring
             </Link>
-            <Link to="/terms" className="text-muted-foreground hover:text-accent transition-colors">
-              Algemene Voorwaarden
+            <Link to="/algemene-voorwaarden" className={linkClass}>
+              Algemene voorwaarden
             </Link>
-            <a href="#contact" className="text-muted-foreground hover:text-accent transition-colors">
+            <a href="/#contact" className={linkClass}>
               Contact
             </a>
-          </div>
+          </nav>
         </div>
 
         <Separator className="mb-8" />
 
-        {/* Company details */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-muted-foreground mb-8">
+        <address className="not-italic grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-muted-foreground mb-8">
           <div>
-            <p className="font-semibold text-foreground mb-1">Finn Vangronsveld</p>
-            <p>Handelsnaam: FlipForward</p>
+            <p className="font-semibold text-foreground mb-1">{business.owner}</p>
+            <p>Eenmanszaak, handelsnaam {business.name}</p>
+            <p>
+              {business.street}, {business.postalCode} {business.city}, {business.countryName}
+            </p>
           </div>
           <div>
-            <p>KBO: BE1033868758</p>
-            <p>E-mail: finnvangronsveld@gmail.com</p>
+            <p>Ondernemingsnummer: {business.enterpriseNumber}</p>
+            <p>Btw: {business.vatNumber}</p>
+            <p className="text-xs mt-1">{business.vatNote}</p>
           </div>
           <div>
-            <p>Middenakkers 26, 2470 Retie, België</p>
+            <p>
+              E-mail:{" "}
+              <a href={`mailto:${business.email}`} className={linkClass}>
+                {business.email}
+              </a>
+            </p>
           </div>
-        </div>
+        </address>
 
-        <p className="text-muted-foreground/50 text-xs text-center">
-          © {currentYear} FlipForward. Alle rechten voorbehouden.
+        <p className="text-muted-foreground text-xs text-center">
+          © {year} {business.name}. Alle rechten voorbehouden.
         </p>
       </div>
     </footer>

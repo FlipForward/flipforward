@@ -1,62 +1,127 @@
-import { Link } from "react-router-dom";
-import { ArrowLeft } from "lucide-react";
-import Logo from "@/components/Logo";
-import { useLanguage } from "@/contexts/LanguageContext";
-import LanguageSwitcher from "@/components/LanguageSwitcher";
+import LegalPage, { type LegalSection } from "@/components/LegalPage";
+import { business, fullAddress } from "@/lib/site";
 
-const PrivacyPolicy = () => {
-  const { t } = useLanguage();
+const mail = <a href={`mailto:${business.email}`}>{business.email}</a>;
 
-  const sections = [
-    { title: 'privacy.section1.title', text: 'privacy.section1.text', items: 'privacy.section1.items' },
-    { title: 'privacy.section2.title', text: 'privacy.section2.text', items: 'privacy.section2.items' },
-    { title: 'privacy.section3.title', text: 'privacy.section3.text' },
-    { title: 'privacy.section4.title', text: 'privacy.section4.text' },
-    { title: 'privacy.section5.title', text: 'privacy.section5.text' },
-    { title: 'privacy.section6.title', text: 'privacy.section6.text' },
-  ];
-
-  return (
-    <div className="min-h-screen bg-background">
-      <nav className="border-b border-border bg-background/80 backdrop-blur-lg">
-        <div className="container mx-auto px-4 sm:px-6 py-4">
-          <div className="flex items-center justify-between">
-            <Link to="/" className="flex items-center gap-3 text-foreground hover:text-primary transition-colors">
-              <ArrowLeft size={20} />
-              <Logo className="h-8 w-auto text-foreground" />
-              <span className="text-xl font-bold">FlipForward</span>
-            </Link>
-            <LanguageSwitcher />
-          </div>
-        </div>
-      </nav>
-
-      <main className="container mx-auto px-4 sm:px-6 py-12 max-w-3xl">
-        <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">{t('privacy.title')}</h1>
-        <p className="text-sm text-muted-foreground/60 mb-8">
-          {t('privacy.lastUpdated')}: {new Date().toLocaleDateString('nl-BE')}
+const sections: LegalSection[] = [
+  {
+    title: "1. Wie is verantwoordelijk?",
+    body: (
+      <p>
+        De verwerkingsverantwoordelijke is {business.owner}, eenmanszaak met handelsnaam {business.name}, {fullAddress},
+        ondernemingsnummer {business.enterpriseNumber}. Voor alle vragen over privacy kun je mailen naar {mail}.
+      </p>
+    ),
+  },
+  {
+    title: "2. Welke gegevens verwerken we?",
+    body: (
+      <>
+        <p>Via het contactformulier:</p>
+        <ul>
+          <li>naam en (optioneel) bedrijfsnaam;</li>
+          <li>e-mailadres en (optioneel) telefoonnummer;</li>
+          <li>het gekozen pakket en de inhoud van je bericht.</li>
+        </ul>
+        <p>Als je klant wordt bovendien: facturatiegegevens (bedrijfsgegevens, ondernemings- of btw-nummer, adres) en de inhoud die je voor je website aanlevert.</p>
+        <p>
+          Bij elk bezoek aan de website registreert onze hostingpartij technische gegevens zoals je IP-adres, browser en het
+          tijdstip, om de website veilig en beschikbaar te houden. We gebruiken geen analyse- of marketingtools en bouwen geen
+          bezoekersprofielen.
         </p>
+      </>
+    ),
+  },
+  {
+    title: "3. Waarom en op welke rechtsgrond?",
+    body: (
+      <ul>
+        <li>
+          <strong>Je aanvraag beantwoorden en een voorstel maken</strong> – maatregelen die je zelf vraagt vóór een overeenkomst
+          (art. 6.1.b AVG).
+        </li>
+        <li>
+          <strong>Je website bouwen, hosten, onderhouden en factureren</strong> – uitvoering van de overeenkomst (art. 6.1.b AVG).
+        </li>
+        <li>
+          <strong>Boekhouding en facturen bewaren</strong> – wettelijke verplichting (art. 6.1.c AVG).
+        </li>
+        <li>
+          <strong>Beveiliging van de website</strong> (technische logs) – gerechtvaardigd belang (art. 6.1.f AVG).
+        </li>
+      </ul>
+    ),
+  },
+  {
+    title: "4. Hoe lang bewaren we je gegevens?",
+    review: "bewaartermijnen zijn een voorstel; controleer vooral de fiscale bewaartermijn (7 of 10 jaar) met je boekhouder.",
+    body: (
+      <ul>
+        <li>Contactaanvragen die niet tot een overeenkomst leiden: maximaal 12 maanden na het laatste contact.</li>
+        <li>Klantgegevens: zolang de overeenkomst loopt, en daarna zolang nodig voor eventuele geschillen.</li>
+        <li>Facturen en boekhoudkundige stukken: zolang de wet het verplicht (momenteel 7 tot 10 jaar).</li>
+        <li>Technische logs van de hostingpartij: kort, volgens het beleid van die partij.</li>
+      </ul>
+    ),
+  },
+  {
+    title: "5. Met wie delen we gegevens?",
+    review: "controleer de lijst van verwerkers (regio van de Supabase-databank, actuele e-mailprovider, facturatiesoftware).",
+    body: (
+      <>
+        <p>We verkopen je gegevens nooit. We werken met deze verwerkers, die je gegevens enkel in onze opdracht verwerken:</p>
+        <ul>
+          <li>Vercel Inc. – hosting van de website (servers mogelijk buiten de EU, met de wettelijke waarborgen zoals de standaardcontractbepalingen van de Europese Commissie);</li>
+          <li>Supabase, via Lovable Cloud – opslag van berichten uit het contactformulier en verzending van meldingsmails;</li>
+          <li>onze e-mailprovider – ontvangen en beantwoorden van e-mail;</li>
+          <li>Dexxter – facturatie en boekhouding.</li>
+        </ul>
+        <p>Daarnaast geven we gegevens alleen door als de wet ons daartoe verplicht.</p>
+      </>
+    ),
+  },
+  {
+    title: "6. Cookies",
+    body: (
+      <p>
+        Deze website plaatst geen analyse-, advertentie- of trackingcookies, en daarom tonen we ook geen cookiebanner. Enkel
+        wie inlogt in het beheergedeelte krijgt een sessie die strikt noodzakelijk is om ingelogd te blijven.
+      </p>
+    ),
+  },
+  {
+    title: "7. Jouw rechten",
+    body: (
+      <>
+        <p>
+          Je hebt het recht om je gegevens in te zien, te laten verbeteren of verwijderen, de verwerking te laten beperken,
+          bezwaar te maken en je gegevens over te laten dragen. Stuur je verzoek naar {mail}. We antwoorden binnen een maand.
+        </p>
+        <p>
+          Ben je niet tevreden over hoe we met je gegevens omgaan, dan kun je klacht indienen bij de Gegevensbeschermingsautoriteit,
+          Drukpersstraat 35, 1000 Brussel,{" "}
+          <a href="https://www.gegevensbeschermingsautoriteit.be" target="_blank" rel="noopener noreferrer">
+            www.gegevensbeschermingsautoriteit.be
+          </a>
+          .
+        </p>
+      </>
+    ),
+  },
+];
 
-        <p className="text-muted-foreground leading-relaxed mb-10">{t('privacy.intro')}</p>
-
-        <div className="space-y-8 text-muted-foreground leading-relaxed">
-          {sections.map((section, i) => (
-            <section key={i}>
-              <h2 className="text-xl font-semibold text-foreground mb-3">{t(section.title)}</h2>
-              <p>{t(section.text)}</p>
-              {section.items && (
-                <ul className="list-disc list-inside mt-3 space-y-1">
-                  {t(section.items).split('|').map((item, j) => (
-                    <li key={j}>{item}</li>
-                  ))}
-                </ul>
-              )}
-            </section>
-          ))}
-        </div>
-      </main>
-    </div>
-  );
-};
+const PrivacyPolicy = () => (
+  <LegalPage
+    title="Privacyverklaring"
+    updated="5 oktober 2026"
+    intro={
+      <p>
+        In deze privacyverklaring lees je welke persoonsgegevens {business.name} verwerkt, waarom, hoe lang, met wie we ze delen
+        en welke rechten je hebt.
+      </p>
+    }
+    sections={sections}
+  />
+);
 
 export default PrivacyPolicy;
