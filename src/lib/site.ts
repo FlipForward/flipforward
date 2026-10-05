@@ -34,7 +34,6 @@ export interface Package {
   name: string;
   audience: string;
   pages: string;
-  languages: string;
   features: string[];
   legal: string[];
   setup: number;
@@ -50,7 +49,6 @@ export const packages: Package[] = [
     name: "Start",
     audience: "Zelfstandigen & kleine zaken",
     pages: "Tot 5 pagina's",
-    languages: "1 taal",
     features: [
       "Mobielvriendelijk design",
       "Contactformulier",
@@ -66,9 +64,9 @@ export const packages: Package[] = [
     name: "Business",
     audience: "Kmo's die hun aanbod willen tonen",
     pages: "Tot 10 pagina's",
-    languages: "2 talen",
     features: [
       "Alles uit Start",
+      "Meertalig (tot 2 talen)",
       "Zelf teksten aanpassen (CMS)",
       "SEO & vindbaarheid in AI-zoekmachines (GEO)",
       "Google Bedrijfsprofiel",
@@ -84,9 +82,9 @@ export const packages: Package[] = [
     name: "Pro",
     audience: "B2B, meertalig, met catalogus",
     pages: "Pagina's op maat",
-    languages: "3–4 talen",
     features: [
       "Alles uit Business",
+      "3–4 talen (bv. NL/FR/EN/DE)",
       "Doorzoekbare catalogus / assortiment",
       "Offerte-aanvraag",
       "Vacaturepagina",
@@ -123,14 +121,14 @@ export const addOns: AddOn[] = [
       "1,5 uur shoot op locatie, 15–20 nabewerkte foto's, met onbeperkt gebruiksrecht voor je eigen marketing.",
   },
   {
-    name: "Extra taal",
-    price: "Op aanvraag",
-    description: "Een bijkomende taal bovenop de talen in je pakket.",
-  },
-  {
     name: "Extra werk buiten pakket",
     price: "€ 75 per uur",
     description: "Nieuwe functies of aanpassingen die buiten je pakket of maandelijkse uren vallen, altijd na akkoord.",
+  },
+  {
+    name: "Extra taal",
+    price: "Op aanvraag",
+    description: "Een bijkomende taal bovenop de talen in je pakket.",
   },
 ];
 

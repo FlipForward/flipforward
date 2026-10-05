@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { LucideIcon, Store, Building2, Languages, Coffee, Scissors, Wrench, Briefcase, Users } from "lucide-react";
+import { LucideIcon, Store, Building2, Coffee, Scissors, Wrench, Briefcase, Users } from "lucide-react";
 
 interface Idea {
   text: string;
@@ -9,7 +9,6 @@ interface Idea {
 const ideas: Idea[] = [
   { text: "Website voor je zaak", icon: Store },
   { text: "B2B-catalogus", icon: Building2 },
-  { text: "Meertalige website", icon: Languages },
   { text: "Horecazaak", icon: Coffee },
   { text: "Kapsalon", icon: Scissors },
   { text: "Vakman of aannemer", icon: Wrench },

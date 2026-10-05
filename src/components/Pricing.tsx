@@ -4,7 +4,7 @@ import { Check, ArrowRight, Camera, Languages, Clock } from "lucide-react";
 import { packages, includedInAll, addOns, PRICE_NOTE, formatEuro } from "@/lib/site";
 import { selectPackage } from "@/lib/selectPackage";
 
-const addOnIcons = [Camera, Languages, Clock];
+const addOnIcons: Record<string, typeof Clock> = { Fotografie: Camera, "Extra taal": Languages };
 
 const Pricing = () => {
   return (
@@ -49,16 +49,7 @@ const Pricing = () => {
                   <p className="text-sm text-muted-foreground min-h-[1.25rem]">{p.monthlyNote ?? "hosting & onderhoud"}</p>
                 </div>
 
-                <dl className="mt-6 grid grid-cols-2 gap-3 text-sm">
-                  <div className="rounded-lg bg-background/60 p-3">
-                    <dt className="text-muted-foreground">Pagina's</dt>
-                    <dd className="font-semibold text-foreground">{p.pages.replace(" pagina's", "")}</dd>
-                  </div>
-                  <div className="rounded-lg bg-background/60 p-3">
-                    <dt className="text-muted-foreground">Talen</dt>
-                    <dd className="font-semibold text-foreground">{p.languages}</dd>
-                  </div>
-                </dl>
+                <p className="mt-6 rounded-lg bg-background/60 px-3 py-2 text-sm font-semibold text-foreground">{p.pages}</p>
 
                 <ul className="mt-6 space-y-2.5 text-sm flex-1" aria-label={`Inbegrepen in ${p.name}`}>
                   {[...p.features, ...p.legal].map((f) => (
@@ -108,8 +99,8 @@ const Pricing = () => {
         <div className="max-w-6xl mx-auto mt-14">
           <h3 className="text-2xl font-bold text-center mb-6">Extra's</h3>
           <div className="grid gap-4 md:grid-cols-3">
-            {addOns.map((a, i) => {
-              const Icon = addOnIcons[i] ?? Clock;
+            {addOns.map((a) => {
+              const Icon = addOnIcons[a.name] ?? Clock;
               return (
                 <Card key={a.name} className="p-5 sm:p-6 border-dashed border-accent/40 bg-accent/5">
                   <div className="flex items-start gap-4">

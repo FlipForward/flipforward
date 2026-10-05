@@ -59,7 +59,7 @@ export function jsonLd() {
       itemListElement: packages.map((p) => ({
         "@type": "Offer",
         name: `Pakket ${p.name}`,
-        description: `${p.audience}. ${p.pages}, ${p.languages}. ${p.features.join(", ")}.`,
+        description: `${p.audience}. ${p.pages}. ${p.features.join(", ")}.`,
         url: `${SITE_URL}/?pakket=${p.id}#pakketten`,
         priceCurrency: "EUR",
         price: p.setup,
@@ -131,7 +131,7 @@ export function llmsTxt() {
     .map(
       (p) =>
         `### ${p.name}${p.highlight ? ` (${p.highlight.toLowerCase()})` : ""}\n` +
-        `- Voor: ${p.audience}\n- ${p.pages}, ${p.languages}\n- ${p.features.join("; ")}\n- Juridisch: ${p.legal.join("; ")}\n` +
+        `- Voor: ${p.audience}\n- ${p.pages}\n- ${p.features.join("; ")}\n- Juridisch: ${p.legal.join("; ")}\n` +
         `- Opstart: ${p.setupFrom ? "vanaf " : ""}${formatEuro(p.setup)} eenmalig\n` +
         `- Maandelijks: ${formatEuro(p.monthly)}${p.monthlyNote ? ` (${p.monthlyNote})` : ""}`,
     )
