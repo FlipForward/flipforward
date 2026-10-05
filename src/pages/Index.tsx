@@ -1,27 +1,33 @@
-import Navigation from '@/components/Navigation';
-import Hero from '@/components/Hero';
-import About from '@/components/About';
-import ServicesWithTranslations from '@/components/ServicesWithTranslations';
-import Pricing from '@/components/Pricing';
-import PortfolioWithTranslations from '@/components/PortfolioWithTranslations';
-import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
-import ScrollToTop from '@/components/ScrollToTop';
+import Navigation from "@/components/Navigation";
+import Hero from "@/components/Hero";
+import About from "@/components/About";
+import Services from "@/components/Services";
+import Pricing from "@/components/Pricing";
+import HowItWorks from "@/components/HowItWorks";
+import Portfolio from "@/components/Portfolio";
+import Testimonials from "@/components/Testimonials";
+import Faq from "@/components/Faq";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 
-const Index = () => {
-  return (
-    <div className="min-h-screen relative">
-      <Navigation />
+const Index = () => (
+  <div className="min-h-screen relative">
+    <Navigation />
+    <main id="main">
       <Hero />
       <About />
-      <ServicesWithTranslations />
+      <Services />
       <Pricing />
-      <PortfolioWithTranslations />
+      <HowItWorks />
+      <Portfolio />
+      <Testimonials />
+      <Faq />
       <Contact />
-      <Footer />
-      <ScrollToTop />
-    </div>
-  );
-};
+    </main>
+    <Footer />
+    <ScrollToTop />
+  </div>
+);
 
 export default Index;
