@@ -17,16 +17,16 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    --primary: 10 89% 55%;
+    --primary: 10 89% 46%; /* AA: wit op oranje 4.65:1 (was 55% = 3.65:1) */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 210 40% 96%;
     --secondary-foreground: 222 47% 11%;
 
     --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
+    --muted-foreground: 215 16% 40%; /* AA op muted-achtergrond */
 
-    --accent: 10 89% 55%;
+    --accent: 10 89% 42%; /* AA: oranje tekst op wit 5.4:1 */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
@@ -34,13 +34,13 @@ All colors MUST be HSL.
 
     --border: 214 32% 91%;
     --input: 214 32% 91%;
-    --ring: 10 89% 55%;
+    --ring: 10 89% 42%;
 
     --radius: 0.75rem;
 
     /* Gradients */
     --gradient-hero: linear-gradient(135deg, hsl(0 0% 100%), hsl(210 40% 98%));
-    --gradient-accent: linear-gradient(135deg, hsl(10 89% 55%), hsl(15 85% 50%));
+    --gradient-accent: linear-gradient(135deg, hsl(10 89% 46%), hsl(14 88% 42%)); /* AA: witte knoptekst >= 4.65:1 */
     --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(210 40% 98%));
     --gradient-animated: linear-gradient(-45deg, hsl(0 0% 100%), hsl(210 40% 98%), hsl(220 30% 96%), hsl(230 35% 97%));
     
@@ -62,7 +62,7 @@ All colors MUST be HSL.
     --popover: 222 40% 8%;
     --popover-foreground: 0 0% 98%;
 
-    --primary: 10 89% 55%;
+    --primary: 10 89% 46%; /* oranje tekst (accent) blijft 55%: 5.4:1 op donker */
     --primary-foreground: 0 0% 100%;
 
     --secondary: 222 30% 12%;
@@ -83,7 +83,7 @@ All colors MUST be HSL.
 
     /* Gradients */
     --gradient-hero: linear-gradient(135deg, hsl(222 47% 5%), hsl(222 40% 8%));
-    --gradient-accent: linear-gradient(135deg, hsl(10 89% 55%), hsl(15 85% 50%));
+    --gradient-accent: linear-gradient(135deg, hsl(10 89% 46%), hsl(14 88% 42%)); /* AA: witte knoptekst >= 4.65:1 */
     --gradient-card: linear-gradient(180deg, hsl(222 40% 8%), hsl(222 35% 6%));
     --gradient-animated: linear-gradient(-45deg, hsl(222 47% 5%), hsl(222 40% 8%), hsl(230 35% 10%), hsl(220 45% 7%));
     
@@ -105,6 +105,7 @@ All colors MUST be HSL.
   
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
     scrollbar-width: thin;
     scrollbar-color: hsl(var(--accent)) transparent;
   }
@@ -168,4 +169,19 @@ All colors MUST be HSL.
     background-size: 400% 400%;
     animation: gradient-shift 15s ease infinite;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Zichtbare focus voor toetsenbordgebruikers */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
 }
