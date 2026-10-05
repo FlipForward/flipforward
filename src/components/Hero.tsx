@@ -14,9 +14,9 @@ const Hero = () => (
       <div className="max-w-4xl mx-auto text-center">
         <TypingAnimation />
 
-        <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
+        <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 leading-[1.15] text-balance">
           Jouw professionele website,
-          <span className="block text-transparent bg-clip-text bg-gradient-accent mt-2 pb-2">volledig verzorgd.</span>
+          <span className="block text-transparent bg-clip-text bg-gradient-accent mt-1 pb-3 sm:pb-4">volledig verzorgd.</span>
         </h1>
 
         <p className="text-base sm:text-xl md:text-2xl text-muted-foreground mb-8 sm:mb-10 max-w-2xl mx-auto px-2">
