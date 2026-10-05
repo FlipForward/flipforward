@@ -23,6 +23,7 @@ const Contact = () => {
   const { toast } = useToast();
   const [form, setForm] = useState(emptyForm);
   const [loading, setLoading] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
 
   // Pakket overnemen uit ?pakket=… en uit klikken op de pakketknoppen.
   useEffect(() => {
@@ -44,44 +45,26 @@ const Contact = () => {
     e.preventDefault();
     setLoading(true);
 
-    const pakketLabel = packages.find((p) => p.id === form.pakket)?.name ?? "Weet ik nog niet";
-    // De databank heeft (nog) enkel name/email/message: extra velden gaan mee in het bericht.
-    const fullMessage = [
-      `Pakket: ${pakketLabel}`,
-      `Bedrijf: ${form.company.trim() || "-"}`,
-      `Telefoon: ${form.phone.trim() || "-"}`,
-      "",
-      form.message.trim(),
-    ].join("\n");
+    // Verstuurd als e-mail via de Vercel-functie api/contact.ts; er wordt niets opgeslagen.
+    let errorMessage = "";
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, website: honeypot }),
+      });
+      if (!res.ok) errorMessage = (await res.json().catch(() => null))?.error ?? "Verzenden is mislukt.";
+    } catch {
+      errorMessage = "Geen verbinding.";
+    }
 
-    const { supabase } = await import("@/integrations/supabase/client");
-    const { error } = await supabase.from("contact_messages").insert({
-      name: form.name.trim(),
-      email: form.email.trim(),
-      message: fullMessage,
-    });
-
-    if (error) {
+    if (errorMessage) {
       toast({
         title: "Verzenden mislukt",
-        description: `Probeer het later opnieuw of mail naar ${business.email}.`,
+        description: `${errorMessage} Je kunt ook rechtstreeks mailen naar ${business.email}.`,
         variant: "destructive",
       });
     } else {
-      try {
-        await supabase.functions.invoke("send-notification", {
-          body: {
-            type: "new_request_admin",
-            data: {
-              subject: `Contactbericht van ${form.name.trim()} (${pakketLabel})`,
-              user_email: form.email.trim(),
-              description: fullMessage,
-            },
-          },
-        });
-      } catch (err) {
-        console.error("E-mailmelding mislukt:", err);
-      }
       toast({ title: "Bericht verzonden", description: "Je krijgt binnen 2 werkdagen een antwoord." });
       setForm(emptyForm);
     }
@@ -109,6 +92,11 @@ const Contact = () => {
         <div className="max-w-5xl mx-auto grid md:grid-cols-5 gap-6 sm:gap-8 items-start">
           <Card className="md:col-span-3 p-6 sm:p-8 bg-gradient-card border-border">
             <form onSubmit={handleSubmit} className="space-y-5">
+              {/* Spamval: onzichtbaar voor bezoekers, bots vullen het in. */}
+              <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+                <label htmlFor="website">Website</label>
+                <input id="website" name="website" tabIndex={-1} autoComplete="off" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} />
+              </div>
               <div className="grid gap-5 sm:grid-cols-2">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium mb-1.5 text-foreground">
