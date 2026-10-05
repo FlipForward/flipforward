@@ -32,8 +32,8 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
 
 ## Open / te bevestigen door Finn
 - [x] E-mail op de site: `finn@flipforward.be` (Vimexx-mailbox).
-- [ ] Nameservers naar Vercel (ns1/ns2.vercel-dns.com) – mailrecords (MX, SPF, DKIM x._domainkey, DMARC, mail/smtp/pop A) moeten in Vercel DNS staan.
-- [ ] `SMTP_PASS` (+ andere SMTP-variabelen) in Vercel zetten, daarna contactformulier testen.
+- [x] DNS blijft bij Vimexx (domein gekoppeld aan mailhosting, beheer via DirectAdmin): A @ → 76.76.21.21, CNAME www → cname.vercel-dns.com. Mailrecords (MX spamrelay.zxcs.nl, SPF, DKIM x._domainkey, DMARC, mail/smtp/pop/ftp) ongewijzigd. Live sinds 05/10/2026.
+- [x] SMTP-variabelen in Vercel gezet. [ ] Contactformulier één keer live testen.
 - [ ] Lovable-project verwijderen (exporteer eerst eventuele oude contactberichten).
 - [ ] Juridische nalezing van algemene voorwaarden en privacyverklaring (gemarkeerde passages).
 - [ ] Prijs add-on "Extra taal" (nu "op aanvraag").
