@@ -1,77 +1,54 @@
-import { Card } from '@/components/ui/card';
-import { Code2, Palette, Rocket, Search, Smartphone, Zap } from 'lucide-react';
+import { Card } from "@/components/ui/card";
+import { Palette, Globe, Wrench, Search } from "lucide-react";
 
 const services = [
   {
-    icon: Code2,
-    title: 'Web Development',
-    description: 'Custom-coded websites built with modern frameworks and best practices for optimal performance.'
-  },
-  {
     icon: Palette,
-    title: 'UI/UX Design',
-    description: 'Beautiful, intuitive designs that engage users and drive conversions through thoughtful experiences.'
+    title: "Design & ontwikkeling",
+    text: "Een website op maat van je zaak, mobielvriendelijk en snel. Met twee feedbackrondes, zodat het ontwerp klopt.",
   },
   {
-    icon: Smartphone,
-    title: 'Mobile First',
-    description: 'Responsive designs that look stunning and function flawlessly on every device and screen size.'
+    icon: Globe,
+    title: "Domein & hosting",
+    text: "We registreren je domeinnaam op jouw naam, zorgen voor een beveiligde verbinding (SSL) en snelle hosting.",
+  },
+  {
+    icon: Wrench,
+    title: "Onderhoud & support",
+    text: "Updates, back-ups, beveiliging en uptime-monitoring. Aanpassingen aan je site doen we binnen je pakket.",
   },
   {
     icon: Search,
-    title: 'SEO Optimization',
-    description: 'Strategic optimization to boost your search rankings and drive organic traffic to your site.'
+    title: "Vindbaarheid",
+    text: "Een technisch sterke basis voor Google, en vanaf Business ook voor AI-zoekmachines en je Google Bedrijfsprofiel.",
   },
-  {
-    icon: Zap,
-    title: 'Performance',
-    description: 'Lightning-fast load times and smooth interactions that keep visitors engaged and coming back.'
-  },
-  {
-    icon: Rocket,
-    title: 'Growth Strategy',
-    description: 'Data-driven strategies to scale your digital presence and achieve measurable business results.'
-  }
 ];
 
-const Services = () => {
-  return (
-    <section id="services" className="py-24 bg-background">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Services That <span className="text-accent">Scale</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Comprehensive web solutions tailored to your business goals
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => {
-            const Icon = service.icon;
-            return (
-              <Card 
-                key={index}
-                className="p-8 bg-gradient-card border-border hover:shadow-[0_0_30px_hsl(10_89%_55%/0.3)] transition-all duration-300 cursor-pointer"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="mb-4 w-14 h-14 rounded-lg bg-accent/10 flex items-center justify-center">
-                  <Icon className="w-7 h-7 text-accent" />
-                </div>
-                <h3 className="text-xl font-semibold mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-muted-foreground">
-                  {service.description}
-                </p>
-              </Card>
-            );
-          })}
-        </div>
+const Services = () => (
+  <section id="diensten" aria-labelledby="diensten-title" className="py-16 sm:py-24 bg-background scroll-mt-20">
+    <div className="container mx-auto px-4 sm:px-6">
+      <div className="text-center mb-12 sm:mb-16">
+        <h2 id="diensten-title" className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">
+          Website as a <span className="text-accent">Service</span>
+        </h2>
+        <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto px-2">
+          Geen losse factuur voor een website die daarna veroudert: wij bouwen én onderhouden, voor een vast bedrag per maand.
+        </p>
       </div>
-    </section>
-  );
-};
+
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-6xl mx-auto">
+        {services.map(({ icon: Icon, title, text }) => (
+          <Card key={title} className="p-5 sm:p-8 bg-gradient-card border-border">
+            <div className="mb-4 w-12 h-12 sm:w-14 sm:h-14 rounded-lg bg-accent/10 flex items-center justify-center">
+              <Icon className="w-6 h-6 sm:w-7 sm:h-7 text-accent" aria-hidden="true" />
+            </div>
+            <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3">{title}</h3>
+            <p className="text-sm sm:text-base text-muted-foreground">{text}</p>
+          </Card>
+        ))}
+      </div>
+    </div>
+  </section>
+);
 
 export default Services;
