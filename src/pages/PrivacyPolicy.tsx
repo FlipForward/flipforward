@@ -66,14 +66,13 @@ const sections: LegalSection[] = [
   },
   {
     title: "5. Met wie delen we gegevens?",
-    review: "controleer de lijst van verwerkers (regio van de Supabase-databank, actuele e-mailprovider, facturatiesoftware).",
+    review: "controleer de lijst van verwerkers (is Dexxter nog in gebruik?).",
     body: (
       <>
         <p>We verkopen je gegevens nooit. We werken met deze verwerkers, die je gegevens enkel in onze opdracht verwerken:</p>
         <ul>
-          <li>Vercel Inc. – hosting van de website (servers mogelijk buiten de EU, met de wettelijke waarborgen zoals de standaardcontractbepalingen van de Europese Commissie);</li>
-          <li>Supabase, via Lovable Cloud – opslag van berichten uit het contactformulier en verzending van meldingsmails;</li>
-          <li>onze e-mailprovider – ontvangen en beantwoorden van e-mail;</li>
+          <li>Vercel Inc. – hosting van de website en doorsturen van het contactformulier naar onze mailbox (servers mogelijk buiten de EU, met de wettelijke waarborgen zoals de standaardcontractbepalingen van de Europese Commissie);</li>
+          <li>Vimexx – e-mailhosting: berichten uit het contactformulier komen als e-mail in onze mailbox terecht en worden niet in een aparte databank bewaard;</li>
           <li>Dexxter – facturatie en boekhouding.</li>
         </ul>
         <p>Daarnaast geven we gegevens alleen door als de wet ons daartoe verplicht.</p>
@@ -84,8 +83,8 @@ const sections: LegalSection[] = [
     title: "6. Cookies",
     body: (
       <p>
-        Deze website plaatst geen analyse-, advertentie- of trackingcookies, en daarom tonen we ook geen cookiebanner. Enkel
-        wie inlogt in het beheergedeelte krijgt een sessie die strikt noodzakelijk is om ingelogd te blijven.
+        Deze website plaatst geen cookies: geen analyse-, advertentie- of trackingcookies en ook geen andere. Daarom tonen we
+        ook geen cookiebanner. Kies je voor de lichte of donkere weergave, dan wordt die keuze niet bewaard.
       </p>
     ),
   },
