@@ -33,12 +33,26 @@ export function jsonLd() {
     "@id": orgId,
     name: business.name,
     url: `${SITE_URL}/`,
-    logo: `${SITE_URL}/og-image.png`,
+    logo: `${SITE_URL}/icon-512.png`,
     image: `${SITE_URL}/og-image.png`,
     description:
       "Webbureau uit Retie dat websites bouwt en onderhoudt voor kmo's en zelfstandigen in de Kempen, als abonnement (Website as a Service).",
     email: business.email,
-    founder: { "@type": "Person", name: business.owner },
+    founder: {
+      "@type": "Person",
+      name: business.owner,
+      jobTitle: "Oprichter en webdeveloper",
+      image: `${SITE_URL}/finn-vangronsveld.webp`,
+      worksFor: { "@id": orgId },
+    },
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "sales",
+      email: business.email,
+      areaServed: "BE",
+      availableLanguage: ["nl"],
+    },
+    hasMap: "https://www.google.com/maps/search/?api=1&query=Middenakkers+26+2470+Retie",
     vatID: business.vatNumber.replace(/\s|\./g, ""),
     taxID: business.enterpriseNumber,
     address: {
@@ -145,7 +159,8 @@ export function llmsTxt() {
 - Naam: ${business.name} (handelsnaam van ${business.owner}, ${business.legalForm})
 - Adres: ${business.street}, ${business.postalCode} ${business.city}, ${business.countryName}
 - Ondernemingsnummer: ${business.enterpriseNumber}
-- E-mail: ${business.email}
+- Oprichter en aanspreekpunt: ${business.owner}
+- E-mail: ${business.email} (of via het contactformulier op de website; antwoord binnen 2 werkdagen)
 - Regio: ${business.areaServed.join(", ")}
 - Website: ${SITE_URL}/
 
