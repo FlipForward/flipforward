@@ -11,6 +11,7 @@
  *   CONTACT_TO  finn@flipforward.be   (optioneel, standaard = SMTP_USER)
  */
 import nodemailer from "nodemailer";
+import { leadHtml, leadText, type Lead } from "./_email.js";
 
 const PACKAGES: Record<string, string> = {
   start: "Start",
@@ -81,26 +82,16 @@ export async function POST(request: Request) {
     auth: { user: SMTP_USER, pass: SMTP_PASS },
   });
 
-  const text = [
-    `Nieuwe aanvraag via flipforward.be`,
-    ``,
-    `Naam:     ${name}`,
-    `Bedrijf:  ${company || "-"}`,
-    `E-mail:   ${email}`,
-    `Telefoon: ${phone || "-"}`,
-    `Pakket:   ${PACKAGES[pakket]}`,
-    ``,
-    `Bericht:`,
-    message,
-  ].join("\n");
+  const lead: Lead = { name, company, email, phone, pakket: PACKAGES[pakket], message };
 
   try {
     await transporter.sendMail({
       from: `"FlipForward website" <${SMTP_USER}>`,
       to: CONTACT_TO || SMTP_USER,
       replyTo: { name, address: email },
-      subject: `Aanvraag: ${name}${company ? ` (${company})` : ""} – ${PACKAGES[pakket]}`,
-      text,
+      subject: `Nieuwe aanvraag van ${name}${company ? ` (${company})` : ""} – pakket ${PACKAGES[pakket]}`,
+      text: leadText(lead),
+      html: leadHtml(lead),
     });
   } catch (err) {
     console.error("Contactformulier: verzenden mislukt", err);
