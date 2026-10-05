@@ -35,7 +35,7 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
 - [ ] Domein overzetten naar Vercel (DNS bij Vimexx) en www → apex redirect controleren.
 - [ ] Juridische nalezing van algemene voorwaarden en privacyverklaring (gemarkeerde passages).
 - [ ] Prijs add-on "Extra taal" (nu "op aanvraag").
-- [ ] Foto van Finn voor "Over FlipForward" (`About.tsx`, constante `PHOTO`).
+- [x] Foto van Finn toegevoegd (`src/assets/finn.webp`, 320×320 crop).
 - [ ] Is ATLAZ een eigen project of een klant? (portfolio-label)
 - [ ] Verwerkers in privacyverklaring bevestigen (regio Supabase-databank, Dexxter nog in gebruik?).
 - [ ] Beveiliging edge function `send-notification` (geen auth, open relay naar willekeurige e-mailadressen).
