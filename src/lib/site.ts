@@ -10,8 +10,7 @@ export const business = {
   name: "FlipForward",
   owner: "Finn Vangronsveld",
   legalForm: "eenmanszaak",
-  // TODO(Finn): vervang door info@flipforward.be zodra de Vimexx-mailbox werkt.
-  email: "finnvangronsveld@gmail.com",
+  email: "finn@flipforward.be",
   enterpriseNumber: "1033.868.758",
   vatNumber: "BE 1033.868.758",
   vatNote: "Kleine onderneming onderworpen aan de bijzondere vrijstellingsregeling (btw-vrijgesteld)",

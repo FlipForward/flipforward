@@ -31,7 +31,7 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
 - Kleine, logische commits in het Nederlands.
 
 ## Open / te bevestigen door Finn
-- [ ] `info@flipforward.be` bij Vimexx aanmaken → daarna `business.email` in `site.ts` aanpassen (nu nog gmail). Ook `to` in `send-notification`.
+- [x] E-mail op de site: `finn@flipforward.be` (Vimexx-mailbox). Meldingen van het contactformulier gaan nog naar gmail: `to` in `supabase/functions/send-notification` aanpassen via Lovable.
 - [ ] Domein overzetten naar Vercel (DNS bij Vimexx) en www → apex redirect controleren.
 - [ ] Juridische nalezing van algemene voorwaarden en privacyverklaring (gemarkeerde passages).
 - [ ] Prijs add-on "Extra taal" (nu "op aanvraag").
