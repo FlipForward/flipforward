@@ -75,9 +75,9 @@ const projects: Project[] = [
   },
   {
     title: "ATLAZ",
-    category: "DJ / producer",
-    challenge: "Een DJ en producer had een officiële plek nodig voor zijn muziek en boekingen.",
-    solution: "Een website met mixes, aankomende shows en een presskit voor organisatoren.",
+    category: "Eigen project · artiestensite",
+    challenge: "Als DJ en producer onder de naam ATLAZ had ik een officiële plek nodig voor mijn muziek en boekingen.",
+    solution: "Een artiestensite met mixes, aankomende shows en een presskit voor organisatoren.",
     tags: ["Muziek", "Presskit", "Boekingen"],
     link: "https://atlazmusic.be",
     domain: "atlazmusic.be",

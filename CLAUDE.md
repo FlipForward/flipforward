@@ -59,7 +59,7 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
 - [ ] Juridische nalezing van algemene voorwaarden en privacyverklaring (gemarkeerde passages).
 - [x] Prijs add-on "Extra taal": blijft bewust "op aanvraag" (beslissing Finn, 07/10/2026).
 - [x] Foto van Finn toegevoegd (`src/assets/finn.webp`, 320×320 crop).
-- [ ] Is ATLAZ een eigen project of een klant? (portfolio-label)
+- [x] ATLAZ = eigen project (Finn is zelf DJ/producer ATLAZ; zo ook in zijn portfolio-repo). Label en tekst aangepast.
 - [ ] Verwerkers in privacyverklaring bevestigen (Dexxter nog in gebruik?).
 - [x] Redesign gemerged naar `main` en live (07/10/2026).
 - [x] Speelse 404 en projectnamen in de hero gemerged naar `main` en live (07/10/2026).
