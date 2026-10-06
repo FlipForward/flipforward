@@ -54,14 +54,16 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
 ## Open / te bevestigen door Finn
 - [x] E-mail op de site: `finn@flipforward.be` (Vimexx-mailbox).
 - [x] DNS blijft bij Vimexx (domein gekoppeld aan mailhosting, beheer via DirectAdmin): A @ → 76.76.21.21, CNAME www → cname.vercel-dns.com. Mailrecords (MX spamrelay.zxcs.nl, SPF, DKIM x._domainkey, DMARC, mail/smtp/pop/ftp) ongewijzigd. Live sinds 05/10/2026.
-- [x] SMTP-variabelen in Vercel gezet. [ ] Contactformulier één keer live testen.
+- [x] SMTP-variabelen in Vercel gezet. [x] Contactformulier live getest door Finn: werkt (07/10/2026).
 - [x] Lovable-project verwijderd (staat niet meer in de Lovable-workspace, gecontroleerd 06/10/2026).
 - [ ] Juridische nalezing van algemene voorwaarden en privacyverklaring (gemarkeerde passages).
-- [ ] Prijs add-on "Extra taal" (nu "op aanvraag").
+- [x] Prijs add-on "Extra taal": blijft bewust "op aanvraag" (beslissing Finn, 07/10/2026).
 - [x] Foto van Finn toegevoegd (`src/assets/finn.webp`, 320×320 crop).
 - [ ] Is ATLAZ een eigen project of een klant? (portfolio-label)
 - [ ] Verwerkers in privacyverklaring bevestigen (Dexxter nog in gebruik?).
 - [x] Redesign gemerged naar `main` en live (07/10/2026).
 - [x] Speelse 404 en projectnamen in de hero gemerged naar `main` en live (07/10/2026).
-- [ ] Labels bevestigen: DriverDash (eigen project of klant?), Flippy ("eigen project · desktop-tool").
-- [ ] Licentie van Aceternity UI nalezen voor commercieel gebruik.
+- [x] Labels: DriverDash = eigen project (webapp), Flippy (ex-Clawd) = eigen project (desktop-tool).
+- [x] Licentie Aceternity UI nagelezen (07/10/2026): gratis componenten mogen in persoonlijke én commerciële/klantprojecten,
+  zonder verplichte naamsvermelding. Niet toegestaan: de componenten zelf doorverkopen of herverdelen (als template, componentbibliotheek
+  of op een marketplace). Bron: FAQ op ui.aceternity.com/pricing en ui.aceternity.com/licence. Gebruik dus ook voor klantensites oké.

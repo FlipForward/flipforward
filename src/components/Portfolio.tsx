@@ -51,7 +51,7 @@ const projects: Project[] = [
   },
   {
     title: "DriverDash",
-    category: "Webapp · ritten & loon",
+    category: "Eigen project · webapp",
     challenge: "Chauffeurs wilden hun ritten, uren en verdiensten bijhouden zonder zelf te rekenen.",
     solution:
       "Een webapp waarin je een rit invoert en meteen je loon ziet: normale uren, overuren, nachttoeslag en kilometervergoeding, met statistieken per maand, klant en auto.",
