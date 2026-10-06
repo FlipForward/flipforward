@@ -127,25 +127,31 @@ const FlipShowcase = () => {
 
 /* ---------- Gedeelde browserkader ---------- */
 
+export interface FaceProps {
+  visible?: boolean;
+  reduced?: boolean;
+  /** Zonder 3D-achterkant (voor andere hero-varianten). */
+  plain?: boolean;
+}
+
 const Face = ({
   back,
-  visible,
-  reduced,
+  visible = true,
+  reduced = false,
+  plain = false,
   children,
   className = "",
-}: {
+}: FaceProps & {
   back?: boolean;
-  visible: boolean;
-  reduced: boolean;
   children: React.ReactNode;
   className?: string;
 }) => (
   <div
     aria-hidden="true"
     className={`absolute inset-0 overflow-hidden rounded-xl border shadow-2xl [backface-visibility:hidden] ${className} ${
-      reduced ? `transition-opacity duration-500 ${visible ? "opacity-100" : "opacity-0"}` : ""
+      reduced && !plain ? `transition-opacity duration-500 ${visible ? "opacity-100" : "opacity-0"}` : ""
     }`}
-    style={back && !reduced ? { transform: "rotateY(180deg)" } : undefined}
+    style={back && !reduced && !plain ? { transform: "rotateY(180deg)" } : undefined}
   >
     {children}
   </div>
@@ -153,8 +159,8 @@ const Face = ({
 
 /* ---------- Voorkant: de saaie, verouderde site ---------- */
 
-const OldSite = ({ visible, reduced }: { visible: boolean; reduced: boolean }) => (
-  <Face visible={visible} reduced={reduced} className="border-[#9a9a9a] bg-[#c0c0c0]">
+export const OldSite = (props: FaceProps) => (
+  <Face {...props} className="border-[#9a9a9a] bg-[#c0c0c0]">
     {/* Windows-achtig kader */}
     <div className="flex items-center gap-[1.2cqw] bg-gradient-to-r from-[#0a246a] to-[#a6caf0] px-[1.6cqw] py-[0.9cqw]">
       <span className="text-[2.1cqw] font-bold text-white [font-family:Tahoma,Verdana,sans-serif]">Jouw Zaak - Microsoft Internet Explorer</span>
@@ -222,8 +228,8 @@ const OldSite = ({ visible, reduced }: { visible: boolean; reduced: boolean }) =
 
 /* ---------- Achterkant: modern, met FlipForward ---------- */
 
-const NewSite = ({ visible, reduced }: { visible: boolean; reduced: boolean }) => (
-  <Face back visible={visible} reduced={reduced} className="border-white/10 bg-[hsl(222_47%_6%)]">
+export const NewSite = (props: FaceProps) => (
+  <Face back {...props} className="border-white/10 bg-[hsl(222_47%_6%)]">
     {/* moderne browserbalk */}
     <div className="flex items-center gap-[1.4cqw] border-b border-white/10 bg-white/[0.04] px-[1.8cqw] py-[1.2cqw]">
       <span className="flex gap-[0.8cqw]">

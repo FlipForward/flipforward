@@ -1,4 +1,6 @@
-import { ArrowUpRight, Lock, MousePointer2 } from "lucide-react";
+import { useRef, useState } from "react";
+import { ArrowUpRight, ArrowLeft, ArrowRight, Lock, MousePointer2 } from "lucide-react";
+import { useVariant } from "@/lib/variants";
 import hytaleDesktop from "@/assets/portfolio/hytale-desktop.webp";
 import hytaleMobile from "@/assets/portfolio/hytale-mobile.webp";
 import atlazDesktop from "@/assets/portfolio/atlaz-desktop.webp";
@@ -244,8 +246,144 @@ const MoreCard = ({ p, wide }: { p: (typeof moreProjects)[number]; wide: boolean
   );
 };
 
-const Portfolio = () => (
-  <section id="portfolio" aria-labelledby="portfolio-title" className="py-20 sm:py-28 bg-gradient-hero scroll-mt-20 overflow-hidden">
+/* ---------- Variant: carrousel ---------- */
+
+const CaseLink = ({ p }: { p: Project }) => (
+  <a
+    href={p.link}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="group/link inline-flex flex-shrink-0 items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-5 py-2.5 text-sm font-semibold text-accent transition-colors hover:bg-accent hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+  >
+    Bekijk live
+    <span className="sr-only"> de website van {p.title} (opent in nieuw tabblad)</span>
+    <ArrowUpRight className="h-4 w-4 transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" aria-hidden="true" />
+  </a>
+);
+
+const Carousel = () => {
+  const track = useRef<HTMLUListElement>(null);
+  const [active, setActive] = useState(0);
+
+  const go = (i: number) => {
+    const t = track.current;
+    const el = t?.children[i] as HTMLElement | undefined;
+    if (!t || !el) return;
+    t.scrollTo({ left: el.offsetLeft - (t.clientWidth - el.offsetWidth) / 2, behavior: "smooth" });
+  };
+  const onScroll = () => {
+    const t = track.current;
+    if (!t) return;
+    const center = t.scrollLeft + t.clientWidth / 2;
+    const dist = (el: Element) => Math.abs((el as HTMLElement).offsetLeft + (el as HTMLElement).offsetWidth / 2 - center);
+    let best = 0;
+    Array.from(t.children).forEach((c, i) => {
+      if (dist(c) < dist(t.children[best])) best = i;
+    });
+    setActive(best);
+  };
+
+  return (
+    <div className="relative">
+      <ul
+        ref={track}
+        onScroll={onScroll}
+        className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-6 px-[7.5vw] lg:px-[21vw] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        aria-label="Projecten"
+      >
+        {projects.map((p, i) => (
+          <li
+            key={p.title}
+            className={"group/case relative w-[85vw] lg:w-[58vw] max-w-4xl flex-shrink-0 snap-center transition-all duration-500 " + (active === i ? "opacity-100" : "opacity-40 scale-[0.94]")}
+          >
+            <BrowserFrame p={p} />
+            <div className="mt-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <div className="max-w-2xl">
+                <p className="text-xs uppercase tracking-wider text-muted-foreground">
+                  <span className="mr-2 font-mono text-accent">{String(i + 1).padStart(2, "0")}</span>
+                  {p.category}
+                </p>
+                <h3 className="mt-1 text-2xl sm:text-4xl font-extrabold tracking-tight">{p.title}</h3>
+                <p className="mt-2 text-muted-foreground">{p.solution}</p>
+              </div>
+              <CaseLink p={p} />
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      <div className="mt-4 flex items-center justify-center gap-4">
+        <button
+          type="button"
+          onClick={() => go(Math.max(0, active - 1))}
+          disabled={active === 0}
+          aria-label="Vorig project"
+          className="grid h-11 w-11 place-items-center rounded-full border border-border bg-card transition-colors hover:border-accent disabled:opacity-30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        >
+          <ArrowLeft className="h-5 w-5" aria-hidden="true" />
+        </button>
+        <div className="flex gap-2">
+          {projects.map((p, i) => (
+            <button
+              key={p.title}
+              type="button"
+              onClick={() => go(i)}
+              aria-label={"Ga naar " + p.title}
+              aria-current={active === i}
+              className={"h-2 rounded-full transition-all duration-300 " + (active === i ? "w-8 bg-accent" : "w-2 bg-border hover:bg-muted-foreground")}
+            />
+          ))}
+        </div>
+        <button
+          type="button"
+          onClick={() => go(Math.min(projects.length - 1, active + 1))}
+          disabled={active === projects.length - 1}
+          aria-label="Volgend project"
+          className="grid h-11 w-11 place-items-center rounded-full border border-border bg-card transition-colors hover:border-accent disabled:opacity-30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        >
+          <ArrowRight className="h-5 w-5" aria-hidden="true" />
+        </button>
+      </div>
+    </div>
+  );
+};
+
+/* ---------- Variant: stapelkaarten (sticky) ---------- */
+
+const Stack = () => (
+  <ul className="max-w-6xl mx-auto">
+    {projects.map((p, i) => (
+      <li key={p.title} className="group/case sticky mb-[12vh] last:mb-0" style={{ top: "calc(6rem + " + i * 1.75 + "rem)" }}>
+        <div className="grid items-center gap-8 rounded-3xl border border-border bg-[hsl(222_40%_7%)] p-6 shadow-[0_-20px_60px_-20px_rgb(0_0_0/0.8)] sm:p-10 lg:grid-cols-[1fr_1.4fr]">
+          <div>
+            <p className="flex items-center gap-3 text-sm">
+              <span className="font-mono text-accent">{String(i + 1).padStart(2, "0")}</span>
+              <span className="h-px w-8 bg-accent/50" aria-hidden="true" />
+              <span className="text-xs uppercase tracking-wider text-muted-foreground">{p.category}</span>
+            </p>
+            <h3 className="mt-3 text-3xl sm:text-5xl font-extrabold tracking-tight">{p.title}</h3>
+            <p className="mt-4 text-muted-foreground leading-relaxed">{p.challenge}</p>
+            <p className="mt-3 text-foreground/90 leading-relaxed">{p.solution}</p>
+            <div className="mt-6">
+              <CaseLink p={p} />
+            </div>
+          </div>
+          <div className="relative">
+            <BrowserFrame p={p} />
+            <div className="absolute -bottom-6 -right-2 w-[20%] min-w-[70px] rotate-6 transition-transform duration-500 motion-safe:group-hover/case:rotate-0 motion-safe:group-hover/case:-translate-y-2">
+              <PhoneFrame p={p} />
+            </div>
+          </div>
+        </div>
+      </li>
+    ))}
+  </ul>
+);
+
+const Portfolio = () => {
+  const variant = useVariant("werk");
+  return (
+  <section id="portfolio" aria-labelledby="portfolio-title" className="py-20 sm:py-28 bg-gradient-hero scroll-mt-20 overflow-x-clip">
     <div className="container mx-auto px-4 sm:px-6">
       <div className="mb-14 sm:mb-20 flex flex-col items-center text-center lg:flex-row lg:items-end lg:justify-between lg:text-left max-w-6xl mx-auto gap-4">
         <div>
@@ -262,11 +400,19 @@ const Portfolio = () => (
         </p>
       </div>
 
-      <ul className="space-y-24 sm:space-y-32 max-w-6xl mx-auto">
-        {projects.map((p, i) => (
-          <Case key={p.title} p={p} i={i} />
-        ))}
-      </ul>
+      {variant === "cases" && (
+        <ul className="space-y-24 sm:space-y-32 max-w-6xl mx-auto">
+          {projects.map((p, i) => (
+            <Case key={p.title} p={p} i={i} />
+          ))}
+        </ul>
+      )}
+      {variant === "stack" && <Stack />}
+    </div>
+
+    {variant === "carousel" && <Carousel />}
+
+    <div className="container mx-auto px-4 sm:px-6">
 
       <div className="max-w-6xl mx-auto mt-28 sm:mt-36">
         <div className="mb-8 flex items-end justify-between gap-4">
@@ -283,6 +429,7 @@ const Portfolio = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
 export default Portfolio;
