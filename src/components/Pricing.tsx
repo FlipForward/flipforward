@@ -1,12 +1,15 @@
+import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Check, ArrowRight, Camera, Languages, Clock } from "lucide-react";
-import { packages, includedInAll, addOns, PRICE_NOTE, formatEuro } from "@/lib/site";
+import { packages, includedInAll, addOns, PRICE_NOTE, formatEuro, type PackageId } from "@/lib/site";
+import PackageFinder from "./PackageFinder";
 import { selectPackage } from "@/lib/selectPackage";
 
 const addOnIcons: Record<string, typeof Clock> = { Fotografie: Camera, "Extra taal": Languages };
 
 const Pricing = () => {
+  const [recommended, setRecommended] = useState<PackageId | null>(null);
   return (
     <section id="pakketten" aria-labelledby="pakketten-title" className="py-16 sm:py-24 bg-muted/50 relative overflow-hidden scroll-mt-20">
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
@@ -19,19 +22,24 @@ const Pricing = () => {
           </p>
         </div>
 
+        <PackageFinder onResult={setRecommended} />
+
         <div className="grid gap-6 lg:grid-cols-3 max-w-6xl mx-auto items-stretch">
           {packages.map((p) => {
-            const featured = Boolean(p.highlight);
+            const isMatch = recommended === p.id;
+            const featured = recommended ? isMatch : Boolean(p.highlight);
+            const dimmed = recommended !== null && !isMatch;
             return (
               <Card
                 key={p.id}
-                className={`relative flex flex-col p-6 sm:p-8 bg-gradient-card ${
+                id={`pakket-${p.id}`}
+                className={`relative flex flex-col p-6 sm:p-8 bg-gradient-card transition-all duration-500 motion-safe:hover:-translate-y-1 ${
                   featured ? "border-2 border-accent shadow-[0_0_40px_hsl(10_89%_55%/0.15)] lg:-translate-y-2" : "border-border"
-                }`}
+                } ${isMatch ? "shadow-[0_0_70px_hsl(10_89%_55%/0.35)] motion-safe:lg:-translate-y-3" : ""} ${dimmed ? "opacity-60" : ""}`}
               >
-                {featured && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground">
-                    {p.highlight}
+                {(isMatch || (!recommended && p.highlight)) && (
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground">
+                    {isMatch ? "Past bij jou" : p.highlight}
                   </span>
                 )}
                 <h3 className="text-2xl font-bold text-foreground">{p.name}</h3>
