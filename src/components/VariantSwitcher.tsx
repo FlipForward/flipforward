@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Palette, X } from "lucide-react";
 import { VARIANTS, setVariant, useVariant, type VariantKey } from "@/lib/variants";
 
-const LABELS: Record<VariantKey, string> = { hero: "Hero", werk: "Portfolio" };
-const TARGET: Record<VariantKey, string> = { hero: "hero", werk: "portfolio" };
+const LABELS: Record<VariantKey, string> = { hero: "Hero" };
+const TARGET: Record<VariantKey, string> = { hero: "hero" };
 
 const Row = ({ k }: { k: VariantKey }) => {
   const current = useVariant(k);

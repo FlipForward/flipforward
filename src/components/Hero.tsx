@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Lock } from "lucide-react";
 import HeroCopy from "./hero/HeroCopy";
-import { HeroParallax } from "./aceternity/HeroParallax";
+import { ParallaxHeroImages } from "./aceternity/ParallaxHeroImages";
 import { ThreeDMarquee } from "./aceternity/ThreeDMarquee";
 import { ContainerScroll } from "./aceternity/ContainerScroll";
 import { Spotlight } from "./aceternity/Spotlight";
@@ -25,7 +25,7 @@ const MarqueeHero = () => (
 
 /** Inhoud van de tablet: projecten die elkaar afwisselen. */
 const ProjectSlideshow = () => {
-  const items = showcase.slice(0, 6);
+  const items = showcase.slice(0, 3);
   const [i, setI] = useState(0);
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -60,11 +60,22 @@ const ProjectSlideshow = () => {
   );
 };
 
+/** Variant "zweven": gecentreerde tekst, projecten zweven eromheen en volgen de muis. */
+const FloatingHero = () => (
+  <section id="hero" className="relative flex min-h-screen items-center overflow-hidden">
+    <Spotlight />
+    <ParallaxHeroImages images={showcase.slice(0, 8).map((s) => s.thumbnail)} className="max-md:opacity-40" />
+    <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--background))_25%,hsl(var(--background)/0.6)_50%,transparent_75%)]" />
+    <div className="container relative z-20 mx-auto px-4 pt-28 pb-20 sm:px-6">
+      <HeroCopy align="center" />
+    </div>
+  </section>
+);
+
 const Hero = () => {
   const variant = useVariant("hero");
 
-  if (variant === "parallax")
-    return <HeroParallax products={repeatTo(showcase, 15)} header={<HeroCopy />} />;
+  if (variant === "marquee") return <MarqueeHero />;
 
   if (variant === "tablet")
     return (
@@ -76,7 +87,7 @@ const Hero = () => {
       </div>
     );
 
-  return <MarqueeHero />;
+  return <FloatingHero />;
 };
 
 export default Hero;

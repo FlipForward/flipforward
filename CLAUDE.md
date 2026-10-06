@@ -9,6 +9,21 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
 - `src/lib/site.ts` – **enige bron** voor bedrijfsgegevens, pakketten, prijzen, extra's, werkwijze en FAQ. Pas prijzen/teksten hier aan.
 - `src/lib/seo.ts` – genereert JSON-LD (ProfessionalService + OfferCatalog + FAQPage), `sitemap.xml` en `llms.txt` uit `site.ts` (via plugin in `vite.config.ts`).
 - `src/components/` – secties van de homepage; `LegalPage.tsx` is de layout voor privacyverklaring en voorwaarden.
+- `src/components/aceternity/` – componenten gebaseerd op de gratis registry van Aceternity UI (ui.aceternity.com), aangepast aan
+  de huisstijl (oranje, reduced motion, toegankelijk). Bron staat bovenaan elk bestand. Gebruikt de library `motion` (framer-motion).
+  - Hero: `ParallaxHeroImages` (zwevende projecten, standaard), `ThreeDMarquee`, `ContainerScroll`, `Spotlight`, `FlipWords` (titel).
+  - Portfolio: `CometCard` (3D-tiltkaarten). Diensten/Over/Pakketten/Contact: `GlowingEffect`/`GlowCard` (rand die de muis volgt),
+    Over: `PointerHighlight`, Werkwijze: `Timeline`.
+- `src/components/ScrollShot.tsx` – screenshot die bij hover door de pagina scrolt (enkel `transform`, geen layout-animatie).
+- Portfolio (`Portfolio.tsx`): uitgelicht in deze volgorde: finnvangronsveld.be, DriverDash, Clawd, ATLAZ, Hytale Vlaanderen
+  (allemaal even grote kaarten). Daaronder "Meer projecten" (Feest Op Tafel, Spuddy, B&B, Hyperdrive, WingByte, Webdesign Essentials).
+  `src/lib/showcase.ts` is de lijst screenshots voor de hero en Diensten.
+- Screenshots in `src/assets/portfolio/` (WebP; desktop 1200 px breed volledige pagina, mobiel 390×844 @2x), gemaakt met
+  playwright-core + Edge. DriverDash: de lokale frontend van de getdrivendashboard-repo met onderschepte API/Supabase-calls en
+  fictieve demo-ritten (namen uit de demo-seed van die backend) – nooit een account of data op de live driverdash.be aanmaken.
+- `VariantSwitcher` + `src/lib/variants.ts` – tijdelijk wisselpaneel voor hero-varianten (enkel in dev of met `?varianten`).
+  Weghalen zodra de keuze vastligt.
+- UI-teksten: geen uitleg-/hinttekstjes zoals "Hover om te scrollen" of "Echte websites, live online".
 - `src/pages/` – `Index`, `PrivacyPolicy` (/privacyverklaring), `Terms` (/algemene-voorwaarden), `NotFound`.
 - Geen backend of databank. Het contactformulier POST naar `api/contact.ts` (Vercel-functie) die een opgemaakte HTML-mail (+ tekstversie, opgebouwd in `api/_email.ts`) stuurt via SMTP van de Vimexx-mailbox.
   Env-variabelen in Vercel: `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` (geheim, enkel Finn), optioneel `CONTACT_TO`. Spamrem: honeypotveld `website` + rate limit.
@@ -40,3 +55,7 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
 - [x] Foto van Finn toegevoegd (`src/assets/finn.webp`, 320×320 crop).
 - [ ] Is ATLAZ een eigen project of een klant? (portfolio-label)
 - [ ] Verwerkers in privacyverklaring bevestigen (Dexxter nog in gebruik?).
+- [ ] Redesign staat op branch `redesign/hero-portfolio` (niet gepusht). Pas pushen/mergen na akkoord van Finn.
+- [ ] Hero-variant definitief kiezen (nu standaard "zwevende projecten") en dan VariantSwitcher verwijderen.
+- [ ] Labels bevestigen: DriverDash (eigen project of klant?), Clawd ("eigen project · desktop-app"), Feest Op Tafel (teamproject, eigen rol?).
+- [ ] Licentie van Aceternity UI nalezen voor commercieel gebruik.

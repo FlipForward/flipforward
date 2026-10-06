@@ -2,18 +2,13 @@ import { useEffect, useState } from "react";
 
 /**
  * Ontwerpvarianten om naast elkaar te vergelijken (enkel tijdelijk tijdens de redesign).
- * Keuze staat in de URL (?hero=parallax&werk=stack) zodat je een variant kunt delen.
+ * Keuze staat in de URL (?hero=marquee) zodat je een variant kunt delen.
  */
 export const VARIANTS = {
   hero: [
+    { id: "zweven", label: "Zwevende projecten" },
     { id: "marquee", label: "3D-marquee" },
-    { id: "parallax", label: "Parallax" },
     { id: "tablet", label: "Tablet-scroll" },
-  ],
-  werk: [
-    { id: "cases", label: "Grote cases" },
-    { id: "carousel", label: "Carrousel" },
-    { id: "stack", label: "Stapelkaarten" },
   ],
 } as const;
 

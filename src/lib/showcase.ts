@@ -1,5 +1,7 @@
 /** Projectscreenshots voor de hero-varianten (zelfde bestanden als het portfolio). */
 import hytale from "@/assets/portfolio/hytale-desktop.webp";
+import driverdash from "@/assets/portfolio/driverdash-desktop.webp";
+import clawd from "@/assets/portfolio/clawd-desktop.webp";
 import atlaz from "@/assets/portfolio/atlaz-desktop.webp";
 import feest from "@/assets/portfolio/feestoptafel-desktop.webp";
 import finn from "@/assets/portfolio/finn-desktop.webp";
@@ -16,10 +18,12 @@ export interface ShowcaseItem {
 }
 
 export const showcase: ShowcaseItem[] = [
-  { title: "Hytale Vlaanderen", link: "https://hytalevlaanderen.be", thumbnail: hytale },
+  { title: "finnvangronsveld.be", link: "https://finnvangronsveld.be", thumbnail: finn },
+  { title: "DriverDash", link: "https://driverdash.be", thumbnail: driverdash },
+  { title: "Clawd", link: "https://clawd-desktop-pet.vercel.app", thumbnail: clawd },
   { title: "ATLAZ", link: "https://atlazmusic.be", thumbnail: atlaz },
+  { title: "Hytale Vlaanderen", link: "https://hytalevlaanderen.be", thumbnail: hytale },
   { title: "Feest Op Tafel", link: "https://feestoptafel.com", thumbnail: feest },
-  { title: "Persoonlijke website", link: "https://finnvangronsveld.be", thumbnail: finn },
   { title: "Spuddy", link: "https://spuddy.be", thumbnail: spuddy },
   { title: "Hyperdrive Festival", link: "https://hyperdrivefestival.netlify.app", thumbnail: hyperdrive },
   { title: "WingByte", link: "https://wingbyte.netlify.app", thumbnail: wingbyte },

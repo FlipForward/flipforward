@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Mail, Send, MapPin, Clock } from "lucide-react";
 import { business, packages, type PackageId } from "@/lib/site";
+import { GlowingEffect } from "./aceternity/GlowingEffect";
 import { PACKAGE_EVENT } from "@/lib/selectPackage";
 
 type PackageChoice = PackageId | "onbekend" | "";
@@ -86,7 +87,8 @@ const Contact = () => {
         </div>
 
         <div className="max-w-5xl mx-auto grid md:grid-cols-5 gap-6 sm:gap-8 items-start">
-          <Card className="md:col-span-3 p-6 sm:p-8 bg-gradient-card border-border">
+          <Card className="relative md:col-span-3 p-6 sm:p-8 bg-gradient-card border-border">
+            <GlowingEffect />
             <form onSubmit={handleSubmit} className="space-y-5">
               {/* Spamval: onzichtbaar voor bezoekers, bots vullen het in. */}
               <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
