@@ -60,6 +60,6 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
 - [ ] Is ATLAZ een eigen project of een klant? (portfolio-label)
 - [ ] Verwerkers in privacyverklaring bevestigen (Dexxter nog in gebruik?).
 - [x] Redesign gemerged naar `main` en live (07/10/2026).
-- [ ] Branch `feat/404-hero-namen` (speelse 404, projectnamen in de hero) nog niet gepusht; wacht op akkoord van Finn.
+- [x] Speelse 404 en projectnamen in de hero gemerged naar `main` en live (07/10/2026).
 - [ ] Labels bevestigen: DriverDash (eigen project of klant?), Clawd ("eigen project · desktop-tool").
 - [ ] Licentie van Aceternity UI nalezen voor commercieel gebruik.
