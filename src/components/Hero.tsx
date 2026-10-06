@@ -1,74 +1,82 @@
-import { Button } from "@/components/ui/button";
-import { ArrowRight, ChevronDown } from "lucide-react";
-import TypingAnimation from "./TypingAnimation";
-import FlipShowcase from "./hero/FlipShowcase";
-import BeforeAfter from "./hero/BeforeAfter";
-import ScrollFlipHero from "./hero/ScrollFlipHero";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
+import { Lock } from "lucide-react";
+import HeroCopy from "./hero/HeroCopy";
+import { HeroParallax } from "./aceternity/HeroParallax";
+import { ThreeDMarquee } from "./aceternity/ThreeDMarquee";
+import { ContainerScroll } from "./aceternity/ContainerScroll";
+import { Spotlight } from "./aceternity/Spotlight";
+import { showcase, repeatTo } from "@/lib/showcase";
 import { useVariant } from "@/lib/variants";
 
-const HeroText = ({ centered = false }: { centered?: boolean }) => (
-  <div className={centered ? "text-center" : "text-center lg:text-left"}>
-    <TypingAnimation />
-
-    <h1
-      className={`font-extrabold tracking-tight mb-5 sm:mb-6 leading-[1.05] text-balance ${
-        centered ? "text-4xl sm:text-6xl xl:text-7xl" : "text-4xl sm:text-5xl xl:text-7xl"
-      }`}
-    >
-      Van saaie site naar
-      <span className="block text-transparent bg-clip-text bg-gradient-accent pb-2">flip forward.</span>
-    </h1>
-
-    <p className={`text-base sm:text-xl text-muted-foreground mb-8 sm:mb-10 max-w-xl mx-auto ${centered ? "" : "lg:mx-0"}`}>
-      FlipForward bouwt websites voor kmo's en zelfstandigen in de Kempen en regelt daarna alles: hosting, beveiliging,
-      updates en aanpassingen. Jij onderneemt, wij doen de rest.
-    </p>
-
-    <div className={`flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center ${centered ? "" : "lg:justify-start"}`}>
-      <Button asChild variant="hero" size="lg">
-        <a href="#pakketten">
-          Bekijk de pakketten
-          <ArrowRight className="ml-2 w-5 h-5" aria-hidden="true" />
-        </a>
-      </Button>
-      <Button asChild variant="outline" size="lg">
-        <a href="#portfolio">Bekijk ons werk</a>
-      </Button>
+/** Variant "marquee": tekst links, schuin raster van projecten dat traag beweegt rechts. */
+const MarqueeHero = () => (
+  <section id="hero" className="relative flex min-h-screen items-center overflow-hidden">
+    <Spotlight />
+    <div className="absolute inset-y-0 right-0 w-full lg:w-[62%] [mask-image:linear-gradient(to_right,transparent,black_35%)] max-lg:opacity-30 max-lg:[mask-image:none]">
+      <ThreeDMarquee images={repeatTo(showcase, 24).map((s) => s.thumbnail)} className="h-full w-full" />
     </div>
-  </div>
+    <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent lg:via-background/40" />
+    <div className="container relative z-10 mx-auto px-4 pt-28 pb-20 sm:px-6">
+      <HeroCopy />
+    </div>
+  </section>
 );
+
+/** Inhoud van de tablet: projecten die elkaar afwisselen. */
+const ProjectSlideshow = () => {
+  const items = showcase.slice(0, 6);
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const t = window.setInterval(() => setI((n) => (n + 1) % items.length), 3200);
+    return () => window.clearInterval(t);
+  }, [items.length]);
+  const p = items[i];
+  return (
+    <div className="relative h-full w-full">
+      <AnimatePresence mode="popLayout">
+        <motion.img
+          key={p.title}
+          src={p.thumbnail}
+          alt=""
+          initial={{ opacity: 0, scale: 1.04 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="absolute inset-0 h-full w-full object-cover object-top"
+        />
+      </AnimatePresence>
+      <div className="absolute bottom-4 left-4 flex items-center gap-2 rounded-full bg-black/70 px-3 py-1.5 text-sm text-white backdrop-blur">
+        <Lock className="h-3.5 w-3.5 text-emerald-400" aria-hidden="true" />
+        {p.title}
+      </div>
+      <div className="absolute bottom-5 right-5 flex gap-1.5" aria-hidden="true">
+        {items.map((it, n) => (
+          <span key={it.title} className={`h-1.5 rounded-full transition-all duration-500 ${n === i ? "w-6 bg-accent" : "w-1.5 bg-white/40"}`} />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const Hero = () => {
   const variant = useVariant("hero");
 
-  if (variant === "scroll") return <ScrollFlipHero text={<HeroText centered />} />;
+  if (variant === "parallax")
+    return <HeroParallax products={repeatTo(showcase, 15)} header={<HeroCopy />} />;
 
-  return (
-    <section id="hero" className="min-h-screen flex items-center relative overflow-hidden">
-      {/* Oranje gloed en raster, enkel in donkere modus */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-96 bg-gradient-to-b from-primary/20 via-primary/5 to-transparent blur-3xl pointer-events-none opacity-0 dark:opacity-100"
-        aria-hidden="true"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 pointer-events-none opacity-[0.07] dark:opacity-[0.12] [background-image:linear-gradient(hsl(var(--foreground))_1px,transparent_1px),linear-gradient(90deg,hsl(var(--foreground))_1px,transparent_1px)] [background-size:56px_56px] [mask-image:radial-gradient(ellipse_at_center,black_20%,transparent_70%)]"
-      />
-
-      <div className="container mx-auto px-4 sm:px-6 pt-28 pb-20 lg:pt-24 relative z-10">
-        <div className="grid items-center gap-12 lg:gap-10 lg:grid-cols-[1fr_1.1fr]">
-          <HeroText />
-          {variant === "slider" ? <BeforeAfter /> : <FlipShowcase />}
-        </div>
+  if (variant === "tablet")
+    return (
+      <div className="relative overflow-hidden">
+        <Spotlight />
+        <ContainerScroll titleComponent={<HeroCopy align="center" />}>
+          <ProjectSlideshow />
+        </ContainerScroll>
       </div>
+    );
 
-      <div className="absolute bottom-6 left-0 right-0 hidden sm:flex justify-center z-10">
-        <a href="#over" aria-label="Scroll naar Over FlipForward" className="rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-          <ChevronDown className="w-9 h-9 text-accent motion-safe:animate-bounce" aria-hidden="true" />
-        </a>
-      </div>
-    </section>
-  );
+  return <MarqueeHero />;
 };
 
 export default Hero;

@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { ArrowUpRight, ArrowLeft, ArrowRight, Lock, MousePointer2 } from "lucide-react";
 import { useVariant } from "@/lib/variants";
+import ScrollShot from "./ScrollShot";
 import hytaleDesktop from "@/assets/portfolio/hytale-desktop.webp";
 import hytaleMobile from "@/assets/portfolio/hytale-mobile.webp";
 import atlazDesktop from "@/assets/portfolio/atlaz-desktop.webp";
@@ -129,16 +130,7 @@ const BrowserFrame = ({ p }: { p: Project }) => (
         {p.domain}
       </span>
     </div>
-    <div className="relative aspect-[16/10] overflow-hidden">
-      <img
-        src={p.desktop}
-        alt={`Screenshot van de website ${p.title}`}
-        width={1200}
-        loading="lazy"
-        decoding="async"
-        className="absolute inset-x-0 top-0 w-full transition-[top,transform] duration-[4000ms] ease-in-out motion-reduce:transition-none group-hover/case:top-full group-hover/case:-translate-y-full group-focus-within/case:top-full group-focus-within/case:-translate-y-full"
-      />
-    </div>
+    <ScrollShot src={p.desktop} alt={`Screenshot van de website ${p.title}`} />
   </div>
 );
 
@@ -159,7 +151,7 @@ const Case = ({ p, i }: { p: Project; i: number }) => {
       <div className={`relative lg:col-span-7 ${flip ? "lg:order-2" : ""}`}>
         <div
           aria-hidden="true"
-          className="absolute -inset-6 rounded-[2rem] bg-[radial-gradient(ellipse_at_center,hsl(10_89%_50%/0.18),transparent_70%)] opacity-60 blur-2xl transition-opacity duration-500 group-hover/case:opacity-100"
+          className="pointer-events-none absolute -inset-6 rounded-[2rem] bg-[radial-gradient(ellipse_at_center,hsl(10_89%_50%/0.16),transparent_70%)]"
         />
         <div className="relative transition-transform duration-500 ease-out motion-safe:group-hover/case:-translate-y-1">
           <BrowserFrame p={p} />
@@ -221,15 +213,7 @@ const MoreCard = ({ p, wide }: { p: (typeof moreProjects)[number]; wide: boolean
           </span>
           <span className="mx-auto truncate text-[11px] text-white/50">{p.domain}</span>
         </div>
-        <div className={`relative overflow-hidden ${wide ? "aspect-[16/8]" : "aspect-[16/10]"}`}>
-          <img
-            src={p.image}
-            alt={`Screenshot van ${p.title}`}
-            loading="lazy"
-            decoding="async"
-            className="absolute inset-x-0 top-0 w-full transition-[top,transform] duration-[3500ms] ease-in-out motion-reduce:transition-none group-hover/more:top-full group-hover/more:-translate-y-full group-focus-visible/more:top-full group-focus-visible/more:-translate-y-full"
-          />
-        </div>
+        <ScrollShot src={p.image} alt={`Screenshot van ${p.title}`} aspect={wide ? "aspect-[16/8]" : "aspect-[16/10]"} />
         <div className="flex flex-1 flex-col p-5">
           <p className="text-xs uppercase tracking-wider text-muted-foreground">{p.category}</p>
           <h4 className="mt-1 flex items-center gap-1.5 text-lg font-bold text-foreground">

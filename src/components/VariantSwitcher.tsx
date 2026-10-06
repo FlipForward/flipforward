@@ -39,6 +39,7 @@ const VariantSwitcher = () => {
 
   useEffect(() => {
     setEnabled(import.meta.env.DEV || new URLSearchParams(window.location.search).has("varianten"));
+    setOpen(window.innerWidth >= 768);
   }, []);
 
   if (!enabled) return null;
