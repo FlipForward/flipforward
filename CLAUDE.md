@@ -11,7 +11,8 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
 - `src/components/` – secties van de homepage; `LegalPage.tsx` is de layout voor privacyverklaring en voorwaarden.
 - `src/components/aceternity/` – componenten gebaseerd op de gratis registry van Aceternity UI (ui.aceternity.com), aangepast aan
   de huisstijl (oranje, reduced motion, toegankelijk). Bron staat bovenaan elk bestand. Gebruikt de library `motion` (framer-motion).
-  - Hero: `ParallaxHeroImages` (projectscreenshots zweven rond de tekst en volgen de muis), `Spotlight`, `FlipWords` (titel).
+  - Hero: `ParallaxHeroImages` (projectscreenshots zweven rond de tekst en volgen de muis; bij hover de projectnaam, klik scrolt
+    naar de case (`#project-…`, zie `projectAnchor`/`FEATURED` in `showcase.ts`) of opent de live site), `Spotlight`, `FlipWords` (titel).
   - Portfolio: `CometCard` (3D-tiltkaarten). Diensten/Over/Pakketten/Contact: `GlowingEffect`/`GlowCard` (rand die de muis volgt),
     Werkwijze: `Timeline`.
 - `src/components/ScrollShot.tsx` – screenshot die bij hover door de pagina scrolt (enkel `transform`, geen layout-animatie).
@@ -26,7 +27,8 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
 - Favicon (tab): `public/favicon.svg` = originele logo met de eerste "f" altijd zwart (#111) en "f›" oranje, transparant;
   `favicon.ico` (16/32/48) daaruit gerenderd. App-iconen (icon-192/512, apple-touch-icon) ongewijzigd: donkere achtergrond, witte f.
 - Responsive gecontroleerd op 320–1920 px zonder horizontaal scrollen; dat zo houden bij nieuwe secties.
-- `src/pages/` – `Index`, `PrivacyPolicy` (/privacyverklaring), `Terms` (/algemene-voorwaarden), `NotFound`.
+- `src/pages/` – `Index`, `PrivacyPolicy` (/privacyverklaring), `Terms` (/algemene-voorwaarden), `NotFound` (speelse 404:
+  een "kapotte" IE-pagina uit 2009 die je met "Flip forward" omdraait naar een moderne kaart met links naar home/werk/pakketten/contact).
 - Geen backend of databank. Het contactformulier POST naar `api/contact.ts` (Vercel-functie) die een opgemaakte HTML-mail (+ tekstversie, opgebouwd in `api/_email.ts`) stuurt via SMTP van de Vimexx-mailbox.
   Env-variabelen in Vercel: `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` (geheim, enkel Finn), optioneel `CONTACT_TO`. Spamrem: honeypotveld `website` + rate limit.
 
@@ -57,6 +59,7 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
 - [x] Foto van Finn toegevoegd (`src/assets/finn.webp`, 320×320 crop).
 - [ ] Is ATLAZ een eigen project of een klant? (portfolio-label)
 - [ ] Verwerkers in privacyverklaring bevestigen (Dexxter nog in gebruik?).
-- [ ] Redesign staat op branch `redesign/hero-portfolio` (niet gepusht). Pas pushen/mergen na akkoord van Finn.
+- [x] Redesign gemerged naar `main` en live (07/10/2026).
+- [ ] Branch `feat/404-hero-namen` (speelse 404, projectnamen in de hero) nog niet gepusht; wacht op akkoord van Finn.
 - [ ] Labels bevestigen: DriverDash (eigen project of klant?), Clawd ("eigen project · desktop-tool").
 - [ ] Licentie van Aceternity UI nalezen voor commercieel gebruik.

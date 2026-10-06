@@ -1,6 +1,7 @@
 import { ArrowUpRight, Lock } from "lucide-react";
 import ScrollShot from "./ScrollShot";
 import { CometCard } from "./aceternity/CometCard";
+import { projectAnchor } from "@/lib/showcase";
 import finnDesktop from "@/assets/portfolio/finn-desktop.webp";
 import finnMobile from "@/assets/portfolio/finn-mobile.webp";
 import driverdashDesktop from "@/assets/portfolio/driverdash-desktop.webp";
@@ -153,7 +154,7 @@ const CaseText = ({ p, i }: { p: Project; i: number }) => (
 const Tilt = () => (
   <ul className="mx-auto grid max-w-6xl gap-8 md:grid-cols-2 lg:gap-10">
     {projects.map((p, i) => (
-      <li key={p.title} className={`h-full ${i === projects.length - 1 && projects.length % 2 === 1 ? "md:col-span-2 md:mx-auto md:w-[calc(50%-1rem)] lg:w-[calc(50%-1.25rem)]" : ""}`}>
+      <li key={p.title} id={projectAnchor(p.title)} className={`scroll-mt-28 h-full ${i === projects.length - 1 && projects.length % 2 === 1 ? "md:col-span-2 md:mx-auto md:w-[calc(50%-1rem)] lg:w-[calc(50%-1.25rem)]" : ""}`}>
         <CometCard rotateDepth={7} translateDepth={10} className="h-full">
           <div className="flex h-full flex-col rounded-2xl border border-border bg-[hsl(222_40%_8%)] p-5 sm:p-7">
             <div className="pb-6">

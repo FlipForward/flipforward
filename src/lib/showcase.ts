@@ -31,3 +31,8 @@ export const showcase: ShowcaseItem[] = [
   { title: "Webdesign Essentials", link: "https://finnvangronsveld.sinners.be", thumbnail: essentials },
 ];
 
+/** Anker van een case in het portfolio, bv. "project-driverdash". */
+export const projectAnchor = (title: string) => "project-" + title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+/** Projecten die als case in het portfolio staan (de hero scrollt daarnaartoe in plaats van de site te openen). */
+export const FEATURED = ["finnvangronsveld.be", "DriverDash", "Clawd", "ATLAZ"];
