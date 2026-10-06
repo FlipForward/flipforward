@@ -23,7 +23,8 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
 - UI-teksten: geen uitleg-/hinttekstjes zoals "Hover om te scrollen" of "Echte websites, live online".
 - Enkel donkere modus: geen themaknop meer; de donkere tokens in `src/index.css` gelden altijd (`<html class="dark">`).
 - `src/hooks/useAwayTitle.ts`: andere tab-titel ("We missen je hier 🥺", …) zolang het tabblad niet actief is.
-- Favicon: `public/favicon.svg` (zwart tegeltje, oranje "ff›"). PNG's en `favicon.ico` daaruit gerenderd (192/512, apple 180, ico 16/32/48).
+- Favicon (tab): `public/favicon.svg` = originele logo met de eerste "f" altijd zwart (#111) en "f›" oranje, transparant;
+  `favicon.ico` (16/32/48) daaruit gerenderd. App-iconen (icon-192/512, apple-touch-icon) ongewijzigd: donkere achtergrond, witte f.
 - Responsive gecontroleerd op 320–1920 px zonder horizontaal scrollen; dat zo houden bij nieuwe secties.
 - `src/pages/` – `Index`, `PrivacyPolicy` (/privacyverklaring), `Terms` (/algemene-voorwaarden), `NotFound`.
 - Geen backend of databank. Het contactformulier POST naar `api/contact.ts` (Vercel-functie) die een opgemaakte HTML-mail (+ tekstversie, opgebouwd in `api/_email.ts`) stuurt via SMTP van de Vimexx-mailbox.
