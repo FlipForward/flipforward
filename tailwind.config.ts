@@ -110,6 +110,10 @@ export default {
             transform: "translateX(0)"
           }
         },
+        "marquee": {
+          "0%": { transform: "translateX(100%)" },
+          "100%": { transform: "translateX(-100%)" }
+        },
         "glow": {
           "0%, 100%": {
             boxShadow: "0 0 20px hsl(10 89% 55% / 0.3)"
