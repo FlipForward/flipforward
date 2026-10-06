@@ -9,14 +9,6 @@ import clawdDesktop from "@/assets/portfolio/clawd-desktop.webp";
 import clawdMobile from "@/assets/portfolio/clawd-mobile.webp";
 import atlazDesktop from "@/assets/portfolio/atlaz-desktop.webp";
 import atlazMobile from "@/assets/portfolio/atlaz-mobile.webp";
-import hytaleDesktop from "@/assets/portfolio/hytale-desktop.webp";
-import hytaleMobile from "@/assets/portfolio/hytale-mobile.webp";
-import feestDesktop from "@/assets/portfolio/feestoptafel-desktop.webp";
-import spuddyDesktop from "@/assets/portfolio/spuddy-desktop.webp";
-import bnbDesktop from "@/assets/portfolio/bnb-desktop.webp";
-import hyperdriveDesktop from "@/assets/portfolio/hyperdrive-desktop.webp";
-import wingbyteDesktop from "@/assets/portfolio/wingbyte-desktop.webp";
-import essentialsDesktop from "@/assets/portfolio/essentials-desktop.webp";
 
 /**
  * Cases bevatten enkel feiten die op de projectsites zelf staan. Geen verzonnen cijfers.
@@ -50,7 +42,7 @@ const projects = [
   },
   {
     title: "Clawd",
-    category: "Eigen project · desktop-app",
+    category: "Eigen project · desktop-tool",
     challenge: "Een klein, grappig maatje voor op je Windows-bureaublad, met een landingspagina die meteen toont wat hij kan.",
     solution:
       "Een pixel-mascotte die over je taakbalk wandelt, op vensters klimt en meetypt, met een speelse landingspagina vol echte sprites en een download in twee stappen.",
@@ -70,68 +62,6 @@ const projects = [
     domain: "atlazmusic.be",
     desktop: atlazDesktop,
     mobile: atlazMobile,
-  },
-  {
-    title: "Hytale Vlaanderen",
-    category: "Communityplatform",
-    challenge: "Een Vlaams-Nederlandse Hytale-community wilde één plek voor spelers en content creators.",
-    solution: "Een communityplatform dat toont welke streamers live zijn, met speler-statistieken en een overzicht van creators.",
-    tags: ["Live streams", "Statistieken", "Community"],
-    link: "https://hytalevlaanderen.be",
-    domain: "hytalevlaanderen.be",
-    desktop: hytaleDesktop,
-    mobile: hytaleMobile,
-  },
-];
-
-/** Kleinere projecten (opleiding en eigen concepten), getoond in het raster onder de cases. */
-const moreProjects: { title: string; category: string; text: string; link?: string; domain?: string; image: string }[] = [
-  {
-    title: "Feest Op Tafel",
-    category: "Bestelplatform · teamproject",
-    text: "Desserts, feesttafels, workshops en overschot-deals in één platform, met winkelmand en bestelflow.",
-    link: "https://feestoptafel.com",
-    domain: "feestoptafel.com",
-    image: feestDesktop,
-  },
-  {
-    title: "Spuddy",
-    category: "Startupconcept · opleiding",
-    text: "Een matchingplatform om sportmaatjes te vinden met dezelfde interesses en fitnessdoelen.",
-    link: "https://spuddy.be",
-    domain: "spuddy.be",
-    image: spuddyDesktop,
-  },
-  {
-    title: "B&B Booking System",
-    category: "Boekingssysteem · opleiding",
-    text: "Boekingsflow voor gasten plus een beheerdashboard met kalender en filters voor kamers, fietsen en yogalessen.",
-    domain: "Niet publiek online",
-    image: bnbDesktop,
-  },
-  {
-    title: "Hyperdrive Festival",
-    category: "Fictief festival · opleiding",
-    text: "Een meeslepende festivalsite rond tickets, merch, camping en line-up.",
-    link: "https://hyperdrivefestival.netlify.app",
-    domain: "hyperdrivefestival.netlify.app",
-    image: hyperdriveDesktop,
-  },
-  {
-    title: "WingByte",
-    category: "Educatieve game · opleiding",
-    text: "Landingspagina voor een vliegspel waarin je spelenderwijs pc-hardware leert kennen.",
-    link: "https://wingbyte.netlify.app",
-    domain: "wingbyte.netlify.app",
-    image: wingbyteDesktop,
-  },
-  {
-    title: "Webdesign Essentials",
-    category: "Portfolio · opleiding",
-    text: "Alle opdrachten van een semester webdesign gebundeld, met eigen CSS en eigen fotografie.",
-    link: "https://finnvangronsveld.sinners.be",
-    domain: "finnvangronsveld.sinners.be",
-    image: essentialsDesktop,
   },
 ];
 
@@ -239,39 +169,6 @@ const Tilt = () => (
   </ul>
 );
 
-/* ---------- Meer projecten ---------- */
-
-const MoreCard = ({ p }: { p: (typeof moreProjects)[number] }) => {
-  const Tag = p.link ? "a" : "div";
-  return (
-    <li>
-      <Tag
-        {...(p.link ? { href: p.link, target: "_blank", rel: "noopener noreferrer" } : {})}
-        className="group/more flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-gradient-card transition-all duration-300 hover:border-accent/50 hover:shadow-[0_20px_60px_-20px_hsl(10_89%_50%/0.35)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring motion-safe:hover:-translate-y-1"
-      >
-        <div className="flex items-center gap-2 border-b border-white/10 bg-white/[0.03] px-3 py-1.5">
-          <span className="flex gap-1" aria-hidden="true">
-            <i className="h-2 w-2 rounded-full bg-white/20" />
-            <i className="h-2 w-2 rounded-full bg-white/20" />
-            <i className="h-2 w-2 rounded-full bg-white/20" />
-          </span>
-          <span className="mx-auto truncate text-[11px] text-white/50">{p.domain}</span>
-        </div>
-        <ScrollShot src={p.image} alt={`Screenshot van ${p.title}`} />
-        <div className="flex flex-1 flex-col p-5">
-          <p className="text-xs uppercase tracking-wider text-muted-foreground">{p.category}</p>
-          <h4 className="mt-1 flex items-center gap-1.5 text-lg font-bold text-foreground">
-            {p.title}
-            {p.link && <ArrowUpRight className="h-4 w-4 text-accent opacity-0 transition-opacity group-hover/more:opacity-100" aria-hidden="true" />}
-          </h4>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.text}</p>
-          {p.link && <span className="sr-only"> (opent in nieuw tabblad)</span>}
-        </div>
-      </Tag>
-    </li>
-  );
-};
-
 const Portfolio = () => {
   return (
     <section id="portfolio" aria-labelledby="portfolio-title" className="scroll-mt-20 overflow-x-clip bg-gradient-hero py-20 sm:py-28">
@@ -285,16 +182,6 @@ const Portfolio = () => {
 
         <Tilt />
 
-        <div className="mx-auto mt-28 max-w-6xl sm:mt-36">
-          <h3 className="mb-8 text-2xl font-extrabold tracking-tight sm:text-3xl">
-            Meer <span className="text-accent">projecten</span>
-          </h3>
-          <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {moreProjects.map((p) => (
-              <MoreCard key={p.title} p={p} />
-            ))}
-          </ul>
-        </div>
       </div>
     </section>
   );

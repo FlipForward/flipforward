@@ -15,9 +15,8 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
   - Portfolio: `CometCard` (3D-tiltkaarten). Diensten/Over/Pakketten/Contact: `GlowingEffect`/`GlowCard` (rand die de muis volgt),
     Over: `PointerHighlight`, Werkwijze: `Timeline`.
 - `src/components/ScrollShot.tsx` – screenshot die bij hover door de pagina scrolt (enkel `transform`, geen layout-animatie).
-- Portfolio (`Portfolio.tsx`): uitgelicht in deze volgorde: finnvangronsveld.be, DriverDash, Clawd, ATLAZ, Hytale Vlaanderen
-  (allemaal even grote kaarten). Daaronder "Meer projecten" (Feest Op Tafel, Spuddy, B&B, Hyperdrive, WingByte, Webdesign Essentials).
-  `src/lib/showcase.ts` is de lijst screenshots voor de hero en Diensten.
+- Portfolio (`Portfolio.tsx`): enkel deze vier, even grote kaarten in deze volgorde: finnvangronsveld.be, DriverDash, Clawd, ATLAZ.
+  Andere projecten (Hytale, Feest Op Tafel, Spuddy, …) staan enkel nog als beeld in de hero via `src/lib/showcase.ts`.
 - Screenshots in `src/assets/portfolio/` (WebP; desktop 1200 px breed volledige pagina, mobiel 390×844 @2x), gemaakt met
   playwright-core + Edge. DriverDash: de lokale frontend van de getdrivendashboard-repo met onderschepte API/Supabase-calls en
   fictieve demo-ritten (namen uit de demo-seed van die backend) – nooit een account of data op de live driverdash.be aanmaken.
@@ -57,5 +56,5 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
 - [ ] Verwerkers in privacyverklaring bevestigen (Dexxter nog in gebruik?).
 - [ ] Redesign staat op branch `redesign/hero-portfolio` (niet gepusht). Pas pushen/mergen na akkoord van Finn.
 - [ ] Hero-variant definitief kiezen (nu standaard "zwevende projecten") en dan VariantSwitcher verwijderen.
-- [ ] Labels bevestigen: DriverDash (eigen project of klant?), Clawd ("eigen project · desktop-app"), Feest Op Tafel (teamproject, eigen rol?).
+- [ ] Labels bevestigen: DriverDash (eigen project of klant?), Clawd ("eigen project · desktop-tool").
 - [ ] Licentie van Aceternity UI nalezen voor commercieel gebruik.
