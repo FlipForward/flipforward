@@ -1,6 +1,6 @@
 /**
  * POST /api/contact – Vercel-functie voor het contactformulier.
- * Stuurt een platte-tekstmail via de Vimexx-mailbox (SMTP) naar CONTACT_TO.
+ * Stuurt een HTML-mail (met tekstversie) via de Vimexx-mailbox (SMTP) naar CONTACT_TO.
  * Er wordt niets opgeslagen: de aanvraag bestaat enkel als e-mail.
  *
  * Vereiste environment variables (Vercel → Settings → Environment Variables):
