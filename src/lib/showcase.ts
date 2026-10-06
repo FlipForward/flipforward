@@ -31,5 +31,3 @@ export const showcase: ShowcaseItem[] = [
   { title: "Webdesign Essentials", link: "https://finnvangronsveld.sinners.be", thumbnail: essentials },
 ];
 
-/** Lijst herhalen tot `n` items (voor rijen/kolommen die vol moeten). */
-export const repeatTo = <T,>(list: T[], n: number) => Array.from({ length: n }, (_, i) => list[i % list.length]);

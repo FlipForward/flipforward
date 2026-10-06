@@ -2,7 +2,6 @@ import { MapPin, UserRound, ShieldCheck } from "lucide-react";
 import { business } from "@/lib/site";
 import finnPhoto from "@/assets/finn.webp";
 import { GlowCard } from "./aceternity/GlowingEffect";
-import { PointerHighlight } from "./aceternity/PointerHighlight";
 
 const points = [
   {
@@ -53,7 +52,7 @@ const About = () => (
           <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
             FlipForward is het webbureau van <strong className="text-foreground">{business.owner}</strong>. Ik bouw websites voor
             zelfstandigen en kmo's en blijf daarna{" "}
-            <PointerHighlight className="text-foreground">je vaste contactpersoon</PointerHighlight>: voor een nieuwe tekst, een
+            <strong className="text-foreground">je vaste contactpersoon</strong>: voor een nieuwe tekst, een
             extra pagina of een vraag over je site. Geen ingewikkelde trajecten, wel duidelijke afspraken en een vaste prijs.
           </p>
         </div>

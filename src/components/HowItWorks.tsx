@@ -18,7 +18,7 @@ const HowItWorks = () => (
         data={steps.map((s) => ({
           title: s.title,
           content: (
-            <div className="rounded-2xl border border-border bg-gradient-card p-6 sm:p-8">
+            <div className="rounded-2xl border border-border bg-gradient-card p-5 sm:p-8">
               <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">{s.text}</p>
             </div>
           ),

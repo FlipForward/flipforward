@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import Logo from "./Logo";
-import ThemeToggle from "./ThemeToggle";
 
 const links = [
   { id: "over", label: "Over" },
@@ -49,8 +48,6 @@ const Navigation = () => {
                 </li>
               ))}
             </ul>
-            <div className="w-px h-5 bg-border" aria-hidden="true" />
-            <ThemeToggle />
             <Button asChild variant="hero" size="sm">
               <a href={href("contact")}>Contact</a>
             </Button>
@@ -79,9 +76,6 @@ const Navigation = () => {
                 </li>
               ))}
             </ul>
-            <div className="mt-4 flex items-center gap-3">
-              <ThemeToggle />
-            </div>
             <Button asChild variant="hero" className="mt-4 w-full">
               <a href={href("contact")} onClick={close}>
                 Contact

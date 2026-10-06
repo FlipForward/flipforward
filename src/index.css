@@ -52,6 +52,8 @@ All colors MUST be HSL.
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
+  /* Enkel donkere modus: deze waarden overschrijven de lichte hierboven altijd. */
+  :root,
   .dark {
     --background: 222 47% 5%;
     --foreground: 0 0% 98%;

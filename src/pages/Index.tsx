@@ -10,7 +10,6 @@ import Faq from "@/components/Faq";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ScrollToTop from "@/components/ScrollToTop";
-import VariantSwitcher from "@/components/VariantSwitcher";
 
 const Index = () => (
   <div className="min-h-screen relative">
@@ -28,7 +27,6 @@ const Index = () => (
     </main>
     <Footer />
     <ScrollToTop />
-    <VariantSwitcher />
   </div>
 );
 
