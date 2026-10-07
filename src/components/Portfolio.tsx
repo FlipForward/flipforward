@@ -37,16 +37,17 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "finnvangronsveld.be",
-    category: "Eigen project · portfolio",
-    challenge: "Een persoonlijke plek om mijn verhaal en werk te tonen, die je niet snel vergeet.",
+    title: "Flippy",
+    category: "Eigen project · desktop-tool",
+    challenge: "Een klein, grappig maatje voor op je Windows-bureaublad, met een landingspagina die meteen toont wat hij kan.",
     solution:
-      "Een interactieve portfolio als ruimtereis: elke sectie is een planeet, met warp-overgangen tussen de pagina's, een planeet-infobord en tekst die vloeiend in beeld komt.",
-    tags: ["Interactief", "Animatie", "Storytelling"],
-    link: "https://finnvangronsveld.be",
-    domain: "finnvangronsveld.be",
-    desktop: finnDesktop,
-    mobile: finnMobile,
+      "Een gratis pixel-maatje met vier figuurtjes om uit te kiezen, dat over je taakbalk wandelt, op vensters klimt, meetypt en met popcorn video's kijkt. Met een speelse landingspagina vol echte sprites en een download in twee stappen.",
+    tags: ["Pixel art", "Animatie", "Landingspagina"],
+    link: "https://flippy.flipforward.be",
+    domain: "flippy.flipforward.be",
+    desktop: flippyDesktop,
+    mobile: flippyMobile,
+    peek: true,
   },
   {
     title: "DriverDash",
@@ -61,17 +62,16 @@ const projects: Project[] = [
     mobile: driverdashMobile,
   },
   {
-    title: "Flippy",
-    category: "Eigen project · desktop-tool",
-    challenge: "Een klein, grappig maatje voor op je Windows-bureaublad, met een landingspagina die meteen toont wat hij kan.",
+    title: "finnvangronsveld.be",
+    category: "Eigen project · portfolio",
+    challenge: "Een persoonlijke plek om mijn verhaal en werk te tonen, die je niet snel vergeet.",
     solution:
-      "Een gratis pixel-maatje met vier figuurtjes om uit te kiezen, dat over je taakbalk wandelt, op vensters klimt, meetypt en met popcorn video's kijkt. Met een speelse landingspagina vol echte sprites en een download in twee stappen.",
-    tags: ["Pixel art", "Animatie", "Landingspagina"],
-    link: "https://flippy.flipforward.be",
-    domain: "flippy.flipforward.be",
-    desktop: flippyDesktop,
-    mobile: flippyMobile,
-    peek: true,
+      "Een interactieve portfolio als ruimtereis: elke sectie is een planeet, met warp-overgangen tussen de pagina's, een planeet-infobord en tekst die vloeiend in beeld komt.",
+    tags: ["Interactief", "Animatie", "Storytelling"],
+    link: "https://finnvangronsveld.be",
+    domain: "finnvangronsveld.be",
+    desktop: finnDesktop,
+    mobile: finnMobile,
   },
   {
     title: "ATLAZ",

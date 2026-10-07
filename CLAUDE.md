@@ -16,7 +16,7 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
   - Portfolio: `CometCard` (3D-tiltkaarten). Diensten/Over/Pakketten/Contact: `GlowingEffect`/`GlowCard` (rand die de muis volgt),
     Werkwijze: `Timeline`.
 - `src/components/ScrollShot.tsx` – screenshot die bij hover door de pagina scrolt (enkel `transform`, geen layout-animatie).
-- Portfolio (`Portfolio.tsx`): enkel deze vier, even grote kaarten in deze volgorde: finnvangronsveld.be, DriverDash, Flippy (vroeger Clawd, flippy.flipforward.be), ATLAZ.
+- Portfolio (`Portfolio.tsx`): enkel deze vier, even grote kaarten in deze volgorde: Flippy (vroeger Clawd, flippy.flipforward.be), DriverDash, finnvangronsveld.be, ATLAZ.
   Flippy-kaart: de vier figuurtjes (`src/assets/portfolio/flippy-pets/`, frames van de canvassen op flippy.flipforward.be, 4× nearest-neighbour)
   piepen bij hover/focus achter de bovenrand uit (`PeekingPets`, CSS `.peek-pet` in `index.css`); op touch-toestellen één keer bij in beeld komen.
   Andere projecten (Hytale, Feest Op Tafel, Spuddy, …) staan enkel nog als beeld in de hero via `src/lib/showcase.ts`.
