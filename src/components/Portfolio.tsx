@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Lock } from "lucide-react";
 import ScrollShot from "./ScrollShot";
 import { CometCard } from "./aceternity/CometCard";
@@ -10,13 +11,31 @@ import flippyDesktop from "@/assets/portfolio/flippy-desktop.webp";
 import flippyMobile from "@/assets/portfolio/flippy-mobile.webp";
 import atlazDesktop from "@/assets/portfolio/atlaz-desktop.webp";
 import atlazMobile from "@/assets/portfolio/atlaz-mobile.webp";
+import petPhone from "@/assets/portfolio/flippy-pets/phone.png";
+import petFrog from "@/assets/portfolio/flippy-pets/frog.png";
+import petPancake from "@/assets/portfolio/flippy-pets/pancake.png";
+import petClawd from "@/assets/portfolio/flippy-pets/clawd.png";
 
 /**
  * Cases bevatten enkel feiten die op de projectsites zelf staan. Geen verzonnen cijfers.
  * Nieuwe klantcases pas toevoegen na akkoord van de klant.
  * Screenshots: src/assets/portfolio (1200 px breed, volledige pagina; mobiel 390×844 @2x).
  */
-const projects = [
+interface Project {
+  title: string;
+  category: string;
+  challenge: string;
+  solution: string;
+  tags: string[];
+  link: string;
+  domain: string;
+  desktop: string;
+  mobile: string;
+  /** Flippy: figuurtjes piepen achter de kaart uit. */
+  peek?: boolean;
+}
+
+const projects: Project[] = [
   {
     title: "finnvangronsveld.be",
     category: "Eigen project · portfolio",
@@ -52,6 +71,7 @@ const projects = [
     domain: "flippy.flipforward.be",
     desktop: flippyDesktop,
     mobile: flippyMobile,
+    peek: true,
   },
   {
     title: "ATLAZ",
@@ -66,7 +86,6 @@ const projects = [
   },
 ];
 
-type Project = (typeof projects)[number];
 
 /* ---------- Bouwstenen ---------- */
 
@@ -149,23 +168,89 @@ const CaseText = ({ p, i }: { p: Project; i: number }) => (
   </>
 );
 
+/* ---------- Flippy: de vier figuurtjes piepen achter de kaart uit ---------- */
+
+/** 4× opgeschaalde frames van flippy.flipforward.be. Pixel art, dus image-rendering: pixelated. */
+const PETS = [
+  { src: petPhone, name: "Flip", w: 66, h: 66, left: "7%", rotate: "-8deg", delay: "0ms" },
+  { src: petFrog, name: "Hopper", w: 84, h: 48, left: "30%", rotate: "4deg", delay: "70ms" },
+  { src: petPancake, name: "Flapjack", w: 84, h: 54, left: "54%", rotate: "-4deg", delay: "140ms" },
+  { src: petClawd, name: "Clawd", w: 72, h: 51, left: "78%", rotate: "7deg", delay: "210ms" },
+];
+
+/**
+ * Zit achter de kaart. Bij hover of toetsenbordfocus schuiven de figuurtjes omhoog tot hun ogen boven de rand
+ * uitkomen. Op toestellen zonder hover (gsm) piepen ze één keer zodra de kaart in beeld komt.
+ */
+const PeekingPets = ({ peek }: { peek: boolean }) => (
+  <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 z-0">
+    {PETS.map((pet) => (
+      <img
+        key={pet.name}
+        src={pet.src}
+        alt=""
+        width={pet.w}
+        height={pet.h}
+        decoding="async"
+        style={{ left: pet.left, transitionDelay: pet.delay, ["--r" as string]: pet.rotate, imageRendering: "pixelated" }}
+        className={`peek-pet absolute bottom-0 h-auto w-[13%] min-w-[48px] max-w-[72px] ${peek ? "is-peeking" : ""}`}
+      />
+    ))}
+  </div>
+);
+
+/** true zodra de kaart op een toestel zonder hover voor het eerst goed in beeld is. */
+const usePeekOnScroll = (enabled: boolean) => {
+  const ref = useRef<HTMLLIElement>(null);
+  const [peek, setPeek] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!enabled || !el || window.matchMedia("(hover: hover)").matches) return;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        if (e.isIntersecting) {
+          setPeek(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.6 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [enabled]);
+  return { ref, peek };
+};
+
+const ProjectItem = ({ p, i }: { p: Project; i: number }) => {
+  const { ref, peek } = usePeekOnScroll(Boolean(p.peek));
+  const lastOdd = i === projects.length - 1 && projects.length % 2 === 1;
+  return (
+    <li
+      ref={ref}
+      id={projectAnchor(p.title)}
+      className={`peek-host relative h-full scroll-mt-28 ${lastOdd ? "md:col-span-2 md:mx-auto md:w-[calc(50%-1rem)] lg:w-[calc(50%-1.25rem)]" : ""}`}
+    >
+      {p.peek && <PeekingPets peek={peek} />}
+      <CometCard rotateDepth={7} translateDepth={10} className="relative z-10 h-full">
+        <div className="flex h-full flex-col rounded-2xl border border-border bg-[hsl(222_40%_8%)] p-5 sm:p-7">
+          <div className="pb-6">
+            <Devices p={p} />
+          </div>
+          <div className="mt-6 flex flex-1 flex-col">
+            <CaseText p={p} i={i} />
+          </div>
+        </div>
+      </CometCard>
+    </li>
+  );
+};
+
 /* ---------- Variant: 3D-tiltkaarten (Aceternity Comet Card) ---------- */
 
 const Tilt = () => (
   <ul className="mx-auto grid max-w-6xl gap-8 md:grid-cols-2 lg:gap-10">
     {projects.map((p, i) => (
-      <li key={p.title} id={projectAnchor(p.title)} className={`scroll-mt-28 h-full ${i === projects.length - 1 && projects.length % 2 === 1 ? "md:col-span-2 md:mx-auto md:w-[calc(50%-1rem)] lg:w-[calc(50%-1.25rem)]" : ""}`}>
-        <CometCard rotateDepth={7} translateDepth={10} className="h-full">
-          <div className="flex h-full flex-col rounded-2xl border border-border bg-[hsl(222_40%_8%)] p-5 sm:p-7">
-            <div className="pb-6">
-              <Devices p={p} />
-            </div>
-            <div className="mt-6 flex flex-1 flex-col">
-              <CaseText p={p} i={i} />
-            </div>
-          </div>
-        </CometCard>
-      </li>
+      <ProjectItem key={p.title} p={p} i={i} />
     ))}
   </ul>
 );

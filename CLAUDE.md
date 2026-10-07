@@ -17,6 +17,8 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
     Werkwijze: `Timeline`.
 - `src/components/ScrollShot.tsx` – screenshot die bij hover door de pagina scrolt (enkel `transform`, geen layout-animatie).
 - Portfolio (`Portfolio.tsx`): enkel deze vier, even grote kaarten in deze volgorde: finnvangronsveld.be, DriverDash, Flippy (vroeger Clawd, flippy.flipforward.be), ATLAZ.
+  Flippy-kaart: de vier figuurtjes (`src/assets/portfolio/flippy-pets/`, frames van de canvassen op flippy.flipforward.be, 4× nearest-neighbour)
+  piepen bij hover/focus achter de bovenrand uit (`PeekingPets`, CSS `.peek-pet` in `index.css`); op touch-toestellen één keer bij in beeld komen.
   Andere projecten (Hytale, Feest Op Tafel, Spuddy, …) staan enkel nog als beeld in de hero via `src/lib/showcase.ts`.
 - Screenshots in `src/assets/portfolio/` (WebP; desktop 1200 px breed volledige pagina, mobiel 390×844 @2x), gemaakt met
   playwright-core + Edge. DriverDash: de lokale frontend van de getdrivendashboard-repo met onderschepte API/Supabase-calls en
