@@ -16,7 +16,7 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
   - Portfolio: `CometCard` (3D-tiltkaarten). Diensten/Over/Pakketten/Contact: `GlowingEffect`/`GlowCard` (rand die de muis volgt),
     Werkwijze: `Timeline`.
 - `src/components/ScrollShot.tsx` – screenshot die bij hover door de pagina scrolt (enkel `transform`, geen layout-animatie).
-- Portfolio (`Portfolio.tsx`): enkel deze vier, even grote kaarten in deze volgorde: finnvangronsveld.be, DriverDash, Clawd, ATLAZ.
+- Portfolio (`Portfolio.tsx`): enkel deze vier, even grote kaarten in deze volgorde: finnvangronsveld.be, DriverDash, Flippy (vroeger Clawd, flippy.flipforward.be), ATLAZ.
   Andere projecten (Hytale, Feest Op Tafel, Spuddy, …) staan enkel nog als beeld in de hero via `src/lib/showcase.ts`.
 - Screenshots in `src/assets/portfolio/` (WebP; desktop 1200 px breed volledige pagina, mobiel 390×844 @2x), gemaakt met
   playwright-core + Edge. DriverDash: de lokale frontend van de getdrivendashboard-repo met onderschepte API/Supabase-calls en
@@ -61,5 +61,5 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
 - [ ] Verwerkers in privacyverklaring bevestigen (Dexxter nog in gebruik?).
 - [x] Redesign gemerged naar `main` en live (07/10/2026).
 - [x] Speelse 404 en projectnamen in de hero gemerged naar `main` en live (07/10/2026).
-- [ ] Labels bevestigen: DriverDash (eigen project of klant?), Clawd ("eigen project · desktop-tool").
+- [ ] Labels bevestigen: DriverDash (eigen project of klant?), Flippy ("eigen project · desktop-tool").
 - [ ] Licentie van Aceternity UI nalezen voor commercieel gebruik.

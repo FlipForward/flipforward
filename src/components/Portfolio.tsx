@@ -6,8 +6,8 @@ import finnDesktop from "@/assets/portfolio/finn-desktop.webp";
 import finnMobile from "@/assets/portfolio/finn-mobile.webp";
 import driverdashDesktop from "@/assets/portfolio/driverdash-desktop.webp";
 import driverdashMobile from "@/assets/portfolio/driverdash-mobile.webp";
-import clawdDesktop from "@/assets/portfolio/clawd-desktop.webp";
-import clawdMobile from "@/assets/portfolio/clawd-mobile.webp";
+import flippyDesktop from "@/assets/portfolio/flippy-desktop.webp";
+import flippyMobile from "@/assets/portfolio/flippy-mobile.webp";
 import atlazDesktop from "@/assets/portfolio/atlaz-desktop.webp";
 import atlazMobile from "@/assets/portfolio/atlaz-mobile.webp";
 
@@ -42,16 +42,16 @@ const projects = [
     mobile: driverdashMobile,
   },
   {
-    title: "Clawd",
+    title: "Flippy",
     category: "Eigen project · desktop-tool",
     challenge: "Een klein, grappig maatje voor op je Windows-bureaublad, met een landingspagina die meteen toont wat hij kan.",
     solution:
-      "Een pixel-mascotte die over je taakbalk wandelt, op vensters klimt en meetypt, met een speelse landingspagina vol echte sprites en een download in twee stappen.",
+      "Een gratis pixel-maatje met vier figuurtjes om uit te kiezen, dat over je taakbalk wandelt, op vensters klimt, meetypt en met popcorn video's kijkt. Met een speelse landingspagina vol echte sprites en een download in twee stappen.",
     tags: ["Pixel art", "Animatie", "Landingspagina"],
-    link: "https://clawd-desktop-pet.vercel.app",
-    domain: "clawd-desktop-pet.vercel.app",
-    desktop: clawdDesktop,
-    mobile: clawdMobile,
+    link: "https://flippy.flipforward.be",
+    domain: "flippy.flipforward.be",
+    desktop: flippyDesktop,
+    mobile: flippyMobile,
   },
   {
     title: "ATLAZ",
