@@ -11,6 +11,8 @@ export const business = {
   owner: "Finn Vangronsveld",
   legalForm: "eenmanszaak",
   email: "finn@flipforward.be",
+  phone: "+32 468 40 80 71",
+  phoneHref: "tel:+32468408071",
   enterpriseNumber: "1033.868.758",
   vatNumber: "BE 1033.868.758",
   vatNote: "Kleine onderneming onderworpen aan de bijzondere vrijstellingsregeling (btw-vrijgesteld)",

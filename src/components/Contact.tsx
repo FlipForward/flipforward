@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
-import { Mail, Send, MapPin, Clock } from "lucide-react";
+import { Mail, Phone, Send, MapPin, Clock } from "lucide-react";
 import { business, packages, type PackageId } from "@/lib/site";
 import { GlowingEffect } from "./aceternity/GlowingEffect";
 import { PACKAGE_EVENT } from "@/lib/selectPackage";
@@ -70,6 +70,7 @@ const Contact = () => {
 
   const infoCards = [
     { icon: Mail, title: "E-mail", content: <a className="underline underline-offset-4 hover:text-accent" href={`mailto:${business.email}`}>{business.email}</a> },
+    { icon: Phone, title: "Telefoon", content: <a className="underline underline-offset-4 hover:text-accent" href={business.phoneHref}>{business.phone}</a> },
     { icon: Clock, title: "Antwoord", content: "Binnen 2 werkdagen, vaak sneller." },
     { icon: MapPin, title: "Regio", content: `Gevestigd in ${business.city}, actief in de Kempen, de provincie Antwerpen en verder.` },
   ];
