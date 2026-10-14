@@ -23,6 +23,12 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
 - Screenshots in `src/assets/portfolio/` (WebP; desktop 1200 px breed volledige pagina, mobiel 390×844 @2x), gemaakt met
   playwright-core + Edge. DriverDash: de lokale frontend van de getdrivendashboard-repo met onderschepte API/Supabase-calls en
   fictieve demo-ritten (namen uit de demo-seed van die backend) – nooit een account of data op de live driverdash.be aanmaken.
+- Pakketten: onder de kaarten een vergelijkingstabel (`PackageComparison.tsx`, data `comparison` in `site.ts`). Business draagt
+  het label "Aanrader" (niet "Meest gekozen": dat zou een verzonnen claim zijn zolang er geen klantcijfers zijn).
+- Offertes: `offertes/<nummer>-<klant>/` (staat in `.gitignore`, de repo is publiek). Opgemaakt als HTML, naar PDF gerenderd met
+  playwright-core + Edge (A4, max. 2 pagina's). Nummering 2026-001, 2026-002, … Altijd vermelden: "Geen btw aangerekend: bijzondere
+  vrijstellingsregeling kleine ondernemingen". Wijkt een afspraak af van de algemene voorwaarden (bv. 50/50-betaling), dan staat
+  dat er expliciet in ("In afwijking van artikel …").
 - UI-teksten: geen uitleg-/hinttekstjes zoals "Hover om te scrollen" of "Echte websites, live online".
 - Enkel donkere modus: geen themaknop meer; de donkere tokens in `src/index.css` gelden altijd (`<html class="dark">`).
 - `src/hooks/useAwayTitle.ts`: andere tab-titel ("We missen je hier 🥺", …) zolang het tabblad niet actief is.
@@ -63,6 +69,9 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
 - [ ] Verwerkers in privacyverklaring bevestigen (Dexxter nog in gebruik?).
 - [x] Redesign gemerged naar `main` en live (07/10/2026).
 - [x] Speelse 404 en projectnamen in de hero gemerged naar `main` en live (07/10/2026).
+- [ ] Bavago BV (Herentals, hydraulica): voorbeeld op bavago.flipforward.be, Bart Van Gorp vroeg prijs + afspraak (14/10/2026).
+  Offerte 2026-001 opgesteld (Business, € 2.000 opstart na € 500 introductiekorting in ruil voor referentie, € 99/maand,
+  50/50-betaling). Afspraak nog vast te leggen (bij voorkeur rond 16 u bij hen). Branch `feat/pakketvergelijking` nog niet gepusht.
 - [x] Labels: DriverDash = eigen project (webapp), Flippy (ex-Clawd) = eigen project (desktop-tool).
 - [x] Licentie Aceternity UI nagelezen (07/10/2026): gratis componenten mogen in persoonlijke én commerciële/klantprojecten,
   zonder verplichte naamsvermelding. Niet toegestaan: de componenten zelf doorverkopen of herverdelen (als template, componentbibliotheek

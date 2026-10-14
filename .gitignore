@@ -25,3 +25,6 @@ dist-ssr
 dist-ssr
 .vercel
 .claude/
+
+# Klantdocumenten (offertes) nooit in de publieke repo
+offertes/
