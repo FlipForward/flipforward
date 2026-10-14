@@ -4,6 +4,7 @@ import { Check, ArrowRight, Camera, Languages, Clock } from "lucide-react";
 import { packages, includedInAll, addOns, PRICE_NOTE, formatEuro } from "@/lib/site";
 import { selectPackage } from "@/lib/selectPackage";
 import { GlowingEffect } from "./aceternity/GlowingEffect";
+import PackageComparison from "./PackageComparison";
 
 const addOnIcons: Record<string, typeof Clock> = { Fotografie: Camera, "Extra taal": Languages };
 
@@ -97,6 +98,8 @@ const Pricing = () => {
         </div>
 
         <p className="max-w-6xl mx-auto mt-4 text-sm text-muted-foreground text-center">{PRICE_NOTE}</p>
+
+        <PackageComparison />
 
         <div className="max-w-6xl mx-auto mt-14">
           <h3 className="text-2xl font-bold text-center mb-6">Extra's</h3>

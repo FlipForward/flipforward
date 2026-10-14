@@ -76,7 +76,7 @@ export const packages: Package[] = [
     setup: 2500,
     monthly: 99,
     monthlyNote: "incl. 1 u aanpassingen/maand",
-    highlight: "Meest gekozen",
+    highlight: "Aanrader",
   },
   {
     id: "pro",
@@ -96,6 +96,24 @@ export const packages: Package[] = [
     monthly: 149,
     monthlyNote: "incl. 2 u aanpassingen/maand + kwartaalrapport",
   },
+];
+
+/**
+ * Vergelijkingstabel onder de pakketkaarten. Elke rij: [Start, Business, Pro].
+ * true = inbegrepen, false = niet inbegrepen, tekst = specifieke waarde.
+ */
+export const comparison: { label: string; values: [string | boolean, string | boolean, string | boolean] }[] = [
+  { label: "Ideaal voor", values: ["Eén dienst of zaak voorstellen", "Kmo met meerdere diensten", "B2B met assortiment of meerdere talen"] },
+  { label: "Aantal pagina's", values: ["Tot 5", "Tot 10", "Op maat"] },
+  { label: "Talen", values: ["1", "Tot 2", "3–4"] },
+  { label: "Aanpassingen inbegrepen", values: ["30 min/maand", "1 u/maand", "2 u/maand"] },
+  { label: "Zelf teksten aanpassen (CMS)", values: [false, true, true] },
+  { label: "Vindbaarheid", values: ["Basis-SEO", "SEO + AI-zoekmachines", "SEO + AI-zoekmachines"] },
+  { label: "Google Bedrijfsprofiel", values: [false, true, true] },
+  { label: "Catalogus / assortiment", values: [false, false, true] },
+  { label: "Offerte-aanvraag & vacatures", values: [false, false, true] },
+  { label: "Kwartaalrapport", values: [false, false, true] },
+  { label: "Hosting, SSL, back-ups, updates & beveiliging", values: [true, true, true] },
 ];
 
 export const includedInAll = [
