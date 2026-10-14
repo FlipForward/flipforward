@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Check, ArrowRight, Camera, Languages, Clock } from "lucide-react";
-import { packages, includedInAll, addOns, PRICE_NOTE, formatEuro } from "@/lib/site";
+import { packages, includedInAll, addOns, PRICE_NOTE, formatEuro, yearlyPrice } from "@/lib/site";
 import { selectPackage } from "@/lib/selectPackage";
 import { GlowingEffect } from "./aceternity/GlowingEffect";
 import PackageComparison from "./PackageComparison";
@@ -50,6 +50,9 @@ const Pricing = () => {
                     + {formatEuro(p.monthly)} <span className="text-base font-medium">/ maand</span>
                   </p>
                   <p className="text-sm text-muted-foreground min-h-[1.25rem]">{p.monthlyNote ?? "hosting & onderhoud"}</p>
+                  <p className="mt-2 inline-flex rounded-full border border-accent/30 bg-accent/10 px-2.5 py-0.5 text-xs font-medium text-accent">
+                    of {formatEuro(yearlyPrice(p))} per jaar · 1 maand gratis
+                  </p>
                 </div>
 
                 <p className="mt-6 rounded-lg bg-background/60 px-3 py-2 text-sm font-semibold text-foreground">{p.pages}</p>

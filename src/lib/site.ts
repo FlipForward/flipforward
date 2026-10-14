@@ -44,6 +44,10 @@ export interface Package {
   highlight?: string;
 }
 
+/** Jaarlijkse betaling: per jaar vooruit, 1 maand gratis (11 maandbedragen voor 12 maanden). */
+export const YEARLY_FREE_MONTHS = 1;
+export const yearlyPrice = (p: Pick<Package, "monthly">) => p.monthly * (12 - YEARLY_FREE_MONTHS);
+
 export const packages: Package[] = [
   {
     id: "start",
@@ -174,6 +178,10 @@ export const faqs = [
   {
     q: "Wat is de minimale looptijd?",
     a: "12 maanden vanaf de livegang. Daarna is je abonnement maandelijks opzegbaar.",
+  },
+  {
+    q: "Kan ik per jaar betalen?",
+    a: "Ja. Betaal je het abonnement per jaar vooruit, dan krijg je 1 maand gratis: je betaalt 11 maanden en krijgt er 12. Voor Business is dat € 1.089 per jaar in plaats van 12 × € 99.",
   },
   {
     q: "Van wie is het domein?",

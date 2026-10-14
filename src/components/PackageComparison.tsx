@@ -1,5 +1,5 @@
 import { Check, Minus } from "lucide-react";
-import { comparison, packages, formatEuro } from "@/lib/site";
+import { comparison, packages, formatEuro, yearlyPrice } from "@/lib/site";
 
 /** Vergelijkingstabel van de drie pakketten (data uit site.ts). */
 const Cell = ({ v }: { v: string | boolean }) =>
@@ -39,6 +39,7 @@ const PackageComparison = () => (
                   {p.setupFrom ? "vanaf " : ""}
                   {formatEuro(p.setup)} + {formatEuro(p.monthly)}/maand
                 </span>
+                <span className="mt-0.5 block text-[11px] font-normal text-accent">of {formatEuro(yearlyPrice(p))}/jaar (1 maand gratis)</span>
               </th>
             ))}
           </tr>

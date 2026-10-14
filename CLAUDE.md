@@ -23,6 +23,9 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
 - Screenshots in `src/assets/portfolio/` (WebP; desktop 1200 px breed volledige pagina, mobiel 390×844 @2x), gemaakt met
   playwright-core + Edge. DriverDash: de lokale frontend van de getdrivendashboard-repo met onderschepte API/Supabase-calls en
   fictieve demo-ritten (namen uit de demo-seed van die backend) – nooit een account of data op de live driverdash.be aanmaken.
+- Jaarlijkse betaling: altijd aanbieden, 1 maand gratis (11 maandbedragen voor 12 maanden; `yearlyPrice`/`YEARLY_FREE_MONTHS` in
+  `site.ts`). Staat op de pakketkaarten, in de vergelijkingstabel, de FAQ, llms.txt, de algemene voorwaarden (art. 4 en 9, met
+  `review:`) en in elke offerte. Jaarabonnement verlengt per jaar, opzegbaar tot 1 maand voor het einde, geen terugbetaling.
 - Pakketten: onder de kaarten een vergelijkingstabel (`PackageComparison.tsx`, data `comparison` in `site.ts`). Business draagt
   het label "Aanrader" (niet "Meest gekozen": dat zou een verzonnen claim zijn zolang er geen klantcijfers zijn).
 - Offertes: `offertes/<nummer>-<klant>/` (staat in `.gitignore`, de repo is publiek). Opgemaakt als HTML, naar PDF gerenderd met
@@ -75,7 +78,7 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
 - [x] Speelse 404 en projectnamen in de hero gemerged naar `main` en live (07/10/2026).
 - [ ] Bavago BV (Herentals, hydraulica): voorbeeld op bavago.flipforward.be, Bart Van Gorp vroeg prijs + afspraak (14/10/2026).
   Offerte 2026-001 opgesteld (Business, € 2.000 opstart na € 500 introductiekorting in ruil voor referentie, € 99/maand,
-  50/50-betaling). Afspraak nog vast te leggen (bij voorkeur rond 16 u bij hen). Branch `feat/pakketvergelijking` nog niet gepusht.
+  50/50-betaling, maandelijks of per jaar € 1.089 met 1 maand gratis). Afspraak nog vast te leggen (bij voorkeur rond 16 u bij hen).
 - [x] Labels: DriverDash = eigen project (webapp), Flippy (ex-Clawd) = eigen project (desktop-tool).
 - [x] Licentie Aceternity UI nagelezen (07/10/2026): gratis componenten mogen in persoonlijke én commerciële/klantprojecten,
   zonder verplichte naamsvermelding. Niet toegestaan: de componenten zelf doorverkopen of herverdelen (als template, componentbibliotheek
