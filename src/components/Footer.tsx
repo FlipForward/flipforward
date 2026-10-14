@@ -19,6 +19,9 @@ const Footer = () => {
           </Link>
 
           <nav aria-label="Juridisch" className="flex flex-wrap items-center gap-4 sm:gap-6 text-sm">
+            <Link to="/website-laten-maken" className={linkClass}>
+              Website laten maken
+            </Link>
             <Link to="/privacyverklaring" className={linkClass}>
               Privacyverklaring
             </Link>

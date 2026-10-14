@@ -23,6 +23,9 @@ export const business = {
   countryName: "België",
   region: "Kempen, provincie Antwerpen",
   areaServed: ["Retie", "Kempen", "Provincie Antwerpen", "Vlaanderen", "België"],
+  /** Gemeenten in de buurt (regio-tekst en structured data). Enkel echte werkregio, geen aparte pagina per gemeente. */
+  towns: ["Retie", "Dessel", "Arendonk", "Mol", "Geel", "Kasterlee", "Oud-Turnhout", "Turnhout", "Herentals", "Balen"],
+  kboUrl: "https://kbopub.economie.fgov.be/kbopub/zoeknummerform.html?nummer=1033868758",
 } as const;
 
 export const PRICE_NOTE =
@@ -174,14 +177,27 @@ export const steps = [
   },
 ];
 
+/** Euro-bedrag als platte tekst (voor FAQ/structured data, staat vóór formatEuro gedefinieerd). */
+const formatEuroText = (n: number) => "€ " + n.toLocaleString("nl-BE", { maximumFractionDigits: 0 });
+
 export const faqs = [
+  {
+    q: "Wat kost een website laten maken?",
+    a: `Bij FlipForward betaal je een eenmalige opstartkost en daarna een vast bedrag per maand voor hosting, onderhoud en aanpassingen: ${packages
+      .map((p) => `${p.name} ${p.setupFrom ? "vanaf " : ""}${formatEuroText(p.setup)} + ${formatEuroText(p.monthly)} per maand`)
+      .join(", ")}. Betaal je per jaar, dan krijg je 1 maand gratis. Er wordt geen btw aangerekend.`,
+  },
+  {
+    q: "Hoe lang duurt het om een website te laten maken?",
+    a: "Meestal 2 tot 6 weken, afhankelijk van het pakket en van hoe snel teksten en beelden klaar zijn. Je krijgt eerst een voorstel en een ontwerp om te bekijken.",
+  },
   {
     q: "Wat is de minimale looptijd?",
     a: "12 maanden vanaf de livegang. Daarna is je abonnement maandelijks opzegbaar.",
   },
   {
     q: "Kan ik per jaar betalen?",
-    a: "Ja. Betaal je het abonnement per jaar vooruit, dan krijg je 1 maand gratis: je betaalt 11 maanden en krijgt er 12. Voor Business is dat € 1.089 per jaar in plaats van 12 × € 99.",
+    a: `Ja. Betaal je het abonnement per jaar vooruit, dan krijg je 1 maand gratis: je betaalt 11 maanden en krijgt er 12. Voor Business is dat ${formatEuroText(yearlyPrice(packages[1]))} per jaar in plaats van 12 × ${formatEuroText(packages[1].monthly)}.`,
   },
   {
     q: "Van wie is het domein?",
@@ -197,7 +213,7 @@ export const faqs = [
   },
   {
     q: "Werken jullie ook buiten Retie?",
-    a: "Ja. We werken vooral in de Kempen en de provincie Antwerpen, maar ook verder.",
+    a: "Ja. We bouwen websites voor ondernemers in heel de Kempen, zoals in Dessel, Arendonk, Mol, Geel, Kasterlee, Turnhout, Herentals en Balen, en ook verder in de provincie Antwerpen en Vlaanderen.",
   },
   {
     q: "Zijn de prijzen inclusief btw?",

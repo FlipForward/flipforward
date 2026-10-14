@@ -19,6 +19,7 @@ const template = fs.readFileSync(path.join(dist, "index.html"), "utf8");
 
 const routes = [
   { url: "/", file: "index.html" },
+  { url: "/website-laten-maken", file: "website-laten-maken.html" },
   { url: "/privacyverklaring", file: "privacyverklaring.html" },
   { url: "/algemene-voorwaarden", file: "algemene-voorwaarden.html" },
   { url: "/404", file: "404.html", noindex: true },

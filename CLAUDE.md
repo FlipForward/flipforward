@@ -47,6 +47,18 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
 - Geen backend of databank. Het contactformulier POST naar `api/contact.ts` (Vercel-functie) die een opgemaakte HTML-mail (+ tekstversie, opgebouwd in `api/_email.ts`) stuurt via SMTP van de Vimexx-mailbox.
   Env-variabelen in Vercel: `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` (geheim, enkel Finn), optioneel `CONTACT_TO`. Spamrem: honeypotveld `website` + rate limit.
 
+## SEO & GEO
+- Doelzoekwoorden (lokaal, haalbaar): "webdesign Kempen/Retie", "website laten maken (Kempen)", "webdesigner + gemeente". Het
+  nationale "webdesign bureau" is geen realistisch doel op korte termijn.
+- Homepage: titel/description in `index.html` bevatten "Webdesign Kempen" en "website laten maken". De H1 is het label boven de
+  slogan in `HeroCopy.tsx` ("Webdesign & website laten maken · Retie, Kempen"); de grote slogan is een <p>.
+- Landingspagina `/website-laten-maken` (`src/pages/WebsiteLatenMaken.tsx`): prijzen, wat erin zit, werkwijze, werk, regio, FAQ.
+  Alles uit `site.ts`. JSON-LD: Organization + FAQ-subset + BreadcrumbList. Gelinkt vanuit footer en Diensten.
+- Werkregio: `business.towns` in `site.ts` (gemeenten in de structured data, FAQ, landingspagina, llms.txt). **Geen aparte pagina per
+  gemeente** (doorway pages worden door Google afgestraft); liever echte inhoud (bv. later case-pagina's per project).
+- Structured data: `sameAs` = KBO-fiche, `knowsAbout`, `areaServed` met City-items. FAQ-prijzen worden uit de pakketten berekend.
+- Bij navigatie naar een andere route scrolt `App.tsx` naar boven (behalve bij een anker).
+
 ## Draaien, bouwen, deployen
 - `npm install`, `npm run dev` (poort 8080).
 - `npm run build` = client-build → SSR-build van `src/entry-server.tsx` → `scripts/prerender.mjs`, dat volledige HTML schrijft voor
@@ -76,6 +88,10 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
 - [ ] Verwerkers in privacyverklaring bevestigen (Dexxter nog in gebruik?).
 - [x] Redesign gemerged naar `main` en live (07/10/2026).
 - [x] Speelse 404 en projectnamen in de hero gemerged naar `main` en live (07/10/2026).
+- [ ] SEO buiten de code (Finn): Google Search Console (domein verifiëren via DNS bij Vimexx + sitemap indienen), Google
+  Bedrijfsprofiel aanmaken (categorie "Webdesigner", servicegebied Kempen, foto's, reviews vragen aan klanten), Bing Webmaster
+  Tools, vermelding in gidsen (bv. Gouden Gids, Unizo), en zichtbare links "Website door FlipForward" naar flipforward.be op eigen
+  projecten (finnvangronsveld.be, driverdash.be, atlazmusic.be, hytalevlaanderen.be linken nu niet of enkel via JavaScript).
 - [ ] Bavago BV (Herentals, hydraulica): voorbeeld op bavago.flipforward.be, Bart Van Gorp vroeg prijs + afspraak (14/10/2026).
   Offerte 2026-001 opgesteld (Business, € 2.000 opstart na € 500 introductiekorting in ruil voor referentie, € 99/maand,
   50/50-betaling, maandelijks of per jaar € 1.089 met 1 maand gratis). Afspraak nog vast te leggen (bij voorkeur rond 16 u bij hen).
