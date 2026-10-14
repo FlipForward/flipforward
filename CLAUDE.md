@@ -29,6 +29,10 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
   playwright-core + Edge (A4, max. 2 pagina's). Nummering 2026-001, 2026-002, … Altijd vermelden: "Geen btw aangerekend: bijzondere
   vrijstellingsregeling kleine ondernemingen". Wijkt een afspraak af van de algemene voorwaarden (bv. 50/50-betaling), dan staat
   dat er expliciet in ("In afwijking van artikel …").
+- Facturatie: B2B-facturen aan Belgische ondernemingen moeten sinds 1/1/2026 via Peppol (e-factuur), ook als vrijgestelde kleine
+  onderneming; een pdf of Stripe-factuur alleen volstaat niet. Facturen dus uit een Peppol-tool (Dexxter: nakijken of Peppol en
+  terugkerende facturen intussen kunnen; begin 2026 kon terugkerend nog niet). Maandbedrag: maandelijkse factuur + klant betaalt via
+  doorlopende opdracht/overschrijving. Stripe/domiciliëring pas overwegen bij meerdere abonnementsklanten.
 - UI-teksten: geen uitleg-/hinttekstjes zoals "Hover om te scrollen" of "Echte websites, live online".
 - Enkel donkere modus: geen themaknop meer; de donkere tokens in `src/index.css` gelden altijd (`<html class="dark">`).
 - `src/hooks/useAwayTitle.ts`: andere tab-titel ("We missen je hier 🥺", …) zolang het tabblad niet actief is.
