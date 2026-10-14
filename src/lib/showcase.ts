@@ -2,6 +2,7 @@
 import hytale from "@/assets/portfolio/hytale-desktop.webp";
 import driverdash from "@/assets/portfolio/driverdash-desktop.webp";
 import flippy from "@/assets/portfolio/flippy-desktop.webp";
+import groundfield from "@/assets/portfolio/groundfield-desktop.webp";
 import atlaz from "@/assets/portfolio/atlaz-desktop.webp";
 import feest from "@/assets/portfolio/feestoptafel-desktop.webp";
 import finn from "@/assets/portfolio/finn-desktop.webp";
@@ -19,6 +20,7 @@ export interface ShowcaseItem {
 
 export const showcase: ShowcaseItem[] = [
   { title: "finnvangronsveld.be", link: "https://finnvangronsveld.be", thumbnail: finn },
+  { title: "Ground Field", link: "https://groundfield.flipforward.be", thumbnail: groundfield },
   { title: "DriverDash", link: "https://driverdash.be", thumbnail: driverdash },
   { title: "Flippy", link: "https://flippy.flipforward.be", thumbnail: flippy },
   { title: "ATLAZ", link: "https://atlazmusic.be", thumbnail: atlaz },
@@ -35,4 +37,4 @@ export const showcase: ShowcaseItem[] = [
 export const projectAnchor = (title: string) => "project-" + title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
 /** Projecten die als case in het portfolio staan (de hero scrollt daarnaartoe in plaats van de site te openen). */
-export const FEATURED = ["finnvangronsveld.be", "DriverDash", "Flippy", "ATLAZ"];
+export const FEATURED = ["Flippy", "Ground Field", "DriverDash", "finnvangronsveld.be"];

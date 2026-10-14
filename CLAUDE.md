@@ -16,10 +16,11 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
   - Portfolio: `CometCard` (3D-tiltkaarten). Diensten/Over/Pakketten/Contact: `GlowingEffect`/`GlowCard` (rand die de muis volgt),
     Werkwijze: `Timeline`.
 - `src/components/ScrollShot.tsx` – screenshot die bij hover door de pagina scrolt (enkel `transform`, geen layout-animatie).
-- Portfolio (`Portfolio.tsx`): enkel deze vier, even grote kaarten in deze volgorde: Flippy (vroeger Clawd, flippy.flipforward.be), DriverDash, finnvangronsveld.be, ATLAZ.
+- Portfolio (`Portfolio.tsx`): enkel deze vier, even grote kaarten in deze volgorde: Flippy (vroeger Clawd, flippy.flipforward.be), Ground Field
+  (groundfield.flipforward.be, SHEQ-consultancy, Engelstalig), DriverDash, finnvangronsveld.be. `FEATURED` in `showcase.ts` volgt dezelfde lijst.
   Flippy-kaart: de vier figuurtjes (`src/assets/portfolio/flippy-pets/`, frames van de canvassen op flippy.flipforward.be, 4× nearest-neighbour)
   piepen bij hover/focus achter de bovenrand uit (`PeekingPets`, CSS `.peek-pet` in `index.css`); op touch-toestellen één keer bij in beeld komen.
-  Andere projecten (Hytale, Feest Op Tafel, Spuddy, …) staan enkel nog als beeld in de hero via `src/lib/showcase.ts`.
+  Andere projecten (ATLAZ, Hytale, Feest Op Tafel, Spuddy, …) staan enkel nog als beeld in de hero via `src/lib/showcase.ts`.
 - Screenshots in `src/assets/portfolio/` (WebP; desktop 1200 px breed volledige pagina, mobiel 390×844 @2x), gemaakt met
   playwright-core + Edge. DriverDash: de lokale frontend van de getdrivendashboard-repo met onderschepte API/Supabase-calls en
   fictieve demo-ritten (namen uit de demo-seed van die backend) – nooit een account of data op de live driverdash.be aanmaken.
@@ -90,8 +91,11 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
 - [x] Speelse 404 en projectnamen in de hero gemerged naar `main` en live (07/10/2026).
 - [ ] SEO buiten de code (Finn): Google Search Console (domein verifiëren via DNS bij Vimexx + sitemap indienen), Google
   Bedrijfsprofiel aanmaken (categorie "Webdesigner", servicegebied Kempen, foto's, reviews vragen aan klanten), Bing Webmaster
-  Tools, vermelding in gidsen (bv. Gouden Gids, Unizo), en zichtbare links "Website door FlipForward" naar flipforward.be op eigen
-  projecten (finnvangronsveld.be, driverdash.be, atlazmusic.be, hytalevlaanderen.be linken nu niet of enkel via JavaScript).
+  Tools, vermelding in gidsen (bv. Gouden Gids, Unizo).
+- [ ] Links naar flipforward.be op eigen projecten (14/10/2026): finnvangronsveld.be ✓ ("Founder of FlipForward" + Person-JSON-LD),
+  driverdash.be ✓ (footer, via JS). atlazmusic.be: commit 4d67277 gepusht maar nog niet zichtbaar live, nakijken hoe die site
+  deployt; let op: lokaal staat in de atlazmusicbe-map een niet-gecommitte redesign (eerst pullen/stashen). Hytale Vlaanderen (Lovable):
+  nog te doen. Ground Field moet nog nagekeken worden of het een klant of een voorbeeld is (label nu "Website · SHEQ-consultancy").
 - [ ] Bavago BV (Herentals, hydraulica): voorbeeld op bavago.flipforward.be, Bart Van Gorp vroeg prijs + afspraak (14/10/2026).
   Offerte 2026-001 opgesteld (Business, € 2.000 opstart na € 500 introductiekorting in ruil voor referentie, € 99/maand,
   50/50-betaling, maandelijks of per jaar € 1.089 met 1 maand gratis). Afspraak nog vast te leggen (bij voorkeur rond 16 u bij hen).
