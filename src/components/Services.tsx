@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Palette, Globe, Wrench, Search, Lock, Check, ShieldCheck, RefreshCw, DatabaseBackup } from "lucide-react";
 import { GlowCard } from "./aceternity/GlowingEffect";
 import { showcase } from "@/lib/showcase";
@@ -66,7 +67,7 @@ const SearchVisual = () => (
 const services = [
   {
     icon: Palette,
-    title: "Design & ontwikkeling",
+    title: "Webdesign op maat",
     text: "Een website op maat van je zaak, mobielvriendelijk en snel. Met twee feedbackrondes, zodat het ontwerp klopt.",
     visual: <DesignVisual />,
     span: "lg:col-span-4",
@@ -98,12 +99,16 @@ const Services = () => (
   <section id="diensten" aria-labelledby="diensten-title" className="scroll-mt-20 bg-background py-20 sm:py-28">
     <div className="container mx-auto px-4 sm:px-6">
       <div className="mx-auto mb-12 max-w-6xl sm:mb-16">
-        <p className="text-sm font-semibold uppercase tracking-wider text-accent">Diensten</p>
+        <p className="text-sm font-semibold uppercase tracking-wider text-accent">Webdesign &amp; onderhoud</p>
         <h2 id="diensten-title" className="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
           Website as a <span className="text-accent">Service</span>
         </h2>
         <p className="mt-4 max-w-2xl text-lg text-muted-foreground sm:text-xl">
-          Geen losse factuur voor een website die daarna veroudert: wij bouwen én onderhouden, voor een vast bedrag per maand.
+          Geen losse factuur voor een website die daarna veroudert: wij bouwen én onderhouden, voor een vast bedrag per maand.{" "}
+          <Link to="/website-laten-maken" className="text-accent underline underline-offset-4 hover:text-foreground">
+            Lees wat een website laten maken kost
+          </Link>
+          .
         </p>
       </div>
 

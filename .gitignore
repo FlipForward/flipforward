@@ -28,3 +28,6 @@ dist-ssr
 
 # Startdata met klantgegevens: nooit in git (deze repo is publiek)
 supabase/seed-*.sql
+
+# Klantdocumenten (offertes) nooit in de publieke repo
+offertes/

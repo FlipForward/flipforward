@@ -9,8 +9,8 @@ import driverdashDesktop from "@/assets/portfolio/driverdash-desktop.webp";
 import driverdashMobile from "@/assets/portfolio/driverdash-mobile.webp";
 import flippyDesktop from "@/assets/portfolio/flippy-desktop.webp";
 import flippyMobile from "@/assets/portfolio/flippy-mobile.webp";
-import atlazDesktop from "@/assets/portfolio/atlaz-desktop.webp";
-import atlazMobile from "@/assets/portfolio/atlaz-mobile.webp";
+import groundfieldDesktop from "@/assets/portfolio/groundfield-desktop.webp";
+import groundfieldMobile from "@/assets/portfolio/groundfield-mobile.webp";
 import petPhone from "@/assets/portfolio/flippy-pets/phone.png";
 import petFrog from "@/assets/portfolio/flippy-pets/frog.png";
 import petPancake from "@/assets/portfolio/flippy-pets/pancake.png";
@@ -50,6 +50,18 @@ const projects: Project[] = [
     peek: true,
   },
   {
+    title: "Ground Field",
+    category: "Website · SHEQ-consultancy",
+    challenge: "Een bureau voor SHEQ-project- en interimmanagement wilde zijn ervaring en diensten helder tonen aan bedrijven, ook internationaal.",
+    solution:
+      "Een Engelstalige website met de diensten (van interim-SHEQ-management tot ISO-certificering), de sectoren, de werkwijze en een track record met projecten in verschillende landen.",
+    tags: ["B2B", "Engelstalig", "Track record"],
+    link: "https://groundfield.flipforward.be",
+    domain: "groundfield.flipforward.be",
+    desktop: groundfieldDesktop,
+    mobile: groundfieldMobile,
+  },
+  {
     title: "DriverDash",
     category: "Eigen project · webapp",
     challenge: "Chauffeurs wilden hun ritten, uren en verdiensten bijhouden zonder zelf te rekenen.",
@@ -72,17 +84,6 @@ const projects: Project[] = [
     domain: "finnvangronsveld.be",
     desktop: finnDesktop,
     mobile: finnMobile,
-  },
-  {
-    title: "ATLAZ",
-    category: "Eigen project · artiestensite",
-    challenge: "Als DJ en producer onder de naam ATLAZ had ik een officiële plek nodig voor mijn muziek en boekingen.",
-    solution: "Een artiestensite met mixes, aankomende shows en een presskit voor organisatoren.",
-    tags: ["Muziek", "Presskit", "Boekingen"],
-    link: "https://atlazmusic.be",
-    domain: "atlazmusic.be",
-    desktop: atlazDesktop,
-    mobile: atlazMobile,
   },
 ];
 

@@ -10,11 +10,11 @@ const HeroCopy = ({ align = "left", className }: { align?: "left" | "center"; cl
   const center = align === "center";
   return (
     <div className={cn(center ? "text-center mx-auto" : "text-left", "max-w-3xl", className)}>
-      <p className={cn("inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3.5 py-1.5 text-sm font-medium text-accent")}>
-        <MapPin className="h-4 w-4" aria-hidden="true" /> Webbureau uit Retie · Kempen
-      </p>
+      <h1 className={cn("inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3.5 py-1.5 text-sm font-medium text-accent")}>
+        <MapPin className="h-4 w-4" aria-hidden="true" /> Webdesign &amp; website laten maken · Retie, Kempen
+      </h1>
 
-      <h1 className="mt-6 text-4xl font-extrabold leading-[1.05] tracking-tight text-foreground sm:text-6xl xl:text-7xl">
+      <p className="mt-6 text-4xl font-extrabold leading-[1.05] tracking-tight text-foreground sm:text-6xl xl:text-7xl">
         <span className="sr-only">Jouw zaak verdient een website die opvalt, verkoopt en gevonden wordt.</span>
         <span aria-hidden="true">
           Jouw zaak verdient
@@ -23,11 +23,11 @@ const HeroCopy = ({ align = "left", className }: { align?: "left" | "center"; cl
           <br />
           <FlipWords words={WORDS} className="text-accent -ml-0" />
         </span>
-      </h1>
+      </p>
 
       <p className={cn("mt-6 max-w-xl text-base text-muted-foreground sm:text-xl", center && "mx-auto")}>
-        FlipForward bouwt websites voor kmo's en zelfstandigen in de Kempen en regelt daarna alles: hosting, beveiliging,
-        updates en aanpassingen. Jij onderneemt, wij doen de rest.
+        FlipForward is een webdesigner uit Retie die websites bouwt voor kmo's en zelfstandigen in de Kempen, en daarna alles
+        regelt: hosting, beveiliging, updates en aanpassingen. Jij onderneemt, wij doen de rest.
       </p>
 
       <div className={cn("mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4", center ? "justify-center items-center" : "items-start")}>

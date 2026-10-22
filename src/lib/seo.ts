@@ -2,15 +2,21 @@
  * Genereert structured data, sitemap en llms.txt uit site.ts.
  * Draait enkel in de build (vite.config.ts), niet in de browser.
  */
-import { SITE_URL, business, packages, includedInAll, addOns, faqs, PRICE_NOTE, steps, formatEuro } from "./site";
+import { SITE_URL, business, packages, includedInAll, addOns, faqs, PRICE_NOTE, steps, formatEuro, yearlyPrice } from "./site";
 
 export const publicRoutes = [
   { path: "/", priority: "1.0", changefreq: "monthly" },
+  { path: "/website-laten-maken", priority: "0.9", changefreq: "monthly" },
   { path: "/privacyverklaring", priority: "0.3", changefreq: "yearly" },
   { path: "/algemene-voorwaarden", priority: "0.3", changefreq: "yearly" },
 ];
 
 export const routeMeta: Record<string, { title: string; description: string }> = {
+  "/website-laten-maken": {
+    title: "Website laten maken in de Kempen – prijzen & werkwijze | FlipForward",
+    description:
+      `Wat kost een website laten maken in de Kempen, hoe lang duurt het en wat zit erin? Vaste prijzen vanaf ${formatEuro(packages[0].setup)}, hosting en onderhoud inbegrepen. Webdesigner uit Retie.`,
+  },
   "/privacyverklaring": {
     title: "Privacyverklaring | FlipForward",
     description: "Hoe FlipForward uit Retie omgaat met je persoonsgegevens: welke gegevens, waarom, hoe lang en welke rechten je hebt.",
@@ -38,7 +44,7 @@ export function jsonLd() {
     description:
       "Webbureau uit Retie dat websites bouwt en onderhoudt voor kmo's en zelfstandigen in de Kempen, als abonnement (Website as a Service).",
     email: business.email,
-    telephone: business.phone.replace(/s/g, ""),
+    telephone: business.phone.replace(/\s/g, ""),
     founder: {
       "@type": "Person",
       name: business.owner,
@@ -64,7 +70,13 @@ export function jsonLd() {
       addressRegion: "Antwerpen",
       addressCountry: business.country,
     },
-    areaServed: business.areaServed.map((name) => ({ "@type": "AdministrativeArea", name })),
+    areaServed: [
+      ...business.towns.map((name) => ({ "@type": "City", name, containedInPlace: { "@type": "AdministrativeArea", name: "Kempen" } })),
+      ...business.areaServed.filter((a) => a !== "Retie").map((name) => ({ "@type": "AdministrativeArea", name })),
+    ],
+    sameAs: [business.kboUrl],
+    knowsAbout: ["Webdesign", "Website laten maken", "Websiteonderhoud", "Webhosting", "Zoekmachineoptimalisatie (SEO)", "Vindbaarheid in AI-zoekmachines (GEO)", "Google Bedrijfsprofiel"],
+    slogan: "Jouw zaak verdient een website die opvalt.",
     priceRange: `${formatEuro(packages[0].setup)} – ${formatEuro(packages[packages.length - 1].setup)}+`,
     currenciesAccepted: "EUR",
     knowsLanguage: "nl-BE",
@@ -128,7 +140,27 @@ const script = (o: unknown) =>
 
 export function jsonLdTags(path = "/") {
   const { organization, website, faqPage } = jsonLd();
-  return path === "/" ? [organization, website, faqPage].map(script).join("\n    ") : script(organization);
+  if (path === "/") return [organization, website, faqPage].map(script).join("\n    ");
+  if (path === "/website-laten-maken") {
+    const keys = [
+      "Wat kost een website laten maken?",
+      "Hoe lang duurt het om een website te laten maken?",
+      "Kan ik zelf teksten aanpassen?",
+      "Van wie is het domein?",
+      "Werken jullie ook buiten Retie?",
+    ];
+    const faq = { ...faqPage, mainEntity: faqPage.mainEntity.filter((q) => keys.includes(q.name)) };
+    const crumbs = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "FlipForward", item: `${SITE_URL}/` },
+        { "@type": "ListItem", position: 2, name: "Website laten maken", item: `${SITE_URL}/website-laten-maken` },
+      ],
+    };
+    return [organization, faq, crumbs].map(script).join("\n    ");
+  }
+  return script(organization);
 }
 
 export function sitemapXml(lastmod: string) {
@@ -148,13 +180,15 @@ export function llmsTxt() {
         `### ${p.name}${p.highlight ? ` (${p.highlight.toLowerCase()})` : ""}\n` +
         `- Voor: ${p.audience}\n- ${p.pages}\n- ${p.features.join("; ")}\n- Juridisch: ${p.legal.join("; ")}\n` +
         `- Opstart: ${p.setupFrom ? "vanaf " : ""}${formatEuro(p.setup)} eenmalig\n` +
-        `- Maandelijks: ${formatEuro(p.monthly)}${p.monthlyNote ? ` (${p.monthlyNote})` : ""}`,
+        `- Maandelijks: ${formatEuro(p.monthly)}${p.monthlyNote ? ` (${p.monthlyNote})` : ""}
+` +
+        `- Of per jaar vooruit: ${formatEuro(yearlyPrice(p))} (1 maand gratis)`,
     )
     .join("\n\n");
 
   return `# FlipForward
 
-> FlipForward is een webbureau uit Retie (België) dat websites bouwt én onderhoudt voor kmo's en zelfstandigen in de Kempen en de provincie Antwerpen. Het model is "Website as a Service": een eenmalige opstartkost plus een vast maandbedrag voor hosting, onderhoud en aanpassingen.
+> FlipForward is een webbureau en webdesigner uit Retie (België) dat websites bouwt én onderhoudt voor kmo's en zelfstandigen in de Kempen (o.a. ${business.towns.join(", ")}) en de provincie Antwerpen. Het model is "Website as a Service": een eenmalige opstartkost plus een vast maandbedrag voor hosting, onderhoud en aanpassingen.
 
 ## Bedrijf
 - Naam: ${business.name} (handelsnaam van ${business.owner}, ${business.legalForm})
@@ -165,6 +199,12 @@ export function llmsTxt() {
 - E-mail: ${business.email} (of via het contactformulier op de website; antwoord binnen 2 werkdagen)
 - Regio: ${business.areaServed.join(", ")}
 - Website: ${SITE_URL}/
+
+## Pagina's
+- [Website laten maken in de Kempen: prijzen, werkwijze en regio](${SITE_URL}/website-laten-maken)
+- [Pakketten en prijzen](${SITE_URL}/#pakketten)
+- [Portfolio](${SITE_URL}/#portfolio)
+- [Contact](${SITE_URL}/#contact)
 
 ## Pakketten
 ${PRICE_NOTE}

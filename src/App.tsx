@@ -1,16 +1,24 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { useEffect } from "react";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Terms from "./pages/Terms";
+import WebsiteLatenMaken from "./pages/WebsiteLatenMaken";
 import { useAwayTitle } from "./hooks/useAwayTitle";
 
 /** De router zelf (Browser- of StaticRouter) wordt in main.tsx / entry-server.tsx eromheen gezet. */
 const App = () => {
   useAwayTitle();
+  // Bij een nieuwe pagina bovenaan beginnen (behalve bij een anker zoals /#contact).
+  const { pathname, hash } = useLocation();
+  useEffect(() => {
+    if (!hash) window.scrollTo({ top: 0, behavior: "instant" });
+  }, [pathname, hash]);
   return (
   <Routes>
     <Route path="/" element={<Index />} />
+    <Route path="/website-laten-maken" element={<WebsiteLatenMaken />} />
     <Route path="/privacyverklaring" element={<PrivacyPolicy />} />
     <Route path="/algemene-voorwaarden" element={<Terms />} />
     <Route path="/privacy" element={<Navigate to="/privacyverklaring" replace />} />

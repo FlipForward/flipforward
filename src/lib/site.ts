@@ -23,6 +23,9 @@ export const business = {
   countryName: "België",
   region: "Kempen, provincie Antwerpen",
   areaServed: ["Retie", "Kempen", "Provincie Antwerpen", "Vlaanderen", "België"],
+  /** Gemeenten in de buurt (regio-tekst en structured data). Enkel echte werkregio, geen aparte pagina per gemeente. */
+  towns: ["Retie", "Dessel", "Arendonk", "Mol", "Geel", "Kasterlee", "Oud-Turnhout", "Turnhout", "Herentals", "Balen"],
+  kboUrl: "https://kbopub.economie.fgov.be/kbopub/zoeknummerform.html?nummer=1033868758",
 } as const;
 
 export const PRICE_NOTE =
@@ -43,6 +46,10 @@ export interface Package {
   monthlyNote?: string;
   highlight?: string;
 }
+
+/** Jaarlijkse betaling: per jaar vooruit, 1 maand gratis (11 maandbedragen voor 12 maanden). */
+export const YEARLY_FREE_MONTHS = 1;
+export const yearlyPrice = (p: Pick<Package, "monthly">) => p.monthly * (12 - YEARLY_FREE_MONTHS);
 
 export const packages: Package[] = [
   {
@@ -76,7 +83,7 @@ export const packages: Package[] = [
     setup: 2500,
     monthly: 99,
     monthlyNote: "incl. 1 u aanpassingen/maand",
-    highlight: "Meest gekozen",
+    highlight: "Aanrader",
   },
   {
     id: "pro",
@@ -96,6 +103,24 @@ export const packages: Package[] = [
     monthly: 149,
     monthlyNote: "incl. 2 u aanpassingen/maand + kwartaalrapport",
   },
+];
+
+/**
+ * Vergelijkingstabel onder de pakketkaarten. Elke rij: [Start, Business, Pro].
+ * true = inbegrepen, false = niet inbegrepen, tekst = specifieke waarde.
+ */
+export const comparison: { label: string; values: [string | boolean, string | boolean, string | boolean] }[] = [
+  { label: "Ideaal voor", values: ["Eén dienst of zaak voorstellen", "Kmo met meerdere diensten", "B2B met assortiment of meerdere talen"] },
+  { label: "Aantal pagina's", values: ["Tot 5", "Tot 10", "Op maat"] },
+  { label: "Talen", values: ["1", "Tot 2", "3–4"] },
+  { label: "Aanpassingen inbegrepen", values: ["30 min/maand", "1 u/maand", "2 u/maand"] },
+  { label: "Zelf teksten aanpassen (CMS)", values: [false, true, true] },
+  { label: "Vindbaarheid", values: ["Basis-SEO", "SEO + AI-zoekmachines", "SEO + AI-zoekmachines"] },
+  { label: "Google Bedrijfsprofiel", values: [false, true, true] },
+  { label: "Catalogus / assortiment", values: [false, false, true] },
+  { label: "Offerte-aanvraag & vacatures", values: [false, false, true] },
+  { label: "Kwartaalrapport", values: [false, false, true] },
+  { label: "Hosting, SSL, back-ups, updates & beveiliging", values: [true, true, true] },
 ];
 
 export const includedInAll = [
@@ -152,10 +177,27 @@ export const steps = [
   },
 ];
 
+/** Euro-bedrag als platte tekst (voor FAQ/structured data, staat vóór formatEuro gedefinieerd). */
+const formatEuroText = (n: number) => "€ " + n.toLocaleString("nl-BE", { maximumFractionDigits: 0 });
+
 export const faqs = [
+  {
+    q: "Wat kost een website laten maken?",
+    a: `Bij FlipForward betaal je een eenmalige opstartkost en daarna een vast bedrag per maand voor hosting, onderhoud en aanpassingen: ${packages
+      .map((p) => `${p.name} ${p.setupFrom ? "vanaf " : ""}${formatEuroText(p.setup)} + ${formatEuroText(p.monthly)} per maand`)
+      .join(", ")}. Betaal je per jaar, dan krijg je 1 maand gratis. Er wordt geen btw aangerekend.`,
+  },
+  {
+    q: "Hoe lang duurt het om een website te laten maken?",
+    a: "Meestal 2 tot 6 weken, afhankelijk van het pakket en van hoe snel teksten en beelden klaar zijn. Je krijgt eerst een voorstel en een ontwerp om te bekijken.",
+  },
   {
     q: "Wat is de minimale looptijd?",
     a: "12 maanden vanaf de livegang. Daarna is je abonnement maandelijks opzegbaar.",
+  },
+  {
+    q: "Kan ik per jaar betalen?",
+    a: `Ja. Betaal je het abonnement per jaar vooruit, dan krijg je 1 maand gratis: je betaalt 11 maanden en krijgt er 12. Voor Business is dat ${formatEuroText(yearlyPrice(packages[1]))} per jaar in plaats van 12 × ${formatEuroText(packages[1].monthly)}.`,
   },
   {
     q: "Van wie is het domein?",
@@ -171,7 +213,7 @@ export const faqs = [
   },
   {
     q: "Werken jullie ook buiten Retie?",
-    a: "Ja. We werken vooral in de Kempen en de provincie Antwerpen, maar ook verder.",
+    a: "Ja. We bouwen websites voor ondernemers in heel de Kempen, zoals in Dessel, Arendonk, Mol, Geel, Kasterlee, Turnhout, Herentals en Balen, en ook verder in de provincie Antwerpen en Vlaanderen.",
   },
   {
     q: "Zijn de prijzen inclusief btw?",

@@ -64,6 +64,12 @@ const sections: LegalSection[] = [
           Zegt de Klant op vóór het einde van de minimale looptijd, dan blijven de maandbedragen tot het einde van die 12 maanden
           verschuldigd.
         </p>
+        <p>
+          Kiest de Klant voor jaarlijkse betaling (artikel 9), dan loopt het abonnement telkens per jaar. Het wordt automatisch met
+          een jaar verlengd, tenzij een partij het per e-mail opzegt uiterlijk één maand vóór het einde van het lopende jaar. Een
+          vooruitbetaald jaar wordt niet terugbetaald. De Klant kan op het einde van een jaar ook overstappen naar maandelijkse
+          betaling.
+        </p>
       </>
     ),
   },
@@ -120,11 +126,13 @@ const sections: LegalSection[] = [
   },
   {
     title: "Artikel 9 – Betaling",
+    review: "jaarlijkse betaling: automatische verlenging per jaar en geen terugbetaling van een vooruitbetaald jaar, zeker tegenover consumenten.",
     body: (
       <>
         <p>
-          De opstartkost wordt vooraf gefactureerd. Het maandbedrag wordt maandelijks gefactureerd. Facturen zijn betaalbaar binnen
-          14 dagen na factuurdatum.
+          De opstartkost wordt vooraf gefactureerd. Het maandbedrag wordt maandelijks gefactureerd, of per jaar vooruit als de Klant
+          daarvoor kiest. Bij jaarlijkse betaling betaalt de Klant 11 maandbedragen voor 12 maanden (1 maand gratis). Facturen zijn
+          betaalbaar binnen 14 dagen na factuurdatum.
         </p>
         <p>
           Bij niet-betaling stuurt FlipForward een herinnering. Blijft betaling daarna uit, dan mag FlipForward de website

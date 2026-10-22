@@ -16,13 +16,27 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
   - Portfolio: `CometCard` (3D-tiltkaarten). Diensten/Over/Pakketten/Contact: `GlowingEffect`/`GlowCard` (rand die de muis volgt),
     Werkwijze: `Timeline`.
 - `src/components/ScrollShot.tsx` – screenshot die bij hover door de pagina scrolt (enkel `transform`, geen layout-animatie).
-- Portfolio (`Portfolio.tsx`): enkel deze vier, even grote kaarten in deze volgorde: Flippy (vroeger Clawd, flippy.flipforward.be), DriverDash, finnvangronsveld.be, ATLAZ.
+- Portfolio (`Portfolio.tsx`): enkel deze vier, even grote kaarten in deze volgorde: Flippy (vroeger Clawd, flippy.flipforward.be), Ground Field
+  (groundfield.flipforward.be, SHEQ-consultancy, Engelstalig), DriverDash, finnvangronsveld.be. `FEATURED` in `showcase.ts` volgt dezelfde lijst.
   Flippy-kaart: de vier figuurtjes (`src/assets/portfolio/flippy-pets/`, frames van de canvassen op flippy.flipforward.be, 4× nearest-neighbour)
   piepen bij hover/focus achter de bovenrand uit (`PeekingPets`, CSS `.peek-pet` in `index.css`); op touch-toestellen één keer bij in beeld komen.
-  Andere projecten (Hytale, Feest Op Tafel, Spuddy, …) staan enkel nog als beeld in de hero via `src/lib/showcase.ts`.
+  Andere projecten (ATLAZ, Hytale, Feest Op Tafel, Spuddy, …) staan enkel nog als beeld in de hero via `src/lib/showcase.ts`.
 - Screenshots in `src/assets/portfolio/` (WebP; desktop 1200 px breed volledige pagina, mobiel 390×844 @2x), gemaakt met
   playwright-core + Edge. DriverDash: de lokale frontend van de getdrivendashboard-repo met onderschepte API/Supabase-calls en
   fictieve demo-ritten (namen uit de demo-seed van die backend) – nooit een account of data op de live driverdash.be aanmaken.
+- Jaarlijkse betaling: altijd aanbieden, 1 maand gratis (11 maandbedragen voor 12 maanden; `yearlyPrice`/`YEARLY_FREE_MONTHS` in
+  `site.ts`). Staat op de pakketkaarten, in de vergelijkingstabel, de FAQ, llms.txt, de algemene voorwaarden (art. 4 en 9, met
+  `review:`) en in elke offerte. Jaarabonnement verlengt per jaar, opzegbaar tot 1 maand voor het einde, geen terugbetaling.
+- Pakketten: onder de kaarten een vergelijkingstabel (`PackageComparison.tsx`, data `comparison` in `site.ts`). Business draagt
+  het label "Aanrader" (niet "Meest gekozen": dat zou een verzonnen claim zijn zolang er geen klantcijfers zijn).
+- Offertes: `offertes/<nummer>-<klant>/` (staat in `.gitignore`, de repo is publiek). Opgemaakt als HTML, naar PDF gerenderd met
+  playwright-core + Edge (A4, max. 2 pagina's). Nummering 2026-001, 2026-002, … Altijd vermelden: "Geen btw aangerekend: bijzondere
+  vrijstellingsregeling kleine ondernemingen". Wijkt een afspraak af van de algemene voorwaarden (bv. 50/50-betaling), dan staat
+  dat er expliciet in ("In afwijking van artikel …").
+- Facturatie: B2B-facturen aan Belgische ondernemingen moeten sinds 1/1/2026 via Peppol (e-factuur), ook als vrijgestelde kleine
+  onderneming; een pdf of Stripe-factuur alleen volstaat niet. Facturen dus uit een Peppol-tool (Dexxter: nakijken of Peppol en
+  terugkerende facturen intussen kunnen; begin 2026 kon terugkerend nog niet). Maandbedrag: maandelijkse factuur + klant betaalt via
+  doorlopende opdracht/overschrijving. Stripe/domiciliëring pas overwegen bij meerdere abonnementsklanten.
 - UI-teksten: geen uitleg-/hinttekstjes zoals "Hover om te scrollen" of "Echte websites, live online".
 - Enkel donkere modus: geen themaknop meer; de donkere tokens in `src/index.css` gelden altijd (`<html class="dark">`).
 - `src/hooks/useAwayTitle.ts`: andere tab-titel ("We missen je hier 🥺", …) zolang het tabblad niet actief is.
@@ -58,12 +72,24 @@ Interne klantenadministratie voor Finn: lopende projecten, voortgang (vaste stap
   betalingsschema, bedragen), `pages/` (Overzicht, ProjectPagina, NieuwProject).
 - De publieke site zet nog steeds geen cookies; de Supabase-sessie (localStorage) bestaat enkel voor Finn op `/admin`.
 
+## SEO & GEO
+- Doelzoekwoorden (lokaal, haalbaar): "webdesign Kempen/Retie", "website laten maken (Kempen)", "webdesigner + gemeente". Het
+  nationale "webdesign bureau" is geen realistisch doel op korte termijn.
+- Homepage: titel/description in `index.html` bevatten "Webdesign Kempen" en "website laten maken". De H1 is het label boven de
+  slogan in `HeroCopy.tsx` ("Webdesign & website laten maken · Retie, Kempen"); de grote slogan is een <p>.
+- Landingspagina `/website-laten-maken` (`src/pages/WebsiteLatenMaken.tsx`): prijzen, wat erin zit, werkwijze, werk, regio, FAQ.
+  Alles uit `site.ts`. JSON-LD: Organization + FAQ-subset + BreadcrumbList. Gelinkt vanuit footer en Diensten.
+- Werkregio: `business.towns` in `site.ts` (gemeenten in de structured data, FAQ, landingspagina, llms.txt). **Geen aparte pagina per
+  gemeente** (doorway pages worden door Google afgestraft); liever echte inhoud (bv. later case-pagina's per project).
+- Structured data: `sameAs` = KBO-fiche, `knowsAbout`, `areaServed` met City-items. FAQ-prijzen worden uit de pakketten berekend.
+- Bij navigatie naar een andere route scrolt `App.tsx` naar boven (behalve bij een anker).
+
 ## Draaien, bouwen, deployen
 - `npm install`, `npm run dev` (poort 8080).
 - `npm run build` = client-build → SSR-build van `src/entry-server.tsx` → `scripts/prerender.mjs`, dat volledige HTML schrijft voor
   `/`, `/privacyverklaring`, `/algemene-voorwaarden` en `404.html`.
   Nieuwe publieke route? Toevoegen in `scripts/prerender.mjs`, `src/lib/seo.ts` (publicRoutes/routeMeta) en `App.tsx`.
-- Hosting: **Vercel Pro**, team `finnvangronsvelds-projects`, project `flipforward` (prj_LWfhFyDOlOHL5VuKbWzEPHdRuZ70).
+- Hosting: **Vercel Pro**, team `flipforward` (URL-slug; preview-URL's eindigen op `-flipforward.vercel.app`), project `flipforward` (prj_LWfhFyDOlOHL5VuKbWzEPHdRuZ70).
   Push naar `main` = productie; elke andere branch = preview-URL. Config in `vercel.json` (redirects, rewrites, headers).
 - OG-afbeelding: `scripts/og-image.svg` → `public/og-image.png` (1200×630, gerenderd met @resvg/resvg-js).
 
@@ -91,6 +117,16 @@ Interne klantenadministratie voor Finn: lopende projecten, voortgang (vaste stap
 - [ ] Verwerkers in privacyverklaring bevestigen (Dexxter nog in gebruik?).
 - [x] Redesign gemerged naar `main` en live (07/10/2026).
 - [x] Speelse 404 en projectnamen in de hero gemerged naar `main` en live (07/10/2026).
+- [ ] SEO buiten de code (Finn): Google Search Console (domein verifiëren via DNS bij Vimexx + sitemap indienen), Google
+  Bedrijfsprofiel aanmaken (categorie "Webdesigner", servicegebied Kempen, foto's, reviews vragen aan klanten), Bing Webmaster
+  Tools, vermelding in gidsen (bv. Gouden Gids, Unizo).
+- [ ] Links naar flipforward.be op eigen projecten (14/10/2026): finnvangronsveld.be ✓ ("Founder of FlipForward" + Person-JSON-LD),
+  driverdash.be ✓ (footer, via JS). atlazmusic.be: commit 4d67277 gepusht maar nog niet zichtbaar live, nakijken hoe die site
+  deployt; let op: lokaal staat in de atlazmusicbe-map een niet-gecommitte redesign (eerst pullen/stashen). Hytale Vlaanderen (Lovable):
+  nog te doen. Ground Field moet nog nagekeken worden of het een klant of een voorbeeld is (label nu "Website · SHEQ-consultancy").
+- [ ] Bavago BV (Herentals, hydraulica): voorbeeld op bavago.flipforward.be, Bart Van Gorp vroeg prijs + afspraak (14/10/2026).
+  Offerte 2026-001 opgesteld (Business, € 2.000 opstart na € 500 introductiekorting in ruil voor referentie, € 99/maand,
+  50/50-betaling, maandelijks of per jaar € 1.089 met 1 maand gratis). Afspraak nog vast te leggen (bij voorkeur rond 16 u bij hen).
 - [x] Labels: DriverDash = eigen project (webapp), Flippy (ex-Clawd) = eigen project (desktop-tool).
 - [x] Licentie Aceternity UI nagelezen (07/10/2026): gratis componenten mogen in persoonlijke én commerciële/klantprojecten,
   zonder verplichte naamsvermelding. Niet toegestaan: de componenten zelf doorverkopen of herverdelen (als template, componentbibliotheek
