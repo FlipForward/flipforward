@@ -48,7 +48,7 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
 - De publieke site heeft geen backend of databank. Het contactformulier POST naar `api/contact.ts` (Vercel-functie) die een opgemaakte HTML-mail (+ tekstversie, opgebouwd in `api/_email.ts`) stuurt via SMTP van de Vimexx-mailbox.
   Env-variabelen in Vercel: `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` (geheim, enkel Finn), optioneel `CONTACT_TO`. Spamrem: honeypotveld `website` + rate limit.
 
-## Beheeromgeving `/admin` (branch `admin-backend`, nog niet live)
+## Beheeromgeving `/admin` (live sinds 22/10/2026, https://flipforward.be/admin)
 Interne klantenadministratie voor Finn: lopende projecten, voortgang (vaste stappen tot livegang), offertes, betalingen
 (opstart 50/50 + maandtermijnen) en werkuren onderhoud (t.o.v. de inbegrepen uren). **Enkel projecten die echt lopen** (vanaf
 "getekend"); leads en demo's blijven in Notion ("FlipForward administratie").
@@ -64,8 +64,7 @@ Interne klantenadministratie voor Finn: lopende projecten, voortgang (vaste stap
   itswillhd daarvoor gepauzeerd wegens limiet 2 actieve gratis projecten). Migratie + seed uitgevoerd. Auth: signups uit,
   enige gebruiker finn@flipforward.be, Site URL `https://flipforward.be/admin`, redirect-URL's flipforward.be/admin**, localhost:*/admin**
   en de Vercel-previews. Custom SMTP = formulieren@flipforward.be (Vimexx, door Finn ingesteld). Lokaal: `.env.local` (niet in git).
-- Vercel: `VITE_SUPABASE_URL` + `VITE_SUPABASE_ANON_KEY` (publishable key, type Config) staan **enkel op Preview**.
-  Bij livegang van /admin ook op Production zetten.
+- Vercel: `VITE_SUPABASE_URL` + `VITE_SUPABASE_ANON_KEY` (publishable key, type Config) staan op Production en Preview.
 - Zonder `VITE_SUPABASE_URL`/`VITE_SUPABASE_ANON_KEY` draait `/admin` in `npm run dev` op **fictieve** voorbeelddata in localStorage
   (`src/admin/voorbeeld.ts`, badge "lokaal · voorbeelddata"); in een productiebuild toont het dan enkel "niet ingesteld".
 - Code: `store.ts` (Supabase/lokaal), `data.tsx` (alle rijen in één context, herladen na elke wijziging), `logica.ts` (vaste stappen,
@@ -109,7 +108,9 @@ Interne klantenadministratie voor Finn: lopende projecten, voortgang (vaste stap
 
 ## Open / te bevestigen door Finn
 - [x] Supabase opgezet (22/10/2026): project, schema, seed, auth, SMTP, Vercel-variabelen op Preview.
-- [ ] Beheeromgeving live zetten: `VITE_SUPABASE_URL` + `VITE_SUPABASE_ANON_KEY` ook op Production, dan branch `admin-backend` mergen.
+- [x] Beheeromgeving live (22/10/2026): variabelen op Production, `admin-backend` gemerged naar `main`.
+- [ ] Oude commits `665a56a`, `9fedf25`, `18adabb` (bevatten klantgegevens Bavago, uit de branch verwijderd) laten wissen via
+      GitHub Support ("remove sensitive data"); de repo is publiek, dus nooit klantgegevens committen.
 - [ ] Oude preview-redirect `https://flipforward-*-finnvangronsvelds-projects.vercel.app/admin**` mag weg in Supabase (team heet nu `flipforward`).
 - [ ] Later: pdf-upload naar de bucket `offertes`, export naar boekhouding, eventueel een klantportaal (klant ziet zijn voortgang).
 - [x] E-mail op de site: `finn@flipforward.be` (Vimexx-mailbox).
