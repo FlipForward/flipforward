@@ -25,7 +25,8 @@ export default function NieuwProject() {
   const [f, setF] = useState<Partial<Record<keyof Project, string>>>({
     naam: "Nieuwe website",
     status: "getekend",
-    termijnen: "11",
+    facturatie: "maandelijks",
+    termijnen: "12",
     looptijd_maanden: "12",
     uren_per_maand: "1",
     akkoord_op: vandaag(),

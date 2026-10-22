@@ -33,10 +33,13 @@ export function plusDagen(datum: string, dagen: number) {
   return d.toISOString().slice(0, 10);
 }
 
+/** Maanden optellen zonder overloop: 31/01 + 1 maand = 28/02 (of 29/02), niet 03/03. */
 export function plusMaanden(datum: string, maanden: number) {
-  const d = new Date(`${datum}T12:00:00`);
-  d.setMonth(d.getMonth() + maanden);
-  return d.toISOString().slice(0, 10);
+  const [j, m, d] = datum.split("-").map(Number);
+  const doel = new Date(Date.UTC(j, m - 1 + maanden, 1));
+  const laatste = new Date(Date.UTC(doel.getUTCFullYear(), doel.getUTCMonth() + 1, 0)).getUTCDate();
+  doel.setUTCDate(Math.min(d, laatste));
+  return doel.toISOString().slice(0, 10);
 }
 
 const euroFmt = new Intl.NumberFormat("nl-BE", { style: "currency", currency: "EUR" });
@@ -50,19 +53,15 @@ export function voortgang(taken: Taak[]) {
   return { klaar, totaal: taken.length, procent: taken.length ? Math.round((klaar / taken.length) * 100) : 0 };
 }
 
-export const isTeLaat = (b: Betaling) => !b.betaald_op && !!b.vervaldatum && b.vervaldatum < vandaag();
 
-export const openstaand = (betalingen: Betaling[]) =>
-  betalingen.filter((b) => !b.betaald_op).reduce((som, b) => som + Number(b.bedrag), 0);
 
 /** Minuten gewerkt in de maand van `ref` (jjjj-mm). */
 export const minutenInMaand = (uren: Werkuur[], ref = vandaag().slice(0, 7)) =>
   uren.filter((u) => u.datum.startsWith(ref)).reduce((som, u) => som + u.minuten, 0);
 
 /**
- * Betalingsschema volgens de offerte: 50% opstart bij akkoord, 50% bij livegang (14 dagen betaaltermijn),
- * daarna `termijnen` maandelijkse termijnen vanaf de start van het onderhoud.
- * Geeft enkel rijen terug die nog niet bestaan, dus opnieuw klikken na het invullen van de livegang vult aan.
+ * Opstartfacturen volgens de offerte: 50% bij akkoord, 50% bij livegang (14 dagen betaaltermijn).
+ * Geeft enkel rijen terug die nog niet bestaan. De onderhoudsfacturen staan niet als rijen klaar: die plant `facturen.ts`.
  */
 export function ontbrekendeBetalingen(p: Project, bestaand: Betaling[]): Partial<Betaling>[] {
   const nieuw: Partial<Betaling>[] = [];
@@ -83,17 +82,5 @@ export function ontbrekendeBetalingen(p: Project, bestaand: Betaling[]): Partial
       bedrag: helft,
       vervaldatum: p.livegang_op ? plusDagen(p.livegang_op, 14) : null,
     });
-
-  const aantal = p.termijnen ?? 0;
-  const al = bestaand.filter((b) => b.soort === "termijn").length;
-  if (p.maandbedrag && p.start_onderhoud && aantal > al) {
-    for (let i = al; i < aantal; i++)
-      nieuw.push({
-        soort: "termijn",
-        omschrijving: `Onderhoud termijn ${i + 1}/${aantal}`,
-        bedrag: p.maandbedrag,
-        vervaldatum: plusMaanden(p.start_onderhoud, i),
-      });
-  }
   return nieuw.map((b) => ({ ...b, project_id: p.id }));
 }

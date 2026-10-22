@@ -69,7 +69,13 @@ Interne klantenadministratie voor Finn: lopende projecten, voortgang (vaste stap
 - Zonder `VITE_SUPABASE_URL`/`VITE_SUPABASE_ANON_KEY` draait `/admin` in `npm run dev` op **fictieve** voorbeelddata in localStorage
   (`src/admin/voorbeeld.ts`, badge "lokaal · voorbeelddata"); in een productiebuild toont het dan enkel "niet ingesteld".
 - Code: `store.ts` (Supabase/lokaal), `data.tsx` (alle rijen in één context, herladen na elke wijziging), `logica.ts` (vaste stappen,
-  betalingsschema, bedragen), `pages/` (Overzicht, ProjectPagina, NieuwProject).
+  opstartfacturen, datums), `facturen.ts` (facturatieplanning), `FactuurLijst.tsx`, `pages/` (Overzicht, ProjectPagina, NieuwProject).
+- **Facturatie** (`facturen.ts`, migratie `0002_facturatie.sql`): opstart = 2 rijen (50% bij akkoord, 50% bij livegang). Onderhoud wordt
+  **berekend**, niet vooraf als rijen opgeslagen: vanaf `start_onderhoud`, `facturatie` maandelijks (elke maand; in de eerste
+  `looptijd_maanden` enkel de eerste `termijnen` maanden, bv. Bavago 11 van 12) of jaarlijks (per jaar vooruit, 11 maandbedragen,
+  zoals art. 9 van de voorwaarden). Klik op "Factuur verstuurd" maakt de rij aan (`soort termijn`, `periode` = sleutel, vervaldatum
+  +14 d); daarna "Betaald". Status: te factureren → wacht op betaling (→ te laat) → betaald. Project op "gestopt" = geen nieuwe facturen.
+  Overzicht toont: nu te factureren (≤ 7 d, ook achterstallige), wacht op betaling, binnenkort (45 d), recent betaald (90 d).
 - De publieke site zet nog steeds geen cookies; de Supabase-sessie (localStorage) bestaat enkel voor Finn op `/admin`.
 
 ## SEO & GEO

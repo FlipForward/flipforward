@@ -3,18 +3,9 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useData } from "../data";
 import { OFFERTE_STATUS, PROJECT_STATUS, type Klant, type Offerte, type Project } from "../types";
-import {
-  STATUS_LABEL,
-  datum,
-  euro,
-  isTeLaat,
-  minutenInMaand,
-  ontbrekendeBetalingen,
-  openstaand,
-  plusDagen,
-  vandaag,
-  voortgang,
-} from "../logica";
+import { STATUS_LABEL, datum, euro, minutenInMaand, ontbrekendeBetalingen, plusDagen, vandaag, voortgang } from "../logica";
+import { facturenVan, volgendeFactuur } from "../facturen";
+import FactuurLijst from "../FactuurLijst";
 import { Sectie, StatusBadge, Veld, Voortgang, getalOfNull, leegNull } from "../ui";
 
 export default function ProjectPagina() {
@@ -43,7 +34,7 @@ export default function ProjectPagina() {
       </div>
       <div className="grid gap-6 xl:grid-cols-2">
         <Stappen project={project} />
-        <Betalingen project={project} />
+        <Facturen project={project} />
         <Offertes project={project} />
         <Werkuren project={project} />
         <ProjectGegevens key={`p-${project.id}`} project={project} />
@@ -111,86 +102,56 @@ function Stappen({ project }: { project: Project }) {
   );
 }
 
-function Betalingen({ project }: { project: Project }) {
+function Facturen({ project }: { project: Project }) {
   const { data, doe } = useData();
-  const betalingen = data.betalingen
-    .filter((b) => b.project_id === project.id)
-    .sort((a, b) => (a.vervaldatum ?? "9999").localeCompare(b.vervaldatum ?? "9999"));
-  const ontbrekend = ontbrekendeBetalingen(project, betalingen);
-  const betaald = betalingen.filter((b) => b.betaald_op).reduce((s, b) => s + Number(b.bedrag), 0);
+  const [verder, setVerder] = useState(false);
+  const tot = plusDagen(vandaag(), verder ? 400 : 60);
+  const facturen = facturenVan(project, data.betalingen, tot);
+  const eigen = data.betalingen.filter((b) => b.project_id === project.id);
+  const ontbrekend = ontbrekendeBetalingen(project, eigen);
+  const betaald = facturen.filter((f) => f.status === "betaald").reduce((s, f) => s + f.bedrag, 0);
+  const wacht = facturen.filter((f) => f.status === "gefactureerd" || f.status === "te_laat").reduce((s, f) => s + f.bedrag, 0);
+  const volgende = volgendeFactuur(project, data.betalingen);
   return (
     <Sectie
-      titel="Betalingen"
+      titel="Facturen en betalingen"
       actie={
         ontbrekend.length > 0 && (
           <Button size="sm" variant="outline" onClick={() => doe((s) => s.maak("betalingen", ontbrekend))}>
-            Schema aanvullen ({ontbrekend.length})
+            Opstartfacturen aanmaken ({ontbrekend.length})
           </Button>
         )
       }
     >
-      <p className="mb-3 text-sm text-muted-foreground">
-        Betaald {euro(betaald)} · openstaand {euro(openstaand(betalingen))}
-        {!project.start_onderhoud && project.termijnen ? " · termijnen volgen zodra de start van het onderhoud ingevuld is" : ""}
-      </p>
-      {betalingen.length === 0 ? (
-        <p className="text-sm text-muted-foreground">Nog geen betalingen. Vul opstartprijs en akkoorddatum in en klik op "Schema aanvullen".</p>
-      ) : (
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-[520px] text-sm">
-            <thead className="text-left text-xs text-muted-foreground">
-              <tr>
-                <th className="py-2 pr-3 font-medium">Omschrijving</th>
-                <th className="py-2 pr-3 font-medium">Vervalt</th>
-                <th className="py-2 pr-3 text-right font-medium">Bedrag</th>
-                <th className="py-2 pr-3 font-medium">Gefactureerd</th>
-                <th className="py-2 font-medium">Betaald</th>
-              </tr>
-            </thead>
-            <tbody>
-              {betalingen.map((b) => (
-                <tr key={b.id} className="border-t border-border">
-                  <td className="py-2 pr-3">{b.omschrijving}</td>
-                  <td className={isTeLaat(b) ? "py-2 pr-3 font-semibold text-destructive" : "py-2 pr-3"}>{datum(b.vervaldatum)}</td>
-                  <td className="py-2 pr-3 text-right tabular-nums">{euro(b.bedrag)}</td>
-                  <td className="py-2 pr-3">
-                    <DatumKnop
-                      waarde={b.gefactureerd_op}
-                      label="Gefactureerd"
-                      zet={(d) => doe((s) => s.wijzig("betalingen", b.id, { gefactureerd_op: d }))}
-                    />
-                  </td>
-                  <td className="py-2">
-                    <DatumKnop
-                      waarde={b.betaald_op}
-                      label="Betaald"
-                      zet={(d) => doe((s) => s.wijzig("betalingen", b.id, { betaald_op: d }))}
-                    />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      <dl className="mb-4 grid grid-cols-2 gap-3 text-sm sm:grid-cols-4">
+        <div>
+          <dt className="text-xs text-muted-foreground">Betaald</dt>
+          <dd className="font-semibold tabular-nums">{euro(betaald)}</dd>
         </div>
-      )}
+        <div>
+          <dt className="text-xs text-muted-foreground">Wacht op betaling</dt>
+          <dd className="font-semibold tabular-nums">{euro(wacht)}</dd>
+        </div>
+        <div className="col-span-2">
+          <dt className="text-xs text-muted-foreground">Volgende factuur</dt>
+          <dd className="font-semibold">
+            {volgende
+              ? `${volgende.factuurdatum ? datum(volgende.factuurdatum) : "bij livegang"} · ${volgende.omschrijving} · ${euro(volgende.bedrag)}`
+              : "–"}
+          </dd>
+        </div>
+      </dl>
+      {!project.start_onderhoud && project.maandbedrag ? (
+        <p className="mb-3 text-sm text-muted-foreground">
+          De onderhoudsfacturen ({euro(project.maandbedrag)}/maand, {project.facturatie}) verschijnen zodra "Start onderhoud" ingevuld is.
+        </p>
+      ) : null}
+      <FactuurLijst facturen={facturen} leeg="Nog geen facturen. Vul opstartprijs en akkoorddatum in." />
+      <Button size="sm" variant="ghost" className="mt-2" onClick={() => setVerder((v) => !v)}>
+        {verder ? "Toon enkel de komende 2 maanden" : "Toon planning voor het komende jaar"}
+      </Button>
       <ExtraBetaling project={project} />
     </Sectie>
-  );
-}
-
-/** Datum tonen met een knop om ze te wissen, of een knop "vandaag" als ze nog leeg is. */
-function DatumKnop({ waarde, label, zet }: { waarde: string | null; label: string; zet: (d: string | null) => void }) {
-  return waarde ? (
-    <span className="inline-flex items-center gap-1">
-      {datum(waarde)}
-      <button type="button" aria-label={`${label} wissen`} className="text-muted-foreground hover:text-destructive" onClick={() => zet(null)}>
-        ×
-      </button>
-    </span>
-  ) : (
-    <Button size="sm" variant="ghost" className="h-7 px-2" onClick={() => zet(vandaag())}>
-      vandaag
-    </Button>
   );
 }
 
@@ -410,7 +371,13 @@ export function ProjectVelden({ f, zet }: { f: Partial<ProjectForm>; zet: (k: ke
     <div className="grid gap-3 sm:grid-cols-2">
       {veld("naam", "Projectnaam")}
       {veld("status", "Status", { opties: PROJECT_STATUS.map((s) => ({ waarde: s, label: STATUS_LABEL[s] })) })}
-      {veld("pakket", "Pakket", { className: "sm:col-span-2" })}
+      {veld("facturatie", "Facturatie onderhoud", {
+        opties: [
+          { waarde: "maandelijks", label: "Maandelijks" },
+          { waarde: "jaarlijks", label: "Jaarlijks vooruit (11 maanden betalen)" },
+        ],
+      })}
+      {veld("pakket", "Pakket")}
       {veld("opstartprijs", "Opstartprijs (€)", { type: "number" })}
       {veld("maandbedrag", "Maandbedrag (€)", { type: "number" })}
       {veld("termijnen", "Gefactureerde termijnen jaar 1", { type: "number" })}

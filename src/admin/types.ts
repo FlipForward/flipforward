@@ -20,6 +20,7 @@ export type Project = {
   klant_id: string;
   naam: string;
   status: ProjectStatus;
+  facturatie: "maandelijks" | "jaarlijks";
   pakket: string | null;
   opstartprijs: number | null;
   maandbedrag: number | null;
@@ -65,6 +66,8 @@ export type Betaling = {
   soort: BetalingSoort;
   omschrijving: string;
   bedrag: number;
+  /** Termijnen: eerste dag van de periode die de factuur dekt (sleutel voor de planning). */
+  periode: string | null;
   vervaldatum: string | null;
   gefactureerd_op: string | null;
   betaald_op: string | null;

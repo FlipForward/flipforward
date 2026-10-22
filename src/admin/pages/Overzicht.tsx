@@ -2,30 +2,39 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useData } from "../data";
 import { PROJECT_STATUS } from "../types";
-import { datum, euro, isTeLaat, openstaand, vandaag, voortgang } from "../logica";
+import { datum, euro, plusDagen, vandaag, voortgang } from "../logica";
+import { facturenVan, volgendeFactuur, type Factuur } from "../facturen";
+import FactuurLijst from "../FactuurLijst";
 import { Sectie, StatusBadge, Voortgang } from "../ui";
 
+const som = (f: Factuur[]) => f.reduce((s, x) => s + x.bedrag, 0);
+
 export default function Overzicht() {
-  const { data, doe } = useData();
+  const { data } = useData();
   const klantVan = (id: string) => data.klanten.find((k) => k.id === id);
-  const projectVan = (id: string) => data.projecten.find((p) => p.id === id);
 
   const projecten = [...data.projecten].sort(
     (a, b) => PROJECT_STATUS.indexOf(a.status) - PROJECT_STATUS.indexOf(b.status),
   );
   const actief = projecten.filter((p) => p.status !== "gestopt");
-  const live = projecten.filter((p) => p.status === "live");
-  const maandelijks = live.reduce((som, p) => som + Number(p.maandbedrag ?? 0), 0);
-  const open = data.betalingen
-    .filter((b) => !b.betaald_op)
-    .sort((a, b) => (a.vervaldatum ?? "9999").localeCompare(b.vervaldatum ?? "9999"));
-  const teLaat = open.filter(isTeLaat);
+  const inOnderhoud = actief.filter((p) => p.start_onderhoud && p.maandbedrag);
+
+  const nu = vandaag();
+  const binnenkortTot = plusDagen(nu, 45);
+  const alle = projecten.flatMap((p) => facturenVan(p, data.betalingen, binnenkortTot));
+  const teFactureren = alle.filter((f) => f.status === "gepland" && f.factuurdatum && f.factuurdatum <= plusDagen(nu, 7));
+  const binnenkort = alle.filter((f) => f.status === "gepland" && f.factuurdatum && f.factuurdatum > plusDagen(nu, 7));
+  const wacht = alle.filter((f) => f.status === "gefactureerd" || f.status === "te_laat");
+  const teLaat = wacht.filter((f) => f.status === "te_laat");
+  const betaald = alle
+    .filter((f) => f.status === "betaald" && f.rij?.betaald_op && f.rij.betaald_op >= plusDagen(nu, -90))
+    .sort((a, b) => (b.rij!.betaald_op ?? "").localeCompare(a.rij!.betaald_op ?? ""));
 
   const cijfers = [
     { label: "Lopende projecten", waarde: String(actief.length) },
-    { label: "Live", waarde: String(live.length) },
-    { label: "Onderhoud per maand (live)", waarde: euro(maandelijks) },
-    { label: "Nog te ontvangen", waarde: euro(openstaand(data.betalingen)) },
+    { label: "Onderhoud per maand", waarde: euro(inOnderhoud.reduce((s, p) => s + Number(p.maandbedrag), 0)) },
+    { label: "Nu te factureren", waarde: euro(som(teFactureren)) },
+    { label: "Wacht op betaling", waarde: euro(som(wacht)) },
   ];
 
   return (
@@ -41,9 +50,17 @@ export default function Overzicht() {
 
       {teLaat.length > 0 && (
         <p role="alert" className="rounded-lg border border-destructive/40 bg-destructive/10 px-4 py-3 text-sm">
-          {teLaat.length === 1 ? "1 betaling is" : `${teLaat.length} betalingen zijn`} over de vervaldatum.
+          {teLaat.length === 1 ? "1 factuur is" : `${teLaat.length} facturen zijn`} over de vervaldatum: {euro(som(teLaat))}.
         </p>
       )}
+
+      <Sectie titel="Nu te factureren">
+        <FactuurLijst facturen={teFactureren} metKlant leeg="Deze week hoeft er geen factuur te vertrekken." />
+      </Sectie>
+
+      <Sectie titel="Wacht op betaling">
+        <FactuurLijst facturen={wacht} metKlant leeg="Geen openstaande facturen." />
+      </Sectie>
 
       <Sectie
         titel="Projecten"
@@ -62,8 +79,9 @@ export default function Overzicht() {
             {projecten.map((p) => {
               const taken = data.taken.filter((t) => t.project_id === p.id).sort((a, b) => a.volgorde - b.volgorde);
               const v = voortgang(taken);
-              const volgende = taken.find((t) => !t.klaar);
-              const betalingen = data.betalingen.filter((b) => b.project_id === p.id);
+              const volgendeStap = taken.find((t) => !t.klaar);
+              const offerte = data.offertes.find((o) => o.project_id === p.id);
+              const factuur = volgendeFactuur(p, data.betalingen);
               return (
                 <li key={p.id}>
                   <Link
@@ -78,14 +96,25 @@ export default function Overzicht() {
                       <StatusBadge status={p.status} />
                     </div>
                     <Voortgang procent={v.procent} label={`${v.klaar}/${v.totaal} stappen`} />
-                    <p className="text-sm">
-                      <span className="text-muted-foreground">Volgende: </span>
-                      {volgende ? `${volgende.titel} (${volgende.wie})` : "alles afgevinkt"}
-                    </p>
-                    <p className="mt-auto text-sm text-muted-foreground">
-                      Openstaand {euro(openstaand(betalingen))}
-                      {p.livegang_op && ` · live ${datum(p.livegang_op)}`}
-                    </p>
+                    <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-sm">
+                      <dt className="text-muted-foreground">Volgende stap</dt>
+                      <dd>{volgendeStap ? `${volgendeStap.titel} (${volgendeStap.wie})` : "alles afgevinkt"}</dd>
+                      <dt className="text-muted-foreground">Offerte</dt>
+                      <dd>{offerte ? `${offerte.nummer} · ${offerte.status}` : "–"}</dd>
+                      <dt className="text-muted-foreground">Volgende factuur</dt>
+                      <dd>
+                        {factuur
+                          ? `${factuur.factuurdatum ? datum(factuur.factuurdatum) : "bij livegang"} · ${euro(factuur.bedrag)}`
+                          : p.start_onderhoud
+                            ? "–"
+                            : "onderhoud nog niet gestart"}
+                      </dd>
+                      <dt className="text-muted-foreground">Onderhoud</dt>
+                      <dd>
+                        {p.maandbedrag ? `${euro(p.maandbedrag)}/maand, ${p.facturatie}` : "–"}
+                        {p.start_onderhoud && ` sinds ${datum(p.start_onderhoud)}`}
+                      </dd>
+                    </dl>
                   </Link>
                 </li>
               );
@@ -94,53 +123,12 @@ export default function Overzicht() {
         )}
       </Sectie>
 
-      <Sectie titel="Openstaande betalingen">
-        {open.length === 0 ? (
-          <p className="text-sm text-muted-foreground">Niets openstaand.</p>
-        ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full min-w-[560px] text-sm">
-              <thead className="text-left text-xs text-muted-foreground">
-                <tr>
-                  <th className="py-2 pr-3 font-medium">Vervalt</th>
-                  <th className="py-2 pr-3 font-medium">Klant</th>
-                  <th className="py-2 pr-3 font-medium">Omschrijving</th>
-                  <th className="py-2 pr-3 text-right font-medium">Bedrag</th>
-                  <th className="py-2" />
-                </tr>
-              </thead>
-              <tbody>
-                {open.slice(0, 15).map((b) => {
-                  const p = projectVan(b.project_id);
-                  return (
-                    <tr key={b.id} className="border-t border-border">
-                      <td className={isTeLaat(b) ? "py-2 pr-3 font-semibold text-destructive" : "py-2 pr-3"}>
-                        {datum(b.vervaldatum)}
-                      </td>
-                      <td className="py-2 pr-3">
-                        {p ? <Link className="underline-offset-2 hover:underline" to={`/project/${p.id}`}>{klantVan(p.klant_id)?.bedrijf}</Link> : "?"}
-                      </td>
-                      <td className="py-2 pr-3">
-                        {b.omschrijving}
-                        {!b.gefactureerd_op && <span className="ml-2 text-xs text-muted-foreground">(nog niet gefactureerd)</span>}
-                      </td>
-                      <td className="py-2 pr-3 text-right tabular-nums">{euro(b.bedrag)}</td>
-                      <td className="py-2 text-right">
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          onClick={() => doe((s) => s.wijzig("betalingen", b.id, { betaald_op: vandaag() }))}
-                        >
-                          Betaald
-                        </Button>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        )}
+      <Sectie titel="Binnenkort te factureren (45 dagen)">
+        <FactuurLijst facturen={binnenkort} metKlant leeg="Niets gepland in de komende 45 dagen." />
+      </Sectie>
+
+      <Sectie titel="Recent betaald (90 dagen)">
+        <FactuurLijst facturen={betaald} metKlant leeg="Nog geen betalingen in de voorbije 90 dagen." />
       </Sectie>
     </div>
   );
