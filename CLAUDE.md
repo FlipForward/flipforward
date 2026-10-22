@@ -40,7 +40,7 @@ Interne klantenadministratie voor Finn: lopende projecten, voortgang (vaste stap
 "getekend"); leads en demo's blijven in Notion ("FlipForward administratie").
 - Volledig gescheiden van de publieke site: eigen ingang `admin.html` → `src/admin/main.tsx` (tweede `input` in `vite.config.ts`),
   niet geprerenderd, geen JSON-LD, `noindex` + `X-Robots-Tag` + `no-store` (vercel.json). De publieke bundel bevat geen admin- of Supabase-code
-  (gecontroleerd 22/10/2026: `main-*.js` even groot als voorheen). Rewrites `/admin` en `/admin/:path*` → `/admin.html`; in dev doet de
+  (gecontroleerd 22/10/2026: `main-*.js` even groot als voorheen). `/admin` = `admin.html` via cleanUrls; rewrite `/admin/:path+` → `/admin` (met cleanUrls nooit naar `.html` herschrijven); in dev doet de
   plugin `adminRewrite` dat.
 - Data in **Supabase** (Postgres + Auth + Storage, regio Frankfurt). Schema + RLS: `supabase/migrations/0001_admin.sql`.
   RLS laat enkel `finn@flipforward.be` toe (`public.is_admin()`); de anon-key in de frontend is dus publiek bedoeld.
