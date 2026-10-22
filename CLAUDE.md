@@ -46,6 +46,12 @@ Interne klantenadministratie voor Finn: lopende projecten, voortgang (vaste stap
   RLS laat enkel `finn@flipforward.be` toe (`public.is_admin()`); de anon-key in de frontend is dus publiek bedoeld.
   Aanmelden met magic link (`shouldCreateUser: false`). Privé-bucket `offertes` voor pdf's (upload nog niet in de UI).
   `supabase/seed-bavago.sql` = startdata voor Bavago.
+- Supabase-project **`flipforward-admin`** (ref `cdvrfizyajpbhylscrkw`, org FlipForward, eu-central-1, Free; aangemaakt 22/10/2026,
+  itswillhd daarvoor gepauzeerd wegens limiet 2 actieve gratis projecten). Migratie + seed uitgevoerd. Auth: signups uit,
+  enige gebruiker finn@flipforward.be, Site URL `https://flipforward.be/admin`, redirect-URL's flipforward.be/admin**, localhost:*/admin**
+  en de Vercel-previews. Custom SMTP = formulieren@flipforward.be (Vimexx, door Finn ingesteld). Lokaal: `.env.local` (niet in git).
+- Vercel: `VITE_SUPABASE_URL` + `VITE_SUPABASE_ANON_KEY` (publishable key, type Config) staan **enkel op Preview**.
+  Bij livegang van /admin ook op Production zetten.
 - Zonder `VITE_SUPABASE_URL`/`VITE_SUPABASE_ANON_KEY` draait `/admin` in `npm run dev` op **fictieve** voorbeelddata in localStorage
   (`src/admin/voorbeeld.ts`, badge "lokaal · voorbeelddata"); in een productiebuild toont het dan enkel "niet ingesteld".
 - Code: `store.ts` (Supabase/lokaal), `data.tsx` (alle rijen in één context, herladen na elke wijziging), `logica.ts` (vaste stappen,

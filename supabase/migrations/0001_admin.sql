@@ -112,6 +112,9 @@ begin
   foreach t in array array['klanten', 'projecten', 'offertes', 'betalingen', 'taken', 'werkuren'] loop
     execute format('alter table public.%I enable row level security', t);
     execute format('create policy admin_alles on public.%I for all to authenticated using (public.is_admin()) with check (public.is_admin())', t);
+    -- Expliciete rechten, ongeacht "Automatically expose new tables": anon krijgt niets, authenticated enkel via RLS.
+    execute format('revoke all on public.%I from anon', t);
+    execute format('grant select, insert, update, delete on public.%I to authenticated', t);
   end loop;
 end $$;
 
