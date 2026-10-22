@@ -25,3 +25,6 @@ dist-ssr
 dist-ssr
 .vercel
 .claude/
+
+# Startdata met klantgegevens: nooit in git (deze repo is publiek)
+supabase/seed-*.sql

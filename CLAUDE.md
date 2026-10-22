@@ -45,7 +45,7 @@ Interne klantenadministratie voor Finn: lopende projecten, voortgang (vaste stap
 - Data in **Supabase** (Postgres + Auth + Storage, regio Frankfurt). Schema + RLS: `supabase/migrations/0001_admin.sql`.
   RLS laat enkel `finn@flipforward.be` toe (`public.is_admin()`); de anon-key in de frontend is dus publiek bedoeld.
   Aanmelden met magic link (`shouldCreateUser: false`). Privé-bucket `offertes` voor pdf's (upload nog niet in de UI).
-  `supabase/seed-bavago.sql` = startdata voor Bavago.
+  `supabase/seed-bavago.sql` = startdata voor Bavago: **enkel lokaal, staat in .gitignore** (repo is publiek, bevat klantgegevens).
 - Supabase-project **`flipforward-admin`** (ref `cdvrfizyajpbhylscrkw`, org FlipForward, eu-central-1, Free; aangemaakt 22/10/2026,
   itswillhd daarvoor gepauzeerd wegens limiet 2 actieve gratis projecten). Migratie + seed uitgevoerd. Auth: signups uit,
   enige gebruiker finn@flipforward.be, Site URL `https://flipforward.be/admin`, redirect-URL's flipforward.be/admin**, localhost:*/admin**
@@ -76,9 +76,9 @@ Interne klantenadministratie voor Finn: lopende projecten, voortgang (vaste stap
 - Kleine, logische commits in het Nederlands.
 
 ## Open / te bevestigen door Finn
-- [ ] Beheeromgeving live zetten: Supabase-project aanmaken (EU/Frankfurt), `0001_admin.sql` + `seed-bavago.sql` uitvoeren,
-      "Allow new users to sign up" uit, gebruiker finn@flipforward.be uitnodigen, Site URL/Redirect URL `https://flipforward.be/admin`,
-      `VITE_SUPABASE_URL` + `VITE_SUPABASE_ANON_KEY` in Vercel, dan branch `admin-backend` mergen.
+- [x] Supabase opgezet (22/10/2026): project, schema, seed, auth, SMTP, Vercel-variabelen op Preview.
+- [ ] Beheeromgeving live zetten: `VITE_SUPABASE_URL` + `VITE_SUPABASE_ANON_KEY` ook op Production, dan branch `admin-backend` mergen.
+- [ ] Oude preview-redirect `https://flipforward-*-finnvangronsvelds-projects.vercel.app/admin**` mag weg in Supabase (team heet nu `flipforward`).
 - [ ] Later: pdf-upload naar de bucket `offertes`, export naar boekhouding, eventueel een klantportaal (klant ziet zijn voortgang).
 - [x] E-mail op de site: `finn@flipforward.be` (Vimexx-mailbox).
 - [x] DNS blijft bij Vimexx (domein gekoppeld aan mailhosting, beheer via DirectAdmin): A @ → 76.76.21.21, CNAME www → cname.vercel-dns.com. Mailrecords (MX spamrelay.zxcs.nl, SPF, DKIM x._domainkey, DMARC, mail/smtp/pop/ftp) ongewijzigd. Live sinds 05/10/2026.
