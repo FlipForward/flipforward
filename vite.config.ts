@@ -9,7 +9,9 @@ function seoFiles(): Plugin {
     name: "flipforward-seo",
     transformIndexHtml: {
       order: "pre",
-      handler: (html) => html.replace("</head>", `    ${jsonLdTags("/")}\n  </head>`),
+      // Enkel de publieke site; admin.html krijgt geen JSON-LD.
+      handler: (html, ctx) =>
+        ctx.path.endsWith("admin.html") ? html : html.replace("</head>", `    ${jsonLdTags("/")}\n  </head>`),
     },
     generateBundle(options) {
       if (options.format !== "es") return;
@@ -20,13 +22,26 @@ function seoFiles(): Plugin {
   };
 }
 
+/** Dev-server: /admin en /admin/... tonen de beheeromgeving (op Vercel doet vercel.json dat). */
+function adminRewrite(): Plugin {
+  return {
+    name: "flipforward-admin-rewrite",
+    configureServer(server) {
+      server.middlewares.use((req, _res, next) => {
+        if (req.url && /^\/admin(\/|$|\?)/.test(req.url) && !req.url.startsWith("/admin.html")) req.url = "/admin.html";
+        next();
+      });
+    },
+  };
+}
+
 // https://vitejs.dev/config/
 export default defineConfig(({ isSsrBuild }) => ({
   server: {
     host: "::",
     port: 8080,
   },
-  plugins: [react(), ...(isSsrBuild ? [] : [seoFiles()])],
+  plugins: [react(), adminRewrite(), ...(isSsrBuild ? [] : [seoFiles()])],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -34,6 +49,10 @@ export default defineConfig(({ isSsrBuild }) => ({
   },
   build: {
     rollupOptions: {
+      // Twee ingangen: de publieke site en de beheeromgeving (/admin), elk met een eigen bundel.
+      input: isSsrBuild
+        ? undefined
+        : { main: path.resolve(__dirname, "index.html"), admin: path.resolve(__dirname, "admin.html") },
       output: isSsrBuild
         ? undefined
         : {

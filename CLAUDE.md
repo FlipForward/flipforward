@@ -31,8 +31,26 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
 - Responsive gecontroleerd op 320–1920 px zonder horizontaal scrollen; dat zo houden bij nieuwe secties.
 - `src/pages/` – `Index`, `PrivacyPolicy` (/privacyverklaring), `Terms` (/algemene-voorwaarden), `NotFound` (speelse 404:
   een "kapotte" IE-pagina uit 2009 die je met "Flip forward" omdraait naar een moderne kaart met links naar home/werk/pakketten/contact).
-- Geen backend of databank. Het contactformulier POST naar `api/contact.ts` (Vercel-functie) die een opgemaakte HTML-mail (+ tekstversie, opgebouwd in `api/_email.ts`) stuurt via SMTP van de Vimexx-mailbox.
+- De publieke site heeft geen backend of databank. Het contactformulier POST naar `api/contact.ts` (Vercel-functie) die een opgemaakte HTML-mail (+ tekstversie, opgebouwd in `api/_email.ts`) stuurt via SMTP van de Vimexx-mailbox.
   Env-variabelen in Vercel: `SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS` (geheim, enkel Finn), optioneel `CONTACT_TO`. Spamrem: honeypotveld `website` + rate limit.
+
+## Beheeromgeving `/admin` (branch `admin-backend`, nog niet live)
+Interne klantenadministratie voor Finn: lopende projecten, voortgang (vaste stappen tot livegang), offertes, betalingen
+(opstart 50/50 + maandtermijnen) en werkuren onderhoud (t.o.v. de inbegrepen uren). **Enkel projecten die echt lopen** (vanaf
+"getekend"); leads en demo's blijven in Notion ("FlipForward administratie").
+- Volledig gescheiden van de publieke site: eigen ingang `admin.html` → `src/admin/main.tsx` (tweede `input` in `vite.config.ts`),
+  niet geprerenderd, geen JSON-LD, `noindex` + `X-Robots-Tag` + `no-store` (vercel.json). De publieke bundel bevat geen admin- of Supabase-code
+  (gecontroleerd 22/10/2026: `main-*.js` even groot als voorheen). Rewrites `/admin` en `/admin/:path*` → `/admin.html`; in dev doet de
+  plugin `adminRewrite` dat.
+- Data in **Supabase** (Postgres + Auth + Storage, regio Frankfurt). Schema + RLS: `supabase/migrations/0001_admin.sql`.
+  RLS laat enkel `finn@flipforward.be` toe (`public.is_admin()`); de anon-key in de frontend is dus publiek bedoeld.
+  Aanmelden met magic link (`shouldCreateUser: false`). Privé-bucket `offertes` voor pdf's (upload nog niet in de UI).
+  `supabase/seed-bavago.sql` = startdata voor Bavago.
+- Zonder `VITE_SUPABASE_URL`/`VITE_SUPABASE_ANON_KEY` draait `/admin` in `npm run dev` op **fictieve** voorbeelddata in localStorage
+  (`src/admin/voorbeeld.ts`, badge "lokaal · voorbeelddata"); in een productiebuild toont het dan enkel "niet ingesteld".
+- Code: `store.ts` (Supabase/lokaal), `data.tsx` (alle rijen in één context, herladen na elke wijziging), `logica.ts` (vaste stappen,
+  betalingsschema, bedragen), `pages/` (Overzicht, ProjectPagina, NieuwProject).
+- De publieke site zet nog steeds geen cookies; de Supabase-sessie (localStorage) bestaat enkel voor Finn op `/admin`.
 
 ## Draaien, bouwen, deployen
 - `npm install`, `npm run dev` (poort 8080).
@@ -52,6 +70,10 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
 - Kleine, logische commits in het Nederlands.
 
 ## Open / te bevestigen door Finn
+- [ ] Beheeromgeving live zetten: Supabase-project aanmaken (EU/Frankfurt), `0001_admin.sql` + `seed-bavago.sql` uitvoeren,
+      "Allow new users to sign up" uit, gebruiker finn@flipforward.be uitnodigen, Site URL/Redirect URL `https://flipforward.be/admin`,
+      `VITE_SUPABASE_URL` + `VITE_SUPABASE_ANON_KEY` in Vercel, dan branch `admin-backend` mergen.
+- [ ] Later: pdf-upload naar de bucket `offertes`, export naar boekhouding, eventueel een klantportaal (klant ziet zijn voortgang).
 - [x] E-mail op de site: `finn@flipforward.be` (Vimexx-mailbox).
 - [x] DNS blijft bij Vimexx (domein gekoppeld aan mailhosting, beheer via DirectAdmin): A @ → 76.76.21.21, CNAME www → cname.vercel-dns.com. Mailrecords (MX spamrelay.zxcs.nl, SPF, DKIM x._domainkey, DMARC, mail/smtp/pop/ftp) ongewijzigd. Live sinds 05/10/2026.
 - [x] SMTP-variabelen in Vercel gezet. [x] Contactformulier live getest door Finn: werkt (07/10/2026).
