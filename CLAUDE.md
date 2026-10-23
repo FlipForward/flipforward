@@ -8,7 +8,9 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
 - Vite 5 + React 18 + TypeScript + Tailwind 3 + shadcn/ui. Oorspronkelijk gegenereerd in Lovable; alle Lovable-onderdelen (Lovable Cloud/Supabase, login, admin) zijn verwijderd.
 - `src/lib/site.ts` – **enige bron** voor bedrijfsgegevens, pakketten, prijzen, extra's, werkwijze en FAQ. Pas prijzen/teksten hier aan.
 - `src/lib/seo.ts` – genereert JSON-LD (ProfessionalService + OfferCatalog + FAQPage), `sitemap.xml` en `llms.txt` uit `site.ts` (via plugin in `vite.config.ts`).
-- `src/components/` – secties van de homepage; `LegalPage.tsx` is de layout voor privacyverklaring en voorwaarden.
+- `src/components/` – secties van de homepage; `hero/HeroCopy.tsx` = tekst van de hero (H1), `LegalPage.tsx` is de layout voor
+  privacyverklaring en voorwaarden, `ui/` = de paar overgebleven shadcn-componenten. Een pakketknop kiest via `src/lib/selectPackage.ts`
+  (event `pakket-select`) meteen het pakket in het contactformulier.
 - `src/components/aceternity/` – componenten gebaseerd op de gratis registry van Aceternity UI (ui.aceternity.com), aangepast aan
   de huisstijl (oranje, reduced motion, toegankelijk). Bron staat bovenaan elk bestand. Gebruikt de library `motion` (framer-motion).
   - Hero: `ParallaxHeroImages` (projectscreenshots zweven rond de tekst en volgen de muis; bij hover de projectnaam, klik scrolt
@@ -92,10 +94,11 @@ Interne klantenadministratie voor Finn: lopende projecten, voortgang (vaste stap
 ## Draaien, bouwen, deployen
 - `npm install`, `npm run dev` (poort 8080).
 - `npm run build` = client-build → SSR-build van `src/entry-server.tsx` → `scripts/prerender.mjs`, dat volledige HTML schrijft voor
-  `/`, `/privacyverklaring`, `/algemene-voorwaarden` en `404.html`.
+  `/`, `/website-laten-maken`, `/privacyverklaring`, `/algemene-voorwaarden` en `404.html`. `npm run lint` = ESLint.
   Nieuwe publieke route? Toevoegen in `scripts/prerender.mjs`, `src/lib/seo.ts` (publicRoutes/routeMeta) en `App.tsx`.
 - Hosting: **Vercel Pro**, team `flipforward` (URL-slug; preview-URL's eindigen op `-flipforward.vercel.app`), project `flipforward` (prj_LWfhFyDOlOHL5VuKbWzEPHdRuZ70).
-  Push naar `main` = productie; elke andere branch = preview-URL. Config in `vercel.json` (redirects, rewrites, headers).
+  Push naar `main` = productie; elke andere branch = preview-URL. Config in `vercel.json` (redirects `/privacy` en `/terms`
+  naar de Nederlandse URL's, rewrites, cache- en security-headers).
 - OG-afbeelding: `scripts/og-image.svg` → `public/og-image.png` (1200×630, gerenderd met @resvg/resvg-js).
 
 ## Conventies & beslissingen
