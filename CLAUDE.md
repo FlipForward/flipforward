@@ -45,6 +45,14 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
 - Favicon (tab): `public/favicon.svg` = originele logo met de eerste "f" altijd zwart (#111) en "f›" oranje, transparant;
   `favicon.ico` (16/32/48) daaruit gerenderd. App-iconen (icon-192/512, apple-touch-icon) ongewijzigd: donkere achtergrond, witte f.
 - Responsive gecontroleerd op 320–1920 px zonder horizontaal scrollen; dat zo houden bij nieuwe secties.
+- Gsm-layout (30/10/2026, Finn vond mobiel "utter ass"): hero zonder zwevende screenshots (`max-md:hidden`) en met knoppen op volle
+  breedte; `GlowCard` heeft op gsm één rand (geen kaart-in-kaart); voordeel- en dienstkaarten compact met icoon naast de titel,
+  dienstillustraties pas vanaf `sm`; pakketten op gsm/tablet als swipe-rij (Business start in het midden), vergelijkingstabel pas vanaf
+  `md`; cases tonen op gsm enkel de eerste alinea. Homepage op gsm ± 10.700 px (was 16.000). Nieuwe secties: eerst op 375 px screenshotten.
+- SEO/GEO-audit (30/10/2026, score 92%): opgelost: img width/height + `fetchpriority` op de eerste hero-afbeelding, CSP/HSTS/COOP/CORP
+  in vercel.json, AI-crawlers in `robots.txt`, `/.well-known/security.txt`, Person `url`/`sameAs`, meta descriptions ≤ 150 tekens,
+  hero-screenshots klikbaar via JS i.p.v. links in een `aria-hidden`-blok, honeypot met `inert`. Niet aangeraakt: DMARC `p=none` en
+  MTA-STS (mailrecords, Finn) en de "AI-tekst"-opmerking over de copy (Finn beslist).
 - `src/pages/` – `Index`, `PrivacyPolicy` (/privacyverklaring), `Terms` (/algemene-voorwaarden), `NotFound` (speelse 404:
   een "kapotte" IE-pagina uit 2009 die je met "Flip forward" omdraait naar een moderne kaart met links naar home/werk/pakketten/contact).
 - De publieke site heeft geen backend of databank. Het contactformulier POST naar `api/contact.ts` (Vercel-functie) die een opgemaakte HTML-mail (+ tekstversie, opgebouwd in `api/_email.ts`) stuurt via SMTP van de Vimexx-mailbox.
