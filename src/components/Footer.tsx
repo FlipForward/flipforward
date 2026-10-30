@@ -56,12 +56,6 @@ const Footer = () => {
                 {business.email}
               </a>
             </p>
-            <p>
-              Tel:{" "}
-              <a href={business.phoneHref} className={linkClass}>
-                {business.phone}
-              </a>
-            </p>
           </div>
         </address>
 

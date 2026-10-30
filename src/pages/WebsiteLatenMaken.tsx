@@ -193,9 +193,6 @@ const WebsiteLatenMaken = () => {
                   <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
                 </a>
               </Button>
-              <Button asChild variant="outline" size="lg">
-                <a href={business.phoneHref}>Bel {business.phone}</a>
-              </Button>
             </div>
             <p className="mt-6 text-sm">
               <Link to="/" className="text-muted-foreground underline underline-offset-4 hover:text-foreground">

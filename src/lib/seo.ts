@@ -44,7 +44,6 @@ export function jsonLd() {
     description:
       "Webbureau uit Retie dat websites bouwt en onderhoudt voor kmo's en zelfstandigen in de Kempen, als abonnement (Website as a Service).",
     email: business.email,
-    telephone: business.phone.replace(/\s/g, ""),
     founder: {
       "@type": "Person",
       name: business.owner,
@@ -197,7 +196,6 @@ export function llmsTxt() {
 - Adres: ${business.street}, ${business.postalCode} ${business.city}, ${business.countryName}
 - Ondernemingsnummer: ${business.enterpriseNumber}
 - Oprichter en aanspreekpunt: ${business.owner}
-- Telefoon: ${business.phone}
 - E-mail: ${business.email} (of via het contactformulier op de website; antwoord binnen 2 werkdagen)
 - Regio: ${business.areaServed.join(", ")}
 - Website: ${SITE_URL}/
