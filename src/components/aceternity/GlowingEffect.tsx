@@ -110,7 +110,7 @@ GlowingEffect.displayName = "GlowingEffect";
 
 /** Kaart met een gloeiende rand rond de inhoud (dubbele rand zoals in de Aceternity-demo). */
 export const GlowCard = ({ className, innerClassName, children }: { className?: string; innerClassName?: string; children: React.ReactNode }) => (
-  <div className={cn("relative h-full rounded-2xl border border-border p-1.5", className)}>
+  <div className={cn("relative h-full rounded-2xl max-sm:border-0 max-sm:p-0 sm:border sm:border-border sm:p-1.5", className)}>
     <GlowingEffect />
     <div className={cn("relative h-full overflow-hidden rounded-xl border border-border/60 bg-gradient-card", innerClassName)}>{children}</div>
   </div>

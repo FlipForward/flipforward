@@ -31,7 +31,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
     <div ref={container} className="w-full">
       <ol ref={ref} className="relative mx-auto max-w-5xl">
         {data.map((item, i) => (
-          <li key={item.title} className="flex justify-start pt-10 md:gap-10 md:pt-28 first:md:pt-10">
+          <li key={item.title} className="flex justify-start pt-8 md:gap-10 md:pt-28 first:md:pt-10">
             <div className="sticky top-32 z-10 flex max-w-xs flex-col items-center self-start md:w-full md:flex-row lg:max-w-sm">
               <div className="absolute left-3 flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background">
                 <span className="text-sm font-bold text-accent" aria-hidden="true">
@@ -44,7 +44,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
               </h3>
             </div>
             <div className="relative w-full pl-16 pr-0 md:pl-4 md:pr-4">
-              <h3 className="mb-3 block text-2xl font-extrabold text-foreground md:hidden">
+              <h3 className="mb-1.5 block pt-1.5 text-xl font-extrabold text-foreground md:hidden">
                 <span className="sr-only">Stap {i + 1}: </span>
                 {item.title}
               </h3>

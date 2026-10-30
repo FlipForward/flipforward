@@ -13,14 +13,14 @@ const floating = showcase.slice(0, 8).map((s) => ({
 
 /** Gecentreerde tekst; projectscreenshots zweven eromheen en volgen de muis. */
 const Hero = () => (
-  <section id="hero" className="relative flex min-h-[100svh] items-center overflow-hidden">
+  <section id="hero" className="relative flex items-center overflow-hidden md:min-h-[100svh]">
     <Spotlight />
-    <ParallaxHeroImages items={floating} className="max-md:opacity-25" />
+    <ParallaxHeroImages items={floating} className="max-md:hidden" />
     <div
       aria-hidden="true"
       className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--background))_25%,hsl(var(--background)/0.6)_50%,transparent_75%)]"
     />
-    <div className="container pointer-events-none relative z-20 mx-auto px-4 pb-20 pt-28 sm:px-6">
+    <div className="container pointer-events-none relative z-20 mx-auto px-4 pb-14 pt-28 sm:px-6 md:pb-20">
       <HeroCopy align="center" className="pointer-events-auto" />
     </div>
   </section>

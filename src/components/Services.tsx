@@ -96,14 +96,14 @@ const services = [
 ];
 
 const Services = () => (
-  <section id="diensten" aria-labelledby="diensten-title" className="scroll-mt-20 bg-background py-20 sm:py-28">
+  <section id="diensten" aria-labelledby="diensten-title" className="scroll-mt-20 bg-background py-16 sm:py-28">
     <div className="container mx-auto px-4 sm:px-6">
-      <div className="mx-auto mb-12 max-w-6xl sm:mb-16">
+      <div className="mx-auto mb-8 max-w-6xl sm:mb-16">
         <p className="text-sm font-semibold uppercase tracking-wider text-accent">Webdesign &amp; onderhoud</p>
-        <h2 id="diensten-title" className="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
+        <h2 id="diensten-title" className="mt-2 text-3xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
           Website as a <span className="text-accent">Service</span>
         </h2>
-        <p className="mt-4 max-w-2xl text-lg text-muted-foreground sm:text-xl">
+        <p className="mt-4 max-w-2xl text-base text-muted-foreground sm:text-xl">
           Geen losse factuur voor een website die daarna veroudert: wij bouwen én onderhouden, voor een vast bedrag per maand.{" "}
           <Link to="/website-laten-maken" className="text-accent underline underline-offset-4 hover:text-foreground">
             Lees wat een website laten maken kost
@@ -112,16 +112,16 @@ const Services = () => (
         </p>
       </div>
 
-      <ul className="mx-auto grid max-w-6xl gap-4 sm:gap-5 md:grid-cols-2 lg:grid-cols-6">
+      <ul className="mx-auto grid max-w-6xl gap-3 sm:gap-5 md:grid-cols-2 lg:grid-cols-6">
         {services.map(({ icon: Icon, title, text, visual, span }) => (
           <li key={title} className={`group ${span}`}>
-            <GlowCard innerClassName="p-6 sm:p-8">
-              <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-accent/10">
+            <GlowCard innerClassName="grid grid-cols-[auto_1fr] gap-x-4 p-4 sm:block sm:p-8">
+              <div className="row-span-2 flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-accent/10 sm:h-11 sm:w-11">
                 <Icon className="h-5 w-5 text-accent" aria-hidden="true" />
               </div>
-              <h3 className="mt-5 text-xl font-bold text-foreground sm:text-2xl">{title}</h3>
-              <p className="mt-2 text-muted-foreground">{text}</p>
-              {visual}
+              <h3 className="text-lg font-bold text-foreground sm:mt-5 sm:text-2xl">{title}</h3>
+              <p className="mt-1 text-sm text-muted-foreground sm:mt-2 sm:text-base">{text}</p>
+              <div className="max-sm:hidden">{visual}</div>
             </GlowCard>
           </li>
         ))}

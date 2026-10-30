@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Check, ArrowRight, Camera, Languages, Clock } from "lucide-react";
@@ -9,25 +10,37 @@ import PackageComparison from "./PackageComparison";
 const addOnIcons: Record<string, typeof Clock> = { Fotografie: Camera, "Extra taal": Languages };
 
 const Pricing = () => {
+  // Gsm: de pakketten staan naast elkaar om te swipen; start met de aanrader in het midden
+  const rij = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const el = rij.current;
+    const kaart = el?.querySelector<HTMLElement>(`[data-pakket="${packages.find((p) => p.highlight)?.id}"]`);
+    if (!el || !kaart || el.scrollWidth <= el.clientWidth) return;
+    el.scrollLeft = kaart.offsetLeft - (el.clientWidth - kaart.clientWidth) / 2;
+  }, []);
   return (
     <section id="pakketten" aria-labelledby="pakketten-title" className="py-16 sm:py-24 bg-muted/50 relative overflow-hidden scroll-mt-20">
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
-        <div className="text-center mb-12 sm:mb-16">
+        <div className="text-center mb-8 sm:mb-16">
           <h2 id="pakketten-title" className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">
             Kies je <span className="text-accent">pakket</span>
           </h2>
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto px-2">
+          <p className="text-base sm:text-xl text-muted-foreground max-w-2xl mx-auto px-2">
             Eén keer opstarten, daarna een vast bedrag per maand. Hosting, onderhoud en beveiliging zitten er altijd in.
           </p>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-3 max-w-6xl mx-auto items-stretch">
+        <div
+          ref={rij}
+          className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 pt-4 [scrollbar-width:none] sm:-mx-6 sm:px-6 lg:mx-auto lg:grid lg:max-w-6xl lg:grid-cols-3 lg:items-stretch lg:gap-6 lg:overflow-visible lg:p-0 [&::-webkit-scrollbar]:hidden"
+        >
           {packages.map((p) => {
             const featured = Boolean(p.highlight);
             return (
               <Card
                 key={p.id}
-                className={`relative flex flex-col p-6 sm:p-8 bg-gradient-card ${
+                data-pakket={p.id}
+                className={`relative flex w-[85%] max-w-sm shrink-0 snap-center flex-col p-6 sm:p-8 bg-gradient-card lg:w-auto lg:max-w-none ${
                   featured ? "border-2 border-accent shadow-[0_0_40px_hsl(10_89%_55%/0.15)] lg:-translate-y-2" : "border-border"
                 }`}
               >
@@ -38,7 +51,7 @@ const Pricing = () => {
                   </span>
                 )}
                 <h3 className="text-2xl font-bold text-foreground">{p.name}</h3>
-                <p className="text-sm text-muted-foreground mt-1 min-h-[2.5rem]">{p.audience}</p>
+                <p className="text-sm text-muted-foreground mt-1 lg:min-h-[2.5rem]">{p.audience}</p>
 
                 <div className="mt-6">
                   <p className="text-4xl font-bold text-foreground">
@@ -104,7 +117,7 @@ const Pricing = () => {
 
         <PackageComparison />
 
-        <div className="max-w-6xl mx-auto mt-14">
+        <div className="max-w-6xl mx-auto mt-10 sm:mt-14">
           <h3 className="text-2xl font-bold text-center mb-6">Extra's</h3>
           <div className="grid gap-4 md:grid-cols-3">
             {addOns.map((a) => {

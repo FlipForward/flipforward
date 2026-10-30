@@ -18,7 +18,7 @@ const Cell = ({ v }: { v: string | boolean }) =>
   );
 
 const PackageComparison = () => (
-  <div className="mx-auto mt-14 max-w-6xl">
+  <div className="mx-auto mt-14 hidden max-w-6xl md:block">
     <h3 className="mb-6 text-center text-2xl font-bold">Vergelijk de pakketten</h3>
     <div className="overflow-x-auto rounded-2xl border border-border bg-background/60">
       <table className="w-full min-w-[560px] border-collapse text-sm">

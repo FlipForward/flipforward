@@ -159,17 +159,17 @@ const CaseText = ({ p, i }: { p: Project; i: number }) => (
       <span className="h-px w-8 bg-accent/50" aria-hidden="true" />
       <span className="text-xs uppercase tracking-wider text-muted-foreground">{p.category}</span>
     </div>
-    <h3 className="mt-3 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">{p.title}</h3>
-    <p className="mt-4 leading-relaxed text-muted-foreground">{p.challenge}</p>
-    <p className="mt-3 leading-relaxed text-foreground/90">{p.solution}</p>
-    <ul className="mt-5 flex flex-wrap gap-2" aria-label="Kenmerken">
+    <h3 className="mt-3 break-words text-2xl font-extrabold tracking-tight text-foreground sm:text-4xl">{p.title}</h3>
+    <p className="mt-3 text-[0.9375rem] leading-relaxed text-muted-foreground sm:mt-4 sm:text-base">{p.challenge}</p>
+    <p className="mt-3 leading-relaxed text-foreground/90 max-sm:hidden">{p.solution}</p>
+    <ul className="mt-4 flex flex-wrap gap-2 sm:mt-5" aria-label="Kenmerken">
       {p.tags.map((t) => (
         <li key={t} className="rounded-full border border-border bg-card/60 px-3 py-1 text-xs text-muted-foreground">
           {t}
         </li>
       ))}
     </ul>
-    <div className="mt-auto pt-7">
+    <div className="mt-auto pt-5 sm:pt-7">
       <CaseLink p={p} />
     </div>
   </>
@@ -239,11 +239,11 @@ const ProjectItem = ({ p, i }: { p: Project; i: number }) => {
     >
       {p.peek && <PeekingPets peek={peek} />}
       <CometCard rotateDepth={7} translateDepth={10} className="relative z-10 h-full">
-        <div className="flex h-full flex-col rounded-2xl border border-border bg-[hsl(222_40%_8%)] p-5 sm:p-7">
-          <div className="pb-6">
+        <div className="flex h-full flex-col rounded-2xl border border-border bg-[hsl(222_40%_8%)] p-4 sm:p-7">
+          <div className="pb-4 sm:pb-6">
             <Devices p={p} />
           </div>
-          <div className="mt-6 flex flex-1 flex-col">
+          <div className="mt-4 flex flex-1 flex-col sm:mt-6">
             <CaseText p={p} i={i} />
           </div>
         </div>
@@ -255,7 +255,7 @@ const ProjectItem = ({ p, i }: { p: Project; i: number }) => {
 /* ---------- Variant: 3D-tiltkaarten (Aceternity Comet Card) ---------- */
 
 const Tilt = () => (
-  <ul className="mx-auto grid max-w-6xl gap-8 md:grid-cols-2 lg:gap-10">
+  <ul className="mx-auto grid max-w-6xl gap-6 sm:gap-8 md:grid-cols-2 lg:gap-10">
     {projects.map((p, i) => (
       <ProjectItem key={p.title} p={p} i={i} />
     ))}
@@ -264,11 +264,11 @@ const Tilt = () => (
 
 const Portfolio = () => {
   return (
-    <section id="portfolio" aria-labelledby="portfolio-title" className="scroll-mt-20 overflow-x-clip bg-gradient-hero py-20 sm:py-28">
+    <section id="portfolio" aria-labelledby="portfolio-title" className="scroll-mt-20 overflow-x-clip bg-gradient-hero py-16 sm:py-28">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="mx-auto mb-14 max-w-6xl sm:mb-20">
           <p className="text-sm font-semibold uppercase tracking-wider text-accent">Portfolio</p>
-          <h2 id="portfolio-title" className="mt-2 text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
+          <h2 id="portfolio-title" className="mt-2 text-3xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
             Ons <span className="text-accent">werk</span>
           </h2>
         </div>
