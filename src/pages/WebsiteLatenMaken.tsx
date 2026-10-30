@@ -135,7 +135,7 @@ const WebsiteLatenMaken = () => {
                     href={`/#${projectAnchor(w.title)}`}
                     className="group block overflow-hidden rounded-2xl border border-border bg-[hsl(222_40%_9%)] transition-colors hover:border-accent/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
-                    <img src={w.thumbnail} alt={`Website ${w.title}`} loading="lazy" decoding="async" className="aspect-[16/10] w-full object-cover object-top" />
+                    <img src={w.thumbnail} alt={`Website ${w.title}`} width={w.w} height={w.h} loading="lazy" decoding="async" className="aspect-[16/10] w-full object-cover object-top" />
                     <span className="flex items-center justify-between px-4 py-3 font-semibold text-foreground">
                       {w.title}
                       <ArrowRight className="h-4 w-4 text-accent transition-transform group-hover:translate-x-0.5" aria-hidden="true" />

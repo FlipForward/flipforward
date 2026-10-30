@@ -30,6 +30,8 @@ interface Project {
   link: string;
   domain: string;
   desktop: string;
+  /** Hoogte van de desktopscreenshot (breedte altijd 1200 px). */
+  desktopH: number;
   mobile: string;
   /** Flippy: figuurtjes piepen achter de kaart uit. */
   peek?: boolean;
@@ -46,6 +48,7 @@ const projects: Project[] = [
     link: "https://flippy.flipforward.be",
     domain: "flippy.flipforward.be",
     desktop: flippyDesktop,
+    desktopH: 3000,
     mobile: flippyMobile,
     peek: true,
   },
@@ -59,6 +62,7 @@ const projects: Project[] = [
     link: "https://groundfield.flipforward.be",
     domain: "groundfield.flipforward.be",
     desktop: groundfieldDesktop,
+    desktopH: 3000,
     mobile: groundfieldMobile,
   },
   {
@@ -71,6 +75,7 @@ const projects: Project[] = [
     link: "https://driverdash.be",
     domain: "driverdash.be",
     desktop: driverdashDesktop,
+    desktopH: 1074,
     mobile: driverdashMobile,
   },
   {
@@ -83,6 +88,7 @@ const projects: Project[] = [
     link: "https://finnvangronsveld.be",
     domain: "finnvangronsveld.be",
     desktop: finnDesktop,
+    desktopH: 750,
     mobile: finnMobile,
   },
 ];
@@ -103,7 +109,7 @@ const BrowserFrame = ({ p }: { p: Project }) => (
         {p.domain}
       </span>
     </div>
-    <ScrollShot src={p.desktop} alt={`Screenshot van de website ${p.title}`} />
+    <ScrollShot src={p.desktop} width={1200} height={p.desktopH} alt={`Screenshot van de website ${p.title}`} />
   </div>
 );
 

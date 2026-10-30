@@ -5,6 +5,8 @@ import { showcase, projectAnchor, FEATURED } from "@/lib/showcase";
 
 const floating = showcase.slice(0, 8).map((s) => ({
   src: s.thumbnail,
+  w: s.w,
+  h: s.h,
   title: s.title,
   href: FEATURED.includes(s.title) ? `#${projectAnchor(s.title)}` : s.link,
 }));

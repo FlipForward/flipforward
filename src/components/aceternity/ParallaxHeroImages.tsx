@@ -1,7 +1,8 @@
 /**
  * Gebaseerd op "Parallax Hero Images" van Aceternity UI (ui.aceternity.com/components/parallax-hero-images).
  * Aangepast: mini-browserkaders, projectnaam bij hover, klik naar de case of de live site,
- * geen muisvolging bij reduced motion. Op touch-schermen puur decoratief.
+ * geen muisvolging bij reduced motion. Op touch-schermen puur decoratief. Geen links (aria-hidden mag niets focusbaars bevatten):
+ * klikken gebeurt via JS, de projecten staan als echte links in het portfolio. De eerste afbeelding krijgt fetchpriority=high (LCP).
  */
 import { memo, useEffect, useMemo, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform, useReducedMotion, type MotionValue } from "motion/react";
@@ -10,6 +11,8 @@ import { cn } from "@/lib/utils";
 
 export interface FloatingItem {
   src: string;
+  w: number;
+  h: number;
   title: string;
   /** "#project-…" (scrollt naar de case) of een externe URL. */
   href?: string;
@@ -54,7 +57,7 @@ export const ParallaxHeroImages = ({ items, className }: { items: FloatingItem[]
   return (
     <div aria-hidden="true" className={cn("pointer-events-none absolute inset-0 overflow-hidden", className)}>
       {placed.map((it, i) => (
-        <Img key={it.src + i} {...it} sx={sx} sy={sy} />
+        <Img key={it.src + i} {...it} first={i === 0} sx={sx} sy={sy} />
       ))}
     </div>
   );
@@ -62,6 +65,9 @@ export const ParallaxHeroImages = ({ items, className }: { items: FloatingItem[]
 
 const Img = memo(function Img({
   src,
+  w,
+  h,
+  first,
   title,
   href,
   pos,
@@ -69,14 +75,18 @@ const Img = memo(function Img({
   delay,
   sx,
   sy,
-}: FloatingItem & { pos: Pos; depth: number; delay: number; sx: MotionValue<number>; sy: MotionValue<number> }) {
+}: FloatingItem & { pos: Pos; depth: number; delay: number; first: boolean; sx: MotionValue<number>; sy: MotionValue<number> }) {
   const [hover, setHover] = useState(false);
   const max = 60;
   const x = useTransform(sx, [-1, 1], [-max * depth, max * depth]);
   const y = useTransform(sy, [-1, 1], [-max * depth, max * depth]);
   const s = positionStyles[pos];
   const internal = href?.startsWith("#");
-  const Tag = href ? "a" : "div";
+  const open = () => {
+    if (!href) return;
+    if (internal) document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    else window.open(href, "_blank", "noopener,noreferrer");
+  };
 
   return (
     <motion.div
@@ -90,11 +100,11 @@ const Img = memo(function Img({
       }}
       transition={{ duration: hover ? 0.25 : 0.8, delay: hover ? 0 : delay, ease: [0.25, 0.1, 0.25, 1] }}
     >
-      <Tag
-        {...(href ? { href, tabIndex: -1, ...(internal ? {} : { target: "_blank", rel: "noopener noreferrer" }) } : {})}
+      <div
+        onClick={open}
         onPointerEnter={(e: React.PointerEvent) => e.pointerType === "mouse" && setHover(true)}
         onPointerLeave={() => setHover(false)}
-        className="block md:pointer-events-auto"
+        className={cn("block md:pointer-events-auto", href && "cursor-pointer")}
       >
         <div
           className={cn(
@@ -108,7 +118,15 @@ const Img = memo(function Img({
             <i className="h-1.5 w-1.5 rounded-full bg-white/25" />
             <i className="h-1.5 w-1.5 rounded-full bg-white/25" />
           </div>
-          <img src={src} alt="" className="aspect-[16/10] w-full object-cover object-top" />
+          <img
+            src={src}
+            alt=""
+            width={w}
+            height={h}
+            decoding="async"
+            {...(first ? { fetchpriority: "high" } : { loading: "lazy" as const })}
+            className="aspect-[16/10] w-full object-cover object-top"
+          />
         </div>
         <span
           className={cn(
@@ -119,7 +137,7 @@ const Img = memo(function Img({
           {title}
           {href && (internal ? <ArrowDown className="h-3 w-3 text-accent" /> : <ArrowUpRight className="h-3 w-3 text-accent" />)}
         </span>
-      </Tag>
+      </div>
     </motion.div>
   );
 });

@@ -16,21 +16,24 @@ export interface ShowcaseItem {
   title: string;
   link?: string;
   thumbnail: string;
+  /** Echte afmetingen van het bestand (width/height op <img> tegen layout-verschuiving). */
+  w: number;
+  h: number;
 }
 
 export const showcase: ShowcaseItem[] = [
-  { title: "finnvangronsveld.be", link: "https://finnvangronsveld.be", thumbnail: finn },
-  { title: "Ground Field", link: "https://groundfield.flipforward.be", thumbnail: groundfield },
-  { title: "DriverDash", link: "https://driverdash.be", thumbnail: driverdash },
-  { title: "Flippy", link: "https://flippy.flipforward.be", thumbnail: flippy },
-  { title: "ATLAZ", link: "https://atlazmusic.be", thumbnail: atlaz },
-  { title: "Hytale Vlaanderen", link: "https://hytalevlaanderen.be", thumbnail: hytale },
-  { title: "Feest Op Tafel", link: "https://feestoptafel.com", thumbnail: feest },
-  { title: "Spuddy", link: "https://spuddy.be", thumbnail: spuddy },
-  { title: "Hyperdrive Festival", link: "https://hyperdrivefestival.netlify.app", thumbnail: hyperdrive },
-  { title: "WingByte", link: "https://wingbyte.netlify.app", thumbnail: wingbyte },
-  { title: "B&B Booking System", thumbnail: bnb },
-  { title: "Webdesign Essentials", link: "https://finnvangronsveld.sinners.be", thumbnail: essentials },
+  { title: "finnvangronsveld.be", link: "https://finnvangronsveld.be", thumbnail: finn, w: 1200, h: 750 },
+  { title: "Ground Field", link: "https://groundfield.flipforward.be", thumbnail: groundfield, w: 1200, h: 3000 },
+  { title: "DriverDash", link: "https://driverdash.be", thumbnail: driverdash, w: 1200, h: 1074 },
+  { title: "Flippy", link: "https://flippy.flipforward.be", thumbnail: flippy, w: 1200, h: 3000 },
+  { title: "ATLAZ", link: "https://atlazmusic.be", thumbnail: atlaz, w: 1200, h: 1893 },
+  { title: "Hytale Vlaanderen", link: "https://hytalevlaanderen.be", thumbnail: hytale, w: 1200, h: 821 },
+  { title: "Feest Op Tafel", link: "https://feestoptafel.com", thumbnail: feest, w: 1200, h: 750 },
+  { title: "Spuddy", link: "https://spuddy.be", thumbnail: spuddy, w: 1200, h: 1783 },
+  { title: "Hyperdrive Festival", link: "https://hyperdrivefestival.netlify.app", thumbnail: hyperdrive, w: 1200, h: 1884 },
+  { title: "WingByte", link: "https://wingbyte.netlify.app", thumbnail: wingbyte, w: 1200, h: 3000 },
+  { title: "B&B Booking System", thumbnail: bnb, w: 1024, h: 648 },
+  { title: "Webdesign Essentials", link: "https://finnvangronsveld.sinners.be", thumbnail: essentials, w: 1200, h: 3000 },
 ];
 
 /** Anker van een case in het portfolio, bv. "project-driverdash". */

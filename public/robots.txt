@@ -1,4 +1,19 @@
 User-agent: *
 Allow: /
+Disallow: /admin
+
+# AI-zoekmachines en -assistenten: expliciet welkom (citeren in ChatGPT, Claude, Perplexity, Google AI)
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: GPTBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: ClaudeBot
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+Allow: /
+Disallow: /admin
 
 Sitemap: https://flipforward.be/sitemap.xml

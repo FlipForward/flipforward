@@ -18,7 +18,7 @@ const DesignVisual = () => (
           <i className="h-1.5 w-1.5 rounded-full bg-white/25" />
           <i className="h-1.5 w-1.5 rounded-full bg-white/25" />
         </div>
-        <img src={p.thumbnail} alt="" loading="lazy" className="aspect-[16/10] w-full object-cover object-top" />
+        <img src={p.thumbnail} alt="" width={p.w} height={p.h} loading="lazy" decoding="async" className="aspect-[16/10] w-full object-cover object-top" />
       </div>
     ))}
   </div>

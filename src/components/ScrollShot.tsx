@@ -3,6 +3,9 @@ import { useCallback, useEffect, useRef, useState } from "react";
 interface Props {
   src: string;
   alt: string;
+  /** Echte afmetingen van de screenshot. */
+  width: number;
+  height: number;
   /** Tailwind-klasse voor de verhouding van het venster, bv. "aspect-[16/10]". */
   aspect?: string;
   /** Extern gestuurd (bv. hover op de hele case); anders reageert de screenshot op zijn eigen hover. */
@@ -14,7 +17,7 @@ interface Props {
  * Enkel `transform` wordt geanimeerd (GPU), met een afstand in pixels die we meten,
  * zodat er geen layout-herberekening per frame is (dat gaf het "glitchen" met `top`).
  */
-const ScrollShot = ({ src, alt, aspect = "aspect-[16/10]", active }: Props) => {
+const ScrollShot = ({ src, alt, width, height, aspect = "aspect-[16/10]", active }: Props) => {
   const frame = useRef<HTMLDivElement>(null);
   const img = useRef<HTMLImageElement>(null);
   const [dist, setDist] = useState(0);
@@ -52,6 +55,8 @@ const ScrollShot = ({ src, alt, aspect = "aspect-[16/10]", active }: Props) => {
         ref={img}
         src={src}
         alt={alt}
+        width={width}
+        height={height}
         loading="lazy"
         decoding="async"
         onLoad={measure}

@@ -15,7 +15,7 @@ export const routeMeta: Record<string, { title: string; description: string }> =
   "/website-laten-maken": {
     title: "Website laten maken in de Kempen – prijzen & werkwijze | FlipForward",
     description:
-      `Wat kost een website laten maken in de Kempen, hoe lang duurt het en wat zit erin? Vaste prijzen vanaf ${formatEuro(packages[0].setup)}, hosting en onderhoud inbegrepen. Webdesigner uit Retie.`,
+      `Wat kost een website laten maken in de Kempen en wat zit erin? Vaste prijzen vanaf ${formatEuro(packages[0].setup)}, hosting en onderhoud inbegrepen. Webdesigner uit Retie.`,
   },
   "/privacyverklaring": {
     title: "Privacyverklaring | FlipForward",
@@ -48,6 +48,8 @@ export function jsonLd() {
     founder: {
       "@type": "Person",
       name: business.owner,
+      url: "https://finnvangronsveld.be",
+      sameAs: ["https://finnvangronsveld.be", "https://github.com/finnvangronsveld"],
       jobTitle: "Oprichter en webdeveloper",
       image: `${SITE_URL}/finn-vangronsveld.webp`,
       worksFor: { "@id": orgId },
