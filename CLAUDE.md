@@ -140,7 +140,12 @@ Interne klantenadministratie voor Finn: lopende projecten, voortgang (vaste stap
 - [ ] Verwerkers in privacyverklaring bevestigen (Dexxter nog in gebruik?).
 - [x] Redesign gemerged naar `main` en live (07/10/2026).
 - [x] Speelse 404 en projectnamen in de hero gemerged naar `main` en live (07/10/2026).
-- [ ] SEO buiten de code (Finn): Google Search Console (domein verifiëren via DNS bij Vimexx + sitemap indienen), Google
+- [x] **Google Search Console (04/11/2026)**: property "URL-voorvoegsel" `https://flipforward.be/`, eigenaar **finn@flipforward.be**
+      (in Chrome het tweede account, `/u/1/`), geverifieerd met de metatag `google-site-verification` in `index.html` → **nooit
+      verwijderen** (geen HTML-bestand: `cleanUrls` zou dat omleiden). Sitemap `sitemap.xml` ingediend (eerst "Couldn't fetch",
+      normaal bij een nieuwe property; morgen nakijken). Indexering aangevraagd voor `/` (stond al op Google) en `/website-laten-maken`.
+      `/voorbeelden` bewust niet (noindex). Later eventueel een domein-property via DNS-TXT bij Vimexx (Finn).
+- [ ] SEO buiten de code (Finn): Google
   Bedrijfsprofiel aanmaken (categorie "Webdesigner", servicegebied Kempen, foto's, reviews vragen aan klanten), Bing Webmaster
   Tools, vermelding in gidsen (bv. Gouden Gids, Unizo).
 - [ ] Links naar flipforward.be op eigen projecten (14/10/2026): finnvangronsveld.be ✓ ("Founder of FlipForward" + Person-JSON-LD),
