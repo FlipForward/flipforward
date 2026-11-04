@@ -25,6 +25,10 @@ export const routeMeta: Record<string, { title: string; description: string }> =
     title: "Algemene voorwaarden | FlipForward",
     description: "De algemene voorwaarden van FlipForward voor de websitepakketten Start, Business en Pro.",
   },
+  "/voorbeelden": {
+    title: "Voorbeelden van websites voor bedrijven | FlipForward",
+    description: "Vier voorbeeldsites in vier stijlen, en waarom een goede website voor elk soort bedrijf loont. Gratis voorbeeld voor uw zaak.",
+  },
   "/404": {
     title: "Pagina niet gevonden | FlipForward",
     description: "Deze pagina bestaat niet of is verplaatst.",

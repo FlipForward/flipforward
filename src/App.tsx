@@ -5,6 +5,7 @@ import NotFound from "./pages/NotFound";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import Terms from "./pages/Terms";
 import WebsiteLatenMaken from "./pages/WebsiteLatenMaken";
+import Voorbeelden from "./pages/Voorbeelden";
 import { useAwayTitle } from "./hooks/useAwayTitle";
 
 /** De router zelf (Browser- of StaticRouter) wordt in main.tsx / entry-server.tsx eromheen gezet. */
@@ -19,6 +20,8 @@ const App = () => {
   <Routes>
     <Route path="/" element={<Index />} />
     <Route path="/website-laten-maken" element={<WebsiteLatenMaken />} />
+    {/* Enkel voor links in mails: niet in het menu of de sitemap, noindex */}
+    <Route path="/voorbeelden" element={<Voorbeelden />} />
     <Route path="/privacyverklaring" element={<PrivacyPolicy />} />
     <Route path="/algemene-voorwaarden" element={<Terms />} />
     <Route path="/privacy" element={<Navigate to="/privacyverklaring" replace />} />

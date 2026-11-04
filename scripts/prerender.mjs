@@ -22,6 +22,8 @@ const routes = [
   { url: "/website-laten-maken", file: "website-laten-maken.html" },
   { url: "/privacyverklaring", file: "privacyverklaring.html" },
   { url: "/algemene-voorwaarden", file: "algemene-voorwaarden.html" },
+  // Enkel voor links in mails (Mailcampagne): noindex, niet in de sitemap
+  { url: "/voorbeelden", file: "voorbeelden.html", noindex: true },
   { url: "/404", file: "404.html", noindex: true },
 ];
 

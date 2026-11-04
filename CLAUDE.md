@@ -24,6 +24,10 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
   Flippy staat enkel nog in de hero. `PeekingPets` (nu door geen kaart gebruikt, `peek: true` zet het terug aan): de vier figuurtjes (`src/assets/portfolio/flippy-pets/`, frames van de canvassen op flippy.flipforward.be, 4× nearest-neighbour)
   piepen bij hover/focus achter de bovenrand uit (`PeekingPets`, CSS `.peek-pet` in `index.css`); op touch-toestellen één keer bij in beeld komen.
   Andere projecten (Flippy, ATLAZ, Hytale, Spuddy, …; Bavago verving Feest Op Tafel op 4/11/2026) staan enkel nog als beeld in de hero via `src/lib/showcase.ts`.
+- **/voorbeelden** (4/11/2026, `src/pages/Voorbeelden.tsx`): pagina voor de koude mails van de Mailcampagne (FlipForward-app).
+  Niet in menu of sitemap, `noindex` (meta via prerender + `X-Robots-Tag` in vercel.json). Waarom een website, vier verzonnen
+  bedrijven in vier huisstijlen (dakwerker/Oswald, bakkerij/Fraunces, transport/Space Grotesk, kapsalon/Outfit, self-hosted via
+  @fontsource), wat erbij zit en het gratis voorbeeld (mailto, geen telefoonnummer: dat staat bewust niet meer op de site).
 - Screenshots in `src/assets/portfolio/` (WebP; desktop 1200 px breed volledige pagina, mobiel 390×844 @2x), gemaakt met
   playwright-core + Edge. DriverDash: de lokale frontend van de getdrivendashboard-repo met onderschepte API/Supabase-calls en
   fictieve demo-ritten (namen uit de demo-seed van die backend) – nooit een account of data op de live driverdash.be aanmaken.
