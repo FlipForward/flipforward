@@ -25,7 +25,7 @@ export const showcase: ShowcaseItem[] = [
   { title: "finnvangronsveld.be", link: "https://finnvangronsveld.be", thumbnail: finn, w: 1200, h: 750 },
   { title: "Ground Field", link: "https://groundfield.flipforward.be", thumbnail: groundfield, w: 1200, h: 3000 },
   { title: "DriverDash", link: "https://driverdash.be", thumbnail: driverdash, w: 1200, h: 1074 },
-  { title: "Bavago", link: "https://www.bavago.be", thumbnail: bavago, w: 1200, h: 3000 },
+  { title: "Bavago", link: "https://bavago.be", thumbnail: bavago, w: 1200, h: 3000 },
   { title: "ATLAZ", link: "https://atlazmusic.be", thumbnail: atlaz, w: 1200, h: 1893 },
   { title: "Hytale Vlaanderen", link: "https://hytalevlaanderen.be", thumbnail: hytale, w: 1200, h: 821 },
   { title: "Flippy", link: "https://flippy.flipforward.be", thumbnail: flippy, w: 1200, h: 3000 },

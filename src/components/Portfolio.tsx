@@ -45,7 +45,7 @@ const projects: Project[] = [
     solution:
       "Een nieuwe website met hun zeven specialiteiten, van cilinders en kotterwerk tot scheepvaart, de merken die ze leveren en herstellen, de openstaande vacatures en een aanvraagformulier waar klanten meteen een foto van het typeplaatje bij steken.",
     tags: ["Industrie", "Vacatures", "Aanvraagformulier"],
-    link: "https://www.bavago.be",
+    link: "https://bavago.be",
     domain: "bavago.be",
     desktop: bavagoDesktop,
     desktopH: 3000,
