@@ -18,8 +18,8 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
   - Portfolio: `CometCard` (3D-tiltkaarten). Diensten/Over/Pakketten/Contact: `GlowingEffect`/`GlowCard` (rand die de muis volgt),
     Werkwijze: `Timeline`.
 - `src/components/ScrollShot.tsx` – screenshot die bij hover door de pagina scrolt (enkel `transform`, geen layout-animatie).
-- Portfolio (`Portfolio.tsx`): enkel deze vier, even grote kaarten in deze volgorde: Bavago (sinds 4/11/2026 op vraag van Finn in de plaats van Flippy; link en
-  domein nu bavago.flipforward.be, na de DNS-omzetting naar bavago.be aanpassen), Ground Field
+- Portfolio (`Portfolio.tsx`): enkel deze vier, even grote kaarten in deze volgorde: Bavago (sinds 4/11/2026 op vraag van Finn in de plaats van Flippy; live op www.bavago.be;
+  in de hero op de grote plek rechts waar Flippy stond, Flippy op de vroegere plek van Feest Op Tafel), Ground Field
   (groundfield.flipforward.be, SHEQ-consultancy, Engelstalig), DriverDash, finnvangronsveld.be. `FEATURED` in `showcase.ts` volgt dezelfde lijst.
   Flippy staat enkel nog in de hero. `PeekingPets` (nu door geen kaart gebruikt, `peek: true` zet het terug aan): de vier figuurtjes (`src/assets/portfolio/flippy-pets/`, frames van de canvassen op flippy.flipforward.be, 4× nearest-neighbour)
   piepen bij hover/focus achter de bovenrand uit (`PeekingPets`, CSS `.peek-pet` in `index.css`); op touch-toestellen één keer bij in beeld komen.
