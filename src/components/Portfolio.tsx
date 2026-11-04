@@ -7,8 +7,8 @@ import finnDesktop from "@/assets/portfolio/finn-desktop.webp";
 import finnMobile from "@/assets/portfolio/finn-mobile.webp";
 import driverdashDesktop from "@/assets/portfolio/driverdash-desktop.webp";
 import driverdashMobile from "@/assets/portfolio/driverdash-mobile.webp";
-import flippyDesktop from "@/assets/portfolio/flippy-desktop.webp";
-import flippyMobile from "@/assets/portfolio/flippy-mobile.webp";
+import bavagoDesktop from "@/assets/portfolio/bavago-desktop.webp";
+import bavagoMobile from "@/assets/portfolio/bavago-mobile.webp";
 import groundfieldDesktop from "@/assets/portfolio/groundfield-desktop.webp";
 import groundfieldMobile from "@/assets/portfolio/groundfield-mobile.webp";
 import petPhone from "@/assets/portfolio/flippy-pets/phone.png";
@@ -39,18 +39,17 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "Flippy",
-    category: "Eigen project · desktop-tool",
-    challenge: "Een klein, grappig maatje voor op je Windows-bureaublad, met een landingspagina die meteen toont wat hij kan.",
+    title: "Bavago",
+    category: "Website · hydraulica en machinaal werk",
+    challenge: "Een atelier voor hydraulica, cilinders en machinaal werk in Herentals had een verouderde site die niet meer toonde wat ze allemaal doen.",
     solution:
-      "Een gratis pixel-maatje met vier figuurtjes om uit te kiezen, dat over je taakbalk wandelt, op vensters klimt, meetypt en met popcorn video's kijkt. Met een speelse landingspagina vol echte sprites en een download in twee stappen.",
-    tags: ["Pixel art", "Animatie", "Landingspagina"],
-    link: "https://flippy.flipforward.be",
-    domain: "flippy.flipforward.be",
-    desktop: flippyDesktop,
+      "Een nieuwe website met hun zeven specialiteiten, van cilinders en kotterwerk tot scheepvaart, de merken die ze leveren en herstellen, de openstaande vacatures en een aanvraagformulier waar klanten meteen een foto van het typeplaatje bij steken.",
+    tags: ["Industrie", "Vacatures", "Aanvraagformulier"],
+    link: "https://bavago.flipforward.be",
+    domain: "bavago.flipforward.be",
+    desktop: bavagoDesktop,
     desktopH: 3000,
-    mobile: flippyMobile,
-    peek: true,
+    mobile: bavagoMobile,
   },
   {
     title: "Ground Field",

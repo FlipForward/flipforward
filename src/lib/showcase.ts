@@ -4,7 +4,7 @@ import driverdash from "@/assets/portfolio/driverdash-desktop.webp";
 import flippy from "@/assets/portfolio/flippy-desktop.webp";
 import groundfield from "@/assets/portfolio/groundfield-desktop.webp";
 import atlaz from "@/assets/portfolio/atlaz-desktop.webp";
-import feest from "@/assets/portfolio/feestoptafel-desktop.webp";
+import bavago from "@/assets/portfolio/bavago-desktop.webp";
 import finn from "@/assets/portfolio/finn-desktop.webp";
 import spuddy from "@/assets/portfolio/spuddy-desktop.webp";
 import bnb from "@/assets/portfolio/bnb-desktop.webp";
@@ -28,7 +28,7 @@ export const showcase: ShowcaseItem[] = [
   { title: "Flippy", link: "https://flippy.flipforward.be", thumbnail: flippy, w: 1200, h: 3000 },
   { title: "ATLAZ", link: "https://atlazmusic.be", thumbnail: atlaz, w: 1200, h: 1893 },
   { title: "Hytale Vlaanderen", link: "https://hytalevlaanderen.be", thumbnail: hytale, w: 1200, h: 821 },
-  { title: "Feest Op Tafel", link: "https://feestoptafel.com", thumbnail: feest, w: 1200, h: 750 },
+  { title: "Bavago", link: "https://bavago.flipforward.be", thumbnail: bavago, w: 1200, h: 3000 },
   { title: "Spuddy", link: "https://spuddy.be", thumbnail: spuddy, w: 1200, h: 1783 },
   { title: "Hyperdrive Festival", link: "https://hyperdrivefestival.netlify.app", thumbnail: hyperdrive, w: 1200, h: 1884 },
   { title: "WingByte", link: "https://wingbyte.netlify.app", thumbnail: wingbyte, w: 1200, h: 3000 },
@@ -40,4 +40,4 @@ export const showcase: ShowcaseItem[] = [
 export const projectAnchor = (title: string) => "project-" + title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
 /** Projecten die als case in het portfolio staan (de hero scrollt daarnaartoe in plaats van de site te openen). */
-export const FEATURED = ["Flippy", "Ground Field", "DriverDash", "finnvangronsveld.be"];
+export const FEATURED = ["Bavago", "Ground Field", "DriverDash", "finnvangronsveld.be"];
