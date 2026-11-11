@@ -1,7 +1,7 @@
 import { ArrowRight, Check, Clock, Home, Mail, MapPin, Scissors, Truck, Wheat } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
+
 import { business } from "@/lib/site";
 // Eén lettertype per voorbeeldstijl, self-hosted (CSP: font-src 'self'); enkel de gebruikte gewichten
 import "@fontsource/oswald/latin-500.css";
@@ -29,9 +29,9 @@ const Voorbeelden = () => (
     <main id="main" className="pb-20 pt-28 sm:pt-32">
       {/* Kop */}
       <header className="container mx-auto max-w-4xl px-4 sm:px-6">
-        <p className="text-sm font-semibold uppercase tracking-[0.05em] text-accent">Voor bedrijven in de Kempen</p>
-        <h1 className="mt-4 text-4xl font-extrabold leading-[1.1] tracking-[-0.02em] [text-wrap:balance] sm:text-6xl">
-          Zo kan de website van <span className="text-accent">uw zaak</span> eruitzien
+        <p className="eyebrow">Voor bedrijven in de Kempen</p>
+        <h1 className="h-section mt-4">
+          Zo kan de website van uw zaak eruitzien
         </h1>
         <p className="mt-6 max-w-[65ch] text-lg leading-relaxed text-muted-foreground [text-wrap:pretty]">
           Ik ben Finn Vangronsveld, IT-student uit de Kempen met een eigen webbureau, FlipForward. Hieronder ziet u vier voorbeelden
@@ -39,20 +39,18 @@ const Voorbeelden = () => (
           voor uw eigen zaak zien? Dan maak ik gratis en vrijblijvend een voorbeeld met uw eigen diensten.
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <Button asChild variant="hero" size="lg">
-            <a href={mailto}>
-              Vraag een gratis voorbeeld <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </a>
-          </Button>
-          <Button asChild variant="outline" size="lg">
-            <a href="#voorbeelden">Bekijk de voorbeelden</a>
-          </Button>
+          <a href={mailto} className="ff-btn ff-btn-primary">
+            Vraag een gratis voorbeeld
+          </a>
+          <a href="#voorbeelden" className="ff-btn ff-btn-line">
+            Bekijk de voorbeelden
+          </a>
         </div>
       </header>
 
       {/* Waarom */}
       <section aria-labelledby="waarom" className="container mx-auto mt-20 max-w-5xl px-4 sm:mt-28 sm:px-6">
-        <h2 id="waarom" className="text-3xl font-extrabold leading-[1.2] tracking-[-0.01em] [text-wrap:balance] sm:text-4xl">
+        <h2 id="waarom" className="text-[clamp(1.75rem,3.2vw,2.75rem)] leading-[1.08] tracking-[-0.025em]">
           Waarom een website, ook als iedereen u al kent
         </h2>
         <p className="mt-4 max-w-[65ch] leading-relaxed text-muted-foreground [text-wrap:pretty]">
@@ -62,7 +60,7 @@ const Voorbeelden = () => (
         <dl className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
           {WAAROM.map((w) => (
             <div key={w.titel} className="border-t border-border pt-4">
-              <dt className="font-semibold text-foreground">{w.titel}</dt>
+              <dt className="text-lg text-foreground">{w.titel}</dt>
               <dd className="mt-2 text-[0.9375rem] leading-relaxed text-muted-foreground [text-wrap:pretty]">{w.tekst}</dd>
             </div>
           ))}
@@ -72,7 +70,7 @@ const Voorbeelden = () => (
       {/* Voorbeelden */}
       <section id="voorbeelden" aria-labelledby="voorbeelden-titel" className="mt-20 scroll-mt-24 sm:mt-28">
         <div className="container mx-auto max-w-5xl px-4 sm:px-6">
-          <h2 id="voorbeelden-titel" className="text-3xl font-extrabold leading-[1.2] tracking-[-0.01em] [text-wrap:balance] sm:text-4xl">
+          <h2 id="voorbeelden-titel" className="text-[clamp(1.75rem,3.2vw,2.75rem)] leading-[1.08] tracking-[-0.025em]">
             Vier bedrijven, vier stijlen
           </h2>
           <p className="mt-4 max-w-[65ch] leading-relaxed text-muted-foreground [text-wrap:pretty]">
@@ -88,17 +86,17 @@ const Voorbeelden = () => (
               className={`grid items-start gap-6 lg:gap-12 ${i % 2 ? "lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)]" : "lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]"}`}
             >
               <div className={i % 2 ? "lg:order-2" : ""}>
-                <p className="text-sm text-accent">
+                <p className="num text-sm text-muted-foreground">
                   <span className="tabular-nums">0{i + 1}</span> · {v.stijl}
                 </p>
-                <h3 id={`vb-${i}`} className="mt-2 text-2xl font-bold leading-[1.25] tracking-[-0.01em] [text-wrap:balance]">
+                <h3 id={`vb-${i}`} className="mt-2 text-3xl leading-[1.15] tracking-[-0.02em]">
                   {v.sector}
                 </h3>
                 <p className="mt-3 leading-relaxed text-muted-foreground [text-wrap:pretty]">{v.uitleg}</p>
                 <ul className="mt-4 space-y-2 text-[0.9375rem]">
                   {v.punten.map((p) => (
                     <li key={p} className="flex gap-2 leading-snug">
-                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-accent" aria-hidden="true" />
+                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-muted-foreground" strokeWidth={1.5} aria-hidden="true" />
                       <span>{p}</span>
                     </li>
                   ))}
@@ -114,47 +112,46 @@ const Voorbeelden = () => (
       <section aria-labelledby="erbij" className="container mx-auto mt-20 max-w-5xl px-4 sm:mt-28 sm:px-6">
         <div className="grid gap-10 lg:grid-cols-2">
           <div>
-            <h2 id="erbij" className="text-3xl font-extrabold leading-[1.2] tracking-[-0.01em] [text-wrap:balance]">
+            <h2 id="erbij" className="text-[clamp(1.75rem,3.2vw,2.75rem)] leading-[1.08] tracking-[-0.025em]">
               Wat er altijd bij zit
             </h2>
             <ul className="mt-6 space-y-3">
               {ERBIJ.map((e) => (
                 <li key={e} className="flex gap-3 leading-relaxed text-muted-foreground">
-                  <Check className="mt-1 h-4 w-4 flex-shrink-0 text-accent" aria-hidden="true" />
+                  <Check className="mt-1 h-4 w-4 flex-shrink-0 text-muted-foreground" strokeWidth={1.5} aria-hidden="true" />
                   <span>{e}</span>
                 </li>
               ))}
             </ul>
             <p className="mt-5 text-sm text-muted-foreground">
               Prijzen en pakketten staan op{" "}
-              <a href="/website-laten-maken" className="text-accent underline decoration-from-font underline-offset-4">
+              <a href="/website-laten-maken" className="text-foreground underline underline-offset-4">
                 website laten maken
               </a>
               . Echte klanten ziet u in het{" "}
-              <a href="/#portfolio" className="text-accent underline decoration-from-font underline-offset-4">
+              <a href="/#portfolio" className="text-foreground underline underline-offset-4">
                 portfolio
               </a>
               .
             </p>
           </div>
-          <div className="rounded-2xl border border-border bg-card/60 p-6 sm:p-8">
-            <h2 className="text-2xl font-bold leading-[1.25] tracking-[-0.01em]">Een gratis voorbeeld voor uw zaak</h2>
+          <div className="rounded-3xl bg-card p-6 sm:p-8">
+            <h2 className="text-2xl leading-[1.2] tracking-[-0.02em]">Een gratis voorbeeld voor uw zaak</h2>
             <ol className="mt-5 space-y-4">
               {STAPPEN.map((s, i) => (
                 <li key={s.titel} className="flex gap-4">
-                  <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-accent/15 text-sm font-semibold tabular-nums text-accent">{i + 1}</span>
+                  <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center text-sm tabular-nums text-muted-foreground">{i + 1}</span>
                   <span>
-                    <span className="font-semibold">{s.titel}</span>
+                    <span className="font-medium">{s.titel}</span>
                     <span className="block text-[0.9375rem] leading-relaxed text-muted-foreground">{s.tekst}</span>
                   </span>
                 </li>
               ))}
             </ol>
-            <Button asChild variant="hero" size="lg" className="mt-7 w-full">
-              <a href={mailto}>
-                <Mail className="h-4 w-4" aria-hidden="true" /> Mail {business.email}
-              </a>
-            </Button>
+            <a href={mailto} className="ff-btn ff-btn-primary mt-7 w-full">
+              <Mail className="h-4 w-4" aria-hidden="true" /> Mail {business.email}
+            </a>
+          
             <p className="mt-3 text-center text-sm text-muted-foreground">Of antwoord gewoon op mijn mail.</p>
           </div>
         </div>

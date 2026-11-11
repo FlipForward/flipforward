@@ -147,11 +147,16 @@ Interne klantenadministratie voor Finn: lopende projecten, voortgang (vaste stap
 - Kleine, logische commits in het Nederlands.
 
 ## Open / te bevestigen door Finn
-- [ ] **Redesign + nieuwe prijzen live zetten** (11/11/2026): Finn moet de branch `prijzen-en-redesign` nog goedkeuren. Vóór livegang
-      `/unslop` met storyvideo (afspraak). Dan mergen naar `main` en tegelijk de app-branch `prijzen-opstart`.
+- [ ] **Redesign + nieuwe prijzen** (11/11/2026): Finn heeft de preview van `prijzen-en-redesign` in Vercel zelf naar productie gezet;
+      `main` loopt dus achter. De branch moet nog naar `main` (anders zet de volgende push naar `main` de oude site terug), samen met
+      de app-branch `prijzen-opstart`. `/unslop` is gedraaid zonder video (keuze Finn): resttekens zaten op `/voorbeelden` en de 404.
+- [ ] Formuliermail (`api/_email.ts`) staat in de nieuwe stijl en is soberder gemaakt voor spamfilters (geen verborgen voorvertoning,
+      geen externe afbeelding, korte mailto). SPF, DKIM (`x._domainkey`) en DMARC (`p=none`) bestaan; of de mail nog als spam
+      gemarkeerd wordt, moet Finn nakijken in de headers van een nieuwe testmail (mailrecords zijn zijn werk).
 - [ ] Huurformule zonder opstart (voorstel: Start € 79/maand, Business € 169/maand, 24 maanden, geen overname): Finn heeft nog niet
       beslist. Als ze er komt: één regel onder de prijzen + optie in de offertebuilder, en art. 4, 10 en 11 van de voorwaarden aanpassen.
-- [ ] Lopende offertes aan de oude opstartprijs opnieuw sturen? Bavago tekende Business aan € 2.000 (nieuwe prijs € 1.500): Finn beslist.
+- [x] Lopende offertes en bestaande klanten (o.a. Bavago, Business aan € 2.000) blijven zoals ze zijn; de nieuwe prijzen gelden enkel
+      voor nieuwe offertes (beslissing Finn, 11/11/2026).
 - [ ] `npm run lint` geeft 2 fouten in `ui/textarea.tsx` en `tailwind.config.ts` (bestonden al vóór het redesign).
 - [x] Supabase opgezet (22/10/2026): project, schema, seed, auth, SMTP, Vercel-variabelen op Preview.
 - [x] Beheeromgeving live (22/10/2026): variabelen op Production, `admin-backend` gemerged naar `main`.

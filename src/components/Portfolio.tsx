@@ -88,7 +88,7 @@ const Portfolio = () => {
                 rel="noopener"
                 onPointerEnter={() => setActive(i)}
                 onFocus={() => setActive(null)}
-                className="group grid grid-cols-[4rem_1.1fr_1fr_auto] items-center gap-8 py-9 transition-[padding,opacity] duration-500 [transition-timing-function:var(--ease-out)] hover:px-4"
+                className="group grid grid-cols-[4rem_1.1fr_1fr_auto] items-center gap-8 py-9 transition-opacity duration-500 [transition-timing-function:var(--ease-out)]"
                 style={{ opacity: active === null || active === i ? 1 : 0.4 }}
               >
                 <span className="num text-muted-foreground">{String(i + 1).padStart(2, "0")}</span>
@@ -97,7 +97,7 @@ const Portfolio = () => {
                   <span className="block text-foreground">{p.category}</span>
                   <span className="mt-1 block max-w-[34rem] text-[15px] leading-relaxed">{p.text}</span>
                 </span>
-                <ArrowUpRight className="h-6 w-6 transition-transform duration-500 [transition-timing-function:var(--ease-out)] group-hover:-translate-y-1 group-hover:translate-x-1" aria-hidden="true" />
+                <ArrowUpRight strokeWidth={1.5} className="h-6 w-6 transition-transform duration-500 [transition-timing-function:var(--ease-out)] group-hover:-translate-y-1 group-hover:translate-x-1" aria-hidden="true" />
                 <span className="sr-only">(opent de site in een nieuw tabblad)</span>
               </a>
             </li>

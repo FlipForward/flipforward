@@ -81,7 +81,7 @@ const Contact = () => {
             <Magnetic>
               <a href={`mailto:${business.email}`} className="ff-btn ff-btn-line">
                 {business.email}
-                <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+                <ArrowUpRight strokeWidth={1.5} className="h-4 w-4" aria-hidden="true" />
               </a>
             </Magnetic>
           </div>

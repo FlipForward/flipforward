@@ -1,18 +1,16 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Home, LayoutGrid, Mail, Package, RotateCcw, TriangleAlert } from "lucide-react";
-import { Spotlight } from "@/components/aceternity/Spotlight";
-import { Button } from "@/components/ui/button";
+import { ArrowUpRight, RotateCcw, TriangleAlert } from "lucide-react";
 
 /**
  * Speelse 404: een verouderde "kapotte" pagina die je naar een moderne versie flipt.
  * Knipoog naar de naam FlipForward. Werkt ook zonder animatie (reduced motion = crossfade).
  */
 const links = [
-  { to: "/", label: "Home", icon: Home },
-  { to: "/#portfolio", label: "Ons werk", icon: LayoutGrid },
-  { to: "/#pakketten", label: "Pakketten", icon: Package },
-  { to: "/#contact", label: "Contact", icon: Mail },
+  { to: "/", label: "Home" },
+  { to: "/#portfolio", label: "Werk" },
+  { to: "/#pakketten", label: "Prijzen" },
+  { to: "/#contact", label: "Contact" },
 ];
 
 const NotFound = () => {
@@ -23,8 +21,6 @@ const NotFound = () => {
 
   return (
     <main id="main" className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-background px-4 py-16">
-      <Spotlight />
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(10_89%_50%/0.12),transparent_60%)]" />
 
       <div className="relative z-10 w-full max-w-2xl">
         <h1 className="sr-only">Pagina niet gevonden (404)</h1>
@@ -82,10 +78,9 @@ const NotFound = () => {
                 </div>
 
                 <div className="mt-auto pt-4 text-center">
-                  <Button variant="hero" size="lg" onClick={() => setFlipped(true)} className="[font-family:Inter,sans-serif]">
+                  <button type="button" onClick={() => setFlipped(true)} className="ff-btn ff-btn-primary [font-family:'Host_Grotesk_Variable',sans-serif]">
                     Flip forward
-                    <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
-                  </Button>
+                  </button>
                   <p className="mt-3 text-xs text-[#555]">
                     Bezoeker nr. <span className="bg-black px-1 font-mono text-[#33ff33]">000404</span> · Best bekeken in 800x600
                   </p>
@@ -96,29 +91,26 @@ const NotFound = () => {
             {/* Achterkant: de moderne versie met de weg terug */}
             <section
               aria-hidden={!flipped}
-              className={`relative flex flex-col justify-center overflow-hidden rounded-xl border border-white/10 [grid-area:1/1] sm:min-h-[32rem] bg-[hsl(222_47%_6%)] p-6 shadow-2xl [backface-visibility:hidden] sm:p-10 ${
+              className={`relative flex flex-col justify-center overflow-hidden on-ink rounded-3xl [grid-area:1/1] sm:min-h-[32rem] p-6 [backface-visibility:hidden] sm:p-10 ${
                 reduced ? `transition-opacity duration-500 ${flipped ? "opacity-100" : "pointer-events-none opacity-0"}` : ""
               }`}
               style={!reduced ? { transform: "rotateY(180deg)" } : undefined}
             >
-              <div aria-hidden="true" className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,hsl(10_89%_55%/0.45),transparent_65%)] blur-2xl" />
-              <p className="relative text-sm font-semibold uppercase tracking-wider text-accent">Fout 404</p>
-              <p className="relative mt-2 text-3xl font-extrabold leading-tight tracking-tight text-foreground sm:text-5xl">
-                Zo. Die pagina bestaat nog steeds niet,
-                <span className="block text-transparent bg-clip-text bg-gradient-accent">maar ze ziet er nu wel goed uit.</span>
+              <p className="soft num relative text-sm">Fout 404</p>
+              <p className="relative mt-3 text-3xl leading-[1.08] tracking-[-0.03em] sm:text-5xl">
+                Die pagina bestaat nog steeds niet, maar ze ziet er nu wel goed uit
               </p>
-              <p className="relative mt-4 text-muted-foreground">Kies waar je naartoe wilt:</p>
-              <ul className="relative mt-5 grid gap-3 sm:grid-cols-2">
-                {links.map(({ to, label, icon: Icon }) => (
-                  <li key={to}>
+              <p className="soft relative mt-5">Kies waar je naartoe wil</p>
+              <ul className="line relative mt-4 border-t">
+                {links.map(({ to, label }) => (
+                  <li key={to} className="line border-b">
                     <Link
                       to={to}
                       tabIndex={flipped ? 0 : -1}
-                      className="group flex items-center gap-3 rounded-xl border border-border bg-card/60 px-4 py-3 text-foreground transition-colors hover:border-accent/60 hover:bg-accent/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      className="group flex items-center justify-between py-3.5 text-xl tracking-[-0.01em]"
                     >
-                      <Icon className="h-4 w-4 text-accent" aria-hidden="true" />
-                      <span className="font-medium">{label}</span>
-                      <ArrowRight className="ml-auto h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                      {label}
+                      <ArrowUpRight className="h-5 w-5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" strokeWidth={1.5} aria-hidden="true" />
                     </Link>
                   </li>
                 ))}
@@ -127,7 +119,7 @@ const NotFound = () => {
                 type="button"
                 tabIndex={flipped ? 0 : -1}
                 onClick={() => setFlipped(false)}
-                className="relative mt-6 inline-flex items-center gap-1.5 self-start rounded-full px-2 py-1 text-sm text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="soft relative mt-6 inline-flex items-center gap-1.5 self-start rounded-full py-1 text-sm"
               >
                 <RotateCcw className="h-3.5 w-3.5" aria-hidden="true" /> Toch liever de oude versie
               </button>

@@ -18,15 +18,10 @@ const esc = (s: string) =>
 
 const firstName = (name: string) => name.trim().split(/\s+/)[0] || name;
 
-/** mailto-link die meteen een antwoord opent naar de aanvrager, met onderwerp en aanhef ingevuld. */
+/** mailto-link naar de aanvrager met enkel een onderwerp. Kort gehouden: lange, gecodeerde links wegen mee in spamfilters. */
 export function replyLink(lead: Lead) {
   const subject = `Je aanvraag bij FlipForward${lead.pakket && lead.pakket !== "Niet gekozen" && lead.pakket !== "Weet ik nog niet" ? ` – pakket ${lead.pakket}` : ""}`;
-  const quoted = lead.message
-    .split("\n")
-    .map((l) => `> ${l}`)
-    .join("\n");
-  const body = `Hoi ${firstName(lead.name)},\n\nBedankt voor je aanvraag!\n\n\n\nGroeten,\nFinn\nFlipForward – flipforward.be\n\n---\nJouw bericht:\n${quoted}`;
-  return `mailto:${encodeURIComponent(lead.email)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  return `mailto:${encodeURIComponent(lead.email)}?subject=${encodeURIComponent(subject)}`;
 }
 
 export function leadText(lead: Lead) {
@@ -46,6 +41,10 @@ export function leadText(lead: Lead) {
   ].join("\n");
 }
 
+/**
+ * Zelfde designtaal als de site (11/11/2026): papierwit, inktzwart, oranje enkel op de knop, grote kop zonder vet.
+ * Bewust sober voor spamfilters: geen verborgen voorvertoningstekst, geen afbeeldingen van buitenaf, geen verlopen.
+ */
 export function leadHtml(lead: Lead, receivedAt = new Date()) {
   const when = receivedAt.toLocaleString("nl-BE", {
     timeZone: "Europe/Brussels",
@@ -56,87 +55,61 @@ export function leadHtml(lead: Lead, receivedAt = new Date()) {
     minute: "2-digit",
   });
   const tel = lead.phone.replace(/[^\d+]/g, "");
+  const font = "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif";
   const row = (label: string, value: string) => `
               <tr>
-                <td style="padding:10px 0;border-bottom:1px solid #1e2533;color:#8b93a7;font-size:13px;width:96px;vertical-align:top;">${label}</td>
-                <td style="padding:10px 0;border-bottom:1px solid #1e2533;color:#f5f6f8;font-size:15px;vertical-align:top;">${value}</td>
+                <td style="padding:12px 0;border-bottom:1px solid #d3cfc6;color:#5a5a60;font-size:14px;width:104px;vertical-align:top;">${label}</td>
+                <td style="padding:12px 0;border-bottom:1px solid #d3cfc6;color:#17171a;font-size:16px;vertical-align:top;">${value}</td>
               </tr>`;
-
-  const button = (href: string, label: string, primary: boolean) => `
-                <td style="padding:0 8px 8px 0;">
-                  <a href="${esc(href)}" style="display:inline-block;padding:13px 22px;border-radius:10px;font-size:15px;font-weight:700;text-decoration:none;${
-                    primary ? "background:#d9411c;color:#ffffff;" : "background:#1a2130;color:#f5f6f8;border:1px solid #2b3446;"
-                  }">${label}</a>
-                </td>`;
+  const link = (href: string, label: string) => `<a href="${esc(href)}" style="color:#17171a;text-decoration:underline;">${label}</a>`;
 
   return `<!doctype html>
 <html lang="nl">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="color-scheme" content="dark light">
 <title>Nieuwe aanvraag</title>
 </head>
-<body style="margin:0;padding:0;background:#070b16;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;">
-  <div style="display:none;max-height:0;overflow:hidden;">${esc(lead.name)}${lead.company ? ` (${esc(lead.company)})` : ""} – ${esc(lead.pakket)}: ${esc(lead.message.slice(0, 120))}</div>
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#070b16;">
+<body style="margin:0;padding:0;background:#f3f1ed;font-family:${font};color:#17171a;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f3f1ed;">
     <tr>
       <td align="center" style="padding:32px 16px;">
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;">
           <tr>
-            <td style="padding:0 4px 20px;">
-              <img src="https://flipforward.be/icon-192.png" width="40" height="40" alt="FlipForward" style="display:inline-block;vertical-align:middle;border-radius:10px;">
-              <span style="display:inline-block;vertical-align:middle;margin-left:10px;color:#f5f6f8;font-size:18px;font-weight:700;">FlipForward</span>
+            <td style="padding:0 0 24px;font-size:17px;font-weight:500;color:#17171a;">
+              <span style="color:#de310d;">ff›</span> FlipForward
             </td>
           </tr>
           <tr>
-            <td style="background:#0f1420;border:1px solid #1e2533;border-radius:16px;overflow:hidden;">
-              <div style="height:4px;background:#d9411c;background-image:linear-gradient(90deg,#f2532d,#c2410c);"></div>
-              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-                <tr>
-                  <td style="padding:28px 28px 8px;">
-                    <p style="margin:0 0 6px;color:#f2532d;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;">Nieuwe aanvraag</p>
-                    <h1 style="margin:0;color:#f5f6f8;font-size:24px;line-height:1.3;">${esc(lead.name)}${
-                      lead.company ? `<span style="color:#8b93a7;font-weight:400;"> · ${esc(lead.company)}</span>` : ""
-                    }</h1>
-                    <p style="margin:10px 0 0;">
-                      <span style="display:inline-block;padding:4px 10px;border-radius:999px;background:#2a1610;color:#ff8a65;font-size:13px;font-weight:600;">Pakket: ${esc(lead.pakket)}</span>
-                      <span style="display:inline-block;margin-left:6px;color:#8b93a7;font-size:13px;">${esc(when)}</span>
-                    </p>
-                  </td>
-                </tr>
-                <tr>
-                  <td style="padding:16px 28px 0;">
-                    <div style="background:#141a28;border-left:3px solid #f2532d;border-radius:8px;padding:16px 18px;color:#e6e8ee;font-size:15px;line-height:1.6;white-space:pre-wrap;">${esc(lead.message)}</div>
-                  </td>
-                </tr>
-                <tr>
-                  <td style="padding:16px 28px 0;">
-                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">${row(
-                      "E-mail",
-                      `<a href="mailto:${esc(lead.email)}" style="color:#ff8a65;text-decoration:none;">${esc(lead.email)}</a>`,
-                    )}${row("Telefoon", tel ? `<a href="tel:${esc(tel)}" style="color:#ff8a65;text-decoration:none;">${esc(lead.phone)}</a>` : "–")}${row(
-                      "Bedrijf",
-                      lead.company ? esc(lead.company) : "–",
-                    )}
-                    </table>
-                  </td>
-                </tr>
-                <tr>
-                  <td style="padding:24px 28px 28px;">
-                    <table role="presentation" cellpadding="0" cellspacing="0"><tr>${button(replyLink(lead), `Antwoord ${esc(firstName(lead.name))}`, true)}${
-                      tel ? button(`tel:${tel}`, "Bel", false) : ""
-                    }</tr></table>
-                  </td>
-                </tr>
+            <td style="padding:0 0 8px;color:#5a5a60;font-size:14px;">Nieuwe aanvraag · ${esc(when)}</td>
+          </tr>
+          <tr>
+            <td style="padding:0 0 24px;">
+              <h1 style="margin:0;font-size:32px;line-height:1.1;font-weight:400;letter-spacing:-0.02em;color:#17171a;">${esc(lead.name)}${
+                lead.company ? `<span style="color:#5a5a60;">, ${esc(lead.company)}</span>` : ""
+              }</h1>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:20px 24px;background:#faf8f4;border-radius:16px;font-size:16px;line-height:1.6;color:#17171a;white-space:pre-wrap;">${esc(lead.message)}</td>
+          </tr>
+          <tr>
+            <td style="padding:16px 0 0;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #d3cfc6;">${row("Pakket", esc(lead.pakket))}${row(
+                "E-mail",
+                link(`mailto:${lead.email}`, esc(lead.email)),
+              )}${row("Telefoon", tel ? link(`tel:${tel}`, esc(lead.phone)) : "–")}${row("Bedrijf", lead.company ? esc(lead.company) : "–")}
               </table>
             </td>
           </tr>
           <tr>
-            <td style="padding:16px 4px 0;color:#5d667a;font-size:12px;line-height:1.5;">
-              Verstuurd via het contactformulier op flipforward.be. Op "Beantwoorden" klikken in je mailprogramma werkt ook: dat gaat naar ${esc(
-                lead.email,
-              )}.
+            <td style="padding:28px 0 0;">
+              <a href="${esc(replyLink(lead))}" style="display:inline-block;padding:16px 28px;border-radius:999px;background:#de310d;color:#ffffff;font-size:16px;font-weight:500;text-decoration:none;">Antwoord ${esc(firstName(lead.name))}</a>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding:28px 0 0;color:#5a5a60;font-size:13px;line-height:1.5;">
+              Verstuurd via het contactformulier op flipforward.be. "Beantwoorden" in je mailprogramma gaat naar ${esc(lead.email)}.
             </td>
           </tr>
         </table>

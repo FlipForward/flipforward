@@ -42,7 +42,7 @@ const Hero = () => {
             <Magnetic className="w-full sm:w-auto">
               <a href="#pakketten" className="ff-btn ff-btn-line w-full sm:w-auto">
                 Bekijk de prijzen
-                <ArrowDownRight className="h-4 w-4" aria-hidden="true" />
+                <ArrowDownRight strokeWidth={1.5} className="h-4 w-4" aria-hidden="true" />
               </a>
             </Magnetic>
           </div>
