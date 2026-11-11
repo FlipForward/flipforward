@@ -41,6 +41,8 @@ export interface Package {
   setup: number;
   setupFrom?: boolean;
   monthly: number;
+  /** Huurformule: geen opstart, dit bedrag per maand vanaf het akkoord (zie RENT_MONTHS). Niet voor elk pakket. */
+  rent?: number;
   monthlyNote?: string;
   highlight?: string;
 }
@@ -48,6 +50,13 @@ export interface Package {
 /** Jaarlijkse betaling: per jaar vooruit, 1 maand gratis (11 maandbedragen voor 12 maanden). */
 export const YEARLY_FREE_MONTHS = 1;
 export const yearlyPrice = (p: Pick<Package, "monthly">) => p.monthly * (12 - YEARLY_FREE_MONTHS);
+
+/**
+ * Huurformule (beslissing Finn, 12/11/2026): geen opstartkost, een hoger maandbedrag dat loopt vanaf het akkoord (niet vanaf de
+ * livegang), minimaal 24 maanden. Per jaar betalen = 1 maand gratis, zoals bij kopen. Ontwerp en code blijven van FlipForward.
+ */
+export const RENT_MONTHS = 24;
+export const rentYearly = (rent: number) => rent * (12 - YEARLY_FREE_MONTHS);
 
 export const packages: Package[] = [
   {
@@ -64,6 +73,7 @@ export const packages: Package[] = [
     legal: ["Privacyverklaring", "Wettelijke bedrijfsgegevens"],
     setup: 500,
     monthly: 50,
+    rent: 100,
   },
   {
     id: "business",
@@ -80,6 +90,7 @@ export const packages: Package[] = [
     legal: ["Privacyverklaring", "Wettelijke bedrijfsgegevens"],
     setup: 1500,
     monthly: 99,
+    rent: 199,
     monthlyNote: "incl. 1 u aanpassingen/maand",
     highlight: "Aanrader",
   },
@@ -119,6 +130,7 @@ export const comparison: { label: string; values: [string | boolean, string | bo
   { label: "Offerte-aanvraag & vacatures", values: [false, false, true] },
   { label: "Kwartaalrapport", values: [false, false, true] },
   { label: "Hosting, SSL, back-ups, updates & beveiliging", values: [true, true, true] },
+  { label: "Huren zonder opstart", values: ["€ 100/maand", "€ 199/maand", false] },
 ];
 
 export const includedInAll = [
@@ -183,7 +195,14 @@ export const faqs = [
     q: "Wat kost een website laten maken?",
     a: `Bij FlipForward betaal je een eenmalige opstartkost en daarna een vast bedrag per maand voor hosting, onderhoud en aanpassingen: ${packages
       .map((p) => `${p.name} ${p.setupFrom ? "vanaf " : ""}${formatEuroText(p.setup)} + ${formatEuroText(p.monthly)} per maand`)
-      .join(", ")}. Betaal je per jaar, dan krijg je 1 maand gratis. Er wordt geen btw aangerekend.`,
+      .join(", ")}. Betaal je per jaar, dan krijg je 1 maand gratis. Start en Business kan je ook huren zonder opstartkost. Er wordt geen btw aangerekend.`,
+  },
+  {
+    q: "Kan ik een website huren zonder opstartkost?",
+    a: `Ja, voor ${packages
+      .filter((p) => p.rent)
+      .map((p) => `${p.name} (${formatEuroText(p.rent!)} per maand)`)
+      .join(" en ")}. Je betaalt geen opstartkost; het maandbedrag loopt vanaf je akkoord, voor minstens ${RENT_MONTHS} maanden. Betaal je per jaar, dan krijg je 1 maand gratis. Bij huren blijven het ontwerp en de code van FlipForward; je domeinnaam, teksten en foto's blijven van jou.`,
   },
   {
     q: "Hoe lang duurt het om een website te laten maken?",
@@ -191,7 +210,7 @@ export const faqs = [
   },
   {
     q: "Wat is de minimale looptijd?",
-    a: "12 maanden vanaf de livegang. Daarna is je abonnement maandelijks opzegbaar.",
+    a: `12 maanden vanaf de livegang. Daarna is je abonnement maandelijks opzegbaar. Bij huren zonder opstartkost is dat ${RENT_MONTHS} maanden vanaf je akkoord.`,
   },
   {
     q: "Kan ik per jaar betalen?",

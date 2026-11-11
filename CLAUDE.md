@@ -153,8 +153,11 @@ Interne klantenadministratie voor Finn: lopende projecten, voortgang (vaste stap
 - [ ] Formuliermail (`api/_email.ts`) staat in de nieuwe stijl en is soberder gemaakt voor spamfilters (geen verborgen voorvertoning,
       geen externe afbeelding, korte mailto). SPF, DKIM (`x._domainkey`) en DMARC (`p=none`) bestaan; of de mail nog als spam
       gemarkeerd wordt, moet Finn nakijken in de headers van een nieuwe testmail (mailrecords zijn zijn werk).
-- [ ] Huurformule zonder opstart (voorstel: Start € 79/maand, Business € 169/maand, 24 maanden, geen overname): Finn heeft nog niet
-      beslist. Als ze er komt: één regel onder de prijzen + optie in de offertebuilder, en art. 4, 10 en 11 van de voorwaarden aanpassen.
+- [x] **Huurformule** (beslissing Finn, 12/11/2026): Start € 100/maand en Business € 199/maand, geen opstart, maandbedrag vanaf het
+      akkoord (niet vanaf livegang), minimaal 24 maanden, per jaar = 1 maand gratis, geen overname van ontwerp en code. Pro niet.
+      In `site.ts` (`rent`, `RENT_MONTHS`, `rentYearly`), blok "Liever geen opstart" in `Pricing.tsx`, FAQ, vergelijkingstabel,
+      `/website-laten-maken`, llms.txt en de voorwaarden (art. 2, 3, 4, 9, 11; juridisch nog na te lezen). In de app: `huur` in
+      `offerte.ts` + schakelaar in de offertebuilder (branch `prijzen-opstart`). Het contactformulier heeft geen aparte huurkeuze.
 - [x] Lopende offertes en bestaande klanten (o.a. Bavago, Business aan € 2.000) blijven zoals ze zijn; de nieuwe prijzen gelden enkel
       voor nieuwe offertes (beslissing Finn, 11/11/2026).
 - [ ] `npm run lint` geeft 2 fouten in `ui/textarea.tsx` en `tailwind.config.ts` (bestonden al vóór het redesign).

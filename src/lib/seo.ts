@@ -2,7 +2,7 @@
  * Genereert structured data, sitemap en llms.txt uit site.ts.
  * Draait enkel in de build (vite.config.ts), niet in de browser.
  */
-import { SITE_URL, business, packages, includedInAll, addOns, faqs, PRICE_NOTE, steps, formatEuro, yearlyPrice } from "./site";
+import { SITE_URL, business, packages, includedInAll, addOns, faqs, PRICE_NOTE, steps, formatEuro, yearlyPrice, RENT_MONTHS } from "./site";
 
 export const publicRoutes = [
   { path: "/", priority: "1.0", changefreq: "monthly" },
@@ -187,7 +187,8 @@ export function llmsTxt() {
         `- Opstart: ${p.setupFrom ? "vanaf " : ""}${formatEuro(p.setup)} eenmalig\n` +
         `- Maandelijks: ${formatEuro(p.monthly)}${p.monthlyNote ? ` (${p.monthlyNote})` : ""}
 ` +
-        `- Of per jaar vooruit: ${formatEuro(yearlyPrice(p))} (1 maand gratis)`,
+        `- Of per jaar vooruit: ${formatEuro(yearlyPrice(p))} (1 maand gratis)` +
+        (p.rent ? `\n- Of huren zonder opstartkost: ${formatEuro(p.rent)} per maand vanaf het akkoord, minstens ${RENT_MONTHS} maanden` : ""),
     )
     .join("\n\n");
 

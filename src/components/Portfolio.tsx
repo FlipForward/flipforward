@@ -126,7 +126,7 @@ const Portfolio = () => {
         <ul className="snap-row -mx-4 px-4 sm:-mx-8 sm:px-8 lg:hidden">
           {projects.map((p, i) => (
             <li key={p.title} className="w-[82vw] max-w-[26rem] shrink-0 snap-center">
-              <a href={p.link} target="_blank" rel="noopener" className="block">
+              <a href={p.link} target="_blank" rel="noopener" className="relative block">
                 <img src={p.thumb} alt="" width={800} height={600} loading="lazy" decoding="async" className="aspect-[4/3] w-full rounded-2xl bg-muted object-cover object-top" />
                 <span className="mt-4 flex items-baseline justify-between gap-4">
                   <span className="text-2xl tracking-[-0.02em]">{p.title}</span>

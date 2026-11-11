@@ -1,11 +1,13 @@
 import { useEffect, useRef } from "react";
 import { Check } from "lucide-react";
-import { packages, includedInAll, addOns, formatEuro, yearlyPrice } from "@/lib/site";
+import { packages, includedInAll, addOns, formatEuro, yearlyPrice, rentYearly, RENT_MONTHS } from "@/lib/site";
 import { selectPackage } from "@/lib/selectPackage";
 import Reveal from "./motion/Reveal";
 
 /** "Domeinnaam, hosting, SSL-certificaat, …" als lopende zin. */
 const inbegrepen = includedInAll.map((x) => (x.startsWith("SSL") ? x : x.toLowerCase()));
+
+const huur = packages.filter((p) => p.rent);
 
 const Pricing = () => {
   // Gsm en tablet: de pakketten staan naast elkaar om te swipen; start met de aanrader in het midden
@@ -75,7 +77,25 @@ const Pricing = () => {
           })}
         </div>
 
-        <Reveal className="mt-10 grid gap-10 sm:mt-16 lg:grid-cols-2 lg:gap-16">
+        <Reveal className="mt-10 grid gap-10 sm:mt-16 lg:grid-cols-3 lg:gap-12">
+          <div>
+            <h3 className="text-xl tracking-[-0.01em]">Liever geen opstart</h3>
+            <p className="mt-3 max-w-[32rem] text-muted-foreground">
+              {huur.map((p) => p.name).join(" en ")} kan je ook huren: geen opstartkost, een vast bedrag per maand vanaf je akkoord, voor minstens{" "}
+              {RENT_MONTHS} maanden. De website blijft dan van FlipForward.
+            </p>
+            <dl className="mt-4 border-t border-border">
+              {huur.map((p) => (
+                <div key={p.id} className="flex items-baseline justify-between gap-6 border-b border-border py-3">
+                  <dt>{p.name} huren</dt>
+                  <dd className="num text-right text-muted-foreground">
+                    <span className="text-foreground">{formatEuro(p.rent!)} per maand</span>
+                    <span className="block text-sm">of {formatEuro(rentYearly(p.rent!))} per jaar</span>
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
           <div>
             <h3 className="text-xl tracking-[-0.01em]">In elke prijs</h3>
             <p className="mt-3 max-w-[32rem] text-muted-foreground">

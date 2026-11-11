@@ -3,7 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import PackageComparison from "@/components/PackageComparison";
-import { business, packages, includedInAll, steps, faqs, formatEuro, yearlyPrice, PRICE_NOTE } from "@/lib/site";
+import { business, packages, includedInAll, steps, faqs, formatEuro, yearlyPrice, PRICE_NOTE, RENT_MONTHS } from "@/lib/site";
 import { showcase, FEATURED } from "@/lib/showcase";
 
 /**
@@ -67,6 +67,10 @@ const WebsiteLatenMaken = () => {
                 </li>
               ))}
             </ul>
+            <p className="mt-4 text-muted-foreground">
+              Liever geen opstartkost? {packages.filter((p) => p.rent).map((p) => `${p.name} huur je voor ${formatEuro(p.rent!)} per maand`).join(", ")}:
+              het maandbedrag loopt dan vanaf je akkoord, voor minstens {RENT_MONTHS} maanden, en de website blijft van FlipForward.
+            </p>
             <p className="mt-4 text-sm text-muted-foreground">{PRICE_NOTE}</p>
             <PackageComparison />
           </section>

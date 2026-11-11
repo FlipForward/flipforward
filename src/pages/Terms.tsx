@@ -31,6 +31,10 @@ const sections: LegalSection[] = [
           onderhoud. De Klant betaalt een eenmalige opstartkost en een vast bedrag per maand, volgens het gekozen pakket (Start,
           Business of Pro) zoals beschreven op de website en in de offerte.
         </p>
+        <p>
+          Voor de pakketten Start en Business bestaat ook een huurformule: de Klant betaalt geen opstartkost, maar een hoger vast
+          bedrag per maand. Waar deze voorwaarden voor de huurformule afwijken, staat dat uitdrukkelijk vermeld.
+        </p>
       </>
     ),
   },
@@ -41,7 +45,7 @@ const sections: LegalSection[] = [
         <p>
           De werkzaamheden starten na betaling van de opstartkost. De bouw duurt doorgaans ongeveer 2 tot 6 weken, afhankelijk van
           het pakket. Deze termijn is indicatief en loopt pas vanaf het moment dat de Klant alle inhoud (teksten, beelden,
-          logo's) heeft aangeleverd.
+          logo's) heeft aangeleverd. Bij de huurformule starten de werkzaamheden na betaling van het eerste maandbedrag.
         </p>
         <p>
           Bij de bouw zijn twee feedbackrondes inbegrepen. Vertraging door laattijdig aanleveren van inhoud of feedback geeft geen
@@ -52,7 +56,7 @@ const sections: LegalSection[] = [
   },
   {
     title: "Artikel 4 – Looptijd en opzegging",
-    review: "minimale looptijd van 12 maanden en de regeling bij vroegtijdige stopzetting, zeker tegenover consumenten.",
+    review: "minimale looptijd van 12 maanden (huurformule: 24 maanden vanaf het akkoord) en de regeling bij vroegtijdige stopzetting, zeker tegenover consumenten.",
     body: (
       <>
         <p>Het maandabonnement start op de dag dat de website live gaat en heeft een minimale looptijd van 12 maanden.</p>
@@ -69,6 +73,11 @@ const sections: LegalSection[] = [
           een jaar verlengd, tenzij een partij het per e-mail opzegt uiterlijk één maand vóór het einde van het lopende jaar. Een
           vooruitbetaald jaar wordt niet terugbetaald. De Klant kan op het einde van een jaar ook overstappen naar maandelijkse
           betaling.
+        </p>
+        <p>
+          Bij de huurformule start het abonnement op de dag van het akkoord van de Klant, niet bij de livegang, en bedraagt de
+          minimale looptijd 24 maanden. De overige bepalingen van dit artikel gelden op dezelfde manier, met 24 maanden in plaats
+          van 12.
         </p>
       </>
     ),
@@ -135,6 +144,10 @@ const sections: LegalSection[] = [
           betaalbaar binnen 14 dagen na factuurdatum.
         </p>
         <p>
+          Bij de huurformule is er geen opstartkost en wordt het maandbedrag gefactureerd vanaf het akkoord van de Klant, ook
+          tijdens de bouw van de website.
+        </p>
+        <p>
           Bij niet-betaling stuurt FlipForward een herinnering. Blijft betaling daarna uit, dan mag FlipForward de website
           tijdelijk offline halen tot het volledige bedrag is betaald.
         </p>
@@ -165,7 +178,8 @@ const sections: LegalSection[] = [
       <p>
         Bij het einde van de overeenkomst geeft FlipForward de Klant de overdrachtscode van de domeinnaam en een kopie van de
         aangeleverde inhoud (teksten, beelden, logo's). De website gaat offline aan het einde van de laatste betaalde maand. Een
-        overname van het ontwerp en de code door de Klant is bespreekbaar en wordt dan apart overeengekomen.
+        overname van het ontwerp en de code door de Klant is bespreekbaar en wordt dan apart overeengekomen. Bij de huurformule is
+        een overname van het ontwerp en de code niet mogelijk.
       </p>
     ),
   },
@@ -212,12 +226,13 @@ const sections: LegalSection[] = [
 const Terms = () => (
   <LegalPage
     title="Algemene voorwaarden"
-    updated="5 oktober 2026"
+    updated="12 november 2026"
     intro={
       <p>
         Deze voorwaarden horen bij de pakketten Start ({formatEuro(pkg("start").setup)} + {formatEuro(pkg("start").monthly)}/maand),
         Business ({formatEuro(pkg("business").setup)} + {formatEuro(pkg("business").monthly)}/maand) en Pro (vanaf{" "}
-        {formatEuro(pkg("pro").setup)} + {formatEuro(pkg("pro").monthly)}/maand).
+        {formatEuro(pkg("pro").setup)} + {formatEuro(pkg("pro").monthly)}/maand), en bij de huurformule zonder opstartkost voor Start (
+        {formatEuro(pkg("start").rent!)}/maand) en Business ({formatEuro(pkg("business").rent!)}/maand).
       </p>
     }
     sections={sections}
