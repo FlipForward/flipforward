@@ -1,16 +1,14 @@
 import { useEffect, useRef } from "react";
-import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Check, ArrowRight, Camera, Languages, Clock } from "lucide-react";
-import { packages, includedInAll, addOns, PRICE_NOTE, formatEuro, yearlyPrice } from "@/lib/site";
+import { Check } from "lucide-react";
+import { packages, includedInAll, addOns, formatEuro, yearlyPrice } from "@/lib/site";
 import { selectPackage } from "@/lib/selectPackage";
-import { GlowingEffect } from "./aceternity/GlowingEffect";
-import PackageComparison from "./PackageComparison";
+import Reveal from "./motion/Reveal";
 
-const addOnIcons: Record<string, typeof Clock> = { Fotografie: Camera, "Extra taal": Languages };
+/** "Domeinnaam, hosting, SSL-certificaat, …" als lopende zin. */
+const inbegrepen = includedInAll.map((x) => (x.startsWith("SSL") ? x : x.toLowerCase()));
 
 const Pricing = () => {
-  // Gsm: de pakketten staan naast elkaar om te swipen; start met de aanrader in het midden
+  // Gsm en tablet: de pakketten staan naast elkaar om te swipen; start met de aanrader in het midden
   const rij = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = rij.current;
@@ -18,127 +16,85 @@ const Pricing = () => {
     if (!el || !kaart || el.scrollWidth <= el.clientWidth) return;
     el.scrollLeft = kaart.offsetLeft - (el.clientWidth - kaart.clientWidth) / 2;
   }, []);
-  return (
-    <section id="pakketten" aria-labelledby="pakketten-title" className="py-16 sm:py-24 bg-muted/50 relative overflow-hidden scroll-mt-20">
-      <div className="container mx-auto px-4 sm:px-6 relative z-10">
-        <div className="text-center mb-8 sm:mb-16">
-          <h2 id="pakketten-title" className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4">
-            Kies je <span className="text-accent">pakket</span>
-          </h2>
-          <p className="text-base sm:text-xl text-muted-foreground max-w-2xl mx-auto px-2">
-            Eén keer opstarten, daarna een vast bedrag per maand. Hosting, onderhoud en beveiliging zitten er altijd in.
-          </p>
-        </div>
 
-        <div
-          ref={rij}
-          className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 pt-4 [scrollbar-width:none] sm:-mx-6 sm:px-6 lg:mx-auto lg:grid lg:max-w-6xl lg:grid-cols-3 lg:items-stretch lg:gap-6 lg:overflow-visible lg:p-0 [&::-webkit-scrollbar]:hidden"
-        >
-          {packages.map((p) => {
+  return (
+    <section id="pakketten" aria-labelledby="pakketten-title" className="scroll-mt-20 border-t border-border py-16 sm:py-28">
+      <div className="wrap">
+        <Reveal className="grid gap-4 pb-8 sm:pb-14 lg:grid-cols-2 lg:items-end">
+          <h2 id="pakketten-title" className="h-section">
+            Prijzen
+          </h2>
+          <p className="max-w-[30rem] text-lg text-muted-foreground lg:justify-self-end">
+            Eén keer opstarten, daarna een vast bedrag per maand. Er komt geen btw bij: dit zijn eindprijzen.
+          </p>
+        </Reveal>
+
+        <div ref={rij} className="snap-row -mx-4 px-4 sm:-mx-8 sm:px-8 lg:mx-0 lg:grid lg:grid-cols-3 lg:gap-5 lg:overflow-visible lg:px-0">
+          {packages.map((p, i) => {
             const featured = Boolean(p.highlight);
             return (
-              <Card
-                key={p.id}
-                data-pakket={p.id}
-                className={`relative flex w-[85%] max-w-sm shrink-0 snap-center flex-col p-6 sm:p-8 bg-gradient-card lg:w-auto lg:max-w-none ${
-                  featured ? "border-2 border-accent shadow-[0_0_40px_hsl(10_89%_55%/0.15)] lg:-translate-y-2" : "border-border"
-                }`}
-              >
-                <GlowingEffect />
-                {featured && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground">
-                    {p.highlight}
-                  </span>
-                )}
-                <h3 className="text-2xl font-bold text-foreground">{p.name}</h3>
-                <p className="text-sm text-muted-foreground mt-1 lg:min-h-[2.5rem]">{p.audience}</p>
+              <Reveal key={p.id} delay={i * 80} className="flex w-[84vw] max-w-[24rem] shrink-0 snap-center lg:w-auto lg:max-w-none">
+                <article
+                  data-pakket={p.id}
+                  className={`flex w-full flex-col rounded-3xl p-6 sm:p-8 ${featured ? "on-ink" : "bg-card"}`}
+                  aria-labelledby={`pakket-${p.id}`}
+                >
+                  <div className="flex items-baseline justify-between gap-4">
+                    <h3 id={`pakket-${p.id}`} className="text-2xl tracking-[-0.02em]">
+                      {p.name}
+                    </h3>
+                    {p.highlight && <span className="soft text-sm">{p.highlight}</span>}
+                  </div>
+                  <p className={`mt-1 text-[15px] ${featured ? "soft" : "text-muted-foreground"}`}>{p.audience}</p>
 
-                <div className="mt-6">
-                  <p className="text-4xl font-bold text-foreground">
-                    {p.setupFrom && <span className="text-base font-medium text-muted-foreground mr-1">vanaf</span>}
+                  <p className="num mt-8 text-[clamp(2.75rem,4.4vw,4rem)] leading-none tracking-[-0.04em]">
+                    {p.setupFrom && <span className={`mr-2 text-lg tracking-normal ${featured ? "soft" : "text-muted-foreground"}`}>vanaf</span>}
                     {formatEuro(p.setup)}
                   </p>
-                  <p className="text-sm text-muted-foreground">eenmalige opstart</p>
-                  <p className="mt-3 text-xl font-semibold text-accent">
-                    + {formatEuro(p.monthly)} <span className="text-base font-medium">/ maand</span>
+                  <p className={`mt-2 text-[15px] ${featured ? "soft" : "text-muted-foreground"}`}>eenmalige opstart</p>
+                  <p className="num mt-5 text-xl">
+                    + {formatEuro(p.monthly)} per maand
                   </p>
-                  <p className="text-sm text-muted-foreground min-h-[1.25rem]">{p.monthlyNote ?? "hosting & onderhoud"}</p>
-                  <p className="mt-2 inline-flex rounded-full border border-accent/30 bg-accent/10 px-2.5 py-0.5 text-xs font-medium text-accent">
-                    of {formatEuro(yearlyPrice(p))} per jaar · 1 maand gratis
-                  </p>
-                </div>
+                  <p className={`num mt-1 text-[15px] ${featured ? "soft" : "text-muted-foreground"}`}>of {formatEuro(yearlyPrice(p))} per jaar, 1 maand gratis</p>
 
-                <p className="mt-6 rounded-lg bg-background/60 px-3 py-2 text-sm font-semibold text-foreground">{p.pages}</p>
+                  <ul className={`line mb-8 mt-8 space-y-3 border-t pt-6 text-[15px] ${featured ? "" : "border-border"}`}>
+                    {[p.pages, ...p.features].map((f) => (
+                      <li key={f} className="flex gap-3">
+                        <Check className={`mt-1 h-4 w-4 shrink-0 ${featured ? "soft" : "text-muted-foreground"}`} strokeWidth={1.5} aria-hidden="true" />
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
 
-                <ul className="mt-6 space-y-2.5 text-sm flex-1" aria-label={`Inbegrepen in ${p.name}`}>
-                  {[...p.features, ...p.legal].map((f) => (
-                    <li key={f} className="flex items-start gap-2.5 text-foreground">
-                      <Check className="mt-0.5 h-4 w-4 flex-shrink-0 text-accent" aria-hidden="true" />
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <Button
-                  asChild
-                  variant={featured ? "hero" : "outline"}
-                  size="lg"
-                  className="mt-8 w-full"
-                >
-                  <a
-                    href={`?pakket=${p.id}#contact`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      selectPackage(p.id);
-                    }}
-                  >
+                  <button type="button" onClick={() => selectPackage(p.id)} className={`ff-btn mt-auto w-full ${featured ? "ff-btn-primary" : "ff-btn-line"}`}>
                     Kies {p.name}
-                    <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
-                  </a>
-                </Button>
-              </Card>
+                  </button>
+                </article>
+              </Reveal>
             );
           })}
         </div>
 
-        <div className="max-w-6xl mx-auto mt-8 rounded-xl border border-border bg-background/60 p-5 sm:p-6">
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-accent mb-3">In elk pakket inbegrepen</h3>
-          <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-foreground">
-            {includedInAll.map((item) => (
-              <li key={item} className="flex items-center gap-2">
-                <Check className="h-4 w-4 text-accent" aria-hidden="true" />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <p className="max-w-6xl mx-auto mt-4 text-sm text-muted-foreground text-center">{PRICE_NOTE}</p>
-
-        <PackageComparison />
-
-        <div className="max-w-6xl mx-auto mt-10 sm:mt-14">
-          <h3 className="text-2xl font-bold text-center mb-6">Extra's</h3>
-          <div className="grid gap-4 md:grid-cols-3">
-            {addOns.map((a) => {
-              const Icon = addOnIcons[a.name] ?? Clock;
-              return (
-                <Card key={a.name} className="p-5 sm:p-6 border-dashed border-accent/40 bg-accent/5">
-                  <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
-                      <Icon className="w-5 h-5 text-accent" aria-hidden="true" />
-                    </div>
-                    <div>
-                      <p className="font-semibold text-foreground">{a.name}</p>
-                      <p className="text-accent font-bold text-sm">{a.price}</p>
-                      <p className="mt-1 text-sm text-muted-foreground">{a.description}</p>
-                    </div>
-                  </div>
-                </Card>
-              );
-            })}
+        <Reveal className="mt-10 grid gap-10 sm:mt-16 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <h3 className="text-xl tracking-[-0.01em]">In elke prijs</h3>
+            <p className="mt-3 max-w-[32rem] text-muted-foreground">
+              {inbegrepen.slice(0, -1).join(", ").replace(/^./, (c) => c.toUpperCase())} en {inbegrepen[inbegrepen.length - 1]}, plus een privacyverklaring en je wettelijke
+              bedrijfsgegevens. Je domeinnaam staat op jouw naam.
+            </p>
           </div>
-        </div>
+          <div>
+            <h3 className="text-xl tracking-[-0.01em]">Extra</h3>
+            <dl className="mt-3 border-t border-border">
+              {addOns.map((a) => (
+                <div key={a.name} className="flex items-baseline justify-between gap-6 border-b border-border py-3">
+                  <dt>{a.name}</dt>
+                  <dd className="num text-muted-foreground">{a.price.toLowerCase()}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

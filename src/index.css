@@ -1,97 +1,58 @@
+@import "@fontsource-variable/host-grotesk/wght.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Designsysteem. Licht thema: warm papierwit, inktzwart, het oranje van het logo als enige accent. Alle kleuren in HSL. */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
+    --background: 40 20% 94%;
+    --foreground: 240 6% 10%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
+    --card: 40 25% 97%;
+    --card-foreground: 240 6% 10%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
+    --popover: 40 25% 97%;
+    --popover-foreground: 240 6% 10%;
 
-    --primary: 10 89% 46%; /* AA: wit op oranje 4.65:1 (was 55% = 3.65:1) */
+    --primary: 10 89% 46%; /* AA: wit op oranje 4.65:1 */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 47% 11%;
+    --secondary: 40 14% 89%;
+    --secondary-foreground: 240 6% 10%;
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 40%; /* AA op muted-achtergrond */
+    --muted: 40 14% 89%;
+    --muted-foreground: 240 4% 36%; /* AA op achtergrond en muted */
 
-    --accent: 10 89% 42%; /* AA: oranje tekst op wit 5.4:1 */
+    --accent: 10 89% 40%; /* AA: oranje tekst op papierwit */
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 72% 42%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 10 89% 42%;
+    --border: 40 10% 80%;
+    --input: 40 10% 72%;
+    --ring: 10 89% 40%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
-    /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(0 0% 100%), hsl(210 40% 98%));
-    --gradient-accent: linear-gradient(135deg, hsl(10 89% 46%), hsl(14 88% 42%)); /* AA: witte knoptekst >= 4.65:1 */
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%), hsl(210 40% 98%));
-    --gradient-animated: linear-gradient(-45deg, hsl(0 0% 100%), hsl(210 40% 98%), hsl(220 30% 96%), hsl(230 35% 97%));
-    
-    /* Shadows */
-    --shadow-glow: 0 0 40px hsl(10 89% 55% / 0.3);
-    --shadow-card: 0 10px 40px hsl(222 47% 5% / 0.1);
-    
-    /* Animations */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
+    /* Inktvlak (donkere secties en footer) */
+    --ink: 240 6% 10%;
+    --ink-foreground: 40 20% 94%;
+    --ink-muted: 40 6% 66%;
+    --ink-border: 40 10% 94% / 0.14;
 
-  /* Enkel donkere modus: deze waarden overschrijven de lichte hierboven altijd. */
-  :root,
-  .dark {
-    --background: 222 47% 5%;
-    --foreground: 0 0% 98%;
+    /* Oude namen, nu vlakke kleuren (geen verlopen of gloed meer) */
+    --gradient-hero: linear-gradient(hsl(var(--background)), hsl(var(--background)));
+    --gradient-accent: linear-gradient(hsl(var(--primary)), hsl(var(--primary)));
+    --gradient-card: linear-gradient(hsl(var(--card)), hsl(var(--card)));
+    --gradient-animated: linear-gradient(hsl(var(--background)), hsl(var(--background)));
+    --shadow-glow: none;
+    --shadow-card: 0 1px 2px hsl(240 6% 10% / 0.06);
 
-    --card: 222 40% 8%;
-    --card-foreground: 0 0% 98%;
-
-    --popover: 222 40% 8%;
-    --popover-foreground: 0 0% 98%;
-
-    --primary: 10 89% 46%; /* oranje tekst (accent) blijft 55%: 5.4:1 op donker */
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 222 30% 12%;
-    --secondary-foreground: 0 0% 98%;
-
-    --muted: 222 25% 15%;
-    --muted-foreground: 0 0% 65%;
-
-    --accent: 10 89% 55%;
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 222 20% 18%;
-    --input: 222 20% 18%;
-    --ring: 10 89% 55%;
-
-    /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(222 47% 5%), hsl(222 40% 8%));
-    --gradient-accent: linear-gradient(135deg, hsl(10 89% 46%), hsl(14 88% 42%)); /* AA: witte knoptekst >= 4.65:1 */
-    --gradient-card: linear-gradient(180deg, hsl(222 40% 8%), hsl(222 35% 6%));
-    --gradient-animated: linear-gradient(-45deg, hsl(222 47% 5%), hsl(222 40% 8%), hsl(230 35% 10%), hsl(220 45% 7%));
-    
-    /* Shadows */
-    --shadow-glow: 0 0 40px hsl(10 89% 55% / 0.3);
-    --shadow-card: 0 10px 40px hsl(222 47% 5% / 0.5);
+    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   }
 }
 
@@ -102,75 +63,99 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    font-family: "Host Grotesk Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
-  
+
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 5rem;
-    scrollbar-width: thin;
-    scrollbar-color: hsl(var(--accent)) transparent;
   }
 
-  /* Webkit scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: hsl(var(--accent) / 0.4);
-    border-radius: 9999px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--accent) / 0.7);
-  }
-
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0px) translateX(0px);
-    }
-    33% {
-      transform: translateY(-20px) translateX(10px);
-    }
-    66% {
-      transform: translateY(10px) translateX(-10px);
-    }
-  }
+  h1, h2, h3 { text-wrap: balance; }
+  p { text-wrap: pretty; }
 
   @keyframes fade-only {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .animate-fade-only { animation: fade-only 0.3s ease-in; }
+}
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-[1440px] px-4 sm:px-8 lg:px-12; }
+
+  /* Grote koppen: maat doet het werk, niet het gewicht. */
+  .display { @apply font-normal leading-[0.98] tracking-[-0.035em]; font-size: clamp(2.5rem, 7.2vw, 6.75rem); }
+  .h-section { @apply font-normal leading-[1.02] tracking-[-0.03em]; font-size: clamp(2rem, 4.6vw, 4.25rem); }
+  .eyebrow { @apply text-sm text-muted-foreground; }
+  .num { font-variant-numeric: tabular-nums; }
+
+  /* Knop: pil waarin bij hover een vlak van onderuit omhoog schuift. */
+  .ff-btn {
+    @apply relative inline-flex h-14 items-center justify-center gap-2 overflow-hidden rounded-full px-7 text-base font-medium;
+    isolation: isolate;
+    transition: color 0.35s var(--ease-out), border-color 0.35s var(--ease-out);
+  }
+  .ff-btn::before {
+    content: "";
+    @apply absolute inset-0 -z-10 rounded-[inherit];
+    transform: translateY(101%);
+    transition: transform 0.45s var(--ease-out);
+  }
+  @media (hover: hover) {
+    .ff-btn:hover::before { transform: translateY(0); }
+  }
+  .ff-btn:active { transform: scale(0.98); }
+  .ff-btn-primary { @apply bg-primary text-primary-foreground; }
+  .ff-btn-primary::before { background: hsl(var(--ink)); }
+  .ff-btn-ink { background: hsl(var(--ink)); color: hsl(var(--ink-foreground)); }
+  .ff-btn-ink::before { @apply bg-primary; }
+  .ff-btn-line { @apply border border-foreground/25 text-foreground; }
+  .ff-btn-line::before { background: hsl(var(--ink)); }
+  @media (hover: hover) {
+    .ff-btn-line:hover { color: hsl(var(--ink-foreground)); border-color: hsl(var(--ink)); }
+  }
+  .on-ink .ff-btn-line { border-color: hsl(var(--ink-border)); color: hsl(var(--ink-foreground)); }
+  .on-ink .ff-btn-line::before { background: hsl(var(--ink-foreground)); }
+  @media (hover: hover) {
+    .on-ink .ff-btn-line:hover { color: hsl(var(--ink)); }
   }
 
-  @keyframes gradient-shift {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
+  /* Tekstlink met lijn die van links intekent. */
+  .ff-link { @apply relative inline-block; }
+  .ff-link::after {
+    content: "";
+    @apply absolute inset-x-0 -bottom-0.5 h-px bg-current;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s var(--ease-out);
   }
+  .ff-link:hover::after, .ff-link:focus-visible::after { transform: scaleX(1); }
 
-  .animate-fade-only {
-    animation: fade-only 0.3s ease-in;
-  }
+  .on-ink { background: hsl(var(--ink)); color: hsl(var(--ink-foreground)); }
+  .on-ink .soft { color: hsl(var(--ink-muted)); }
+  .on-ink .line { border-color: hsl(var(--ink-border)); }
 
-  .animate-gradient {
-    background-size: 400% 400%;
-    animation: gradient-shift 15s ease infinite;
-  }
+  /* Hero: woorden komen één keer van onderuit in beeld (CSS, dus ook zonder JavaScript zichtbaar). */
+  .rise { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.12em; margin-bottom: -0.12em; }
+  .rise > span { display: inline-block; animation: rise 0.9s var(--ease-out) both; animation-delay: calc(var(--i, 0) * 60ms + 80ms); }
+  @keyframes rise { from { transform: translateY(110%); } to { transform: translateY(0); } }
+  .fade-up { animation: fade-up 0.8s var(--ease-out) both; animation-delay: var(--d, 0.5s); }
+  @keyframes fade-up { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* Secties: zichtbaar zonder JavaScript; Reveal zet .is-wachtend enkel op wat nog onder de vouw staat. */
+  .reveal { transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out); }
+  .reveal.is-wachtend { opacity: 0; transform: translateY(24px); }
+
+  /* Projectvenster in de hero: de pagina schuift traag door. */
+  .pan { animation: pan 36s ease-in-out infinite alternate; }
+  @keyframes pan { from { transform: translateY(0); } to { transform: translateY(var(--pan, -70%)); } }
+
+  .snap-row { @apply flex snap-x snap-mandatory gap-4 overflow-x-auto; scrollbar-width: none; }
+  .snap-row::-webkit-scrollbar { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -180,6 +165,7 @@ All colors MUST be HSL.
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+  .pan { animation: none; }
 }
 
 /* Zichtbare focus voor toetsenbordgebruikers */
@@ -187,6 +173,7 @@ All colors MUST be HSL.
   outline: 2px solid hsl(var(--ring));
   outline-offset: 2px;
 }
+.on-ink :where(a, button, input, select, textarea, summary):focus-visible { outline-color: hsl(var(--ink-foreground)); }
 
 /* Flippy-case: de vier figuurtjes zitten achter de kaart en piepen bij hover/focus boven de rand uit. */
 .peek-pet {
@@ -203,4 +190,23 @@ All colors MUST be HSL.
 }
 @media (prefers-reduced-motion: reduce) {
   .peek-pet { transition: none; }
+}
+
+/* Beheeromgeving (/admin, <html class="dark">) houdt haar donkere kleuren. */
+.dark {
+  --background: 222 47% 5%;
+  --foreground: 0 0% 98%;
+  --card: 222 40% 8%;
+  --card-foreground: 0 0% 98%;
+  --popover: 222 40% 8%;
+  --popover-foreground: 0 0% 98%;
+  --secondary: 222 30% 12%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 222 25% 15%;
+  --muted-foreground: 0 0% 65%;
+  --accent: 10 89% 55%;
+  --destructive: 0 84% 60%;
+  --border: 222 20% 18%;
+  --input: 222 20% 18%;
+  --ring: 10 89% 55%;
 }
