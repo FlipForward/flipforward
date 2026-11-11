@@ -1,11 +1,10 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, Check, MapPin } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
-import { Button } from "@/components/ui/button";
-import { GlowCard } from "@/components/aceternity/GlowingEffect";
+import PackageComparison from "@/components/PackageComparison";
 import { business, packages, includedInAll, steps, faqs, formatEuro, yearlyPrice, PRICE_NOTE } from "@/lib/site";
-import { showcase, projectAnchor, FEATURED } from "@/lib/showcase";
+import { showcase, FEATURED } from "@/lib/showcase";
 
 /**
  * Landingspagina voor "website laten maken" (+ Kempen/regio). Eén echte, inhoudelijke pagina;
@@ -21,34 +20,29 @@ const WebsiteLatenMaken = () => {
   return (
     <div className="relative min-h-screen">
       <Navigation />
-      <main id="main" className="pb-20 pt-28 sm:pt-32">
-        <article className="container mx-auto max-w-4xl px-4 sm:px-6">
-          <p className="inline-flex items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3.5 py-1.5 text-sm font-medium text-accent">
-            <MapPin className="h-4 w-4" aria-hidden="true" /> Webdesigner uit {business.city}
-          </p>
-          <h1 className="mt-5 text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-6xl">
-            Website laten maken <span className="text-accent">in de Kempen</span>
+      <main id="main" className="pb-20 pt-28 sm:pb-28 sm:pt-36">
+        <article className="wrap max-w-[60rem]">
+          <p className="eyebrow">Webdesigner uit {business.city}</p>
+          <h1 className="h-section mt-4">
+            Website laten maken in de Kempen
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-muted-foreground sm:text-xl">
-            Een website laten maken hoeft niet ingewikkeld of onvoorspelbaar duur te zijn. FlipForward bouwt websites voor kmo's en
+            FlipForward bouwt websites voor kmo's en
             zelfstandigen in de Kempen, tegen een vaste prijs, en blijft daarna je vaste aanspreekpunt voor hosting, onderhoud en
-            aanpassingen. Hieronder lees je wat het kost, hoe het verloopt en wat er allemaal in zit.
+            aanpassingen. Hieronder lees je wat het kost, hoe het verloopt en wat er in zit.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Button asChild variant="hero" size="lg">
-              <a href="/#contact">
-                Vraag vrijblijvend een voorstel
-                <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
-              </a>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <a href="/#portfolio">Bekijk ons werk</a>
-            </Button>
+            <a href="/#contact" className="ff-btn ff-btn-primary">
+              Vraag een gratis voorbeeld
+            </a>
+            <a href="/#portfolio" className="ff-btn ff-btn-line">
+              Bekijk het werk
+            </a>
           </div>
 
           {/* Prijzen */}
           <section aria-labelledby="kost-title" className="mt-20">
-            <h2 id="kost-title" className="text-3xl font-extrabold tracking-tight sm:text-4xl">
+            <h2 id="kost-title" className="text-[clamp(1.75rem,3.2vw,2.75rem)] leading-[1.08] tracking-[-0.025em]">
               Wat kost een website laten maken?
             </h2>
             <p className="mt-4 text-muted-foreground">
@@ -58,43 +52,38 @@ const WebsiteLatenMaken = () => {
             <ul className="mt-8 grid gap-4 md:grid-cols-3">
               {packages.map((p) => (
                 <li key={p.id}>
-                  <GlowCard innerClassName="p-6">
-                    <h3 className="text-xl font-bold text-foreground">{p.name}</h3>
+                  <div className="h-full rounded-3xl bg-card p-6">
+                    <h3 className="text-2xl tracking-[-0.02em]">{p.name}</h3>
                     <p className="mt-1 text-sm text-muted-foreground">{p.audience}</p>
-                    <p className="mt-4 text-3xl font-extrabold text-foreground">
+                    <p className="num mt-6 text-4xl tracking-[-0.03em]">
                       {p.setupFrom && <span className="mr-1 text-base font-medium text-muted-foreground">vanaf</span>}
                       {formatEuro(p.setup)}
                     </p>
                     <p className="text-sm text-muted-foreground">eenmalige opstart</p>
-                    <p className="mt-2 font-semibold text-accent">+ {formatEuro(p.monthly)} / maand</p>
-                    <p className="text-xs text-muted-foreground">of {formatEuro(yearlyPrice(p))} per jaar (1 maand gratis)</p>
-                    <p className="mt-4 text-sm font-medium text-foreground">{p.pages}</p>
-                  </GlowCard>
+                    <p className="num mt-3 text-lg">+ {formatEuro(p.monthly)} per maand</p>
+                    <p className="num text-sm text-muted-foreground">of {formatEuro(yearlyPrice(p))} per jaar, 1 maand gratis</p>
+                    <p className="mt-5 border-t border-border pt-4 text-[15px]">{p.pages}</p>
+                  </div>
                 </li>
               ))}
             </ul>
             <p className="mt-4 text-sm text-muted-foreground">{PRICE_NOTE}</p>
-            <p className="mt-2 text-sm">
-              <a href="/#pakketten" className="font-medium text-accent underline underline-offset-4">
-                Alle pakketten vergelijken
-              </a>
-            </p>
+            <PackageComparison />
           </section>
 
           {/* Wat zit erin */}
           <section aria-labelledby="inbegrepen-title" className="mt-20">
-            <h2 id="inbegrepen-title" className="text-3xl font-extrabold tracking-tight sm:text-4xl">
+            <h2 id="inbegrepen-title" className="text-[clamp(1.75rem,3.2vw,2.75rem)] leading-[1.08] tracking-[-0.025em]">
               Wat zit er altijd in?
             </h2>
             <p className="mt-4 text-muted-foreground">
               Elke website is mobielvriendelijk, snel en in orde met de wet (privacyverklaring en wettelijke bedrijfsgegevens). Daarnaast
               regelen we in elk pakket:
             </p>
-            <ul className="mt-6 grid gap-3 sm:grid-cols-2">
+            <ul className="mt-6 grid border-t border-border sm:grid-cols-2 sm:gap-x-10">
               {includedInAll.map((item) => (
-                <li key={item} className="flex items-center gap-3 rounded-xl border border-border bg-card/60 px-4 py-3">
-                  <Check className="h-4 w-4 flex-shrink-0 text-accent" aria-hidden="true" />
-                  <span className="text-foreground">{item}</span>
+                <li key={item} className="border-b border-border py-3">
+                  {item}
                 </li>
               ))}
             </ul>
@@ -102,17 +91,17 @@ const WebsiteLatenMaken = () => {
 
           {/* Werkwijze */}
           <section aria-labelledby="verloop-title" className="mt-20">
-            <h2 id="verloop-title" className="text-3xl font-extrabold tracking-tight sm:text-4xl">
+            <h2 id="verloop-title" className="text-[clamp(1.75rem,3.2vw,2.75rem)] leading-[1.08] tracking-[-0.025em]">
               Hoe verloopt het?
             </h2>
-            <ol className="mt-8 space-y-4">
+            <ol className="mt-8 border-t border-border">
               {steps.map((s, i) => (
-                <li key={s.title} className="flex gap-4 rounded-2xl border border-border bg-gradient-card p-5 sm:p-6">
-                  <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-border font-bold text-accent" aria-hidden="true">
-                    {i + 1}
+                <li key={s.title} className="flex gap-6 border-b border-border py-6">
+                  <span className="num w-8 shrink-0 pt-1 text-sm text-muted-foreground" aria-hidden="true">
+                    {String(i + 1).padStart(2, "0")}
                   </span>
                   <div>
-                    <h3 className="font-bold text-foreground">
+                    <h3 className="text-xl tracking-[-0.01em]">
                       <span className="sr-only">Stap {i + 1}: </span>
                       {s.title}
                     </h3>
@@ -125,20 +114,20 @@ const WebsiteLatenMaken = () => {
 
           {/* Recent werk */}
           <section aria-labelledby="werk-title" className="mt-20">
-            <h2 id="werk-title" className="text-3xl font-extrabold tracking-tight sm:text-4xl">
+            <h2 id="werk-title" className="text-[clamp(1.75rem,3.2vw,2.75rem)] leading-[1.08] tracking-[-0.025em]">
               Websites die we maakten
             </h2>
             <ul className="mt-8 grid gap-4 sm:grid-cols-2">
               {work.map((w) => (
                 <li key={w.title}>
                   <a
-                    href={`/#${projectAnchor(w.title)}`}
-                    className="group block overflow-hidden rounded-2xl border border-border bg-[hsl(222_40%_9%)] transition-colors hover:border-accent/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    href="/#portfolio"
+                    className="group block"
                   >
-                    <img src={w.thumbnail} alt={`Website ${w.title}`} width={w.w} height={w.h} loading="lazy" decoding="async" className="aspect-[16/10] w-full object-cover object-top" />
-                    <span className="flex items-center justify-between px-4 py-3 font-semibold text-foreground">
+                    <img src={w.thumbnail} alt={`Website ${w.title}`} width={w.w} height={w.h} loading="lazy" decoding="async" className="aspect-[16/10] w-full rounded-2xl bg-muted object-cover object-top" />
+                    <span className="flex items-center justify-between pt-3 text-lg">
                       {w.title}
-                      <ArrowRight className="h-4 w-4 text-accent transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                      <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true" />
                     </span>
                   </a>
                 </li>
@@ -148,32 +137,26 @@ const WebsiteLatenMaken = () => {
 
           {/* Regio */}
           <section aria-labelledby="regio-title" className="mt-20">
-            <h2 id="regio-title" className="text-3xl font-extrabold tracking-tight sm:text-4xl">
+            <h2 id="regio-title" className="text-[clamp(1.75rem,3.2vw,2.75rem)] leading-[1.08] tracking-[-0.025em]">
               Webdesign in heel de Kempen
             </h2>
             <p className="mt-4 text-muted-foreground">
               FlipForward is gevestigd in {business.city}. We werken vooral voor ondernemers in de buurt, zodat we makkelijk eens kunnen
               langskomen om je zaak en je klanten te leren kennen. Je kan bij ons terecht vanuit onder meer:
             </p>
-            <ul className="mt-6 flex flex-wrap gap-2">
-              {business.towns.map((t) => (
-                <li key={t} className="rounded-full border border-border bg-card/60 px-3.5 py-1.5 text-sm text-foreground">
-                  {t}
-                </li>
-              ))}
-            </ul>
+            <p className="mt-4 text-lg">{business.towns.join(", ")}.</p>
             <p className="mt-4 text-sm text-muted-foreground">Ook verder in de provincie Antwerpen en de rest van Vlaanderen.</p>
           </section>
 
           {/* FAQ */}
           <section aria-labelledby="vragen-title" className="mt-20">
-            <h2 id="vragen-title" className="text-3xl font-extrabold tracking-tight sm:text-4xl">
+            <h2 id="vragen-title" className="text-[clamp(1.75rem,3.2vw,2.75rem)] leading-[1.08] tracking-[-0.025em]">
               Veelgestelde vragen over een website laten maken
             </h2>
             <div className="mt-6 divide-y divide-border border-y border-border">
               {pageFaqs.map((f) => (
                 <div key={f.q} className="py-5">
-                  <h3 className="text-lg font-semibold text-foreground">{f.q}</h3>
+                  <h3 className="text-xl tracking-[-0.01em]">{f.q}</h3>
                   <p className="mt-2 text-muted-foreground">{f.a}</p>
                 </div>
               ))}
@@ -181,21 +164,18 @@ const WebsiteLatenMaken = () => {
           </section>
 
           {/* CTA */}
-          <section className="mt-20 rounded-3xl border border-accent/30 bg-gradient-to-br from-accent/[0.12] via-card to-card p-8 text-center sm:p-12">
-            <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Klaar om je website te laten maken?</h2>
-            <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
-              Vertel kort over je zaak. Je krijgt een concreet voorstel met het passende pakket, zonder verplichtingen.
+          <section className="on-ink mt-20 rounded-3xl p-8 sm:p-14">
+            <h2 className="text-[clamp(1.75rem,3.2vw,2.75rem)] leading-[1.08] tracking-[-0.025em]">Vertel over je zaak</h2>
+            <p className="soft mt-4 max-w-xl text-lg">
+              Je krijgt binnen 2 werkdagen antwoord, met een voorstel voor het passende pakket.
             </p>
-            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Button asChild variant="hero" size="lg">
-                <a href="/#contact">
-                  Neem contact op
-                  <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
-                </a>
-              </Button>
+            <div className="mt-8">
+              <a href="/#contact" className="ff-btn ff-btn-primary w-full sm:w-auto">
+                Neem contact op
+              </a>
             </div>
             <p className="mt-6 text-sm">
-              <Link to="/" className="text-muted-foreground underline underline-offset-4 hover:text-foreground">
+              <Link to="/" className="soft underline underline-offset-4">
                 Terug naar de homepage
               </Link>
             </p>

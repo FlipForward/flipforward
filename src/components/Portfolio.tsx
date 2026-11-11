@@ -3,24 +3,23 @@ import { ArrowUpRight } from "lucide-react";
 import { motion, useMotionValue, useSpring } from "motion/react";
 import Reveal from "./motion/Reveal";
 import { projectAnchor } from "@/lib/showcase";
-import finnDesktop from "@/assets/portfolio/finn-desktop.webp";
-import driverdashDesktop from "@/assets/portfolio/driverdash-desktop.webp";
-import bavagoDesktop from "@/assets/portfolio/bavago-desktop.webp";
-import groundfieldDesktop from "@/assets/portfolio/groundfield-desktop.webp";
+import finnThumb from "@/assets/portfolio/finn-thumb.webp";
+import driverdashThumb from "@/assets/portfolio/driverdash-thumb.webp";
+import bavagoThumb from "@/assets/portfolio/bavago-thumb.webp";
+import groundfieldThumb from "@/assets/portfolio/groundfield-thumb.webp";
 
 /**
  * Cases bevatten enkel feiten die op de projectsites zelf staan. Geen verzonnen cijfers.
  * Nieuwe klantcases pas toevoegen na akkoord van de klant.
- * Screenshots: src/assets/portfolio (1200 px breed, volledige pagina).
+ * Beelden: src/assets/portfolio/*-thumb.webp (800×600).
  */
 interface Project {
   title: string;
   category: string;
   text: string;
   link: string;
-  desktop: string;
-  /** Hoogte van de desktopscreenshot (breedte altijd 1200 px). */
-  desktopH: number;
+  /** Bovenkant van de site, 800×600 (uit de volledige screenshot gesneden met ffmpeg). */
+  thumb: string;
 }
 
 const projects: Project[] = [
@@ -29,32 +28,28 @@ const projects: Project[] = [
     category: "Website · hydraulica en machinaal werk",
     text: "Een atelier in Herentals met zeven specialiteiten, de merken die ze herstellen, vacatures en een aanvraagformulier waar klanten een foto van het typeplaatje bij steken.",
     link: "https://bavago.be",
-    desktop: bavagoDesktop,
-    desktopH: 3000,
+    thumb: bavagoThumb,
   },
   {
     title: "Ground Field",
     category: "Website · SHEQ-consultancy",
     text: "Een Engelstalige website voor een bureau in SHEQ-project- en interimmanagement, met de diensten, de sectoren en een track record in verschillende landen.",
     link: "https://groundfield.flipforward.be",
-    desktop: groundfieldDesktop,
-    desktopH: 3000,
+    thumb: groundfieldThumb,
   },
   {
     title: "DriverDash",
     category: "Eigen project · webapp",
     text: "Een webapp waarin chauffeurs een rit invoeren en meteen hun loon zien: uren, overuren, nachttoeslag en kilometervergoeding.",
     link: "https://driverdash.be",
-    desktop: driverdashDesktop,
-    desktopH: 1074,
+    thumb: driverdashThumb,
   },
   {
     title: "finnvangronsveld.be",
     category: "Eigen project · portfolio",
     text: "Mijn eigen portfolio als ruimtereis: elke sectie is een planeet, met overgangen tussen de pagina's.",
     link: "https://finnvangronsveld.be",
-    desktop: finnDesktop,
-    desktopH: 750,
+    thumb: finnThumb,
   },
 ];
 
@@ -97,7 +92,7 @@ const Portfolio = () => {
                 style={{ opacity: active === null || active === i ? 1 : 0.4 }}
               >
                 <span className="num text-muted-foreground">{String(i + 1).padStart(2, "0")}</span>
-                <span className="text-[clamp(2rem,3.6vw,3.5rem)] leading-none tracking-[-0.03em]">{p.title}</span>
+                <span className="text-[clamp(2rem,3.6vw,3.5rem)] leading-[1.05] tracking-[-0.03em]">{p.title}</span>
                 <span className="text-muted-foreground">
                   <span className="block text-foreground">{p.category}</span>
                   <span className="mt-1 block max-w-[34rem] text-[15px] leading-relaxed">{p.text}</span>
@@ -121,7 +116,7 @@ const Portfolio = () => {
               style={{ transform: `translateY(-${(active ?? 0) * 100}%)` }}
             >
               {projects.map((p) => (
-                <img key={p.title} src={p.desktop} alt="" width={1200} height={p.desktopH} loading="lazy" decoding="async" className="h-full w-full object-cover object-top" />
+                <img key={p.title} src={p.thumb} alt="" width={800} height={600} loading="lazy" decoding="async" className="h-full w-full object-cover object-top" />
               ))}
             </div>
           </motion.div>
@@ -132,7 +127,7 @@ const Portfolio = () => {
           {projects.map((p, i) => (
             <li key={p.title} className="w-[82vw] max-w-[26rem] shrink-0 snap-center">
               <a href={p.link} target="_blank" rel="noopener" className="block">
-                <img src={p.desktop} alt="" width={1200} height={p.desktopH} loading="lazy" decoding="async" className="aspect-[4/3] w-full rounded-2xl bg-muted object-cover object-top" />
+                <img src={p.thumb} alt="" width={800} height={600} loading="lazy" decoding="async" className="aspect-[4/3] w-full rounded-2xl bg-muted object-cover object-top" />
                 <span className="mt-4 flex items-baseline justify-between gap-4">
                   <span className="text-2xl tracking-[-0.02em]">{p.title}</span>
                   <span className="num text-sm text-muted-foreground">{String(i + 1).padStart(2, "0")}</span>

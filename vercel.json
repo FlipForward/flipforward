@@ -34,6 +34,15 @@
       ]
     },
     {
+      "source": "/fonts/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
       "source": "/(og-image.png|icon-192.png|icon-512.png|apple-touch-icon.png|favicon.ico|favicon.svg|finn-vangronsveld.webp)",
       "headers": [
         {
@@ -81,7 +90,12 @@
     },
     {
       "source": "/voorbeelden",
-      "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }]
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
     },
     {
       "source": "/llms.txt",

@@ -1,25 +1,18 @@
-import { useRef } from "react";
 import { ArrowDownRight } from "lucide-react";
-import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import Magnetic from "./motion/Magnetic";
 import Marquee from "./motion/Marquee";
 import { business, packages, formatEuro } from "@/lib/site";
-import bavago from "@/assets/portfolio/bavago-desktop.webp";
 
-const TITLE = ["Websites", "voor", "vakmannen", "en", "kmo's", "in", "de", "Kempen"];
+const TITLE = ["Websites", "voor", "vakmannen", "en", "kmo’s", "in", "de", "Kempen"];
 
 /** Voor wie Finn bouwt: de vakken rollen als band door het beeld. Geen klantnamen, enkel beroepen. */
 const TRADES = ["Dakwerkers", "Schrijnwerkers", "Loodgieters", "Tuinaannemers", "Garages", "Elektriciens", "Kappers", "Bakkers"];
 
 const Hero = () => {
   const start = packages[0];
-  const frame = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
-  const { scrollYProgress } = useScroll({ target: frame, offset: ["start end", "start 0.2"] });
-  const scale = useTransform(scrollYProgress, [0, 1], [0.9, 1]);
 
   return (
-    <section id="hero" className="pb-12 pt-16 sm:pb-0 sm:pt-20">
+    <section id="hero" className="pb-14 pt-16 sm:pb-24 sm:pt-20">
       <div className="wrap pb-10 pt-10 sm:pb-14 sm:pt-16 lg:pt-20">
         <h1 className="eyebrow fade-up" style={{ ["--d" as string]: "0s" }}>
           Webdesign &amp; website laten maken · {business.city}, Kempen
@@ -66,31 +59,6 @@ const Hero = () => {
         ))}
       </Marquee>
 
-      <div className="wrap hidden pb-24 pt-12 sm:block">
-        <motion.div ref={frame} style={reduce ? undefined : { scale }} className="origin-top">
-          <a
-            href="https://bavago.be"
-            target="_blank"
-            rel="noopener"
-            className="block aspect-[16/9] overflow-hidden rounded-3xl bg-muted"
-          >
-            <img
-              src={bavago}
-              alt="De website van Bavago uit Herentals, gebouwd door FlipForward"
-              width={1200}
-              height={3000}
-              {...{ fetchpriority: "high" }}
-              decoding="async"
-              className="pan w-full"
-              style={{ ["--pan" as string]: "-72%" }}
-            />
-          </a>
-          <p className="mt-4 flex justify-between gap-6 text-[15px] text-muted-foreground">
-            <span className="text-foreground">Bavago, Herentals</span>
-            <span>hydraulica en machinaal werk · bavago.be</span>
-          </p>
-        </motion.div>
-      </div>
     </section>
   );
 };

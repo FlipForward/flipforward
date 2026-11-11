@@ -4,14 +4,38 @@ Website van **FlipForward**, het webbureau van Finn Vangronsveld (eenmanszaak, R
 Kempen overtuigen van een "Website as a Service"-pakket (Start / Business / Pro) en een aanvraag laten indienen.
 Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
 
-## Stack & structuur
+## Redesign en prijzen (11/11/2026, branch `prijzen-en-redesign`, nog niet live)
+Dit blok gaat voor op oudere regels verderop (donkere modus, Aceternity-hero, vergelijkingstabel op de homepage).
+- **Prijzen** (keuze Finn): opstart Start € 500, Business € 1.500, Pro vanaf € 3.000; maandbedragen (€ 50/99/149), looptijd en
+  jaarbetaling ongewijzigd. Staat ook in de app: branch `prijzen-opstart` (worktree `app/.claude/worktrees/prijzen-opstart`):
+  `src/lib/offerte.ts`, `server/mail.ts`, `server/leadzoeker/beoordeel.ts`. Beide branches samen live zetten.
+- **Stijl** (Finn koos als referentie dennissnellenberg.com en cuberto.com; drie statische voorstellen vond hij te kaal): licht thema
+  (papierwit `--background`, inktzwart, donkere vlakken via `.on-ink`), het oranje van het logo als enige accent, één lettertype
+  **Host Grotesk** (variabel, zelf gehost in `public/fonts/`, voorgeladen in `index.html`), koppen in gewicht 400 met grote maat.
+  Geen pillen boven koppen, geen oranje woord in koppen, geen hoofdletterlabels, geen gloed of dubbele randen.
+- **Beweging** (`src/components/motion/`): `Marquee` (rollende band met beroepen, versnelt en keert om met het scrollen),
+  `Magnetic` (knoppen en menulinks trekken naar de muis), `Reveal` (blok komt in beeld; in de geprerenderde HTML is alles zichtbaar).
+  Hero-titel komt woord per woord in beeld via CSS (`.rise`); de inleiding verschuift enkel, zonder vervagen, zodat ze meteen als
+  LCP telt. Knoppen: `.ff-btn` + `.ff-btn-primary|ink|line` in `index.css` (vlak schuift van onderuit in). Alles uit bij "minder beweging".
+- **Homepage** (`Index.tsx`): Hero → Werk (`Portfolio.tsx`: desktop lijst met voorbeeld dat de muis volgt, gsm/tablet swipe-rij;
+  beelden `*-thumb.webp` 800×600, met ffmpeg uit de volledige screenshots gesneden) → Prijzen (`Pricing.tsx`) → Wie en hoe
+  (`About.tsx`, bevat ook `#werkwijze`) → Vragen → Contact. Anker-id's zijn dezelfde gebleven (`portfolio`, `pakketten`, `over`,
+  `werkwijze`, `faq`, `contact`). Geen groot projectvenster in de hero (Finn vond dat niks). De vergelijkingstabel staat nu op
+  `/website-laten-maken`. Niet meer gebruikt, nog op te ruimen: `Services.tsx`, `HowItWorks.tsx`, `ScrollShot.tsx`,
+  `ScrollToTop.tsx`, `hero/HeroCopy.tsx`, `components/aceternity/`.
+- **Lengte**: gsm (390×844) 6.677 px = 7,9 schermen (was 10.562 = 12,5); desktop (1440×900) 5.951 px = 6,6 schermen (was 10.848 = 12).
+- **Controles** (Lighthouse op de productiebuild, lokaal): toegankelijkheid 100, SEO 100, best practices 100; prestaties desktop 100,
+  gsm 95–98 (LCP 2,5–2,7 s gesimuleerd traag toestel, CLS 0). Na deploy de live site op CSP-fouten nakijken.
+- `/admin` houdt zijn donkere kleuren via het `.dark`-blok onderaan `index.css`.
+- De preview in de Claude-app vindt `.claude/launch.json` van deze map niet als de sessie elders startte: dan `npx vite --port 8080`.
+
 - Vite 5 + React 18 + TypeScript + Tailwind 3 + shadcn/ui. Oorspronkelijk gegenereerd in Lovable; alle Lovable-onderdelen (Lovable Cloud/Supabase, login, admin) zijn verwijderd.
 - `src/lib/site.ts` – **enige bron** voor bedrijfsgegevens, pakketten, prijzen, extra's, werkwijze en FAQ. Pas prijzen/teksten hier aan.
 - `src/lib/seo.ts` – genereert JSON-LD (ProfessionalService + OfferCatalog + FAQPage), `sitemap.xml` en `llms.txt` uit `site.ts` (via plugin in `vite.config.ts`).
 - `src/components/` – secties van de homepage; `hero/HeroCopy.tsx` = tekst van de hero (H1), `LegalPage.tsx` is de layout voor
   privacyverklaring en voorwaarden, `ui/` = de paar overgebleven shadcn-componenten. Een pakketknop kiest via `src/lib/selectPackage.ts`
   (event `pakket-select`) meteen het pakket in het contactformulier.
-- `src/components/aceternity/` – componenten gebaseerd op de gratis registry van Aceternity UI (ui.aceternity.com), aangepast aan
+- (Niet meer gebruikt sinds 11/11/2026, zie bovenaan.) `src/components/aceternity/` – componenten gebaseerd op de gratis registry van Aceternity UI (ui.aceternity.com), aangepast aan
   de huisstijl (oranje, reduced motion, toegankelijk). Bron staat bovenaan elk bestand. Gebruikt de library `motion` (framer-motion).
   - Hero: `ParallaxHeroImages` (projectscreenshots zweven rond de tekst en volgen de muis; bij hover de projectnaam, klik scrolt
     naar de case (`#project-…`, zie `projectAnchor`/`FEATURED` in `showcase.ts`) of opent de live site), `Spotlight`, `FlipWords` (titel).
@@ -34,7 +58,7 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
 - Jaarlijkse betaling: altijd aanbieden, 1 maand gratis (11 maandbedragen voor 12 maanden; `yearlyPrice`/`YEARLY_FREE_MONTHS` in
   `site.ts`). Staat op de pakketkaarten, in de vergelijkingstabel, de FAQ, llms.txt, de algemene voorwaarden (art. 4 en 9, met
   `review:`) en in elke offerte. Jaarabonnement verlengt per jaar, opzegbaar tot 1 maand voor het einde, geen terugbetaling.
-- Pakketten: onder de kaarten een vergelijkingstabel (`PackageComparison.tsx`, data `comparison` in `site.ts`). Business draagt
+- Pakketten: de vergelijkingstabel (`PackageComparison.tsx`, data `comparison` in `site.ts`) staat op `/website-laten-maken`, niet meer op de homepage. Business draagt
   het label "Aanrader" (niet "Meest gekozen": dat zou een verzonnen claim zijn zolang er geen klantcijfers zijn).
 - Offertes: `offertes/<nummer>-<klant>/` (staat in `.gitignore`, de repo is publiek). Opgemaakt als HTML, naar PDF gerenderd met
   playwright-core + Edge (A4, max. 2 pagina's). Nummering 2026-001, 2026-002, … Altijd vermelden: "Geen btw aangerekend: bijzondere
@@ -45,7 +69,7 @@ Taal: enkel Nederlands (nl-BE). Communicatie met Finn: Vlaams, informeel.
   terugkerende facturen intussen kunnen; begin 2026 kon terugkerend nog niet). Maandbedrag: maandelijkse factuur + klant betaalt via
   doorlopende opdracht/overschrijving. Stripe/domiciliëring pas overwegen bij meerdere abonnementsklanten.
 - UI-teksten: geen uitleg-/hinttekstjes zoals "Hover om te scrollen" of "Echte websites, live online".
-- Enkel donkere modus: geen themaknop meer; de donkere tokens in `src/index.css` gelden altijd (`<html class="dark">`).
+- Licht thema sinds het redesign van 11/11/2026 (zie bovenaan); geen themaknop. Enkel `/admin` is nog donker (`admin.html` heeft `class="dark"`).
 - `src/hooks/useAwayTitle.ts`: andere tab-titel ("We missen je hier 🥺", …) zolang het tabblad niet actief is.
 - Favicon (tab): `public/favicon.svg` = originele logo met de eerste "f" altijd zwart (#111) en "f›" oranje, transparant;
   `favicon.ico` (16/32/48) daaruit gerenderd. App-iconen (icon-192/512, apple-touch-icon) ongewijzigd: donkere achtergrond, witte f.
@@ -123,6 +147,12 @@ Interne klantenadministratie voor Finn: lopende projecten, voortgang (vaste stap
 - Kleine, logische commits in het Nederlands.
 
 ## Open / te bevestigen door Finn
+- [ ] **Redesign + nieuwe prijzen live zetten** (11/11/2026): Finn moet de branch `prijzen-en-redesign` nog goedkeuren. Vóór livegang
+      `/unslop` met storyvideo (afspraak). Dan mergen naar `main` en tegelijk de app-branch `prijzen-opstart`.
+- [ ] Huurformule zonder opstart (voorstel: Start € 79/maand, Business € 169/maand, 24 maanden, geen overname): Finn heeft nog niet
+      beslist. Als ze er komt: één regel onder de prijzen + optie in de offertebuilder, en art. 4, 10 en 11 van de voorwaarden aanpassen.
+- [ ] Lopende offertes aan de oude opstartprijs opnieuw sturen? Bavago tekende Business aan € 2.000 (nieuwe prijs € 1.500): Finn beslist.
+- [ ] `npm run lint` geeft 2 fouten in `ui/textarea.tsx` en `tailwind.config.ts` (bestonden al vóór het redesign).
 - [x] Supabase opgezet (22/10/2026): project, schema, seed, auth, SMTP, Vercel-variabelen op Preview.
 - [x] Beheeromgeving live (22/10/2026): variabelen op Production, `admin-backend` gemerged naar `main`.
 - [ ] Oude commits `665a56a`, `9fedf25`, `18adabb` (bevatten klantgegevens Bavago, uit de branch verwijderd) laten wissen via

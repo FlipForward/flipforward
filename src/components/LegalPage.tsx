@@ -28,22 +28,22 @@ const LegalPage = ({ title, updated, intro, sections }: { title: string; updated
         <div className="container mx-auto px-4 sm:px-6 py-4">
           <Link to="/" className="inline-flex items-center gap-3 text-foreground hover:text-accent transition-colors rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
             <ArrowLeft size={20} aria-hidden="true" />
-            <Logo className="h-8 w-auto text-foreground" />
-            <span className="text-xl font-bold">FlipForward</span>
+            <Logo className="h-6 w-auto text-primary" />
+            <span className="text-lg font-medium tracking-[-0.01em]">FlipForward</span>
             <span className="sr-only">– terug naar de homepage</span>
           </Link>
         </div>
       </header>
 
       <main id="main" className="container mx-auto px-4 sm:px-6 py-12 max-w-3xl flex-1">
-        <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">{title}</h1>
+        <h1 className="mb-4 text-4xl leading-[1.05] tracking-[-0.03em] text-foreground sm:text-5xl">{title}</h1>
         <p className="text-sm text-muted-foreground mb-8">Laatst bijgewerkt: {updated}</p>
         <div className="text-muted-foreground leading-relaxed mb-10">{intro}</div>
 
         <div className="space-y-8 text-muted-foreground leading-relaxed [&_a]:text-foreground [&_a]:underline [&_a]:underline-offset-4 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:space-y-1 [&_p+p]:mt-3 [&_p+ul]:mt-3 [&_ul+p]:mt-3">
           {sections.map((s) => (
             <section key={s.title}>
-              <h2 className="text-xl font-semibold text-foreground mb-3">{s.title}</h2>
+              <h2 className="mb-3 text-xl font-medium text-foreground">{s.title}</h2>
               {review && s.review && (
                 <p className="mb-3 rounded-md border border-yellow-500/60 bg-yellow-500/10 px-3 py-2 text-sm text-foreground">
                   ⚖️ Juridisch na te lezen: {s.review}
