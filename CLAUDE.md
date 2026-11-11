@@ -70,7 +70,7 @@ Dit blok gaat voor op oudere regels verderop (donkere modus, Aceternity-hero, ve
   doorlopende opdracht/overschrijving. Stripe/domiciliëring pas overwegen bij meerdere abonnementsklanten.
 - UI-teksten: geen uitleg-/hinttekstjes zoals "Hover om te scrollen" of "Echte websites, live online".
 - Licht thema sinds het redesign van 11/11/2026 (zie bovenaan); geen themaknop. Enkel `/admin` is nog donker (`admin.html` heeft `class="dark"`).
-- `src/hooks/useAwayTitle.ts`: andere tab-titel ("We missen je hier 🥺", …) zolang het tabblad niet actief is.
+- `src/hooks/useAwayTitle.ts`: andere tab-titel ("We missen je hier", …; zonder emoji sinds 12/11/2026) zolang het tabblad niet actief is.
 - Favicon (tab): `public/favicon.svg` = originele logo met de eerste "f" altijd zwart (#111) en "f›" oranje, transparant;
   `favicon.ico` (16/32/48) daaruit gerenderd. App-iconen (icon-192/512, apple-touch-icon) ongewijzigd: donkere achtergrond, witte f.
 - Responsive gecontroleerd op 320–1920 px zonder horizontaal scrollen; dat zo houden bij nieuwe secties.

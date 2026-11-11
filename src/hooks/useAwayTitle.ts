@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const AWAY_TITLES = ["We missen je hier 🥺", "Kom je terug? 👀", "Psst… je website wacht 🧡", "Hallo? Ben je daar nog? 👋"];
+const AWAY_TITLES = ["We missen je hier", "Kom je terug?", "Psst… je website wacht", "Hallo? Ben je daar nog?"];
 
 /**
  * Verandert de tab-titel als de bezoeker naar een ander tabblad gaat, en zet hem terug bij terugkomst.
