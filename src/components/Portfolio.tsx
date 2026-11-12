@@ -69,7 +69,7 @@ const Portfolio = () => {
   };
 
   return (
-    <section id="portfolio" aria-labelledby="portfolio-title" className="scroll-mt-20 pb-16 sm:pb-28">
+    <section id="portfolio" aria-labelledby="portfolio-title" className="scroll-mt-6 pb-16 sm:pb-28">
       <div className="wrap">
         <Reveal className="flex items-end justify-between gap-6 pb-8 sm:pb-12">
           <h2 id="portfolio-title" className="h-section">
@@ -81,7 +81,7 @@ const Portfolio = () => {
         {/* Desktop: lijst met een voorbeeld dat de muis volgt */}
         <ul ref={list} onPointerMove={move} onPointerLeave={() => setActive(null)} className="relative hidden border-t border-border lg:block">
           {projects.map((p, i) => (
-            <li key={p.title} id={projectAnchor(p.title)} className="scroll-mt-24 border-b border-border">
+            <li key={p.title} id={projectAnchor(p.title)} className="scroll-mt-6 border-b border-border">
               <a
                 href={p.link}
                 target="_blank"

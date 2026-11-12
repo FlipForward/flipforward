@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import Logo from "./Logo";
 import Magnetic from "./motion/Magnetic";
+import { scrollToTop } from "./ScrollToTop";
 
 const links = [
   { id: "portfolio", label: "Werk" },
@@ -17,6 +18,14 @@ const Navigation = () => {
   // Op subpagina's linken de ankers terug naar de homepage.
   const href = (id: string) => (pathname === "/" ? `#${id}` : `/#${id}`);
   const close = () => setIsOpen(false);
+  // Op de homepage scrolt het logo naar boven (en haalt het anker uit de adresbalk); elders gaat het gewoon naar de homepage.
+  const logoClick = (e: React.MouseEvent) => {
+    close();
+    if (pathname !== "/") return;
+    e.preventDefault();
+    window.history.replaceState(null, "", "/");
+    scrollToTop();
+  };
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-background/85 backdrop-blur-md">
@@ -28,7 +37,7 @@ const Navigation = () => {
       </a>
       <nav aria-label="Hoofdmenu" className="wrap">
         <div className="flex h-16 items-center justify-between sm:h-20">
-          <Link to="/" className="flex items-center gap-2.5 rounded" aria-label="FlipForward, naar de homepage">
+          <Link to="/" onClick={logoClick} className="flex items-center gap-2.5 rounded" aria-label="FlipForward, naar de homepage">
             <Logo className="h-6 w-auto text-primary" />
             <span className="text-lg font-medium tracking-[-0.01em] text-foreground">FlipForward</span>
           </Link>

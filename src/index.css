@@ -79,7 +79,27 @@
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
+    /* Ankers landen juist onder de vaste nav: h-16 op gsm, h-20 vanaf sm. Geen extra scroll-mt op de secties zetten. */
+    scroll-padding-top: 4rem;
+  }
+  @media (min-width: 640px) {
+    html { scroll-padding-top: 5rem; }
+  }
+
+  /*
+   * Gsm: bij doorveren onderaan toont de browser de achtergrond van <html>. Op pagina's met de donkere footer is die dus
+   * inktzwart; een strook boven de pagina houdt het doorveren bovenaan papierwit.
+   */
+  html:has(footer.on-ink) { background-color: hsl(var(--ink)); }
+  html:has(footer.on-ink) body { position: relative; min-height: 100svh; }
+  html:has(footer.on-ink) body::before {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    top: -100vh;
+    height: 100vh;
+    background: hsl(var(--background));
+    pointer-events: none;
   }
 
   h1, h2, h3 { text-wrap: balance; }

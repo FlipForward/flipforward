@@ -4,7 +4,7 @@ import Reveal from "./motion/Reveal";
 
 /** Wie er bouwt en hoe het loopt, samen in één donker vlak. */
 const About = () => (
-  <section id="over" aria-labelledby="over-title" className="on-ink scroll-mt-20 py-16 sm:py-28">
+  <section id="over" aria-labelledby="over-title" className="on-ink py-16 sm:py-28">
     <div className="wrap">
       <Reveal className="grid gap-8 lg:grid-cols-[auto_1fr] lg:gap-16">
         <img
@@ -27,7 +27,7 @@ const About = () => (
         </div>
       </Reveal>
 
-      <div id="werkwijze" className="scroll-mt-24 pt-14 sm:pt-24">
+      <div id="werkwijze" className="pt-14 sm:pt-24">
         <h3 className="soft text-lg">Zo loopt het</h3>
         <ol className="line mt-5 grid border-t sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((s, i) => (

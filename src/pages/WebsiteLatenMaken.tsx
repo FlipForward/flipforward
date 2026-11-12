@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import ScrollToTop from "@/components/ScrollToTop";
 import PackageComparison from "@/components/PackageComparison";
 import { business, packages, includedInAll, steps, faqs, formatEuro, yearlyPrice, PRICE_NOTE, RENT_MONTHS } from "@/lib/site";
 import { showcase, FEATURED } from "@/lib/showcase";
@@ -187,6 +188,7 @@ const WebsiteLatenMaken = () => {
         </article>
       </main>
       <Footer />
+      <ScrollToTop />
     </div>
   );
 };

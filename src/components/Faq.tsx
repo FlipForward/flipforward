@@ -7,7 +7,7 @@ import Reveal from "./motion/Reveal";
  * in de geprerenderde HTML. De FAQPage-structured data komt uit vite.config.ts.
  */
 const Faq = () => (
-  <section id="faq" aria-labelledby="faq-title" className="scroll-mt-20 py-16 sm:py-28">
+  <section id="faq" aria-labelledby="faq-title" className="py-16 sm:py-28">
     <div className="wrap grid gap-8 lg:grid-cols-[1fr_1.6fr] lg:gap-16">
       <Reveal>
         <h2 id="faq-title" className="h-section">

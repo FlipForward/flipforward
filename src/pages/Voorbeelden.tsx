@@ -68,7 +68,7 @@ const Voorbeelden = () => (
       </section>
 
       {/* Voorbeelden */}
-      <section id="voorbeelden" aria-labelledby="voorbeelden-titel" className="mt-20 scroll-mt-24 sm:mt-28">
+      <section id="voorbeelden" aria-labelledby="voorbeelden-titel" className="mt-20 scroll-mt-6 sm:mt-28">
         <div className="container mx-auto max-w-5xl px-4 sm:px-6">
           <h2 id="voorbeelden-titel" className="text-[clamp(1.75rem,3.2vw,2.75rem)] leading-[1.08] tracking-[-0.025em]">
             Vier bedrijven, vier stijlen

@@ -22,10 +22,16 @@ Dit blok gaat voor op oudere regels verderop (donkere modus, Aceternity-hero, ve
   (`About.tsx`, bevat ook `#werkwijze`) → Vragen → Contact. Anker-id's zijn dezelfde gebleven (`portfolio`, `pakketten`, `over`,
   `werkwijze`, `faq`, `contact`). Geen groot projectvenster in de hero (Finn vond dat niks). De vergelijkingstabel staat nu op
   `/website-laten-maken`. Niet meer gebruikt, nog op te ruimen: `Services.tsx`, `HowItWorks.tsx`, `ScrollShot.tsx`,
-  `ScrollToTop.tsx`, `hero/HeroCopy.tsx`, `components/aceternity/`.
+  `hero/HeroCopy.tsx`, `components/aceternity/`.
 - **Lengte**: gsm (390×844) 6.677 px = 7,9 schermen (was 10.562 = 12,5); desktop (1440×900) 5.951 px = 6,6 schermen (was 10.848 = 12).
 - **Controles** (Lighthouse op de productiebuild, lokaal): toegankelijkheid 100, SEO 100, best practices 100; prestaties desktop 100,
   gsm 95–98 (LCP 2,5–2,7 s gesimuleerd traag toestel, CLS 0). Na deploy de live site op CSP-fouten nakijken.
+- **Navigatie en scrollen** (12/11/2026): het logo scrolt op de homepage naar boven (`scrollToTop` in `ScrollToTop.tsx`). Ankers
+  landen juist onder de vaste nav via `scroll-padding-top` op `html` (4rem gsm, 5rem vanaf sm): zet geen `scroll-mt-*` op secties
+  (dat telde vroeger dubbel), enkel `scroll-mt-6` waar een sectie geen eigen bovenruimte heeft (`#portfolio`). Knop "Terug naar
+  boven" rechtsonder (`ScrollToTop`, op de homepage en `/website-laten-maken`): verschijnt na één schermhoogte en verdwijnt
+  zolang het contactformulier in beeld is. Doorveren op gsm: `html:has(footer.on-ink)` is inktzwart (kleur van de footer) en
+  `body::before` houdt de bovenkant papierwit; niet op een echte iPhone nagekeken.
 - `/admin` houdt zijn donkere kleuren via het `.dark`-blok onderaan `index.css`.
 - De preview in de Claude-app vindt `.claude/launch.json` van deze map niet als de sessie elders startte: dan `npx vite --port 8080`.
 

@@ -68,7 +68,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" aria-labelledby="contact-title" className="on-ink scroll-mt-20 py-16 sm:py-28">
+    <section id="contact" aria-labelledby="contact-title" className="on-ink py-16 sm:py-28">
       <div className="wrap grid gap-12 lg:grid-cols-2 lg:gap-20">
         <Reveal>
           <h2 id="contact-title" className="display max-w-[11ch]">

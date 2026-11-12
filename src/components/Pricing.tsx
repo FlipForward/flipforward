@@ -20,7 +20,7 @@ const Pricing = () => {
   }, []);
 
   return (
-    <section id="pakketten" aria-labelledby="pakketten-title" className="scroll-mt-20 border-t border-border py-16 sm:py-28">
+    <section id="pakketten" aria-labelledby="pakketten-title" className="border-t border-border py-16 sm:py-28">
       <div className="wrap">
         <Reveal className="grid gap-4 pb-8 sm:pb-14 lg:grid-cols-2 lg:items-end">
           <h2 id="pakketten-title" className="h-section">
