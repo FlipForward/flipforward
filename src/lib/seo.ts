@@ -44,7 +44,7 @@ export function jsonLd() {
     name: business.name,
     url: `${SITE_URL}/`,
     logo: `${SITE_URL}/icon-512.png`,
-    image: `${SITE_URL}/og-image.png`,
+    image: `${SITE_URL}/og-image.png?v=2`,
     description:
       "Webbureau uit Retie dat websites bouwt en onderhoudt voor kmo's en zelfstandigen in de Kempen, als abonnement (Website as a Service).",
     email: business.email,
